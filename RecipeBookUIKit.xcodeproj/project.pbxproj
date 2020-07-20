@@ -17,6 +17,7 @@
 		4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474487C24C60C7000EA5B2C /* Extensions.swift */; };
 		4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474487F24C6216C00EA5B2C /* Ingredient.swift */; };
 		4474488324C622CC00EA5B2C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488224C622CC00EA5B2C /* Recipe.swift */; };
+		4474488524C6256800EA5B2C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488424C6256700EA5B2C /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		4474487C24C60C7000EA5B2C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4474487F24C6216C00EA5B2C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4474488224C622CC00EA5B2C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		4474488424C6256700EA5B2C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
 				4474486724C60B1300EA5B2C /* MainViewController.swift */,
+				4474488424C6256700EA5B2C /* MainView.swift */,
 				4474488124C6229F00EA5B2C /* Models */,
 				4474486C24C60B1700EA5B2C /* Assets.xcassets */,
 				4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */,
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
+				4474488524C6256800EA5B2C /* MainView.swift in Sources */,
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
