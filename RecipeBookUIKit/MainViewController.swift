@@ -8,12 +8,20 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
+    private var mainView: MainView!
+
+    override func loadView() {
+        self.mainView = MainView()
+        self.view = mainView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .blue
+        title = "Recipes"
+
+        hideKeyboardOnTap()
     }
 }
 
