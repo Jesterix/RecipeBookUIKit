@@ -3,27 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486324C60B1300EA5B2C /* AppDelegate.swift */; };
 		4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486524C60B1300EA5B2C /* SceneDelegate.swift */; };
-		4474486824C60B1300EA5B2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486724C60B1300EA5B2C /* ViewController.swift */; };
-		4474486B24C60B1300EA5B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4474486924C60B1300EA5B2C /* Main.storyboard */; };
+		4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486724C60B1300EA5B2C /* MainViewController.swift */; };
 		4474486D24C60B1700EA5B2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4474486C24C60B1700EA5B2C /* Assets.xcassets */; };
 		4474487024C60B1700EA5B2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */; };
+		4474487924C60B8100EA5B2C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4474487824C60B8100EA5B2C /* SnapKit */; };
+		4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */; };
+		4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474487C24C60C7000EA5B2C /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474486524C60B1300EA5B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4474486724C60B1300EA5B2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4474486A24C60B1300EA5B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4474486724C60B1300EA5B2C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4474486C24C60B1700EA5B2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4474486F24C60B1700EA5B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4474487124C60B1700EA5B2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
+		4474487C24C60C7000EA5B2C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4474487924C60B8100EA5B2C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +62,22 @@
 			children = (
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
-				4474486724C60B1300EA5B2C /* ViewController.swift */,
-				4474486924C60B1300EA5B2C /* Main.storyboard */,
+				4474486724C60B1300EA5B2C /* MainViewController.swift */,
 				4474486C24C60B1700EA5B2C /* Assets.xcassets */,
 				4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */,
 				4474487124C60B1700EA5B2C /* Info.plist */,
+				4474487E24C60C7A00EA5B2C /* Extensions */,
 			);
 			path = RecipeBookUIKit;
+			sourceTree = "<group>";
+		};
+		4474487E24C60C7A00EA5B2C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
+				4474487C24C60C7000EA5B2C /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +96,9 @@
 			dependencies = (
 			);
 			name = RecipeBookUIKit;
+			packageProductDependencies = (
+				4474487824C60B8100EA5B2C /* SnapKit */,
+			);
 			productName = RecipeBookUIKit;
 			productReference = 4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 4474485724C60B1300EA5B2C;
+			packageReferences = (
+				4474487724C60B8100EA5B2C /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 4474486124C60B1300EA5B2C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +146,6 @@
 			files = (
 				4474487024C60B1700EA5B2C /* LaunchScreen.storyboard in Resources */,
 				4474486D24C60B1700EA5B2C /* Assets.xcassets in Resources */,
-				4474486B24C60B1300EA5B2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4474486824C60B1300EA5B2C /* ViewController.swift in Sources */,
+				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
+				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
+				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +167,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4474486924C60B1300EA5B2C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4474486A24C60B1300EA5B2C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,6 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +318,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4474487724C60B8100EA5B2C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4474487824C60B8100EA5B2C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4474487724C60B8100EA5B2C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4474485824C60B1300EA5B2C /* Project object */;
 }
