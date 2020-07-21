@@ -28,6 +28,7 @@ final class MainViewController: UIViewController {
         mainView.recipeTableView.register(
             RecipeCell.self,
             forCellReuseIdentifier: RecipeCell.reuseID)
+        mainView.addRecipeTextField.addingDelegate = self
 
         hideKeyboardOnTap()
     }
@@ -51,6 +52,13 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension MainViewController: ObjectFromStringAdding {
+    func addObject(from string: String) {
+        recipes.append(Recipe(title: string))
+        mainView.recipeTableView.reloadData()
     }
 }
 

@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ObjectFromStringAdding: class {
+    func addObject(from string: String)
+}
+
 class AddTextField: UITextField {
 
-    var addButton: UIButton!
+    private var addButton: UIButton!
+    weak var addingDelegate: ObjectFromStringAdding?
 
     private weak var _delegate: UITextFieldDelegate?
     open override var delegate: UITextFieldDelegate? {
@@ -26,7 +31,7 @@ class AddTextField: UITextField {
         super.init(frame: .zero)
         layoutContent(in: self)
         applyStyle()
-        super.delegate = self
+        setDelegates()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,6 +57,16 @@ class AddTextField: UITextField {
         addButton.tintColor = .black
     }
 
+    //MARK: - set delegates
+    private func setDelegates() {
+        super.delegate = self
+
+        addButton.addTarget(
+            addingDelegate,
+            action: #selector(addObject),
+            for: .touchUpInside)
+    }
+
     // MARK: - TextField Insets
     private var textInsets = UIEdgeInsets.zero {
         didSet {
@@ -73,6 +88,14 @@ class AddTextField: UITextField {
 
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: textInsets))
+    }
+
+    @objc private func addObject() {
+        guard let text = text, text.count > 0 else {
+            return
+        }
+        addingDelegate?.addObject(from: text)
+        self.text = ""
     }
 }
 
