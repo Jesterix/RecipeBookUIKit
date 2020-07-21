@@ -1,55 +1,65 @@
 //
-//  MainViewController.swift
+//  RecipeViewController.swift
 //  RecipeBookUIKit
 //
-//  Created by Георгий Хайденко on 20.07.2020.
+//  Created by Георгий Хайденко on 21.07.2020.
 //  Copyright © 2020 George Khaydenko. All rights reserved.
 //
 
 import UIKit
 
-final class MainViewController: UIViewController {
-    private var mainView: MainView!
+final class RecipeViewController: UIViewController {
+    private var recipeView: RecipeView!
 
-    var recipes = [Recipe(title: "first"), Recipe(title: "second", text: "recipeText here"), Recipe(title: "third")]
+    private var recipe: Recipe
+
+    init(_ recipe: Recipe) {
+        self.recipe = recipe
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
-        self.mainView = MainView()
-        self.view = mainView
+        self.recipeView = RecipeView()
+        self.view = recipeView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Recipes"
+        title = recipe.title
 
-        mainView.recipeTableView.dataSource = self
-        mainView.recipeTableView.delegate = self
-        mainView.recipeTableView.register(
+        recipeView.ingredientTableView.dataSource = self
+        recipeView.ingredientTableView.delegate = self
+        recipeView.ingredientTableView.register(
             RecipeCell.self,
             forCellReuseIdentifier: RecipeCell.reuseID)
-        mainView.addRecipeTextField.addingDelegate = self
+        recipeView.addIngredientTextField.addingDelegate = self
 
         hideKeyboardOnTap()
     }
 }
 
-extension MainViewController: UITableViewDataSource {
+extension RecipeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        recipes.count
+        recipe.ingredients.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.reuseID) as? RecipeCell else {
             return UITableViewCell()
         }
-        cell.configureCell(with: recipes[indexPath.row])
+//        cell.configureCell(with: recipe.ingredients[indexPath.row])
+        cell.textLabel?.text = recipe.ingredients[indexPath.row].title
 
         return cell
     }
 }
 
-extension MainViewController: UITableViewDelegate {
+extension RecipeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -63,7 +73,7 @@ extension MainViewController: UITableViewDelegate {
             style: .destructive,
             title: "Delete"
         ) { _, _, _ in
-            self.recipes.remove(at: indexPath.row)
+            self.recipe.ingredients.remove(at: indexPath.row)
             tableView.reloadData()
         }
 
@@ -71,10 +81,9 @@ extension MainViewController: UITableViewDelegate {
     }
 }
 
-extension MainViewController: ObjectFromStringAdding {
+extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
-        recipes.append(Recipe(title: string))
-        mainView.recipeTableView.reloadData()
+        recipe.ingredients.append(Ingredient(title: string))
+        recipeView.ingredientTableView.reloadData()
     }
 }
-
