@@ -11,7 +11,24 @@ import UIKit
 final class MainViewController: UIViewController {
     private var mainView: MainView!
 
-    var recipes = [Recipe(title: "first", ingredients: [Ingredient(title: "Water")]), Recipe(title: "second", text: "recipeText here"), Recipe(title: "third")]
+    var recipes = [
+        Recipe(
+            title: "first",
+            ingredients: [
+                Ingredient(
+                    title: "Water",
+                    measurement: Measurement(
+                        value: 3,
+                        unit: UnitMass.grams)),
+                Ingredient(
+                    title: "Flour",
+                    measurement: Measurement(
+                        value: 5.34,
+                        unit: Unit(symbol: "шт")))]),
+        Recipe(
+            title: "second",
+            text: "recipeText here"),
+        Recipe(title: "third")]
 
     override func loadView() {
         self.mainView = MainView()

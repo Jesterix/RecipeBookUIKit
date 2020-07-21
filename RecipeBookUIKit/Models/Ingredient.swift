@@ -10,7 +10,6 @@ import Foundation
 
 struct Ingredient {
     var title: String
-    var value: Double = 0
     var measurement: Measurement<Unit>? = nil
 
     static func empty() -> Ingredient {

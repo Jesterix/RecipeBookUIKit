@@ -35,8 +35,8 @@ final class RecipeViewController: UIViewController {
         recipeView.ingredientTableView.dataSource = self
         recipeView.ingredientTableView.delegate = self
         recipeView.ingredientTableView.register(
-            RecipeCell.self,
-            forCellReuseIdentifier: RecipeCell.reuseID)
+            IngredientCell.self,
+            forCellReuseIdentifier: IngredientCell.reuseID)
         recipeView.addIngredientTextField.addingDelegate = self
 
         hideKeyboardOnTap()
@@ -49,11 +49,10 @@ extension RecipeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.reuseID) as? RecipeCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.reuseID) as? IngredientCell else {
             return UITableViewCell()
         }
-//        cell.configureCell(with: recipe.ingredients[indexPath.row])
-        cell.textLabel?.text = recipe.ingredients[indexPath.row].title
+        cell.configureCell(with: recipe.ingredients[indexPath.row])
 
         return cell
     }
