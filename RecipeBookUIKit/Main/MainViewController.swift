@@ -11,7 +11,7 @@ import UIKit
 final class MainViewController: UIViewController {
     private var mainView: MainView!
 
-    var recipes = [Recipe(title: "first"), Recipe(title: "second", text: "recipeText here"), Recipe(title: "third")]
+    var recipes = [Recipe(title: "first", ingredients: [Ingredient(title: "Water")]), Recipe(title: "second", text: "recipeText here"), Recipe(title: "third")]
 
     override func loadView() {
         self.mainView = MainView()
@@ -52,6 +52,10 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        navigationController?.pushViewController(
+            RecipeViewController(recipes[indexPath.row]),
+            animated: true)
     }
 
     func tableView(
