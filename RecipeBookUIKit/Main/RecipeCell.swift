@@ -11,6 +11,8 @@ import UIKit
 final class RecipeCell: UITableViewCell {
     static var reuseID = "RecipeCell"
 
+    private var recipeInfoLabel: UILabel!
+
     override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
@@ -23,8 +25,6 @@ final class RecipeCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    private var recipeInfoLabel: UILabel!
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
