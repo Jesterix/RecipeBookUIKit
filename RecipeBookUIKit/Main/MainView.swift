@@ -9,7 +9,7 @@
 import UIKit
 
 final class MainView: UIView {
-    var addRecipeTextField: UITextField!
+    var addRecipeTextField: AddTextField!
     var recipeTableView: UITableView!
 
     init() {
@@ -24,10 +24,11 @@ final class MainView: UIView {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        addRecipeTextField = layout(UITextField()) { make in
+        addRecipeTextField = layout(AddTextField()) { make in
             make.top.equalTo(safeArea).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(30)
         }
 
         recipeTableView = layout(UITableView()) { make in
@@ -40,8 +41,6 @@ final class MainView: UIView {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
-
-        addRecipeTextField.borderStyle = .roundedRect
     }
 }
 
