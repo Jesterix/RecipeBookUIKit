@@ -43,11 +43,13 @@ class AddTextField: UITextField {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .orange
+        backgroundColor = .systemOrange
         layer.cornerRadius = 15
         font = .systemFont(ofSize: 15)
         autocorrectionType = .no
         textInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 30)
+
+        addButton.tintColor = .black
     }
 
     // MARK: - TextField Insets
