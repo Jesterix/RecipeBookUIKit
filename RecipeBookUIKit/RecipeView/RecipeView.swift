@@ -11,6 +11,7 @@ import UIKit
 final class RecipeView: UIView {
     var addIngredientTextField: AddTextField!
     var ingredientTableView: UITableView!
+    var textView: UITextView!
 
     init() {
         super.init(frame: .zero)
@@ -34,6 +35,12 @@ final class RecipeView: UIView {
         ingredientTableView = layout(UITableView()) { make in
             make.top.equalTo(addIngredientTextField.bottom).offset(10)
             make.leading.trailing.equalTo(addIngredientTextField)
+            make.bottom.equalTo(safeArea).dividedBy(2)
+        }
+
+        textView = layout(UITextView()) { make in
+            make.top.equalTo(ingredientTableView.bottom).offset(10)
+            make.leading.trailing.equalTo(addIngredientTextField)
             make.bottom.equalTo(safeArea).offset(-10)
         }
     }
@@ -42,6 +49,13 @@ final class RecipeView: UIView {
     private func applyStyle() {
         backgroundColor = .white
         addIngredientTextField.placeholder = "Add ingredient"
+
+        textView.autocorrectionType = .no
+
+        let color = #colorLiteral(red: 0.9609501958, green: 0.8888508081, blue: 0.8478230238, alpha: 0.9998855591)
+        textView.backgroundColor = color
+        textView.layer.cornerRadius = 10
+        textView.font = .systemFont(ofSize: 13)
     }
 }
 
