@@ -25,6 +25,9 @@
 		4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489124C786FE00EA5B2C /* IngredientCell.swift */; };
 		4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */; };
 		4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4474489824C84B0300EA5B2C /* RealmSwift */; };
+		4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */; };
+		4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */; };
+		4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489E24C8505200EA5B2C /* DataBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		4474488F24C7832200EA5B2C /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeView.swift; path = RecipeBookUIKit/RecipeView/RecipeView.swift; sourceTree = SOURCE_ROOT; };
 		4474489124C786FE00EA5B2C /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserversExtensions.swift; sourceTree = "<group>"; };
+		4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRecipe.swift; sourceTree = "<group>"; };
+		4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmIngredient.swift; sourceTree = "<group>"; };
+		4474489E24C8505200EA5B2C /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 			children = (
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
+				447448A024C8505D00EA5B2C /* DataBase */,
 				4474488B24C6F09400EA5B2C /* Controls */,
 				4474488824C6363C00EA5B2C /* Main */,
 				4474488E24C781C200EA5B2C /* RecipeView */,
@@ -109,6 +116,8 @@
 			children = (
 				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
 				4474488224C622CC00EA5B2C /* Recipe.swift */,
+				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
+				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,6 +148,14 @@
 				4474489124C786FE00EA5B2C /* IngredientCell.swift */,
 			);
 			path = RecipeView;
+			sourceTree = "<group>";
+		};
+		447448A024C8505D00EA5B2C /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,9 +242,12 @@
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
 				4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */,
 				4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */,
+				4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */,
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
+				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
 				4474489024C7832200EA5B2C /* RecipeView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
+				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
