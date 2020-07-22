@@ -23,6 +23,7 @@
 		4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488C24C781B800EA5B2C /* RecipeViewController.swift */; };
 		4474489024C7832200EA5B2C /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488F24C7832200EA5B2C /* RecipeView.swift */; };
 		4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489124C786FE00EA5B2C /* IngredientCell.swift */; };
+		4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		4474488C24C781B800EA5B2C /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		4474488F24C7832200EA5B2C /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeView.swift; path = RecipeBookUIKit/RecipeView/RecipeView.swift; sourceTree = SOURCE_ROOT; };
 		4474489124C786FE00EA5B2C /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserversExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
 				4474487C24C60C7000EA5B2C /* Extensions.swift */,
+				4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				4474489024C7832200EA5B2C /* RecipeView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
+				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,

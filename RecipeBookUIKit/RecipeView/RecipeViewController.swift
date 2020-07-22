@@ -41,6 +41,26 @@ final class RecipeViewController: UIViewController {
 
         hideKeyboardOnTap()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addKeyboardObservers(#selector(keyboardWillChange(notification:)))
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeKeyboardObservers()
+    }
+
+    @objc func keyboardWillChange(notification: Notification) {
+        guard let notification = KeyboardNotification(notification) else {
+            return
+        }
+
+        if recipeView.textView.isFirstResponder {
+            adjustView(with: notification)
+        }
+    }
 }
 
 extension RecipeViewController: UITableViewDataSource {
