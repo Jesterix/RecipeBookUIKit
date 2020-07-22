@@ -24,6 +24,7 @@
 		4474489024C7832200EA5B2C /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488F24C7832200EA5B2C /* RecipeView.swift */; };
 		4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489124C786FE00EA5B2C /* IngredientCell.swift */; };
 		4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */; };
+		4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4474489824C84B0300EA5B2C /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */,
 				4474487924C60B8100EA5B2C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,10 +86,10 @@
 				4474488824C6363C00EA5B2C /* Main */,
 				4474488E24C781C200EA5B2C /* RecipeView */,
 				4474488124C6229F00EA5B2C /* Models */,
+				4474487E24C60C7A00EA5B2C /* Extensions */,
 				4474486C24C60B1700EA5B2C /* Assets.xcassets */,
 				4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */,
 				4474487124C60B1700EA5B2C /* Info.plist */,
-				4474487E24C60C7A00EA5B2C /* Extensions */,
 			);
 			path = RecipeBookUIKit;
 			sourceTree = "<group>";
@@ -157,6 +159,7 @@
 			name = RecipeBookUIKit;
 			packageProductDependencies = (
 				4474487824C60B8100EA5B2C /* SnapKit */,
+				4474489824C84B0300EA5B2C /* RealmSwift */,
 			);
 			productName = RecipeBookUIKit;
 			productReference = 4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */;
@@ -188,6 +191,7 @@
 			mainGroup = 4474485724C60B1300EA5B2C;
 			packageReferences = (
 				4474487724C60B8100EA5B2C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4474489724C84B0300EA5B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 4474486124C60B1300EA5B2C /* Products */;
 			projectDirPath = "";
@@ -375,7 +379,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -394,7 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -430,6 +434,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		4474489724C84B0300EA5B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -437,6 +449,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4474487724C60B8100EA5B2C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4474489824C84B0300EA5B2C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4474489724C84B0300EA5B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
