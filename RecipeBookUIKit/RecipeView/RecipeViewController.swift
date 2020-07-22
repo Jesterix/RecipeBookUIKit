@@ -38,6 +38,8 @@ final class RecipeViewController: UIViewController {
             IngredientCell.self,
             forCellReuseIdentifier: IngredientCell.reuseID)
         recipeView.addIngredientTextField.addingDelegate = self
+        recipeView.textView.delegate = self
+        recipeView.textView.text = recipe.text
 
         hideKeyboardOnTap()
     }
@@ -113,5 +115,11 @@ extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
         recipe.ingredients.append(Ingredient(title: string))
         recipeView.ingredientTableView.reloadData()
+    }
+}
+
+extension RecipeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        recipe.text = textView.text
     }
 }

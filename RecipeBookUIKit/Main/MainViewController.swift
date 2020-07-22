@@ -24,7 +24,8 @@ final class MainViewController: UIViewController {
                     title: "Flour",
                     measurement: Measurement(
                         value: 5.34,
-                        unit: Unit(symbol: "шт")))]),
+                        unit: Unit(symbol: "шт")))],
+            text: "Put one vial of water.."),
         Recipe(
             title: "second",
             text: "recipeText here"),
