@@ -10,9 +10,26 @@ import Foundation
 import RealmSwift
 
 class RealmIngredient: Object {
-    dynamic var title: String = ""
-    let measurement = RealmOptional<Measurement<Unit>>()
-}
+    @objc dynamic var title: String = ""
+    @objc dynamic var value: Double = 0.0
+    @objc dynamic var symbol: String = ""
 
-extension Measurement: RealmOptionalType {
+    convenience init(from ingredient: Ingredient) {
+        self.init()
+        title = ingredient.title
+        guard let measurement = ingredient.measurement else {
+            return
+        }
+        value = measurement.value
+        symbol = measurement.unit.symbol
+    }
+
+    func converted() -> Ingredient {
+        return Ingredient(
+            title: title,
+            measurement: Measurement(
+                value: value,
+                unit: Unit(symbol: symbol))
+        )
+    }
 }

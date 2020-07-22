@@ -10,26 +10,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private var mainView: MainView!
+    let db = DataBaseManager()
 
-    var recipes = [
-        Recipe(
-            title: "first",
-            ingredients: [
-                Ingredient(
-                    title: "Water",
-                    measurement: Measurement(
-                        value: 3,
-                        unit: UnitMass.grams)),
-                Ingredient(
-                    title: "Flour",
-                    measurement: Measurement(
-                        value: 5.34,
-                        unit: Unit(symbol: "шт")))],
-            text: "Put one vial of water.."),
-        Recipe(
-            title: "second",
-            text: "recipeText here"),
-        Recipe(title: "third")]
+    var recipes: [Recipe] = []
 
     override func loadView() {
         self.mainView = MainView()
@@ -49,6 +32,10 @@ final class MainViewController: UIViewController {
         mainView.addRecipeTextField.addingDelegate = self
 
         hideKeyboardOnTap()
+
+        db.createBaseData()
+        self.recipes = self.db.getRecipesData()
+        self.mainView.recipeTableView.reloadData()
     }
 }
 
