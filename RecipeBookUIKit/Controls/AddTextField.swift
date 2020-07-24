@@ -51,6 +51,7 @@ class AddTextField: UITextField {
         backgroundColor = .systemOrange
         layer.cornerRadius = 15
         font = .systemFont(ofSize: 15)
+        textColor = .black
         autocorrectionType = .no
         textInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 30)
 

@@ -49,6 +49,8 @@ final class RecipeView: UIView {
     private func applyStyle() {
         backgroundColor = .white
         addIngredientTextField.placeholder = "Add ingredient"
+        
+        ingredientTableView.backgroundColor = .white
 
         textView.autocorrectionType = .no
 
@@ -56,6 +58,7 @@ final class RecipeView: UIView {
         textView.backgroundColor = color
         textView.layer.cornerRadius = 10
         textView.font = .systemFont(ofSize: 13)
+        textView.textColor = .black
     }
 }
 

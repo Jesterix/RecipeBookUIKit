@@ -50,9 +50,15 @@ final class IngredientCell: UITableViewCell {
 
     // MARK: - applyStyle
     private func applyStyle() {
+        backgroundColor = .white
+        
         titleLabel.font = .systemFont(ofSize: 13)
         valueLabel.font = .systemFont(ofSize: 13)
         measurementLabel.font = .systemFont(ofSize: 13)
+        
+        titleLabel.textColor = .black
+        valueLabel.textColor = .black
+        measurementLabel.textColor = .black
 
         valueLabel.textAlignment = .right
     }
