@@ -17,36 +17,9 @@ class DataBaseManager {
 
     func createBaseData() {
         do {
-            try realm.write() {
-                realm.delete(recipes)
-            }
-        } catch (let error) {
-            print(error.localizedDescription)
-        }
-
-        do {
             if recipes.count == 0 {
                 try realm.write() {
-                    let defaultRecipes = [
-                        Recipe(
-                            title: "first",
-                            ingredients: [
-                                Ingredient(
-                                    title: "Water",
-                                    measurement: Measurement(
-                                        value: 3,
-                                        unit: UnitMass.grams)),
-                                Ingredient(
-                                    title: "Flour",
-                                    measurement: Measurement(
-                                        value: 5.34,
-                                        unit: Unit(symbol: "шт")))],
-                            text: "Put one vial of water.."),
-                        Recipe(
-                            title: "second",
-                            text: "recipeText here"),
-                        Recipe(title: "third")]
-
+                    realm.delete(recipes)
                     for recipe in defaultRecipes {
                         let newRecipe = RealmRecipe(from: recipe)
                         realm.add(newRecipe)
@@ -54,6 +27,32 @@ class DataBaseManager {
                 }
                 recipes = realm.objects(RealmRecipe.self)
             }
+        } catch (let error) {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func add(recipe: Recipe) {
+        do {
+            try realm.write() {
+                let newRecipe = RealmRecipe(from: recipe)
+                realm.add(newRecipe)
+            }
+            recipes = realm.objects(RealmRecipe.self)
+        } catch (let error) {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func remove(recipe: Recipe) {
+        do {
+            try realm.write() {
+                if let recipeToDelete = realm.objects(RealmRecipe.self)
+                    .first(where: { $0.title == recipe.title}) {
+                    realm.delete(recipeToDelete)
+                }
+            }
+            recipes = realm.objects(RealmRecipe.self)
         } catch (let error) {
             print(error.localizedDescription)
         }

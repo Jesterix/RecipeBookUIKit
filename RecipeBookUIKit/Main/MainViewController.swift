@@ -10,9 +10,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private var mainView: MainView!
-    let db = DataBaseManager()
-
-    var recipes: [Recipe] = []
+    let dataManager = DataBaseManager()
 
     override func loadView() {
         self.mainView = MainView()
@@ -24,17 +22,22 @@ final class MainViewController: UIViewController {
 
         title = "Recipes"
 
+        setupDelegates()
+        hideKeyboardOnTap()
+        getDataFromDatabase()
+    }
+    
+    private func setupDelegates() {
         mainView.recipeTableView.dataSource = self
         mainView.recipeTableView.delegate = self
         mainView.recipeTableView.register(
             RecipeCell.self,
             forCellReuseIdentifier: RecipeCell.reuseID)
         mainView.addRecipeTextField.addingDelegate = self
-
-        hideKeyboardOnTap()
-
-        db.createBaseData()
-        self.recipes = self.db.getRecipesData()
+    }
+    
+    private func getDataFromDatabase() {
+        dataManager.createBaseData()
         self.mainView.recipeTableView.reloadData()
     }
 }
@@ -44,7 +47,7 @@ extension MainViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        recipes.count
+        dataManager.getRecipesData().count
     }
 
     func tableView(
@@ -54,7 +57,7 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.reuseID) as? RecipeCell else {
             return UITableViewCell()
         }
-        cell.configureCell(with: recipes[indexPath.row])
+        cell.configureCell(with: dataManager.getRecipesData()[indexPath.row])
 
         return cell
     }
@@ -68,7 +71,7 @@ extension MainViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         navigationController?.pushViewController(
-            RecipeViewController(recipes[indexPath.row]),
+            RecipeViewController(dataManager.getRecipesData()[indexPath.row]),
             animated: true)
     }
 
@@ -81,7 +84,8 @@ extension MainViewController: UITableViewDelegate {
             style: .destructive,
             title: "Delete"
         ) { _, _, _ in
-            self.recipes.remove(at: indexPath.row)
+            self.dataManager.remove(
+                recipe: self.dataManager.getRecipesData()[indexPath.row])
             tableView.reloadData()
         }
 
@@ -91,7 +95,7 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
-        recipes.append(Recipe(title: string))
+        dataManager.add(recipe: Recipe(title: string))
         mainView.recipeTableView.reloadData()
     }
 }

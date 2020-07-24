@@ -16,3 +16,23 @@ struct Ingredient {
         return Ingredient(title: "")
     }
 }
+
+var defaultRecipes = [
+    Recipe(
+        title: "first",
+        ingredients: [
+            Ingredient(
+                title: "Water",
+                measurement: Measurement(
+                    value: 3,
+                    unit: UnitMass.grams)),
+            Ingredient(
+                title: "Flour",
+                measurement: Measurement(
+                    value: 5.34,
+                    unit: Unit(symbol: "шт")))],
+        text: "Put one vial of water.."),
+    Recipe(
+        title: "second",
+        text: "recipeText here"),
+    Recipe(title: "third")]
