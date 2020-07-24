@@ -9,6 +9,7 @@
 import Foundation
 
 struct Ingredient {
+    var id: String = UUID().uuidString
     var title: String
     var measurement: Measurement<Unit>? = nil
 

@@ -11,7 +11,13 @@ import UIKit
 final class RecipeViewController: UIViewController {
     private var recipeView: RecipeView!
 
-    private var recipe: Recipe
+    private var recipe: Recipe {
+        didSet {
+            dataManager.update(recipe: recipe)
+        }
+    }
+    
+    private let dataManager = DataBaseManager()
 
     init(_ recipe: Recipe) {
         self.recipe = recipe

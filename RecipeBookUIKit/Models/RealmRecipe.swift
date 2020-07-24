@@ -10,12 +10,18 @@ import Foundation
 import RealmSwift
 
 class RealmRecipe: Object {
+    @objc dynamic var id: String = ""
     @objc dynamic var title: String = ""
     let ingredients = List<RealmIngredient>()
     @objc dynamic var text: String = ""
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 
     convenience init(from recipe: Recipe) {
         self.init()
+        id = recipe.id
         title = recipe.title
         ingredients.append(objectsIn: recipe.ingredients.map { RealmIngredient(from: $0) })
         text = recipe.text
@@ -23,9 +29,10 @@ class RealmRecipe: Object {
 
     func converted() -> Recipe {
         return Recipe(
-            title: self.title,
-            ingredients: self.ingredients.map { $0.converted() },
-            text: self.text
+            id: id,
+            title: title,
+            ingredients: ingredients.map { $0.converted() },
+            text: text
         )
     }
 }

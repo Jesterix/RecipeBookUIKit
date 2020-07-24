@@ -32,23 +32,17 @@ class DataBaseManager {
         }
     }
     
-    func add(recipe: Recipe) {
-        do {
-            try realm.write() {
-                let newRecipe = RealmRecipe(from: recipe)
-                realm.add(newRecipe)
-            }
-            recipes = realm.objects(RealmRecipe.self)
-        } catch (let error) {
-            print(error.localizedDescription)
-        }
+    func getRecipes() -> [Recipe] {
+        return recipes.map { $0.converted() }
     }
     
     func remove(recipe: Recipe) {
         do {
             try realm.write() {
-                if let recipeToDelete = realm.objects(RealmRecipe.self)
-                    .first(where: { $0.title == recipe.title}) {
+                if let recipeToDelete =
+                    realm.object(
+                        ofType: RealmRecipe.self,
+                        forPrimaryKey: recipe.id) {
                     realm.delete(recipeToDelete)
                 }
             }
@@ -57,8 +51,16 @@ class DataBaseManager {
             print(error.localizedDescription)
         }
     }
-
-    func getRecipesData() -> [Recipe] {
-        return recipes.map { $0.converted() }
+    
+    func update(recipe: Recipe) {
+        do {
+            try realm.write() {
+                let recipeToUpdate = RealmRecipe(from: recipe)
+                realm.add(recipeToUpdate, update: .modified)
+            }
+            recipes = realm.objects(RealmRecipe.self)
+        } catch (let error) {
+            print(error.localizedDescription)
+        }
     }
 }
