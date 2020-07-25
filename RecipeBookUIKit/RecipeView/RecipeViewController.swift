@@ -10,15 +10,6 @@ import UIKit
 
 final class RecipeViewController: UIViewController {
     private var recipeView: RecipeView!
-    
-    override var title: String? {
-        get {
-            recipe.title
-        }
-        set {
-            recipe.title = newValue ?? ""
-        }
-    }
 
     private var recipe: Recipe {
         didSet {
@@ -45,9 +36,8 @@ final class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = recipe.title
-        setEditableTitle(delegate: self)
-
+        recipeView.titleField.text = recipe.title
+        recipeView.titleField.delegate = self
         recipeView.ingredientTableView.dataSource = self
         recipeView.ingredientTableView.delegate = self
         recipeView.ingredientTableView.register(
@@ -142,7 +132,7 @@ extension RecipeViewController: UITextViewDelegate {
 
 extension RecipeViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        title = textField.text
+        recipe.title = textField.text ?? ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -52,9 +52,9 @@ final class IngredientCell: UITableViewCell {
     private func applyStyle() {
         backgroundColor = .white
         
-        titleLabel.font = .systemFont(ofSize: 13)
-        valueLabel.font = .systemFont(ofSize: 13)
-        measurementLabel.font = .systemFont(ofSize: 13)
+        titleLabel.font = .systemFont(ofSize: 15)
+        valueLabel.font = .systemFont(ofSize: 15)
+        measurementLabel.font = .systemFont(ofSize: 15)
         
         titleLabel.textColor = .black
         valueLabel.textColor = .black

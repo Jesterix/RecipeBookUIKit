@@ -37,16 +37,3 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-
-extension UIViewController {
-    internal func setEditableTitle(delegate: UITextFieldDelegate) {
-        let textField = UITextField(frame: .zero)
-        textField.text = self.title
-        textField.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        textField.textAlignment = .center
-        textField.autocorrectionType = .no
-        textField.delegate = delegate
-
-        self.navigationItem.titleView = textField
-    }
-}
