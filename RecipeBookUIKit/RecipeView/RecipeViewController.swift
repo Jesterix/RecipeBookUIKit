@@ -35,7 +35,6 @@ final class RecipeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         recipeView.titleField.text = recipe.title
         recipeView.titleField.delegate = self
         recipeView.ingredientTableView.dataSource = self
@@ -87,6 +86,14 @@ extension RecipeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configureCell(with: recipe.ingredients[indexPath.row])
+        
+        cell.ingredientChanged { [weak tableView] (ingredient: Ingredient) in
+            self.recipe.ingredients[indexPath.row] = ingredient
+            DispatchQueue.main.async {
+                tableView?.beginUpdates()
+                tableView?.endUpdates()
+            }
+        }
 
         return cell
     }
