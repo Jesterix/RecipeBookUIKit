@@ -28,6 +28,8 @@
 		4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */; };
 		4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */; };
 		4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489E24C8505200EA5B2C /* DataBaseManager.swift */; };
+		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
+		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRecipe.swift; sourceTree = "<group>"; };
 		4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmIngredient.swift; sourceTree = "<group>"; };
 		4474489E24C8505200EA5B2C /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
+		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			children = (
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
+				5EA0584624D050DB00631E04 /* MeasureView */,
 				447448A024C8505D00EA5B2C /* DataBase */,
 				4474488B24C6F09400EA5B2C /* Controls */,
 				4474488824C6363C00EA5B2C /* Main */,
@@ -156,6 +161,15 @@
 				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		5EA0584624D050DB00631E04 /* MeasureView */ = {
+			isa = PBXGroup;
+			children = (
+				5EA0584424D050CE00631E04 /* MeasureViewController.swift */,
+				5EA0584724D050F900631E04 /* MeasureView.swift */,
+			);
+			path = MeasureView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,8 +263,10 @@
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
+				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
+				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
 			);

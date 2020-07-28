@@ -47,6 +47,16 @@ final class RecipeViewController: UIViewController {
         recipeView.textView.text = recipe.text
 
         hideKeyboardOnTap()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(push))
+        self.recipeView.addGestureRecognizer(tap)
+    }
+    
+    @objc func push(){
+        let vc = MeasureViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(vc, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
