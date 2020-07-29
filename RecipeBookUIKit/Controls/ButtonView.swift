@@ -9,12 +9,12 @@
 import UIKit
 
 final class ButtonView: UIView {
-    private var buttons: [UIButton.ButtonType] = []
-    private var actions: [Button]!
+    private var buttonTypes: [UIButton.ButtonType] = []
+    private var buttons: [Button]!
     
     init(_ buttons: [UIButton.ButtonType]) {
         super.init(frame: .zero)
-        self.buttons = buttons
+        self.buttonTypes = buttons
         layoutContent(in: self)
         applyStyle()
     }
@@ -25,21 +25,21 @@ final class ButtonView: UIView {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        actions = []
+        buttons = []
         
-        for (i, _) in buttons.enumerated() {
-            let newAction = layout(Button(buttons[i])) { make in
+        for (i, _) in buttonTypes.enumerated() {
+            let newButton = layout(Button(buttonTypes[i])) { make in
                 make.top.bottom.equalToSuperview()
-                switch actions.last {
+                switch buttons.last {
                 case .none: make.leading.equalToSuperview()
                 case .some(let last): make.leading.equalTo(last.trailing).offset(5)
                 }
             }
-            newAction.tag = i
-            actions.append(newAction)
+            newButton.tag = i
+            buttons.append(newButton)
         }
         
-        actions.last?.snp.makeConstraints { make in
+        buttons.last?.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
 
