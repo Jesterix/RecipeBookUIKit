@@ -9,7 +9,10 @@
 import UIKit
 
 final class MeasureView: UIView {
-    var backBiew: UIView!
+    private var backBiew: UIView!
+    private var titleLabel: UILabel!
+    private var buttonView: ButtonView!
+    
     
     init() {
         super.init(frame: .zero)
@@ -30,13 +33,26 @@ final class MeasureView: UIView {
             make.bottom.trailing.equalTo(safeArea).offset(-40)
         }
         
+        titleLabel = layout(UILabel(text: "Choose measurement")) { make in
+            make.top.equalTo(backBiew).offset(10)
+            make.centerX.equalToSuperview()
+        }
+        
+        let buttons: [UIButton.ButtonType] = [.contactAdd, .detailDisclosure, .close]
+        buttonView = layout(ButtonView(buttons)) { make in
+            make.top.equalTo(titleLabel.bottom).offset(20)
+            make.leading.equalTo(backBiew)
+        }
+        
     }
     
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .clear
         
-        backBiew.backgroundColor = .red
+        let color = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        backBiew.backgroundColor = color
+        backBiew.layer.cornerRadius = 25
     }
 }
 
