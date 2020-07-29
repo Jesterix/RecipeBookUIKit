@@ -9,14 +9,14 @@
 import UIKit
 
 final class ButtonView: UIView {
-    private var primaryButtonTypes: [UIButton.ButtonType] = []
-    private var secondaryButtonTypes: [UIButton.ButtonType] = []
+    private var primaryButtonTypes: [Button.ButtonType] = []
+    private var secondaryButtonTypes: [Button.ButtonType] = []
     private var buttons: [Button]!
     private var secondaryButtons: [Button]!
     
     init(
-        _ primaryButtons: [UIButton.ButtonType],
-        secondaryButtons: [UIButton.ButtonType] = []
+        _ primaryButtons: [Button.ButtonType],
+        secondaryButtons: [Button.ButtonType] = []
     ) {
         super.init(frame: .zero)
         self.primaryButtonTypes = primaryButtons
@@ -45,7 +45,7 @@ final class ButtonView: UIView {
     }
     
     private func layout(
-        buttons: [UIButton.ButtonType],
+        buttons: [Button.ButtonType],
         for buttonArray: inout [Button]
     ) {
         for (i, _) in buttons.enumerated() {

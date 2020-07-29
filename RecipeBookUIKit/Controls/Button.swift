@@ -12,12 +12,9 @@ final class Button: UIView {
     var button: UIButton!
     private var label: UILabel!
     
-    var buttonType: UIButton.ButtonType? = nil
-    
-    init(_ buttonType: UIButton.ButtonType? = nil) {
+    init(_ type: Button.ButtonType) {
         super.init(frame: .zero)
-        self.buttonType = buttonType
-        layoutContent(in: self)
+        layoutContent(in: self, buttonType: type)
         applyStyle()
     }
 
@@ -26,19 +23,17 @@ final class Button: UIView {
     }
 
     // MARK: - layoutContent
-    private func layoutContent(in view: UIView) {
-        if buttonType == nil {
-            buttonType = UIButton.ButtonType.contactAdd
-        }
-        
-        guard let buttonType = buttonType else { return }
-        
-        button = layout(UIButton(type: buttonType)) { make in
+    private func layoutContent(in view: UIView, buttonType: ButtonType) {
+        button = layout(UIButton()) { make in
             make.top.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
-        label = layout(UILabel(text: "Button name")) { make in
+        let config = UIImage.SymbolConfiguration.init(pointSize: 30)
+        let image = UIImage(systemName: buttonType.rawValue, withConfiguration: config)
+        button.setImage(image, for: .normal)
+        
+        label = layout(UILabel(text: buttonType.name)) { make in
             make.top.equalTo(button.bottom).offset(5)
             make.leading.equalToSuperview().offset(5)
             make.trailing.equalToSuperview()
@@ -48,24 +43,40 @@ final class Button: UIView {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        
+        button.tintColor = .black
     }
 }
 
 extension Button {
+    enum ButtonType: String {
+        case add = "plus.circle"
+        case cancel = "xmark.circle"
+        case convert = "arrow.2.circlepath.circle"
+        case save = "arrow.uturn.down.circle"
+        
+        var name: String {
+            switch self {
+            case .add: return "Add"
+            case .cancel: return "Cancel"
+            case .convert: return "Convert"
+            case .save: return "Save"
+            }
+        }
+    }
+    
     static var add: Button {
-        .init(.contactAdd)
+        .init(.add)
     }
     
     static var cancel: Button {
-        .init(.close)
+        .init(.cancel)
     }
     
     static var convert: Button {
-        .init(.infoLight)
+        .init(.convert)
     }
     
     static var save: Button {
-        .init(.detailDisclosure)
+        .init(.save)
     }
 }
