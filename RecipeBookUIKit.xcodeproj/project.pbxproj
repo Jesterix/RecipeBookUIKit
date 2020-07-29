@@ -30,7 +30,6 @@
 		4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489E24C8505200EA5B2C /* DataBaseManager.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
-		5EA0584A24D0782D00631E04 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584924D0782D00631E04 /* Button.swift */; };
 		5EA0584C24D07CA900631E04 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584B24D07CA900631E04 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 		4474489E24C8505200EA5B2C /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
-		5EA0584924D0782D00631E04 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		5EA0584B24D07CA900631E04 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
-				5EA0584924D0782D00631E04 /* Button.swift */,
 				5EA0584B24D07CA900631E04 /* ButtonView.swift */,
 			);
 			path = Controls;
@@ -271,7 +268,6 @@
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
-				5EA0584A24D0782D00631E04 /* Button.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
