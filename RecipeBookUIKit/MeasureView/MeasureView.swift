@@ -11,8 +11,10 @@ import UIKit
 final class MeasureView: UIView {
     private var backBiew: UIView!
     private var titleLabel: UILabel!
-    private var buttonView: ButtonView!
+    private var addButtonView: ButtonView!
+    private var convertButtonView: ButtonView!
     
+    var testBut: UIButton!
     
     init() {
         super.init(frame: .zero)
@@ -38,14 +40,30 @@ final class MeasureView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        let buttons: [Button.ButtonType] = [.add]
-        let secondaryButtons: [Button.ButtonType] = [.save, .cancel]
-        
-        buttonView = layout(ButtonView(buttons, secondaryButtons: secondaryButtons)) { make in
+
+        addButtonView = layout(ButtonView.add) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
             make.leading.equalTo(backBiew).offset(10)
         }
+
+        convertButtonView = layout(ButtonView.convert) { make in
+            make.top.equalTo(titleLabel.bottom).offset(20)
+            make.trailing.equalTo(backBiew).offset(-10)
+        }
         
+        let type: ButtonType = .add
+        let config = UIImage.SymbolConfiguration.init(pointSize: 30)
+        let image = UIImage(systemName: type.rawValue, withConfiguration: config)
+        
+        testBut = layout(UIButton()) { make in
+            make.center.equalToSuperview()
+        }
+        
+        testBut.setImage(image, for: .normal)
+        testBut.setTitle(type.name, for: .normal)
+        testBut.layoutVertically()
+        testBut.tintColor = .red
+        testBut.setTitleColor(.red, for: .normal)
     }
     
     // MARK: - applyStyle

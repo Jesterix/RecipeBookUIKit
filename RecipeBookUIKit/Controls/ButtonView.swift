@@ -9,14 +9,14 @@
 import UIKit
 
 final class ButtonView: UIView {
-    private var primaryButtonTypes: [Button.ButtonType] = []
-    private var secondaryButtonTypes: [Button.ButtonType] = []
-    private var buttons: [Button]!
-    private var secondaryButtons: [Button]!
+    private var primaryButtonTypes: [ButtonType] = []
+    private var secondaryButtonTypes: [ButtonType] = []
+    private var buttons: [UIButton]!
+    private var secondaryButtons: [UIButton]!
     
     init(
-        _ primaryButtons: [Button.ButtonType],
-        secondaryButtons: [Button.ButtonType] = []
+        _ primaryButtons: [ButtonType],
+        secondaryButtons: [ButtonType] = []
     ) {
         super.init(frame: .zero)
         self.primaryButtonTypes = primaryButtons
@@ -45,26 +45,35 @@ final class ButtonView: UIView {
     }
     
     private func layout(
-        buttons: [Button.ButtonType],
-        for buttonArray: inout [Button]
+        buttons: [ButtonType],
+        for buttonArray: inout [UIButton]
     ) {
         for (i, _) in buttons.enumerated() {
-            let newButton = layout(Button(buttons[i])) { make in
+            let newButton = layout(UIButton()) { make in
                 make.top.bottom.equalToSuperview()
                 switch buttonArray.last {
                 case .none: make.leading.equalToSuperview()
                 case .some(let last): make.leading.equalTo(last.trailing).offset(5)
                 }
             }
+            let config = UIImage.SymbolConfiguration.init(pointSize: 30)
+            let image = UIImage(systemName: buttons[i].rawValue, withConfiguration: config)
+            
+            newButton.setImage(image, for: .normal)
+            newButton.setTitle(buttons[i].name, for: .normal)
+            newButton.layoutVertically()
+            newButton.tintColor = .red
+            newButton.setTitleColor(.red, for: .normal)
+            
             newButton.tag = i
             buttonArray.append(newButton)
         }
         
-        if buttons.count > 1 {
+//        if buttons.count > 1 {
             buttonArray.last?.snp.makeConstraints { make in
                 make.trailing.equalToSuperview()
             }
-        }
+//        }
     }
     
     private func setupActions() {
@@ -73,14 +82,14 @@ final class ButtonView: UIView {
         }
         
         buttons.forEach {
-            $0.button.addTarget(
+            $0.addTarget(
                 self,
                 action: #selector(toggleVisibility),
                 for: .touchUpInside)
         }
         
         secondaryButtons.forEach {
-            $0.button.addTarget(
+            $0.addTarget(
                 self,
                 action: #selector(toggleVisibility),
                 for: .touchUpInside)
@@ -90,5 +99,31 @@ final class ButtonView: UIView {
     @objc private func toggleVisibility() {
         buttons.forEach { $0.isHidden.toggle() }
         secondaryButtons.forEach { $0.isHidden.toggle() }
+    }
+}
+
+extension ButtonView {
+    static var add: ButtonView {
+        .init([.add], secondaryButtons: [.save, .cancel])
+    }
+    
+    static var convert: ButtonView {
+        .init([.convert], secondaryButtons: [.cancel])
+    }
+}
+
+enum ButtonType: String {
+    case add = "plus.circle"
+    case cancel = "xmark.circle"
+    case convert = "arrow.2.circlepath.circle"
+    case save = "arrow.uturn.down.circle"
+    
+    var name: String {
+        switch self {
+        case .add: return "Add"
+        case .cancel: return "Cancel"
+        case .convert: return "Convert"
+        case .save: return "Save"
+        }
     }
 }
