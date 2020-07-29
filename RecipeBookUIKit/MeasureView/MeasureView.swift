@@ -38,8 +38,11 @@ final class MeasureView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        let buttons: [UIButton.ButtonType] = [.contactAdd, .detailDisclosure, .close]
-        buttonView = layout(ButtonView(buttons)) { make in
+        let buttons: [UIButton.ButtonType] = [.contactAdd]
+        let secondaryButtons: [UIButton.ButtonType] = [.detailDisclosure, .close]
+        
+        
+        buttonView = layout(ButtonView(buttons, secondaryButtons: secondaryButtons)) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
             make.leading.equalTo(backBiew)
         }

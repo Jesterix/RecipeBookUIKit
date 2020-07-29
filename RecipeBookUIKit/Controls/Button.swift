@@ -9,7 +9,7 @@
 import UIKit
 
 final class Button: UIView {
-    private var button: UIButton!
+    var button: UIButton!
     private var label: UILabel!
     
     var buttonType: UIButton.ButtonType? = nil
