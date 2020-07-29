@@ -41,7 +41,16 @@ final class ButtonView: UIView {
     
     // MARK: - applyStyle
     private func applyStyle() {
-        secondaryButtons.forEach { $0.isHidden = true }
+        buttons.forEach {
+            $0.tintColor = .red
+            $0.setTitleColor(.red, for: .normal)
+        }
+        
+        secondaryButtons.forEach {
+            $0.isHidden = true
+            $0.tintColor = .red
+            $0.setTitleColor(.red, for: .normal)
+        }
     }
     
     private func layout(
@@ -62,8 +71,6 @@ final class ButtonView: UIView {
             newButton.setImage(image, for: .normal)
             newButton.setTitle(buttons[i].name, for: .normal)
             newButton.layoutVertically()
-            newButton.tintColor = .red
-            newButton.setTitleColor(.red, for: .normal)
             
             newButton.tag = i
             buttonArray.append(newButton)
