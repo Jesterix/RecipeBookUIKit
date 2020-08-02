@@ -31,7 +31,7 @@ final class MeasureViewController: UIViewController {
 
         measureView.cancelButton.addTarget(
             self,
-            action: #selector(tapCancel),
+            action: #selector(tapAdd),
             for: .touchUpInside)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(push))
@@ -41,15 +41,12 @@ final class MeasureViewController: UIViewController {
     @objc func tapAdd() {
         measureView.addButton.isPrimary.toggle()
         measureView.cancelButton.isHidden = measureView.addButton.isPrimary
+        measureView.convertButton.isEnabled = measureView.addButton.isPrimary
     }
 
     @objc func tapConvert() {
         measureView.convertButton.isPrimary.toggle()
-    }
-
-    @objc func tapCancel() {
-        measureView.addButton.isPrimary.toggle()
-        measureView.cancelButton.isHidden = measureView.addButton.isPrimary
+        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
     }
     
     @objc func push(){

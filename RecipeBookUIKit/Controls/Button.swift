@@ -22,6 +22,20 @@ final class Button: UIButton {
             }
         }
     }
+    override var isEnabled: Bool {
+        get {
+            super.isEnabled
+        }
+        set {
+            switch newValue {
+            case true:
+                alpha = 1
+            case false:
+                alpha = 0.5
+            }
+            super.isEnabled = newValue
+        }
+    }
     private var types: [ButtonType] = [.add, .cancel] {
         didSet {
             setup(from: types[0])
