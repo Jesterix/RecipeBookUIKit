@@ -22,7 +22,7 @@ final class Button: UIButton {
             }
         }
     }
-    private var types: [RecipeBookUIKit.ButtonType] = [.add, .cancel] {
+    private var types: [ButtonType] = [.add, .cancel] {
         didSet {
             setup(from: types[0])
         }
@@ -62,13 +62,13 @@ final class Button: UIButton {
         label.textColor = color
     }
 
-    private func setup(from type: RecipeBookUIKit.ButtonType) {
+    private func setup(from type: ButtonType) {
         let config = UIImage.SymbolConfiguration.init(pointSize: 30)
         customImageView.image = UIImage(systemName: type.rawValue, withConfiguration: config)
         label.text = type.name
     }
 
-    private func changeType(to type: RecipeBookUIKit.ButtonType) {
+    private func changeType(to type: ButtonType) {
         setup(from: type)
     }
 }
@@ -93,19 +93,20 @@ extension Button {
     }
 }
 
-enum ButtonType: String {
-    case add = "plus.circle"
-    case cancel = "xmark.circle"
-    case convert = "arrow.2.circlepath.circle"
-    case save = "arrow.uturn.down.circle"
+extension Button {
+    private enum ButtonType: String {
+        case add = "plus.circle"
+        case cancel = "xmark.circle"
+        case convert = "arrow.2.circlepath.circle"
+        case save = "arrow.uturn.down.circle"
 
-    var name: String {
-        switch self {
-        case .add: return "Add"
-        case .cancel: return "Cancel"
-        case .convert: return "Convert"
-        case .save: return "Save"
+        var name: String {
+            switch self {
+            case .add: return "Add"
+            case .cancel: return "Cancel"
+            case .convert: return "Convert"
+            case .save: return "Save"
+            }
         }
     }
 }
-
