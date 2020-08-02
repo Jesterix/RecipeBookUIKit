@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Foundation
 
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
+    var measurement: Measurement<Unit>?
 
     override func loadView() {
         self.measureView = MeasureView()

@@ -62,6 +62,7 @@ final class RecipeView: UIView {
         addIngredientTextField.placeholder = "Add ingredient"
         
         ingredientTableView.backgroundColor = .white
+        ingredientTableView.allowsSelection = false
 
         textView.autocorrectionType = .no
 

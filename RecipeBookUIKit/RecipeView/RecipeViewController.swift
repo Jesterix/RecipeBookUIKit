@@ -47,17 +47,6 @@ final class RecipeViewController: UIViewController {
         recipeView.textView.text = recipe.text
 
         hideKeyboardOnTap()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(push))
-        self.view.addGestureRecognizer(tap)
-    }
-    
-    @objc func push(){
-        print("push to measure")
-        let vc = MeasureViewController()
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
-        navigationController?.present(vc, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +105,12 @@ extension RecipeViewController: UITableViewDelegate {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        let vc = MeasureViewController()
+        vc.measurement = recipe.ingredients[indexPath.row].measurement
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(vc, animated: true, completion: nil)
     }
 
     func tableView(
