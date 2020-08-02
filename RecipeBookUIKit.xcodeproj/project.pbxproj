@@ -31,7 +31,6 @@
 		447448A224D6E0CC00EA5B2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447448A124D6E0CC00EA5B2C /* Button.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
-		5EA0584C24D07CA900631E04 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584B24D07CA900631E04 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +58,6 @@
 		447448A124D6E0CC00EA5B2C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
-		5EA0584B24D07CA900631E04 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
-				5EA0584B24D07CA900631E04 /* ButtonView.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
 			);
 			path = Controls;
@@ -276,7 +273,6 @@
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
-				5EA0584C24D07CA900631E04 /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

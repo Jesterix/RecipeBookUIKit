@@ -18,13 +18,42 @@ final class MeasureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+        measureView.addButton.addTarget(
+            self,
+            action: #selector(tapAdd),
+            for: .touchUpInside)
+
+        measureView.convertButton.addTarget(
+            self,
+            action: #selector(tapConvert),
+            for: .touchUpInside)
+
+        measureView.cancelButton.addTarget(
+            self,
+            action: #selector(tapCancel),
+            for: .touchUpInside)
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(push))
         self.view.addGestureRecognizer(tap)
     }
+
+    @objc func tapAdd() {
+        measureView.addButton.isPrimary.toggle()
+        measureView.cancelButton.isHidden = measureView.addButton.isPrimary
+    }
+
+    @objc func tapConvert() {
+        measureView.convertButton.isPrimary.toggle()
+    }
+
+    @objc func tapCancel() {
+        measureView.addButton.isPrimary.toggle()
+        measureView.cancelButton.isHidden = measureView.addButton.isPrimary
+    }
     
     @objc func push(){
-//        self.dismiss(animated: true, completion: nil)
+        //        self.dismiss(animated: true, completion: nil)
+        print("dismiss measure")
     }
 }

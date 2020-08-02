@@ -12,16 +12,27 @@ final class Button: UIButton {
     private var customImageView: UIImageView!
     private var label: UILabel!
 
-    override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
-        super.setTitleColor(color, for: state)
-        label.textColor = color
+    var isPrimary = true {
+        didSet {
+            switch isPrimary {
+            case true:
+                changeType(to: types[0])
+            case false:
+                changeType(to: types[1])
+            }
+        }
+    }
+    private var types: [RecipeBookUIKit.ButtonType] = [.add, .cancel] {
+        didSet {
+            setup(from: types[0])
+        }
     }
 
-    init(_ type: RecipeBookUIKit.ButtonType) {
+    // MARK: - init
+    init() {
         super.init(frame: .zero)
         layoutContent(in: self)
         applyStyle()
-        setup(from: type)
     }
 
     required init?(coder: NSCoder) {
@@ -40,11 +51,15 @@ final class Button: UIButton {
         }
     }
 
-
     // MARK: - applyStyle
     private func applyStyle() {
         customImageView.contentMode = .scaleAspectFit
         label.textAlignment = .center
+    }
+
+    override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
+        super.setTitleColor(color, for: state)
+        label.textColor = color
     }
 
     private func setup(from type: RecipeBookUIKit.ButtonType) {
@@ -52,4 +67,45 @@ final class Button: UIButton {
         customImageView.image = UIImage(systemName: type.rawValue, withConfiguration: config)
         label.text = type.name
     }
+
+    private func changeType(to type: RecipeBookUIKit.ButtonType) {
+        setup(from: type)
+    }
 }
+
+extension Button {
+    static var add: Button {
+        let button = Button()
+        button.types = [.add, .save]
+        return button
+    }
+
+    static var convert: Button {
+        let button = Button()
+        button.types = [.convert, .cancel]
+        return button
+    }
+
+    static var cancel: Button {
+        let button = Button()
+        button.types = [.cancel, .cancel]
+        return button
+    }
+}
+
+enum ButtonType: String {
+    case add = "plus.circle"
+    case cancel = "xmark.circle"
+    case convert = "arrow.2.circlepath.circle"
+    case save = "arrow.uturn.down.circle"
+
+    var name: String {
+        switch self {
+        case .add: return "Add"
+        case .cancel: return "Cancel"
+        case .convert: return "Convert"
+        case .save: return "Save"
+        }
+    }
+}
+

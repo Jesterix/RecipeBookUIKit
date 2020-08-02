@@ -49,10 +49,11 @@ final class RecipeViewController: UIViewController {
         hideKeyboardOnTap()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(push))
-        self.recipeView.addGestureRecognizer(tap)
+        self.view.addGestureRecognizer(tap)
     }
     
     @objc func push(){
+        print("push to measure")
         let vc = MeasureViewController()
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext

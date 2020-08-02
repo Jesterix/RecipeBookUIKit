@@ -11,10 +11,9 @@ import UIKit
 final class MeasureView: UIView {
     private var backBiew: UIView!
     private var titleLabel: UILabel!
-    private var addButtonView: ButtonView!
-    private var convertButtonView: ButtonView!
-    
-    var testBut: UIButton!
+    var addButton: Button!
+    var convertButton: Button!
+    var cancelButton: Button!
     
     init() {
         super.init(frame: .zero)
@@ -39,31 +38,21 @@ final class MeasureView: UIView {
             make.top.equalTo(backBiew).offset(10)
             make.centerX.equalToSuperview()
         }
-        
 
-        addButtonView = layout(ButtonView.add) { make in
+        addButton = layout(Button.add) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
-            make.leading.equalTo(backBiew).offset(10)
+            make.centerX.equalTo(backBiew.leading).offset(30)
         }
 
-        convertButtonView = layout(ButtonView.convert) { make in
+        cancelButton = layout(Button.cancel) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
-            make.trailing.equalTo(backBiew).offset(-10)
+            make.leading.equalTo(addButton.trailing).offset(5)
         }
-        
-        let type: ButtonType = .add
-        let config = UIImage.SymbolConfiguration.init(pointSize: 30)
-        let image = UIImage(systemName: type.rawValue, withConfiguration: config)
-        
-        testBut = layout(UIButton()) { make in
-            make.center.equalToSuperview()
+
+        convertButton = layout(Button.convert) { make in
+            make.top.equalTo(titleLabel.bottom).offset(20)
+            make.centerX.equalTo(backBiew.trailing).offset(-40)
         }
-        
-        testBut.setImage(image, for: .normal)
-        testBut.setTitle(type.name, for: .normal)
-        testBut.layoutVertically()
-        testBut.tintColor = .red
-        testBut.setTitleColor(.red, for: .normal)
     }
     
     // MARK: - applyStyle
@@ -73,6 +62,8 @@ final class MeasureView: UIView {
         let color = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         backBiew.backgroundColor = color
         backBiew.layer.cornerRadius = 25
+
+        cancelButton.isHidden = true
     }
 }
 
