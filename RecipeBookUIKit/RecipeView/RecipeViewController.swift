@@ -95,6 +95,8 @@ extension RecipeViewController: UITableViewDataSource {
             }
         }
 
+        cell.tableView = tableView
+
         return cell
     }
 }

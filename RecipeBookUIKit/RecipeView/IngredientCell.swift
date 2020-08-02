@@ -16,7 +16,9 @@ final class IngredientCell: UITableViewCell {
 
     private var titleTextField: UITextField!
     private var valueTextField: UITextField!
-    private var measurementLabel: UILabel!
+    private var measurementTextField: UITextField!
+
+    weak var tableView: UITableView?
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -27,6 +29,7 @@ final class IngredientCell: UITableViewCell {
         applyStyle()
         titleTextField.delegate = self
         valueTextField.delegate = self
+        measurementTextField.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,10 +51,12 @@ final class IngredientCell: UITableViewCell {
         }
         valueTextField.tag = 1
 
-        measurementLabel = layout(UILabel(text: "")) { make in
+        measurementTextField = layout(UITextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(valueTextField.trailing).offset(5)
+            make.trailing.equalToSuperview()
         }
+        measurementTextField.tag = 2
     }
 
     // MARK: - applyStyle
@@ -60,13 +65,20 @@ final class IngredientCell: UITableViewCell {
         
         titleTextField.font = .systemFont(ofSize: 15)
         valueTextField.font = .systemFont(ofSize: 15)
-        measurementLabel.font = .systemFont(ofSize: 15)
+        measurementTextField.font = .systemFont(ofSize: 15)
         
         titleTextField.textColor = .black
         valueTextField.textColor = .black
-        measurementLabel.textColor = .black
+        measurementTextField.textColor = .black
 
         valueTextField.textAlignment = .right
+
+        titleTextField.autocorrectionType = .no
+        valueTextField.autocorrectionType = .no
+
+        titleTextField.backgroundColor = .systemTeal
+        valueTextField.backgroundColor = .systemPink
+        measurementTextField.backgroundColor = .systemOrange
     }
 
     func configureCell(with ingredient: Ingredient) {
@@ -78,11 +90,25 @@ final class IngredientCell: UITableViewCell {
             return
         }
         valueTextField.text = "\(measure.value)"
-        measurementLabel.text = "\(measure.unit.symbol)"
+        measurementTextField.text = "\(measure.unit.symbol)"
     }
  
     func ingredientChanged(action: @escaping (Ingredient) -> Void) {
         self.ingredientChanged = action
+    }
+
+    private func selectRow() {
+        guard
+            let tableView = self.tableView,
+            let indexpath = tableView.indexPath(for: self) else { return }
+
+        tableView.selectRow(
+            at: indexpath,
+            animated: true,
+            scrollPosition: .none)
+        tableView.delegate?.tableView?(
+            tableView,
+            didSelectRowAt: indexpath)
     }
 }
 
@@ -106,6 +132,17 @@ extension IngredientCell: UITextFieldDelegate {
         }
         
         ingredientChanged?(ingredient)
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 2:
+            self.endEditing(true)
+            selectRow()
+            return false
+        default:
+            return true
+        }
     }
 }
 
