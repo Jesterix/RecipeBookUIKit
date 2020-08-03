@@ -10,9 +10,11 @@ import UIKit
 
 final class ConvertView: UIView {
     var amountTextField: TwoModeTextField!
-    var baseAmountTextField: TwoModeTextField!
-
     var unitTextField: TwoModeTextField!
+
+    var baseUnitLabel: UILabel!
+
+    var baseAmountTextField: TwoModeTextField!
     var baseUnitTextField: TwoModeTextField!
 
     init() {
@@ -33,12 +35,6 @@ final class ConvertView: UIView {
             make.width.equalTo(50)
         }
 
-        baseAmountTextField = layout(TwoModeTextField()) { make in
-            make.top.equalTo(amountTextField.bottom).offset(5)
-            make.leading.width.equalTo(amountTextField)
-            make.height.equalTo(amountTextField)
-        }
-
         unitTextField = layout(TwoModeTextField()) { make in
             make.top.equalTo(amountTextField)
             make.leading.equalTo(amountTextField.trailing).offset(5)
@@ -46,8 +42,19 @@ final class ConvertView: UIView {
             make.height.equalTo(amountTextField)
         }
 
+        baseUnitLabel = layout(UILabel(text: "base units:")) { make in
+            make.top.equalTo(amountTextField.bottom).offset(10)
+            make.leading.equalTo(amountTextField).offset(5)
+        }
+
+        baseAmountTextField = layout(TwoModeTextField()) { make in
+            make.top.equalTo(baseUnitLabel.bottom)
+            make.leading.width.equalTo(amountTextField)
+            make.height.equalTo(amountTextField)
+        }
+
         baseUnitTextField = layout(TwoModeTextField()) { make in
-            make.top.equalTo(unitTextField.bottom).offset(5)
+            make.top.equalTo(baseAmountTextField)
             make.leading.trailing.equalTo(unitTextField)
             make.height.equalTo(amountTextField)
             make.bottom.equalToSuperview()
@@ -68,6 +75,8 @@ final class ConvertView: UIView {
         baseAmountTextField.mode = .disabled
         unitTextField.mode = .editable
         baseUnitTextField.mode = .disabled
+
+        baseUnitLabel.font = .systemFont(ofSize: 10)
 
         amountTextField.textAlignment = .right
         baseAmountTextField.textAlignment = .right
