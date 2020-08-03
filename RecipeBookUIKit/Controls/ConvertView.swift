@@ -69,17 +69,18 @@ final class ConvertView: UIView {
     // MARK: - applyStyle
     private func applyStyle() {
         amountTextField.autocorrectionType = .no
-        unitTextField.autocorrectionType = .no
-
+        amountTextField.textAlignment = .right
         amountTextField.mode = .changeable
-        baseAmountTextField.mode = .disabled
+
+        unitTextField.autocorrectionType = .no
         unitTextField.mode = .editable
-        baseUnitTextField.mode = .disabled
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
 
-        amountTextField.textAlignment = .right
         baseAmountTextField.textAlignment = .right
+        baseAmountTextField.mode = .disabled
+
+        baseUnitTextField.mode = .disabled
 
         //Demo
         amountTextField.text = "5"
