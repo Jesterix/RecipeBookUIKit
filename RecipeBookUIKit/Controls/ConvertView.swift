@@ -64,10 +64,10 @@ final class ConvertView: UIView {
         amountTextField.autocorrectionType = .no
         unitTextField.autocorrectionType = .no
 
-        amountTextField.isEnabled = false
-        baseAmountTextField.isEnabled = false
-        unitTextField.isEnabled = false
-        baseUnitTextField.isEnabled = false
+        amountTextField.mode = .changeable
+        baseAmountTextField.mode = .disabled
+        unitTextField.mode = .editable
+        baseUnitTextField.mode = .disabled
 
         amountTextField.textAlignment = .right
         baseAmountTextField.textAlignment = .right
