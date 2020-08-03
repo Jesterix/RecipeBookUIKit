@@ -14,6 +14,8 @@ final class MeasureView: UIView {
     var addButton: Button!
     var convertButton: Button!
     var cancelButton: Button!
+
+    var convertView: ConvertView!
     
     init() {
         super.init(frame: .zero)
@@ -52,6 +54,12 @@ final class MeasureView: UIView {
         convertButton = layout(Button.convert) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
             make.centerX.equalTo(backBiew.trailing).offset(-40)
+        }
+
+        convertView = layout(ConvertView()) { make in
+            make.top.equalTo(addButton.bottom).offset(10)
+            make.leading.equalTo(backBiew).offset(10)
+            make.trailing.equalTo(backBiew).offset(-10)
         }
     }
     
