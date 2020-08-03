@@ -29,6 +29,8 @@
 		4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */; };
 		4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489E24C8505200EA5B2C /* DataBaseManager.swift */; };
 		447448A224D6E0CC00EA5B2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447448A124D6E0CC00EA5B2C /* Button.swift */; };
+		449F022F24D845B800A556E1 /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F022E24D845B800A556E1 /* ConvertView.swift */; };
+		449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F023024D85A3600A556E1 /* TwoModeTextField.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmIngredient.swift; sourceTree = "<group>"; };
 		4474489E24C8505200EA5B2C /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		447448A124D6E0CC00EA5B2C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		449F022E24D845B800A556E1 /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
+		449F023024D85A3600A556E1 /* TwoModeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoModeTextField.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
+				449F023024D85A3600A556E1 /* TwoModeTextField.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
+				449F022E24D845B800A556E1 /* ConvertView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -270,7 +276,9 @@
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
+				449F022F24D845B800A556E1 /* ConvertView.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
+				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
 			);
