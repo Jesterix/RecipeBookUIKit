@@ -33,26 +33,57 @@ final class MeasureViewController: UIViewController {
 
         measureView.cancelButton.addTarget(
             self,
-            action: #selector(tapAdd),
+            action: #selector(tapCancel),
             for: .touchUpInside)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(push))
         self.view.addGestureRecognizer(tap)
     }
 
-    @objc func tapAdd() {
+    @objc private func tapAdd() {
+        print(#function)
+        toggleVisibility()
+    }
+
+    @objc private func tapCancel() {
+        print(#function)
+        toggleVisibility()
+    }
+
+    @objc private func tapConvert() {
+        print(#function)
+        measureView.convertButton.isPrimary.toggle()
+        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+    }
+
+    private func toggleVisibility() {
+        toggleButtonsVisibility()
+        toggleTextFieldsVisibility()
+    }
+
+    private func toggleButtonsVisibility() {
         measureView.addButton.isPrimary.toggle()
         measureView.cancelButton.isHidden = measureView.addButton.isPrimary
         measureView.convertButton.isEnabled = measureView.addButton.isPrimary
     }
 
-    @objc func tapConvert() {
-        measureView.convertButton.isPrimary.toggle()
-        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+    private func toggleTextFieldsVisibility() {
+        if !measureView.addButton.isPrimary, measureView.convertButton.isPrimary {
+            measureView.convertView.amountTextField.mode = .disabled
+            measureView.convertView.amountTextField.text = "1"
+            measureView.convertView.unitTextField.mode = .editable
+            measureView.convertView.baseAmountTextField.mode = .editable
+            measureView.convertView.baseUnitTextField.mode = .disabled
+        } else {
+            measureView.convertView.amountTextField.mode = .editable
+            measureView.convertView.unitTextField.mode = .changeable
+            measureView.convertView.baseAmountTextField.mode = .disabled
+            measureView.convertView.baseUnitTextField.mode = .disabled
+        }
     }
     
     @objc func push(){
-//        self.dismiss(animated: true, completion: nil)
+        //        self.dismiss(animated: true, completion: nil)
         print("dismiss measure")
     }
 }

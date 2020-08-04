@@ -12,7 +12,7 @@ final class ConvertView: UIView {
     var amountTextField: TwoModeTextField!
     var unitTextField: TwoModeTextField!
 
-    var baseUnitLabel: UILabel!
+    private var baseUnitLabel: UILabel!
 
     var baseAmountTextField: TwoModeTextField!
     var baseUnitTextField: TwoModeTextField!
@@ -70,10 +70,10 @@ final class ConvertView: UIView {
     private func applyStyle() {
         amountTextField.autocorrectionType = .no
         amountTextField.textAlignment = .right
-        amountTextField.mode = .changeable
+        amountTextField.mode = .editable
 
         unitTextField.autocorrectionType = .no
-        unitTextField.mode = .editable
+        unitTextField.mode = .changeable
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
 

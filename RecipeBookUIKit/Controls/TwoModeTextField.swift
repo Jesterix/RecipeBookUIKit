@@ -30,14 +30,17 @@ final class TwoModeTextField: UITextField {
             self.alpha = 1
             self.backgroundColor = .systemBackground
             self.borderStyle = .roundedRect
+            self.isEnabled = true
         case .changeable:
             self.alpha = 1
             self.backgroundColor = .systemGray3
             self.borderStyle = .roundedRect
+            self.isEnabled = true
         case .disabled:
             self.alpha = 0.5
             self.backgroundColor = .clear
             self.borderStyle = .none
+            self.isEnabled = false
         }
     }
 }
