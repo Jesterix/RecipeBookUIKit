@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43824DFF6340054C6DD /* LabeledPickerView.swift */; };
 		4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486324C60B1300EA5B2C /* AppDelegate.swift */; };
 		4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486524C60B1300EA5B2C /* SceneDelegate.swift */; };
 		4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486724C60B1300EA5B2C /* MainViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4428C43824DFF6340054C6DD /* LabeledPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledPickerView.swift; sourceTree = "<group>"; };
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474486524C60B1300EA5B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				449F023024D85A3600A556E1 /* TwoModeTextField.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
 				449F022E24D845B800A556E1 /* ConvertView.swift */,
+				4428C43824DFF6340054C6DD /* LabeledPickerView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
+				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainView.swift in Sources */,
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,

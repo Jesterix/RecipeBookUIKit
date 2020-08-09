@@ -12,8 +12,10 @@ final class MeasureView: UIView {
     private var backBiew: UIView!
     private var titleLabel: UILabel!
     var addButton: Button!
-    var convertButton: Button!
     var cancelButton: Button!
+    var convertButton: Button!
+
+    var pickerView: LabeledPickerView!
 
     var convertView: ConvertView!
     
@@ -56,8 +58,15 @@ final class MeasureView: UIView {
             make.centerX.equalTo(backBiew.trailing).offset(-40)
         }
 
+        pickerView = layout(LabeledPickerView("Choose dimension:")) { make in
+            make.top.equalTo(addButton.bottom)
+            make.leading.equalTo(backBiew).offset(10)
+            make.trailing.equalTo(backBiew).offset(-10)
+            make.height.equalTo(70)
+        }
+
         convertView = layout(ConvertView()) { make in
-            make.top.equalTo(addButton.bottom).offset(10)
+            make.top.equalTo(pickerView.bottom)
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
         }
@@ -72,7 +81,8 @@ final class MeasureView: UIView {
         backBiew.layer.cornerRadius = 25
 
         cancelButton.isHidden = true
+
+        pickerView.data = ["weight", "volume", "custom"]
     }
 }
-
 

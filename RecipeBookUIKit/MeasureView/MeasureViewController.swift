@@ -36,6 +36,8 @@ final class MeasureViewController: UIViewController {
             action: #selector(tapCancel),
             for: .touchUpInside)
 
+        measureView.pickerView.delegate = self
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(push))
         self.view.addGestureRecognizer(tap)
     }
@@ -85,5 +87,11 @@ final class MeasureViewController: UIViewController {
     @objc func push(){
         //        self.dismiss(animated: true, completion: nil)
         print("dismiss measure")
+    }
+}
+
+extension MeasureViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("row selected in controller: ", row)
     }
 }
