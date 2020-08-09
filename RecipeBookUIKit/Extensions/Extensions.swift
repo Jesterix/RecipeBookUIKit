@@ -71,3 +71,10 @@ extension UIView {
         self.addSubview(blurEffectView)
     }
 }
+
+extension UIButton {
+    func enable(_ bool: Bool) {
+        isEnabled = bool
+        alpha = isEnabled ? 1 : 0.5
+    }
+}

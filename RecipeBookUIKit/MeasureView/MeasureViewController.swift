@@ -69,6 +69,7 @@ final class MeasureViewController: UIViewController {
         measureView.addButton.isPrimary.toggle()
         measureView.cancelButton.isHidden = measureView.addButton.isPrimary
         measureView.convertButton.isEnabled = measureView.addButton.isPrimary
+        measureView.closeButton.enable(measureView.addButton.isPrimary)
     }
 
     private func toggleTextFieldsVisibility() {

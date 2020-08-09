@@ -93,7 +93,7 @@ final class MeasureView: UIView {
         pickerView.data = ["weight", "volume", "custom"]
 
         closeButton.layer.cornerRadius = 15
-        closeButton.backgroundColor = .blue
+        closeButton.backgroundColor = .systemBlue
         closeButton.setTitle("Close", for: .normal)
     }
 }
