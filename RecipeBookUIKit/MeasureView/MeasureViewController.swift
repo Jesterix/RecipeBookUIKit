@@ -38,8 +38,10 @@ final class MeasureViewController: UIViewController {
 
         measureView.pickerView.delegate = self
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(push))
-        self.view.addGestureRecognizer(tap)
+        measureView.closeButton.addTarget(
+            self,
+            action: #selector(close),
+            for: .touchUpInside)
     }
 
     @objc private func tapAdd() {
@@ -84,9 +86,8 @@ final class MeasureViewController: UIViewController {
         }
     }
     
-    @objc func push(){
-        //        self.dismiss(animated: true, completion: nil)
-        print("dismiss measure")
+    @objc func close(){
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

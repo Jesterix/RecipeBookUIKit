@@ -36,7 +36,7 @@ final class Button: UIButton {
             super.isEnabled = newValue
         }
     }
-    private var types: [ButtonType] = [.add, .cancel] {
+    private var types: [ButtonType] = [.edit, .cancel] {
         didSet {
             setup(from: types[0])
         }
@@ -90,7 +90,7 @@ final class Button: UIButton {
 extension Button {
     static var add: Button {
         let button = Button()
-        button.types = [.add, .save]
+        button.types = [.edit, .save]
         return button
     }
 
@@ -109,14 +109,14 @@ extension Button {
 
 extension Button {
     private enum ButtonType: String {
-        case add = "plus.circle"
+        case edit = "pencil.circle"
         case cancel = "xmark.circle"
         case convert = "arrow.2.circlepath.circle"
         case save = "arrow.uturn.down.circle"
 
         var name: String {
             switch self {
-            case .add: return "Add"
+            case .edit: return "Edit"
             case .cancel: return "Cancel"
             case .convert: return "Convert"
             case .save: return "Save"

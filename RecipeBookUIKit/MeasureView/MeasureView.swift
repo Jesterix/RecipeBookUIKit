@@ -18,6 +18,8 @@ final class MeasureView: UIView {
     var pickerView: LabeledPickerView!
 
     var convertView: ConvertView!
+
+    var closeButton: UIButton!
     
     init() {
         super.init(frame: .zero)
@@ -70,6 +72,12 @@ final class MeasureView: UIView {
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
         }
+
+        closeButton = layout(UIButton()) { make in
+            make.top.greaterThanOrEqualTo(convertView.bottom)
+            make.leading.trailing.equalTo(convertView)
+            make.bottom.equalTo(backBiew.bottom).offset(-10)
+        }
     }
     
     // MARK: - applyStyle
@@ -83,6 +91,10 @@ final class MeasureView: UIView {
         cancelButton.isHidden = true
 
         pickerView.data = ["weight", "volume", "custom"]
+
+        closeButton.layer.cornerRadius = 15
+        closeButton.backgroundColor = .blue
+        closeButton.setTitle("Close", for: .normal)
     }
 }
 
