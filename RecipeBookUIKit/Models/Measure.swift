@@ -8,9 +8,8 @@
 
 import Foundation
 
-var measureTypes = [UnitMass.self, UnitVolume.self]
-
 enum DimensionType {
+//    MARK: - Mass enum
     enum Mass: String, CaseIterable {
         case kilograms, grams, decigrams, centigrams, milligrams, micrograms, nanograms, picograms, ounces, pounds, stones, metricTons, shortTons, carats, ouncesTroy, slugs
 
@@ -90,6 +89,7 @@ enum DimensionType {
             }
         }
     }
+//    MARK: - Volume enum
     enum Volume: String, CaseIterable {
         case megaliters, kiloliters, liters, deciliters, centiliters, milliliters, cubicKilometers, cubicMeters, cubicDecimeters, cubicCentimeters, cubicMillimeters, cubicInches, cubicFeet, cubicYards, cubicMiles, acreFeet, bushels, teaspoons, tablespoons, fluidOunces, cups, pints, quarts, gallons, imperialTeaspoons, imperialTablespoons, imperialFluidOunces, imperialPints, imperialQuarts, imperialGallons, metricCups
 
@@ -229,6 +229,7 @@ enum DimensionType {
             }
         }
     }
+//    MARK: - Dimension enum cases
 
     case mass(Mass)
     case volume(Volume)
@@ -244,17 +245,6 @@ enum DimensionType {
             return Dimension.self
         }
     }
-
-//    var symbol: String {
-//        switch self {
-//        case .mass(let unit):
-//            return unit.symbol
-//        case .volume(let unit):
-//            return unit.symbol
-//        case .undefined:
-//            return ""
-//        }
-//    }
 
     static var allMassCases: [String] {
         var result: [String] = []
@@ -274,6 +264,8 @@ enum DimensionType {
         return result
     }
 }
+
+//    MARK: - Measure struct
 
 struct Measure {
     var value: Double
@@ -320,251 +312,3 @@ struct Measure {
     }
 }
 
-
-
-//import struct Foundation.Date
-//import struct Foundation.TimeInterval
-//import class Foundation.DateFormatter
-//import struct Foundation.Calendar
-//
-//// Foundation.Date expects Swift.Int in Codable protocols
-//// but we need Swift.String
-//
-//public struct Date: CustomStringConvertible {
-//    let value: Foundation.Date
-//
-//    public init() {
-//        value = Foundation.Date()
-//    }
-//
-//    public init(_ date: Foundation.Date) {
-//        value = date
-//    }
-//}
-//
-//extension Date {
-//    static var distantFuture: Date {
-//        return .init(Foundation.Date.distantFuture)
-//    }
-//
-//    static var distantPast: Date {
-//        return .init(Foundation.Date.distantPast)
-//    }
-//
-//    var timeIntervalSince1970: Double {
-//        return value.timeIntervalSince1970
-//    }
-//
-//    init(timeIntervalSince1970 timeInterval: Double) {
-//        self.value = .init(timeIntervalSince1970: timeInterval)
-//    }
-//
-//    public func timeIntervalSince(_ date: Date) -> TimeInterval {
-//        return value.timeIntervalSince(date.value)
-//    }
-//
-//    public func addingTimeInterval(_ timeInterval: TimeInterval) -> Date {
-//        return Date(value.addingTimeInterval(timeInterval))
-//    }
-//
-//    public var description: String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM.dd.yyyy HH:mm:ss"
-//        return dateFormatter.string(from: value)
-//    }
-//}
-//
-//extension Date: Codable {
-//    static var invalidFormat: Swift.Error {
-//        return DecodingError.dataCorrupted(.init(
-//            codingPath: [],
-//            debugDescription: "invalid date"))
-//    }
-//
-//    public init(from decoder: Decoder) throws {
-//        let dateString = try String(from: decoder)
-//        guard let date = Date(string: dateString) else {
-//            throw Date.invalidFormat
-//        }
-//        self = date
-//    }
-//
-//    init?(string: String) {
-//        switch string.allSatisfy({ $0.isNumber }) {
-//        case true:
-//            guard let timestamp = Double(string) else {
-//                return nil
-//            }
-//            value = .init(timeIntervalSince1970: timestamp)
-//        default:
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            guard let date = dateFormatter.date(from: string) else {
-//                return nil
-//            }
-//            value = date
-//        }
-//    }
-//
-//    public func encode(to encoder: Encoder) throws {
-//        let timestamp = value.timeIntervalSince1970
-//        try String(Int(timestamp)).encode(to: encoder)
-//    }
-//}
-//
-//extension Date: Comparable {
-//    public static func < (lhs: Date, rhs: Date) -> Bool {
-//        return lhs.value < rhs.value
-//    }
-//
-//    public static func == (lhs: Date, rhs: Date) -> Bool {
-//        return lhs.value == rhs.value
-//    }
-//
-//    public func isEqual(
-//        to date: Date,
-//        toGranularity component: Calendar.Component) -> Bool
-//    {
-//        value.isEqual(to: date.value, toGranularity: component)
-//    }
-//
-//    public func isInRange(
-//        _ range: ClosedRange<Date>,
-//        toGranularity component: Calendar.Component) -> Bool
-//    {
-//        value.isInRange(
-//            range.lowerBound.value...range.upperBound.value,
-//            toGranularity: component)
-//    }
-//}
-//
-//extension Foundation.Date {
-//    public func isEqual(
-//        to date: Foundation.Date,
-//        toGranularity component: Calendar.Component) -> Bool
-//    {
-//        Calendar.current.isDate(self, equalTo: date, toGranularity: component)
-//    }
-//
-//    public func isInRange(
-//        _ range: ClosedRange<Foundation.Date>,
-//        toGranularity component: Calendar.Component) -> Bool
-//    {
-//        return (self > range.lowerBound && self < range.upperBound)
-//            || isEqual(to: range.lowerBound, toGranularity: component)
-//            || isEqual(to: range.upperBound, toGranularity: component)
-//    }
-//}
-
-
-
-
-////import struct Foundation.Decimal
-//import Foundation
-//
-//// Foundation.Decimal expects Swift.Double in Codable protocols
-//// but we need Swift.String
-//
-//public struct Decimal {
-//    public let value: Foundation.Decimal
-//}
-//
-//extension Decimal {
-//    public static var zero: Decimal = .init(value: .zero)
-//}
-//
-//extension Decimal: Codable {
-//    public init(from decoder: Decoder) throws {
-//        self.init(string: try String(from: decoder))!
-//    }
-//
-//    public func encode(to encoder: Encoder) throws {
-//        try String(describing: self).encode(to: encoder)
-//    }
-//}
-//
-//extension Decimal: CustomStringConvertible {
-//    public var description: String { .init(describing: value) }
-//}
-//
-//extension Decimal: ExpressibleByStringLiteral {
-//    public init(stringLiteral value: String) {
-//        self.value = Foundation.Decimal(string: value)!
-//    }
-//}
-//
-//extension Decimal: ExpressibleByFloatLiteral {
-//    public init(floatLiteral value: Double) {
-//        self.value = Foundation.Decimal(floatLiteral: value)
-//    }
-//}
-//
-//extension Decimal {
-//    public init?(string: String) {
-//        guard let value = Foundation.Decimal(string: string) else {
-//            return nil
-//        }
-//        self.value = value
-//    }
-//}
-//
-//extension Decimal: AdditiveArithmetic {
-//    public static func - (lhs: Decimal, rhs: Decimal) -> Decimal {
-//        return Decimal(value: lhs.value - rhs.value)
-//    }
-//
-//    public static func + (_ lhs: Decimal, _ rhs: Decimal) -> Decimal {
-//        return Decimal(value: lhs.value + rhs.value)
-//    }
-//
-//    public static func * (_ lhs: Decimal, _ rhs: Decimal) -> Decimal {
-//        return Decimal(value: lhs.value * rhs.value)
-//    }
-//
-//    public static func / (_ lhs: Decimal, _ rhs: Decimal) -> Decimal {
-//        return Decimal(value: lhs.value / rhs.value)
-//    }
-//
-//    public static func += (lhs: inout Decimal, rhs: Decimal) {
-//       lhs = lhs + rhs
-//    }
-//
-//    public static func -= (lhs: inout Decimal, rhs: Decimal) {
-//       lhs = lhs - rhs
-//    }
-//
-//}
-//
-//extension Decimal: Comparable {
-//    public static func < (lhs: Decimal, rhs: Decimal) -> Bool {
-//        return lhs.value < rhs.value
-//    }
-//}
-//
-//extension Decimal: Equatable {
-//    public static func == (lhs: Decimal, rhs: Decimal) -> Bool {
-//        return lhs.value == rhs.value
-//    }
-//}
-//
-//extension Decimal {
-//    public static func random(in range: ClosedRange<Double>) -> Decimal {
-//        return .init(value: .init(Double.random(in: range)))
-//    }
-//
-//    public static func random(in range: Range<Double>) -> Decimal {
-//        return .init(value: .init(Double.random(in: range)))
-//    }
-//}
-//
-//extension Decimal {
-//    public func rounded(
-//        decimals scale: Int,
-//        mode: NSDecimalNumber.RoundingMode) -> Decimal
-//    {
-//        var result = Foundation.Decimal()
-//        var value = self.value
-//        NSDecimalRound(&result, &value, scale, mode)
-//        return Decimal(value: result)
-//    }
-//}
