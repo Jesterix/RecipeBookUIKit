@@ -90,7 +90,7 @@ final class IngredientCell: UITableViewCell {
             return
         }
         valueTextField.text = "\(measure.value)"
-        measurementTextField.text = "\(measure.unit.symbol)"
+        measurementTextField.text = "\(measure.symbol)"
     }
  
     func ingredientChanged(action: @escaping (Ingredient) -> Void) {
@@ -123,9 +123,7 @@ extension IngredientCell: UITextFieldDelegate {
             if ingredient.measurement != nil {
                 ingredient.measurement?.value = value
             } else {
-                ingredient.measurement = Measurement(
-                    value: value,
-                    unit: Unit(symbol: ""))
+                ingredient.measurement = Measure(value: value, symbol: "")
             }
             
         default: ingredient.title = textField.text ?? ""

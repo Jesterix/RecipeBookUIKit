@@ -11,7 +11,7 @@ import Foundation
 struct Ingredient {
     var id: String = UUID().uuidString
     var title: String
-    var measurement: Measurement<Unit>? = nil
+    var measurement: Measure? = nil
 
     static func empty() -> Ingredient {
         return Ingredient(title: "")
@@ -24,14 +24,10 @@ var defaultRecipes = [
         ingredients: [
             Ingredient(
                 title: "Water",
-                measurement: Measurement(
-                    value: 3,
-                    unit: UnitMass.grams)),
+                measurement: Measure(value: 3, symbol: "g")),
             Ingredient(
                 title: "Flour",
-                measurement: Measurement(
-                    value: 5.34,
-                    unit: Unit(symbol: "шт")))],
+                measurement: Measure(value: 5.34, symbol: "шт"))],
         text: "Put one vial of water.."),
     Recipe(
         title: "second",

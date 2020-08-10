@@ -27,16 +27,14 @@ class RealmIngredient: Object {
             return
         }
         value = measurement.value
-        symbol = measurement.unit.symbol
+        symbol = measurement.symbol
     }
 
     func converted() -> Ingredient {
         return Ingredient(
             id: id,
             title: title,
-            measurement: Measurement(
-                value: value,
-                unit: Unit(symbol: symbol))
+            measurement: Measure(value: value, symbol: symbol)
         )
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
-    var measurement: Measurement<Unit>?
+    var measurement: Measure?
 
     override func loadView() {
         self.measureView = MeasureView()
@@ -42,6 +42,8 @@ final class MeasureViewController: UIViewController {
             self,
             action: #selector(close),
             for: .touchUpInside)
+
+        setupView()
     }
 
     @objc private func tapAdd() {
@@ -58,6 +60,18 @@ final class MeasureViewController: UIViewController {
         print(#function)
         measureView.convertButton.isPrimary.toggle()
         measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+    }
+
+    private func setupView() {
+        guard let measurement = measurement else {
+            return
+        }
+
+        measureView.convertView.amountTextField.text = "\(measurement.value)"
+        measureView.convertView.unitTextField.text = measurement.symbol
+
+        measureView.convertView.baseAmountTextField.text = String(measurement.coefficient)
+        measureView.convertView.baseUnitTextField.text = measurement.baseUnit.symbol
     }
 
     private func toggleVisibility() {
