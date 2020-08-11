@@ -52,17 +52,21 @@ final class MeasureViewController: UIViewController {
     @objc private func tapAdd() {
         print(#function)
         toggleVisibility()
+        measureView.convertView.state = measureView.addButton.isPrimary ? .normal : .editing
     }
 
     @objc private func tapCancel() {
         print(#function)
         toggleVisibility()
+        measureView.convertView.state = .normal
     }
 
     @objc private func tapConvert() {
         print(#function)
         measureView.convertButton.isPrimary.toggle()
         measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+
+        measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
     }
 
     private func setupView() {
@@ -79,7 +83,7 @@ final class MeasureViewController: UIViewController {
 
     private func toggleVisibility() {
         toggleButtonsVisibility()
-        toggleTextFieldsVisibility()
+//        toggleTextFieldsVisibility()
     }
 
     private func toggleButtonsVisibility() {
@@ -89,20 +93,13 @@ final class MeasureViewController: UIViewController {
         measureView.closeButton.enable(measureView.addButton.isPrimary)
     }
 
-    private func toggleTextFieldsVisibility() {
-        if !measureView.addButton.isPrimary, measureView.convertButton.isPrimary {
-            measureView.convertView.amountTextField.mode = .disabled
-            measureView.convertView.amountTextField.text = "1"
-            measureView.convertView.unitTextField.mode = .editable
-            measureView.convertView.baseAmountTextField.mode = .editable
-            measureView.convertView.baseUnitTextField.mode = .disabled
-        } else {
-            measureView.convertView.amountTextField.mode = .editable
-            measureView.convertView.unitTextField.mode = .changeable
-            measureView.convertView.baseAmountTextField.mode = .disabled
-            measureView.convertView.baseUnitTextField.mode = .disabled
-        }
-    }
+//    private func toggleTextFieldsVisibility() {
+//        if !measureView.addButton.isPrimary, measureView.convertButton.isPrimary {
+//            measureView.convertView.state = .editing
+//        } else {
+//            measureView.convertView.state = .normal
+//        }
+//    }
     
     @objc func close(){
         guard let measure = measurement else {

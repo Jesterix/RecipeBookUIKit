@@ -9,6 +9,16 @@
 import UIKit
 
 final class ConvertView: UIView {
+    enum State {
+        case normal, editing, converting
+    }
+
+    var state: State = .normal {
+        didSet {
+            toggleTextFieldsVisibility()
+        }
+    }
+
     var amountTextField: TwoModeTextField!
     var unitTextField: TwoModeTextField!
 
@@ -89,6 +99,22 @@ final class ConvertView: UIView {
         baseAmountTextField.text = "100"
         unitTextField.text = "spoon"
         baseUnitTextField.text = "gramm"
+    }
+
+    private func toggleTextFieldsVisibility() {
+        switch state {
+        case .normal, .converting:
+            amountTextField.mode = .editable
+            unitTextField.mode = .changeable
+            baseAmountTextField.mode = .disabled
+            baseUnitTextField.mode = .disabled
+        case .editing:
+            amountTextField.mode = .disabled
+            amountTextField.text = "1"
+            unitTextField.mode = .editable
+            baseAmountTextField.mode = .editable
+            baseUnitTextField.mode = .disabled
+        }
     }
 }
 
