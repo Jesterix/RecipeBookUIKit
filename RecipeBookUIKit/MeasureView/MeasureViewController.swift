@@ -46,6 +46,7 @@ final class MeasureViewController: UIViewController {
             for: .touchUpInside)
 
         setupView()
+        hideKeyboardOnTap()
     }
 
     @objc private func tapAdd() {

@@ -77,9 +77,11 @@ final class ConvertView: UIView {
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
 
+        baseAmountTextField.autocorrectionType = .no
         baseAmountTextField.textAlignment = .right
         baseAmountTextField.mode = .disabled
 
+        baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
 
         //Demo
