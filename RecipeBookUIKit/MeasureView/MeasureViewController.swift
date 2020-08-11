@@ -46,6 +46,9 @@ final class MeasureViewController: UIViewController {
             for: .touchUpInside)
 
         measureView.convertView.measure = measurement
+        measureView.convertView.onMeasureChange = { [unowned self] measure in
+            self.measurement = measure
+        }
         hideKeyboardOnTap()
     }
 

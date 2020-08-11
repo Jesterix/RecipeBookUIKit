@@ -26,8 +26,14 @@ final class ConvertView: UIView {
                 setupText()
                 measureSet.toggle()
             }
+            guard let measure = measure else {
+                return
+            }
+            onMeasureChange?(measure)
         }
     }
+
+    var onMeasureChange: ((Measure) -> Void)?
 
     private var amountTextField: TwoModeTextField!
     private var unitTextField: TwoModeTextField!
@@ -54,6 +60,7 @@ final class ConvertView: UIView {
             make.height.equalTo(30)
             make.width.equalTo(50)
         }
+        amountTextField.delegate = self
 
         unitTextField = layout(TwoModeTextField()) { make in
             make.top.equalTo(amountTextField)
@@ -61,6 +68,7 @@ final class ConvertView: UIView {
             make.trailing.equalToSuperview()
             make.height.equalTo(amountTextField)
         }
+        unitTextField.delegate = self
 
         baseUnitLabel = layout(UILabel(text: "base units:")) { make in
             make.top.equalTo(amountTextField.bottom).offset(10)
@@ -72,6 +80,7 @@ final class ConvertView: UIView {
             make.leading.width.equalTo(amountTextField)
             make.height.equalTo(amountTextField)
         }
+        baseAmountTextField.delegate = self
 
         baseUnitTextField = layout(TwoModeTextField()) { make in
             make.top.equalTo(baseAmountTextField)
@@ -137,6 +146,28 @@ final class ConvertView: UIView {
         unitTextField.text = measurement.symbol
         baseAmountTextField.text = String(measurement.coefficient)
         baseUnitTextField.text = measurement.baseUnit.symbol
+    }
+}
+
+extension ConvertView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else {
+            return
+        }
+        switch textField {
+        case amountTextField:
+            measure?.value = Double(text) ?? 0
+        case unitTextField:
+            measure?.symbol = text
+        case baseAmountTextField:
+            measure?.coefficient = Double(text) ?? 0
+        default:
+            return
+        }
     }
 }
 
