@@ -10,6 +10,7 @@
 		4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43824DFF6340054C6DD /* LabeledPickerView.swift */; };
 		4428C43B24E02FDA0054C6DD /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43A24E02FDA0054C6DD /* Measure.swift */; };
 		4428C43D24E037F30054C6DD /* Double+Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43C24E037F30054C6DD /* Double+Measurement.swift */; };
+		4428C44A24E2CC780054C6DD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44924E2CC780054C6DD /* Settings.swift */; };
 		4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486324C60B1300EA5B2C /* AppDelegate.swift */; };
 		4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486524C60B1300EA5B2C /* SceneDelegate.swift */; };
 		4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486724C60B1300EA5B2C /* MainViewController.swift */; };
@@ -42,6 +43,7 @@
 		4428C43824DFF6340054C6DD /* LabeledPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledPickerView.swift; sourceTree = "<group>"; };
 		4428C43A24E02FDA0054C6DD /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		4428C43C24E037F30054C6DD /* Double+Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Measurement.swift"; sourceTree = "<group>"; };
+		4428C44924E2CC780054C6DD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474486524C60B1300EA5B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
+				4428C44924E2CC780054C6DD /* Settings.swift */,
 				4474488224C622CC00EA5B2C /* Recipe.swift */,
 				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
 				4428C43A24E02FDA0054C6DD /* Measure.swift */,
@@ -270,6 +273,7 @@
 			files = (
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
+				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
 				4428C43B24E02FDA0054C6DD /* Measure.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainView.swift in Sources */,

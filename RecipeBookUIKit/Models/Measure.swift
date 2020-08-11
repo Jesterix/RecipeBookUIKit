@@ -246,6 +246,17 @@ enum DimensionType {
         }
     }
 
+    var typeDescription: String {
+        switch self {
+        case .mass:
+            return "mass"
+        case .volume:
+            return "volume"
+        case .undefined:
+            return "undefined"
+        }
+    }
+
     static var allMassCases: [String] {
         var result: [String] = []
         for type in DimensionType.Mass.allCases {

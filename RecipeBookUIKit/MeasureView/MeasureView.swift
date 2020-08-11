@@ -90,7 +90,7 @@ final class MeasureView: UIView {
 
         cancelButton.isHidden = true
 
-        pickerView.data = ["weight", "volume", "custom"]
+        pickerView.data = Settings.defaultDimensions.map { $0.typeDescription }
 
         closeButton.layer.cornerRadius = 15
         closeButton.backgroundColor = .systemBlue

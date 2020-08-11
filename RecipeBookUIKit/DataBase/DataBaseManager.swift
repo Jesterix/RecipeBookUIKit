@@ -20,7 +20,7 @@ class DataBaseManager {
             if recipes.count == 0 {
                 try realm.write() {
                     realm.delete(recipes)
-                    for recipe in defaultRecipes {
+                    for recipe in Settings.defaultRecipes {
                         let newRecipe = RealmRecipe(from: recipe)
                         realm.add(newRecipe)
                     }
