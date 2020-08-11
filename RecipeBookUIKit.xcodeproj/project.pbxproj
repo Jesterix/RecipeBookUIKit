@@ -136,10 +136,8 @@
 				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
 				4428C44924E2CC780054C6DD /* Settings.swift */,
 				4474488224C622CC00EA5B2C /* Recipe.swift */,
-				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
 				4428C43A24E02FDA0054C6DD /* Measure.swift */,
 				4428C43C24E037F30054C6DD /* Double+Measurement.swift */,
-				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
+				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
+				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
