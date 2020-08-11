@@ -147,6 +147,17 @@ final class ConvertView: UIView {
         baseAmountTextField.text = String(measurement.coefficient)
         baseUnitTextField.text = measurement.baseUnit.symbol
     }
+
+    func setPickerDataForMeasurement(with dimension: DimensionType) {
+        switch dimension {
+        case .mass:
+            unitTextField.pickerData = ["1", "2"]
+        case .volume:
+            unitTextField.pickerData = ["3", "4"]
+        case .undefined:
+            unitTextField.pickerData = ["5", "6"]
+        }
+    }
 }
 
 extension ConvertView: UITextFieldDelegate {

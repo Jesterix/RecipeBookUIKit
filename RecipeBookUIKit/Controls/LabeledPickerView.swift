@@ -60,6 +60,10 @@ final class LabeledPickerView: UIView {
 }
 
 extension LabeledPickerView: UIPickerViewDelegate {
+    func selectRow(row: Int, inComponent: Int) {
+        pickerView.selectRow(row, inComponent: inComponent, animated: true)
+    }
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel(text: data?[row] ?? "no value")
         label.font = .systemFont(ofSize: 13)

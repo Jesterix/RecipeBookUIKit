@@ -39,6 +39,8 @@ final class MeasureViewController: UIViewController {
             for: .touchUpInside)
 
         measureView.pickerView.delegate = self
+        measureView.pickerView.selectRow(row: 0, inComponent: 0)
+        passPickerData(row: 0)
 
         measureView.closeButton.addTarget(
             self,
@@ -90,10 +92,16 @@ final class MeasureViewController: UIViewController {
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)
     }
+
+    private func passPickerData(row: Int) {
+        let dimension = Settings.defaultDimensions[row]
+        measureView.convertView.setPickerDataForMeasurement(with: dimension)
+    }
 }
 
 extension MeasureViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("row selected in controller: ", row)
+        passPickerData(row: row)
     }
 }
