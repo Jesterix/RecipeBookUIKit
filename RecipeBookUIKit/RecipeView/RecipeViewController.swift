@@ -14,6 +14,7 @@ final class RecipeViewController: UIViewController {
     private var recipe: Recipe {
         didSet {
             dataManager.update(recipe: recipe)
+            recipeView.ingredientTableView.reloadData()
         }
     }
     

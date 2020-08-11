@@ -125,6 +125,9 @@ extension IngredientCell: UITextFieldDelegate {
             } else {
                 ingredient.measurement = Measure(value: value, symbol: "")
             }
+
+        case 2:
+            ingredient.measurement?.symbol = textField.text ?? ""
             
         default: ingredient.title = textField.text ?? ""
         }
