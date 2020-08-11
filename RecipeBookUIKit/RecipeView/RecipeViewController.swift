@@ -111,6 +111,9 @@ extension RecipeViewController: UITableViewDelegate {
 
         let vc = MeasureViewController()
         vc.measurement = recipe.ingredients[indexPath.row].measurement
+        vc.onClose = { [unowned self] measure in
+            self.recipe.ingredients[indexPath.row].measurement = measure
+        }
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         navigationController?.present(vc, animated: true, completion: nil)

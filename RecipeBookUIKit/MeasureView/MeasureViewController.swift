@@ -13,6 +13,8 @@ final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
     var measurement: Measure?
 
+    var onClose: ((Measure) -> Void)?
+
     override func loadView() {
         self.measureView = MeasureView()
         self.view = measureView
@@ -102,6 +104,10 @@ final class MeasureViewController: UIViewController {
     }
     
     @objc func close(){
+        guard let measure = measurement else {
+            return
+        }
+        onClose?(measure)
         self.dismiss(animated: true, completion: nil)
     }
 }
