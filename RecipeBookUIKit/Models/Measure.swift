@@ -51,7 +51,7 @@ enum DimensionType {
         }
 
         init?(symbol: String) {
-            switch symbol.lowercased() {
+            switch symbol {
             case DimensionType.Mass.kilograms.rawValue, UnitMass.kilograms.symbol:
                 self = .kilograms
             case DimensionType.Mass.grams.rawValue, UnitMass.grams.symbol:
@@ -161,7 +161,7 @@ enum DimensionType {
         }
 
         init?(symbol: String) {
-            switch symbol.lowercased() {
+            switch symbol {
             case DimensionType.Volume.megaliters.rawValue, UnitVolume.megaliters.symbol:
                 self = .megaliters
             case DimensionType.Volume.kiloliters.rawValue, UnitVolume.kiloliters.symbol:

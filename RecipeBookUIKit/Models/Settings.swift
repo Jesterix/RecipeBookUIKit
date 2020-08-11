@@ -24,6 +24,4 @@ class Settings {
         Recipe(title: "third")]
 
     static var defaultDimensions: [DimensionType] = [.mass(DimensionType.Mass.grams), .volume(DimensionType.Volume.liters), .undefined]
-
-    
 }
