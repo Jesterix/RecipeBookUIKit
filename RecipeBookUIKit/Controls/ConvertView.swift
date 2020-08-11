@@ -19,13 +19,23 @@ final class ConvertView: UIView {
         }
     }
 
-    var amountTextField: TwoModeTextField!
-    var unitTextField: TwoModeTextField!
+    private var measureSet = false
+    var measure: Measure? {
+        didSet {
+            if !measureSet {
+                setupText()
+                measureSet.toggle()
+            }
+        }
+    }
+
+    private var amountTextField: TwoModeTextField!
+    private var unitTextField: TwoModeTextField!
 
     private var baseUnitLabel: UILabel!
 
-    var baseAmountTextField: TwoModeTextField!
-    var baseUnitTextField: TwoModeTextField!
+    private var baseAmountTextField: TwoModeTextField!
+    private var baseUnitTextField: TwoModeTextField!
 
     init() {
         super.init(frame: .zero)
@@ -101,6 +111,8 @@ final class ConvertView: UIView {
         baseUnitTextField.text = "gramm"
     }
 
+//    MARK: - methods
+
     private func toggleTextFieldsVisibility() {
         switch state {
         case .normal, .converting:
@@ -115,6 +127,16 @@ final class ConvertView: UIView {
             baseAmountTextField.mode = .editable
             baseUnitTextField.mode = .disabled
         }
+    }
+
+    private func setupText() {
+        guard let measurement = measure else {
+            return
+        }
+        amountTextField.text = "\(measurement.value)"
+        unitTextField.text = measurement.symbol
+        baseAmountTextField.text = String(measurement.coefficient)
+        baseUnitTextField.text = measurement.baseUnit.symbol
     }
 }
 

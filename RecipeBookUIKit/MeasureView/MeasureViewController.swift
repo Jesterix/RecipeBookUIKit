@@ -45,7 +45,7 @@ final class MeasureViewController: UIViewController {
             action: #selector(close),
             for: .touchUpInside)
 
-        setupView()
+        measureView.convertView.measure = measurement
         hideKeyboardOnTap()
     }
 
@@ -69,21 +69,8 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
     }
 
-    private func setupView() {
-        guard let measurement = measurement else {
-            return
-        }
-
-        measureView.convertView.amountTextField.text = "\(measurement.value)"
-        measureView.convertView.unitTextField.text = measurement.symbol
-
-        measureView.convertView.baseAmountTextField.text = String(measurement.coefficient)
-        measureView.convertView.baseUnitTextField.text = measurement.baseUnit.symbol
-    }
-
     private func toggleVisibility() {
         toggleButtonsVisibility()
-//        toggleTextFieldsVisibility()
     }
 
     private func toggleButtonsVisibility() {
@@ -92,14 +79,6 @@ final class MeasureViewController: UIViewController {
         measureView.convertButton.isEnabled = measureView.addButton.isPrimary
         measureView.closeButton.enable(measureView.addButton.isPrimary)
     }
-
-//    private func toggleTextFieldsVisibility() {
-//        if !measureView.addButton.isPrimary, measureView.convertButton.isPrimary {
-//            measureView.convertView.state = .editing
-//        } else {
-//            measureView.convertView.state = .normal
-//        }
-//    }
     
     @objc func close(){
         guard let measure = measurement else {
