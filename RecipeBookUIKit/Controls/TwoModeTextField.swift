@@ -20,6 +20,16 @@ final class TwoModeTextField: UITextField {
         }
     }
 
+    private weak var _delegate: UITextFieldDelegate?
+    public override var delegate: UITextFieldDelegate? {
+        get {
+            return self._delegate
+        }
+        set {
+            self._delegate = newValue
+        }
+    }
+
     var mode: Mode = .disabled {
         didSet {
             applyStyle()
@@ -30,6 +40,7 @@ final class TwoModeTextField: UITextField {
         super.init(frame: .zero)
         applyStyle()
         defaultInput = inputView
+        super.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -92,5 +103,57 @@ extension TwoModeTextField: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         text = pickerData[row]
+    }
+}
+
+extension TwoModeTextField: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        self._delegate?.textField?(
+            textField,
+            shouldChangeCharactersIn: range,
+            replacementString: string) ?? true
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        switch mode {
+        case .editable:
+            break
+        case .changeable:
+            textField.selectedTextRange = nil
+        default: break
+        }
+
+        if #available(iOS 13.0, *) {
+            self._delegate?.textFieldDidChangeSelection?(textField)
+        }
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldBeginEditing?(textField) ?? true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self._delegate?.textFieldDidBeginEditing?(textField)
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldEndEditing?(textField) ?? true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self._delegate?.textFieldDidEndEditing?(textField)
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldClear?(textField) ?? true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return self._delegate?.textFieldShouldReturn?(textField) ?? true
     }
 }

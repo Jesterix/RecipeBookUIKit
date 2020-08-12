@@ -169,19 +169,25 @@ extension ConvertView: UITextFieldDelegate {
         guard let text = textField.text else {
             return
         }
+//        switch state {
+//        case .normal:
+//
+//        case .editing:
+//
+//        case .converting:
+//
+//        }
+
         switch textField {
         case amountTextField:
             measure?.value = Double(text) ?? 0
+
         case unitTextField:
             measure?.symbol = text
-            switch unitTextField.mode {
-            case .changeable:
-                textField.selectedTextRange = nil
-            default:
-                return
-            }
+
         case baseAmountTextField:
             measure?.coefficient = Double(text) ?? 0
+
         default:
             return
         }
