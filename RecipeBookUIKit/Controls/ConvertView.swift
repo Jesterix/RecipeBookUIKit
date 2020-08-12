@@ -19,13 +19,12 @@ final class ConvertView: UIView {
         }
     }
 
-    private var measureSet = false
     var measure: Measure? {
         didSet {
-            if !measureSet {
+            if oldValue == nil {
                 setupText()
-                measureSet.toggle()
             }
+
             guard let measure = measure else {
                 return
             }
@@ -155,13 +154,12 @@ final class ConvertView: UIView {
         switch dimension {
         case .mass:
             unitTextField.pickerData = DimensionType.allMassCases
-            measure?.type = .mass(.kilograms)
+            measure?.type = dimension
         case .volume:
             unitTextField.pickerData = DimensionType.allVolumeCases
-            measure?.type = .volume(.liters)
+            measure?.type = dimension
         case .undefined:
             unitTextField.pickerData = DataStorage.shared.userMeasures
-            measure?.type = .undefined
         }
     }
 
@@ -175,6 +173,7 @@ final class ConvertView: UIView {
                 return
         }
         amountTextField.text = converted
+        measure?.value = Double(converted) ?? 0
     }
 }
 
@@ -207,6 +206,7 @@ extension ConvertView: UITextFieldDelegate {
 
         case unitTextField:
             measure?.symbol = text
+            measure?.type = .init(with: text)
 
         case baseAmountTextField:
             measure?.coefficient = Double(text) ?? 0

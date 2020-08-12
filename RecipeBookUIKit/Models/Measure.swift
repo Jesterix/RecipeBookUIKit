@@ -50,6 +50,43 @@ enum DimensionType: Equatable {
             }
         }
 
+        var measurement: Measurement<UnitMass> {
+            switch self {
+                case .kilograms:
+                    return 0.0.kilograms
+                case .grams:
+                    return 0.0.grams
+                case .decigrams:
+                    return 0.0.decigrams
+                case .centigrams:
+                    return 0.0.centigrams
+                case .milligrams:
+                    return 0.0.milligrams
+                case .micrograms:
+                    return 0.0.micrograms
+                case .nanograms:
+                    return 0.0.nanograms
+                case .picograms:
+                    return 0.0.picograms
+                case .ounces:
+                    return 0.0.ounces
+                case .pounds:
+                    return 0.0.pounds
+                case .stones:
+                    return 0.0.stones
+                case .metricTons:
+                    return 0.0.metricTons
+                case .shortTons:
+                    return 0.0.shortTons
+                case .carats:
+                    return 0.0.carats
+                case .ouncesTroy:
+                    return 0.0.ouncesTroy
+                case .slugs:
+                    return 0.0.slugs
+            }
+        }
+
         init?(symbol: String) {
             switch symbol {
             case DimensionType.Mass.kilograms.rawValue, UnitMass.kilograms.symbol:
@@ -157,6 +194,73 @@ enum DimensionType: Equatable {
                 return UnitVolume.imperialGallons.symbol
             case .metricCups:
                 return UnitVolume.metricCups.symbol
+            }
+        }
+
+        var measurement: Measurement<UnitVolume> {
+            switch self {
+            case .megaliters:
+                return 0.0.megaliters
+            case .kiloliters:
+                return 0.0.kiloliters
+            case .liters:
+                return 0.0.liters
+            case .deciliters:
+                return 0.0.deciliters
+            case .centiliters:
+                return 0.0.centiliters
+            case .milliliters:
+                return 0.0.milliliters
+            case .cubicKilometers:
+                return 0.0.cubicKilometers
+            case .cubicMeters:
+                return 0.0.cubicMeters
+            case .cubicDecimeters:
+                return 0.0.cubicDecimeters
+            case .cubicCentimeters:
+                return 0.0.cubicCentimeters
+            case .cubicMillimeters:
+                return 0.0.cubicMillimeters
+            case .cubicInches:
+                return 0.0.cubicInches
+            case .cubicFeet:
+                return 0.0.cubicFeet
+            case .cubicYards:
+                return 0.0.cubicYards
+            case .cubicMiles:
+                return 0.0.cubicMiles
+            case .acreFeet:
+                return 0.0.acreFeet
+            case .bushels:
+                return 0.0.bushels
+            case .teaspoons:
+                return 0.0.teaspoons
+            case .tablespoons:
+                return 0.0.tablespoons
+            case .fluidOunces:
+                return 0.0.fluidOunces
+            case .cups:
+                return 0.0.cups
+            case .pints:
+                return 0.0.pints
+            case .quarts:
+                return 0.0.quarts
+            case .gallons:
+                return 0.0.gallons
+            case .imperialTeaspoons:
+                return 0.0.imperialTeaspoons
+            case .imperialTablespoons:
+                return 0.0.imperialTablespoons
+            case .imperialFluidOunces:
+                return 0.0.imperialFluidOunces
+            case .imperialPints:
+                return 0.0.imperialPints
+            case .imperialQuarts:
+                return 0.0.imperialQuarts
+            case .imperialGallons:
+                return 0.0.imperialGallons
+            case .metricCups:
+                return 0.0.metricCups
             }
         }
 
@@ -274,6 +378,16 @@ enum DimensionType: Equatable {
         }
         return result
     }
+
+    init(with symbol: String) {
+        if DimensionType.allMassCases.contains(symbol) {
+            self = .mass(DimensionType.Mass.init(symbol: symbol)!)
+        } else if DimensionType.allVolumeCases.contains(symbol) {
+            self = .volume(DimensionType.Volume.init(symbol: symbol)!)
+        } else {
+            self = .undefined
+        }
+    }
 }
 
 //    MARK: - Measure struct
@@ -312,19 +426,37 @@ struct Measure {
 
     init(value: Double, symbol: String) {
         self.value = value
-        if DimensionType.allMassCases.contains(symbol) {
-            self.type = .mass(DimensionType.Mass.init(symbol: symbol)!)
-        } else if DimensionType.allVolumeCases.contains(symbol) {
-            self.type = .volume(DimensionType.Volume.init(symbol: symbol)!)
-        } else {
-            self.type = .undefined
-            self._symbol = symbol
-        }
+        self.type = .init(with: symbol)
+        self._symbol = symbol
+
+//        if DimensionType.allMassCases.contains(symbol) {
+//            self.type = .mass(DimensionType.Mass.init(symbol: symbol)!)
+//        } else if DimensionType.allVolumeCases.contains(symbol) {
+//            self.type = .volume(DimensionType.Volume.init(symbol: symbol)!)
+//        } else {
+//            self.type = .undefined
+//            self._symbol = symbol
+//        }
     }
 }
 
 extension Measure {
     public static func != (lhs: Measure, rhs: Measure) -> Bool {
         return lhs.value != rhs.value || lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
+    }
+}
+
+extension Measure {
+    var measurement: Measurement<Dimension>? {
+        switch self.type {
+        case .mass(let mass):
+            return Measurement(value: value, unit: mass.measurement.unit)
+
+        case .volume(let volume):
+            return Measurement(value: value, unit: volume.measurement.unit)
+
+        case .undefined:
+            return nil
+        }
     }
 }
