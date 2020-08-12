@@ -15,6 +15,9 @@ class DataBaseManager {
     private lazy var recipes: Results<RealmRecipe> = { self.realm.objects(RealmRecipe.self)
     }()
 
+    private lazy var ingredients: Results<RealmIngredient> = { self.realm.objects(RealmIngredient.self)
+    }()
+
     func createBaseData() {
         do {
             if recipes.count == 0 {
@@ -64,20 +67,20 @@ class DataBaseManager {
         }
     }
 
-    func getUserIngredients() -> [String] {
+    func getUserMeasures() -> [String] {
+        var allIngredients: [Ingredient] = []
 
-        var preds: [NSPredicate] = []
+        ingredients.forEach { ing in
+            allIngredients.append(ing.converted())
+        }
 
-//        for item in DimensionType.allMassCases {
-//            let predicate = NSPredicate(format: "")
-//            predicateString.append(item)
-//            predicateString.append(" AND ")
-//        }
-        let predicateString = "symbol == g"
+        let filteredIngredients = allIngredients.filter { ing -> Bool in
+            guard let measure = ing.measurement else {
+                return false
+            }
+            return !DimensionType.allMassCases.contains(measure.symbol) || !DimensionType.allVolumeCases.contains(measure.symbol)
+        }.map { $0.measurement?.symbol ?? "" }
 
-        let predicate = NSPredicate(format: predicateString)
-        print(predicateString)
-
-        return realm.objects(RealmIngredient.self).filter(predicate).map { $0.symbol }
+        return filteredIngredients
     }
 }

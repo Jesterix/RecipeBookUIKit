@@ -11,5 +11,5 @@ import Foundation
 final class DataStorage {
     public static let shared: DataStorage = DataStorage()
 
-    var userIngredients: [String] = []
+    var userMeasures: [String] = []
 }

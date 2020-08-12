@@ -155,7 +155,7 @@ final class ConvertView: UIView {
         case .volume:
             unitTextField.pickerData = DimensionType.allVolumeCases
         case .undefined:
-            unitTextField.pickerData = []
+            unitTextField.pickerData = DataStorage.shared.userMeasures
         }
     }
 }
