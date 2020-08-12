@@ -63,4 +63,21 @@ class DataBaseManager {
             print(error.localizedDescription)
         }
     }
+
+    func getUserIngredients() -> [String] {
+
+        var preds: [NSPredicate] = []
+
+//        for item in DimensionType.allMassCases {
+//            let predicate = NSPredicate(format: "")
+//            predicateString.append(item)
+//            predicateString.append(" AND ")
+//        }
+        let predicateString = "symbol == g"
+
+        let predicate = NSPredicate(format: predicateString)
+        print(predicateString)
+
+        return realm.objects(RealmIngredient.self).filter(predicate).map { $0.symbol }
+    }
 }

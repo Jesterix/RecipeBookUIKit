@@ -25,6 +25,7 @@ final class MainViewController: UIViewController {
         setupDelegates()
         hideKeyboardOnTap()
         getDataFromDatabase()
+        doFirstFetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +44,10 @@ final class MainViewController: UIViewController {
     private func getDataFromDatabase() {
         dataManager.createBaseData()
         self.mainView.recipeTableView.reloadData()
+    }
+
+    private func doFirstFetch() {
+        DataStorage.shared.userIngredients = dataManager.getUserIngredients()
     }
 }
 
