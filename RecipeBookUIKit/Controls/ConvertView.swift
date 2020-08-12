@@ -60,7 +60,7 @@ final class ConvertView: UIView {
         amountTextField = layout(TwoModeTextField()) { make in
             make.leading.top.equalToSuperview()
             make.height.equalTo(30)
-            make.width.equalTo(50)
+            make.width.equalTo(100)
         }
         amountTextField.delegate = self
 

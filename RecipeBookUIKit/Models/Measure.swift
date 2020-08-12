@@ -441,8 +441,9 @@ struct Measure {
 }
 
 extension Measure {
+    ///do not include value comparing for converter needs
     public static func != (lhs: Measure, rhs: Measure) -> Bool {
-        return lhs.value != rhs.value || lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
+        return lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
     }
 }
 
