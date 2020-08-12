@@ -155,10 +155,13 @@ final class ConvertView: UIView {
         switch dimension {
         case .mass:
             unitTextField.pickerData = DimensionType.allMassCases
+            measure?.type = .mass(.kilograms)
         case .volume:
             unitTextField.pickerData = DimensionType.allVolumeCases
+            measure?.type = .volume(.liters)
         case .undefined:
             unitTextField.pickerData = DataStorage.shared.userMeasures
+            measure?.type = .undefined
         }
     }
 
