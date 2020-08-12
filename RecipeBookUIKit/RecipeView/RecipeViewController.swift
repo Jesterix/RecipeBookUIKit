@@ -90,10 +90,11 @@ extension RecipeViewController: UITableViewDataSource {
         
         cell.ingredientChanged { [weak tableView] (ingredient: Ingredient) in
             self.recipe.ingredients[indexPath.row] = ingredient
-            DispatchQueue.main.async {
-                tableView?.beginUpdates()
-                tableView?.endUpdates()
-            }
+//            TODO: fix jumping
+//            DispatchQueue.main.async {
+//                tableView?.beginUpdates()
+//                tableView?.endUpdates()
+//            }
         }
 
         cell.tableView = tableView
@@ -129,7 +130,6 @@ extension RecipeViewController: UITableViewDelegate {
             title: "Delete"
         ) { _, _, _ in
             self.recipe.ingredients.remove(at: indexPath.row)
-            tableView.reloadData()
         }
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
