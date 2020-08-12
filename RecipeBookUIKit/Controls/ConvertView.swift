@@ -174,6 +174,12 @@ extension ConvertView: UITextFieldDelegate {
             measure?.value = Double(text) ?? 0
         case unitTextField:
             measure?.symbol = text
+            switch unitTextField.mode {
+            case .changeable:
+                textField.selectedTextRange = nil
+            default:
+                return
+            }
         case baseAmountTextField:
             measure?.coefficient = Double(text) ?? 0
         default:
