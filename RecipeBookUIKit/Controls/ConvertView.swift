@@ -29,9 +29,12 @@ final class ConvertView: UIView {
             guard let measure = measure else {
                 return
             }
+            self.oldValue = oldValue
             onMeasureChange?(measure)
         }
     }
+
+    private var oldValue: Measure?
 
     var onMeasureChange: ((Measure) -> Void)?
 
@@ -158,6 +161,18 @@ final class ConvertView: UIView {
             unitTextField.pickerData = DataStorage.shared.userMeasures
         }
     }
+
+    private func didChangeUnitType() {
+        guard let old = oldValue, let new = measure, old != new else {
+            return
+        }
+        guard let converted = Converter.convert(
+            oldValue: old,
+            newValue: new) else {
+                return
+        }
+        amountTextField.text = converted
+    }
 }
 
 extension ConvertView: UITextFieldDelegate {
@@ -169,14 +184,19 @@ extension ConvertView: UITextFieldDelegate {
         guard let text = textField.text else {
             return
         }
-//        switch state {
-//        case .normal:
-//
-//        case .editing:
-//
-//        case .converting:
-//
-//        }
+        switch state {
+        case .normal:
+            break
+        case .editing:
+            break
+        case .converting:
+            switch textField {
+            case unitTextField:
+                didChangeUnitType()
+            default:
+                break
+            }
+        }
 
         switch textField {
         case amountTextField:

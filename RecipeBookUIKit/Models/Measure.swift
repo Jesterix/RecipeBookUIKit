@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DimensionType {
+enum DimensionType: Equatable {
 //    MARK: - Mass enum
     enum Mass: String, CaseIterable {
         case kilograms, grams, decigrams, centigrams, milligrams, micrograms, nanograms, picograms, ounces, pounds, stones, metricTons, shortTons, carats, ouncesTroy, slugs
@@ -323,3 +323,8 @@ struct Measure {
     }
 }
 
+extension Measure {
+    public static func != (lhs: Measure, rhs: Measure) -> Bool {
+        return lhs.value != rhs.value || lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
+    }
+}
