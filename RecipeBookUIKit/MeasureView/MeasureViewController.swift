@@ -110,8 +110,9 @@ final class MeasureViewController: UIViewController {
         default:
             return
         }
-        measureView.pickerView.selectRow(row: row, inComponent: 0)
+
         passPickerData(row: row)
+        measureView.pickerView.selectRow(row: row, inComponent: 0)
     }
 }
 
