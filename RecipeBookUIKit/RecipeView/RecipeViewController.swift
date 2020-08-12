@@ -111,7 +111,11 @@ extension RecipeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         let vc = MeasureViewController()
-        vc.measurement = recipe.ingredients[indexPath.row].measurement
+
+        if let measure = recipe.ingredients[indexPath.row].measurement {
+            vc.measure = measure
+        }
+
         vc.onClose = { [unowned self] measure in
             self.recipe.ingredients[indexPath.row].measurement = measure
         }

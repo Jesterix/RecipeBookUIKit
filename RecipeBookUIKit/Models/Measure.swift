@@ -403,7 +403,7 @@ struct Measure {
         case .volume:
             return UnitVolume.liters
         case .undefined:
-            return Unit(symbol: symbol)
+            return Unit(symbol: "")
         }
     }
     
@@ -428,15 +428,6 @@ struct Measure {
         self.value = value
         self.type = .init(with: symbol)
         self._symbol = symbol
-
-//        if DimensionType.allMassCases.contains(symbol) {
-//            self.type = .mass(DimensionType.Mass.init(symbol: symbol)!)
-//        } else if DimensionType.allVolumeCases.contains(symbol) {
-//            self.type = .volume(DimensionType.Volume.init(symbol: symbol)!)
-//        } else {
-//            self.type = .undefined
-//            self._symbol = symbol
-//        }
     }
 }
 

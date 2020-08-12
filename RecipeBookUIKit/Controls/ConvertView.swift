@@ -154,13 +154,14 @@ final class ConvertView: UIView {
         switch dimension {
         case .mass:
             unitTextField.pickerData = DimensionType.allMassCases
-            measure?.type = dimension
         case .volume:
             unitTextField.pickerData = DimensionType.allVolumeCases
-            measure?.type = dimension
         case .undefined:
             unitTextField.pickerData = DataStorage.shared.userMeasures
         }
+
+        measure?.type = dimension
+        baseUnitTextField.text = measure?.baseUnit.symbol
     }
 
     private func didChangeUnitType() {

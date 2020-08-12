@@ -11,7 +11,7 @@ import Foundation
 
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
-    var measurement: Measure?
+    var measure: Measure = Measure(value: 0, symbol: "")
 
     var onClose: ((Measure) -> Void)?
 
@@ -38,17 +38,18 @@ final class MeasureViewController: UIViewController {
             action: #selector(tapCancel),
             for: .touchUpInside)
 
-        setupPickerView()
-
         measureView.closeButton.addTarget(
             self,
             action: #selector(close),
             for: .touchUpInside)
 
-        measureView.convertView.measure = measurement
+        measureView.convertView.measure = measure
         measureView.convertView.onMeasureChange = { [unowned self] measure in
-            self.measurement = measure
+            self.measure = measure
         }
+
+        setupPickerView()
+
         hideKeyboardOnTap()
     }
 
@@ -84,9 +85,6 @@ final class MeasureViewController: UIViewController {
     }
     
     @objc func close(){
-        guard let measure = measurement else {
-            return
-        }
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)
     }
@@ -100,15 +98,13 @@ final class MeasureViewController: UIViewController {
         measureView.pickerView.delegate = self
 
         var row = 0
-        switch measurement?.type {
+        switch measure.type {
         case .mass:
             row = 0
         case .volume:
             row = 1
         case .undefined:
             row = 2
-        default:
-            return
         }
 
         passPickerData(row: row)
