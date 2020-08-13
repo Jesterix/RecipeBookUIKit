@@ -9,17 +9,26 @@
 import Foundation
 
 class Converter {
-    static func convert(oldValue: Measure, newValue: Measure) -> String? {
-        guard oldValue.type != .undefined && newValue.type != .undefined else {
-            return ""
+    static func convert(measure: Measure, to type: DimensionType) -> String? {
+        guard let measurement = measure.measurement else {
+            return "measure == nil"
         }
+        var result = 0.0
+        switch type {
+        case .mass(let mass):
+            let massMeasure = mass.measurement
+            let converted = measurement.converted(to: massMeasure.unit)
+            result = converted.value
 
-        guard let old = oldValue.measurement, let new = newValue.measurement else {
-            return ""
+        case .volume(let volume):
+            let volumeMeasure = volume.measurement
+            let converted = measurement.converted(to: volumeMeasure.unit)
+            result = converted.value
+
+        default:
+            return "type == undefined"
         }
-
-        let converted = old.converted(to: new.unit)
-        return String(converted.value)
+        return String(result)
     }
 
     static func convertToBaseUnit(_ measure: Measure) -> String? {

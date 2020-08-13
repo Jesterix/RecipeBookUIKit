@@ -28,12 +28,9 @@ final class ConvertView: UIView {
             guard let measure = measure else {
                 return
             }
-            self.oldValue = oldValue
             onMeasureChange?(measure)
         }
     }
-
-    private var oldValue: Measure?
 
     var onMeasureChange: ((Measure) -> Void)?
 
@@ -166,21 +163,24 @@ final class ConvertView: UIView {
         baseUnitTextField.text = measure?.baseUnit.symbol
     }
 
-    private func convertValue() -> String {
-        guard let old = oldValue, let new = measure, old != new else {
+    private func convertedAmount() -> String {
+        guard let measure = measure, let text = unitTextField.text else {
+            print("measure or text == nil")
             return ""
         }
-        guard let converted = Converter.convert(
-            oldValue: old,
-            newValue: new) else {
-                return ""
+
+        let type: DimensionType = .init(with: text)
+        guard let converted = Converter.convert(measure: measure, to: type) else {
+            print("converter failed")
+            return ""
         }
+
         return converted
     }
 
     private func convertAmount() {
-        amountTextField.text = convertValue()
-        measure?.value = Double(convertValue()) ?? 0
+        amountTextField.text = convertedAmount()
+        measure?.value = Double(convertedAmount()) ?? 0
     }
 
     private func convertedBaseUnit() -> String {
