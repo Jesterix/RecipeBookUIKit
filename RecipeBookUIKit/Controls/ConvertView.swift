@@ -102,6 +102,7 @@ final class ConvertView: UIView {
         amountTextField.autocorrectionType = .no
         amountTextField.textAlignment = .right
         amountTextField.mode = .editable
+        amountTextField.keyboardType = .decimalPad
 
         unitTextField.autocorrectionType = .no
         unitTextField.mode = .changeable
@@ -111,6 +112,7 @@ final class ConvertView: UIView {
         baseAmountTextField.autocorrectionType = .no
         baseAmountTextField.textAlignment = .right
         baseAmountTextField.mode = .disabled
+        baseAmountTextField.keyboardType = .decimalPad
 
         baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
@@ -164,17 +166,36 @@ final class ConvertView: UIView {
         baseUnitTextField.text = measure?.baseUnit.symbol
     }
 
-    private func didChangeUnitType() {
+    private func convertValue() -> String {
         guard let old = oldValue, let new = measure, old != new else {
-            return
+            return ""
         }
         guard let converted = Converter.convert(
             oldValue: old,
             newValue: new) else {
-                return
+                return ""
         }
-        amountTextField.text = converted
-        measure?.value = Double(converted) ?? 0
+        return converted
+    }
+
+    private func convertAmount() {
+        amountTextField.text = convertValue()
+        measure?.value = Double(convertValue()) ?? 0
+    }
+
+    private func convertedBaseUnit() -> String {
+        guard let measure = measure else {
+            return ""
+        }
+        guard let converted = Converter.convertToBaseUnit(measure) else {
+            return ""
+        }
+        return converted
+    }
+
+    private func convertBaseUnit() {
+        baseAmountTextField.text = convertedBaseUnit()
+        measure?.coefficient = Double(convertedBaseUnit()) ?? 0
     }
 }
 
@@ -189,13 +210,18 @@ extension ConvertView: UITextFieldDelegate {
         }
         switch state {
         case .normal:
-            break
+            switch textField {
+            case unitTextField:
+                convertBaseUnit()
+            default:
+                break
+            }
         case .editing:
             break
         case .converting:
             switch textField {
             case unitTextField:
-                didChangeUnitType()
+                convertAmount()
             default:
                 break
             }
@@ -214,6 +240,20 @@ extension ConvertView: UITextFieldDelegate {
 
         default:
             return
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch state {
+        case .normal:
+            switch textField {
+            case amountTextField:
+                convertBaseUnit()
+            default:
+                break
+            }
+        default:
+            break
         }
     }
 }

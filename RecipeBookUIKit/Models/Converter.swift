@@ -26,4 +26,14 @@ class Converter {
 
         return String(converted.value)
     }
+
+    static func convertToBaseUnit(_ measure: Measure) -> String? {
+        guard let measurement = measure.measurement, let baseUnit = measure.baseUnit as? Dimension else {
+            return ""
+        }
+
+        let converted = measurement.converted(to: baseUnit)
+
+        return String(converted.value)
+    }
 }
