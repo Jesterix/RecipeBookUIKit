@@ -10,8 +10,6 @@ import Foundation
 
 class Converter {
     static func convert(oldValue: Measure, newValue: Measure) -> String? {
-        print("convert from \(oldValue) \nto: \(newValue)")
-
         guard oldValue.type != .undefined && newValue.type != .undefined else {
             return ""
         }
@@ -21,9 +19,6 @@ class Converter {
         }
 
         let converted = old.converted(to: new.unit)
-
-        print("value ", converted.value)
-
         return String(converted.value)
     }
 
@@ -33,7 +28,6 @@ class Converter {
         }
 
         let converted = measurement.converted(to: baseUnit)
-
         return String(converted.value)
     }
 }
