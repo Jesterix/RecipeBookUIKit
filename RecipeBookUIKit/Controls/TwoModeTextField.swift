@@ -17,6 +17,13 @@ final class TwoModeTextField: UITextField {
                 return
             }
             picker.reloadAllComponents()
+
+            guard
+                let text = text,
+                let index = pickerData.firstIndex(of: text) else {
+                return
+            }
+            picker.selectRow(index, inComponent: 0, animated: false)
         }
     }
 
