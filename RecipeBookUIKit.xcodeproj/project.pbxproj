@@ -14,6 +14,7 @@
 		4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44B24E2ED100054C6DD /* DataStorage.swift */; };
 		4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44D24E3D1960054C6DD /* Predicate.swift */; };
 		4428C45024E4092D0054C6DD /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44F24E4092C0054C6DD /* Converter.swift */; };
+		4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */; };
 		4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486324C60B1300EA5B2C /* AppDelegate.swift */; };
 		4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486524C60B1300EA5B2C /* SceneDelegate.swift */; };
 		4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486724C60B1300EA5B2C /* MainViewController.swift */; };
@@ -50,6 +51,7 @@
 		4428C44B24E2ED100054C6DD /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		4428C44D24E3D1960054C6DD /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		4428C44F24E4092C0054C6DD /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertPortionsView.swift; sourceTree = "<group>"; };
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474486524C60B1300EA5B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
 				449F022E24D845B800A556E1 /* ConvertView.swift */,
 				4428C43824DFF6340054C6DD /* LabeledPickerView.swift */,
+				4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,
 				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
+				4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */,
 				4474489024C7832200EA5B2C /* RecipeView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,

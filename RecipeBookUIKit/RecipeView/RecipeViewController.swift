@@ -47,6 +47,11 @@ final class RecipeViewController: UIViewController {
         recipeView.textView.delegate = self
         recipeView.textView.text = recipe.text
 
+        recipeView.convertPortionsView.button.addTarget(
+            self,
+            action: #selector(tapConvert),
+            for: .touchUpInside)
+
         hideKeyboardOnTap()
     }
 
@@ -68,6 +73,13 @@ final class RecipeViewController: UIViewController {
         if recipeView.textView.isFirstResponder {
             adjustView(with: notification)
         }
+    }
+
+    @objc private func tapConvert() {
+        recipeView.convertPortionsView.button.isPrimary.toggle()
+//        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+//
+//        measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
     }
 }
 

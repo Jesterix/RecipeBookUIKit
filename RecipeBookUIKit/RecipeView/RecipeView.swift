@@ -10,6 +10,7 @@ import UIKit
 
 final class RecipeView: UIView {
     var titleField: UITextField!
+    var convertPortionsView: ConvertPortionsView!
     var addIngredientTextField: AddTextField!
     var ingredientTableView: UITableView!
     var textView: UITextView!
@@ -30,9 +31,16 @@ final class RecipeView: UIView {
             make.top.equalTo(safeArea).offset(10)
             make.leading.equalToSuperview().offset(10)
         }
+
+        convertPortionsView = layout(ConvertPortionsView()) { make in
+            make.top.equalTo(titleField.top)
+            make.leading.lessThanOrEqualTo(titleField.trailing)
+            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalTo(115)
+        }
         
         addIngredientTextField = layout(AddTextField()) { make in
-            make.top.equalTo(titleField.bottom).offset(10)
+            make.top.equalTo(convertPortionsView.bottom).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(30)
@@ -58,7 +66,7 @@ final class RecipeView: UIView {
         titleField.font = .systemFont(ofSize: 21)
         titleField.textColor = .black
         titleField.autocorrectionType = .no
-        
+
         addIngredientTextField.placeholder = "Add ingredient"
         
         ingredientTableView.backgroundColor = .white
