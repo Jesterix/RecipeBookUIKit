@@ -79,6 +79,8 @@ final class IngredientCell: UITableViewCell {
         titleTextField.backgroundColor = .systemTeal
         valueTextField.backgroundColor = .systemPink
         measurementTextField.backgroundColor = .systemOrange
+
+        valueTextField.keyboardType = .decimalPad
     }
 
     func configureCell(with ingredient: Ingredient) {
@@ -131,8 +133,6 @@ extension IngredientCell: UITextFieldDelegate {
             
         default: ingredient.title = textField.text ?? ""
         }
-        
-        ingredientChanged?(ingredient)
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -144,6 +144,10 @@ extension IngredientCell: UITextFieldDelegate {
         default:
             return true
         }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        ingredientChanged?(ingredient)
     }
 }
 
