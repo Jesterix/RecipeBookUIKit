@@ -19,13 +19,29 @@ final class ConvertPortionsView: UIView {
         }
     }
 
-    var textField: UITextField!
-    var button: Button!
+    private var textField: UITextField!
+    private var button: Button!
+    var coefficient: Double = 1 {
+        didSet {
+            textField.text = String(coefficient)
+        }
+    }
+    
+    private weak var _delegate: UITextFieldDelegate?
+    public var delegate: UITextFieldDelegate? {
+        get {
+            return self._delegate
+        }
+        set {
+            self._delegate = newValue
+        }
+    }
 
     init() {
         super.init(frame: .zero)
         layoutContent(in: self)
         applyStyle()
+        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -59,5 +75,67 @@ final class ConvertPortionsView: UIView {
         textField.textColor = .black
         textField.borderStyle = .roundedRect
         textField.textAlignment = .right
+    }
+    
+    private func setup() {
+        button.addTarget(
+            self,
+            action: #selector(stateToggle),
+            for: .touchUpInside)
+        
+        textField.delegate = self
+    }
+    
+    @objc func stateToggle() {
+        button.isPrimary.toggle()
+        state = button.isPrimary ? .normal : .converting
+    }
+}
+
+extension ConvertPortionsView: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        self._delegate?.textField?(
+            textField,
+            shouldChangeCharactersIn: range,
+            replacementString: string) ?? true
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if #available(iOS 13.0, *) {
+            self._delegate?.textFieldDidChangeSelection?(textField)
+        }
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldBeginEditing?(textField) ?? true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self._delegate?.textFieldDidBeginEditing?(textField)
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldEndEditing?(textField) ?? true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, let value = Double(text) else {
+            return
+        }
+        coefficient = value
+        self._delegate?.textFieldDidEndEditing?(textField)
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return self._delegate?.textFieldShouldClear?(textField) ?? true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return self._delegate?.textFieldShouldReturn?(textField) ?? true
     }
 }

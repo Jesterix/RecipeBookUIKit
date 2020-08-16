@@ -46,11 +46,9 @@ final class RecipeViewController: UIViewController {
         recipeView.addIngredientTextField.addingDelegate = self
         recipeView.textView.delegate = self
         recipeView.textView.text = recipe.text
-
-        recipeView.convertPortionsView.button.addTarget(
-            self,
-            action: #selector(tapConvert),
-            for: .touchUpInside)
+        
+        recipeView.convertPortionsView.coefficient = recipe.numberOfPortions ?? 1
+        recipeView.convertPortionsView.delegate = self
 
         hideKeyboardOnTap()
     }
@@ -76,10 +74,21 @@ final class RecipeViewController: UIViewController {
     }
 
     @objc private func tapConvert() {
-        recipeView.convertPortionsView.button.isPrimary.toggle()
-//        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
-//
-//        measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
+        recipeView.convertPortionsView.stateToggle()
+    }
+    
+    func convertPortions(to coef: Double){
+        let multiplier = coef / (recipe.numberOfPortions ?? 1)
+        recipe.numberOfPortions = coef
+        
+        recipe.ingredients = recipe.ingredients.map { ing in
+            var mutableIng = ing
+            guard let ingValue = ing.measurement?.value else {
+                return ing
+            }
+            mutableIng.measurement?.value = ingValue * multiplier
+            return mutableIng
+        }
     }
 }
 
@@ -167,11 +176,27 @@ extension RecipeViewController: UITextViewDelegate {
 
 extension RecipeViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        recipe.title = textField.text ?? ""
+        switch textField {
+        case recipeView.titleField:
+            recipe.title = textField.text ?? ""
+        default:
+            return
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField != recipeView.titleField {
+            switch recipeView.convertPortionsView.state {
+            case .converting:
+                convertPortions(to: recipeView.convertPortionsView.coefficient)
+            case .normal:
+                recipe.numberOfPortions = recipeView.convertPortionsView.coefficient
+            }
+        }
     }
 }

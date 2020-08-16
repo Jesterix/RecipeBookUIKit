@@ -10,6 +10,7 @@ import Foundation
 struct Recipe {
     var id: String = UUID().uuidString
     var title: String
+    var numberOfPortions: Double?
     var ingredients: [Ingredient] = []
     var text: String = ""
 }
