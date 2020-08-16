@@ -13,12 +13,9 @@ final class ConvertPortionsView: UIView {
         case normal, converting
     }
 
-    var state: State = .normal {
-        didSet {
-            print("state change")
-        }
-    }
+    var state: State = .normal
 
+    private var label: UILabel!
     private var textField: UITextField!
     private var button: Button!
     var coefficient: Double = 1 {
@@ -51,23 +48,29 @@ final class ConvertPortionsView: UIView {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
+        button = layout(Button.convert) { make in
+            make.top.bottom.equalToSuperview()
+            make.centerX.equalTo(view.trailing).offset(-40)
+        }
+        
+        label = layout(UILabel(text: "Portions:")) { make in
+            make.top.leading.equalToSuperview()
+        }
+        
         textField = layout(UITextField()) { make in
             make.leading.equalToSuperview()
             make.height.equalTo(30)
-            make.width.equalTo(50)
-        }
-
-        button = layout(Button.convert) { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.lessThanOrEqualTo(textField.trailing)
-            make.centerX.equalTo(view.trailing).offset(-40)
-            make.top.equalTo(textField).offset(-3)
+            make.bottom.equalTo(button.bottom)
+            make.trailing.lessThanOrEqualTo(button.leading)
         }
     }
-
+    
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .clear
+        
+        label.font = .systemFont(ofSize: 10)
+        label.textColor = .black
 
         textField.keyboardType = .decimalPad
         textField.layer.cornerRadius = 10

@@ -27,16 +27,16 @@ final class RecipeView: UIView {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        titleField = layout(UITextField()) { make in
-            make.top.equalTo(safeArea).offset(10)
-            make.leading.equalToSuperview().offset(10)
-        }
-
         convertPortionsView = layout(ConvertPortionsView()) { make in
-            make.top.equalTo(titleField.top)
-            make.leading.lessThanOrEqualTo(titleField.trailing)
+            make.top.equalTo(safeArea).offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.width.equalTo(115)
+            make.width.equalTo(125)
+        }
+        
+        titleField = layout(UITextField()) { make in
+            make.centerY.equalTo(convertPortionsView)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.lessThanOrEqualTo(convertPortionsView.leading)
         }
         
         addIngredientTextField = layout(AddTextField()) { make in
