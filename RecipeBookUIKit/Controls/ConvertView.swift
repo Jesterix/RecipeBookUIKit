@@ -25,7 +25,7 @@ final class ConvertView: UIView {
                 setupText()
                 convertBaseUnit()
             }
-
+            toggleTextFieldsVisibility()
             guard let measure = measure else {
                 return
             }
@@ -140,7 +140,12 @@ final class ConvertView: UIView {
             amountTextField.text = "1"
             unitTextField.mode = .editable
             baseAmountTextField.mode = .editable
-            baseUnitTextField.mode = .disabled
+            switch measurement.type {
+            case .mass, .volume:
+                baseUnitTextField.mode = .disabled
+            case .custom:
+                baseUnitTextField.mode = .editable
+            }
         }
     }
 
