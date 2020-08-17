@@ -403,7 +403,17 @@ struct Measure {
         case .volume:
             return UnitVolume.liters
         case .custom:
-            return DimensionType.init(with: symbol).type
+            return Unit(symbol: _baseSymbol)
+        }
+    }
+    
+    private var _baseSymbol: String = ""
+    var baseSymbol: String {
+        get {
+            baseUnit.symbol
+        }
+        set {
+            _baseSymbol = newValue
         }
     }
     
