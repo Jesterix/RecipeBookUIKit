@@ -39,6 +39,8 @@
 		447448A224D6E0CC00EA5B2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447448A124D6E0CC00EA5B2C /* Button.swift */; };
 		449F022F24D845B800A556E1 /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F022E24D845B800A556E1 /* ConvertView.swift */; };
 		449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F023024D85A3600A556E1 /* TwoModeTextField.swift */; };
+		5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */; };
+		5E18C0DA24EADA5A003F7D74 /* CustomMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +78,8 @@
 		447448A124D6E0CC00EA5B2C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		449F022E24D845B800A556E1 /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
 		449F023024D85A3600A556E1 /* TwoModeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoModeTextField.swift; sourceTree = "<group>"; };
+		5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCustomMeasurement.swift; sourceTree = "<group>"; };
+		5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeasure.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +149,7 @@
 				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
 				4428C44924E2CC780054C6DD /* Settings.swift */,
 				4474488224C622CC00EA5B2C /* Recipe.swift */,
+				5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */,
 				4428C43A24E02FDA0054C6DD /* Measure.swift */,
 				4428C44F24E4092C0054C6DD /* Converter.swift */,
 				4428C43C24E037F30054C6DD /* Double+Measurement.swift */,
@@ -191,6 +196,7 @@
 				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
 				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
 				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
+				5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */,
 				4428C44B24E2ED100054C6DD /* DataStorage.swift */,
 			);
 			path = DataBase;
@@ -310,9 +316,11 @@
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
 				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
 				4428C43D24E037F30054C6DD /* Double+Measurement.swift in Sources */,
+				5E18C0DA24EADA5A003F7D74 /* CustomMeasure.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
 				4428C45024E4092D0054C6DD /* Converter.swift in Sources */,
+				5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

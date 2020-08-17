@@ -17,6 +17,9 @@ class DataBaseManager {
 
     private lazy var ingredients: Results<RealmIngredient> = { self.realm.objects(RealmIngredient.self)
     }()
+    
+    private lazy var customMeasures: Results<RealmCustomMeasurement> = { self.realm.objects(RealmCustomMeasurement.self)
+    }()
 
     func createBaseData() {
         do {
@@ -37,6 +40,10 @@ class DataBaseManager {
     
     func getRecipes() -> [Recipe] {
         return recipes.map { $0.converted() }
+    }
+    
+    func getCustomMeasues() -> [CustomMeasure] {
+        return customMeasures.map { $0.converted() }
     }
     
     func remove(recipe: Recipe) {

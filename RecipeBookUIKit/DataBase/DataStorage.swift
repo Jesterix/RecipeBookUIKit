@@ -12,4 +12,6 @@ final class DataStorage {
     public static let shared: DataStorage = DataStorage()
 
     var userMeasures: [String] = []
+    
+    var customMeasures: [CustomMeasure] = []
 }
