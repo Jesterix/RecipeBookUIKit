@@ -26,7 +26,7 @@ class Converter {
             result = converted.value
 
         default:
-            return "type == undefined"
+            return "type == custom"
         }
         return String(result)
     }

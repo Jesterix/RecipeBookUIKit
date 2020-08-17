@@ -337,7 +337,7 @@ enum DimensionType: Equatable {
 
     case mass(Mass)
     case volume(Volume)
-    case undefined
+    case custom
 
     var type: Dimension.Type {
         switch self {
@@ -356,8 +356,8 @@ enum DimensionType: Equatable {
             return "mass"
         case .volume:
             return "volume"
-        case .undefined:
-            return "undefined"
+        case .custom:
+            return "custom"
         }
     }
 
@@ -385,7 +385,7 @@ enum DimensionType: Equatable {
         } else if DimensionType.allVolumeCases.contains(symbol) {
             self = .volume(DimensionType.Volume.init(symbol: symbol)!)
         } else {
-            self = .undefined
+            self = .custom
         }
     }
 }
@@ -402,8 +402,8 @@ struct Measure {
             return UnitMass.kilograms
         case .volume:
             return UnitVolume.liters
-        case .undefined:
-            return Unit(symbol: "")
+        case .custom:
+            return DimensionType.init(with: symbol).type
         }
     }
     
@@ -415,7 +415,7 @@ struct Measure {
                 return unit.symbol
             case .volume(let unit):
                 return unit.symbol
-            case .undefined:
+            case .custom:
                 return _symbol
             }
         }
@@ -447,7 +447,7 @@ extension Measure {
         case .volume(let volume):
             return Measurement(value: value, unit: volume.measurement.unit)
 
-        case .undefined:
+        case .custom:
             return nil
         }
     }

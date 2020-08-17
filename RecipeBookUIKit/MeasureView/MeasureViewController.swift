@@ -103,7 +103,7 @@ final class MeasureViewController: UIViewController {
             row = 0
         case .volume:
             row = 1
-        case .undefined:
+        case .custom:
             row = 2
         }
 
