@@ -23,6 +23,7 @@ final class ConvertView: UIView {
         didSet {
             if oldValue == nil {
                 setupText()
+                convertBaseUnit()
             }
 
             guard let measure = measure else {
@@ -124,9 +125,13 @@ final class ConvertView: UIView {
 //    MARK: - methods
 
     private func toggleTextFieldsVisibility() {
+        guard let measurement = measure else {
+            return
+        }
         switch state {
         case .normal, .converting:
             amountTextField.mode = .editable
+            amountTextField.text = "\(measurement.value)"
             unitTextField.mode = .changeable
             baseAmountTextField.mode = .disabled
             baseUnitTextField.mode = .disabled
