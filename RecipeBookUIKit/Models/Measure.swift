@@ -452,13 +452,27 @@ extension Measure {
     var measurement: Measurement<Dimension>? {
         switch self.type {
         case .mass(let mass):
-            return Measurement(value: value, unit: mass.measurement.unit)
+            let unit = mass.measurement.unit
+            return Measurement(value: value, unit: unit)//mass.measurement.unit)
 
         case .volume(let volume):
             return Measurement(value: value, unit: volume.measurement.unit)
 
         case .custom:
-            return nil
+            guard coefficient != 0 else {
+                return nil
+            }
+            if DimensionType.allMassCases.contains(symbol) {
+                let unit = UnitMass(symbol: symbol, converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
+                let measure = Measurement(value: value, unit: unit)
+                return measure
+            } else if DimensionType.allVolumeCases.contains(symbol) {
+                let unit = UnitVolume(symbol: symbol, converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
+                let measure = Measurement(value: value, unit: unit)
+                return measure
+            } else {
+                return nil
+            }
         }
     }
 }

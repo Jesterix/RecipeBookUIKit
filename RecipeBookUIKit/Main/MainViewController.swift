@@ -48,7 +48,7 @@ final class MainViewController: UIViewController {
 
     private func doFirstFetch() {
         DataStorage.shared.userMeasures = dataManager.getUserMeasures()
-        DataStorage.shared.customMeasures = dataManager.getCustomMeasues()
+        DataStorage.shared.customMeasures = dataManager.getCustomMeasures()
     }
 }
 

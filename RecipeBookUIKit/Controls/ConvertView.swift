@@ -42,6 +42,8 @@ final class ConvertView: UIView {
 
     private var baseAmountTextField: TwoModeTextField!
     private var baseUnitTextField: TwoModeTextField!
+    
+    private let dataManager = DataBaseManager()
 
     init() {
         super.init(frame: .zero)
@@ -139,12 +141,12 @@ final class ConvertView: UIView {
             amountTextField.mode = .disabled
             amountTextField.text = "1"
             unitTextField.mode = .editable
-            baseAmountTextField.mode = .editable
+            baseUnitTextField.mode = .disabled
             switch measurement.type {
             case .mass, .volume:
-                baseUnitTextField.mode = .disabled
+                baseAmountTextField.mode = .editable
             case .custom:
-                baseUnitTextField.mode = .editable
+                baseAmountTextField.mode = .disabled
             }
         }
     }
@@ -166,7 +168,9 @@ final class ConvertView: UIView {
         case .volume:
             unitTextField.pickerData = DimensionType.allVolumeCases
         case .custom:
-            unitTextField.pickerData = DataStorage.shared.userMeasures
+            unitTextField.pickerData = DataStorage.shared.customMeasures.map {
+                $0.title
+            }
         }
 
         measure?.type = dimension
@@ -207,6 +211,23 @@ final class ConvertView: UIView {
         baseAmountTextField.text = convertedBaseUnit()
         measure?.coefficient = Double(convertedBaseUnit()) ?? 0
     }
+    
+    func saveCustomMeasure() {
+        guard
+            let title = unitTextField.text,
+            let baseUnit = baseUnitTextField.text,
+            let baseAmountText = baseAmountTextField.text,
+            let coef = Double(baseAmountText) else {
+            return
+        }
+        
+        let customMeasure: CustomMeasure = CustomMeasure(
+            title: title,
+            baseUnitSymbol: baseUnit,
+            coefficient: coef)
+        print("customMeasure", customMeasure)
+        dataManager.update(measure: customMeasure)
+    }
 }
 
 extension ConvertView: UITextFieldDelegate {
@@ -222,6 +243,21 @@ extension ConvertView: UITextFieldDelegate {
         case .normal:
             switch textField {
             case unitTextField:
+                switch measure?.type {
+                case .custom:
+                    print("need to set custom measure")
+                    guard
+                        let text = textField.text,
+                        let customMeasure = (DataStorage.shared.customMeasures
+                            .first { $0.title == text }) else {
+                                break
+                    }
+                    measure?.baseSymbol = customMeasure.baseUnitSymbol
+                    measure?.coefficient = customMeasure.coefficient
+                    
+                default:
+                    break
+                }
                 convertBaseUnit()
             default:
                 break

@@ -42,7 +42,7 @@ class DataBaseManager {
         return recipes.map { $0.converted() }
     }
     
-    func getCustomMeasues() -> [CustomMeasure] {
+    func getCustomMeasures() -> [CustomMeasure] {
         return customMeasures.map { $0.converted() }
     }
     
@@ -69,6 +69,18 @@ class DataBaseManager {
                 realm.add(recipeToUpdate, update: .modified)
             }
             recipes = realm.objects(RealmRecipe.self)
+        } catch (let error) {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func update(measure: CustomMeasure) {
+        do {
+            try realm.write() {
+                let measureToUpdate = RealmCustomMeasurement(from: measure)
+                realm.add(measureToUpdate, update: .modified)
+            }
+            customMeasures = realm.objects(RealmCustomMeasurement.self)
         } catch (let error) {
             print(error.localizedDescription)
         }

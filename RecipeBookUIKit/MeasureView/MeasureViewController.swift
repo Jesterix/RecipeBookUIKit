@@ -56,6 +56,9 @@ final class MeasureViewController: UIViewController {
     @objc private func tapAdd() {
         print(#function)
         toggleVisibility()
+        if measureView.convertView.state == .editing {
+            measureView.convertView.saveCustomMeasure()
+        }
         measureView.convertView.state = measureView.addButton.isPrimary ? .normal : .editing
     }
 
