@@ -97,7 +97,7 @@ class DataBaseManager {
             guard let measure = ing.measurement else {
                 return false
             }
-            return !DimensionType.allMassCases.contains(measure.symbol) || !DimensionType.allVolumeCases.contains(measure.symbol)
+            return !measure.symbol.isUnitMass || !measure.symbol.isUnitVolume
         }.map { $0.measurement?.symbol ?? "" }
 
         return filteredIngredients

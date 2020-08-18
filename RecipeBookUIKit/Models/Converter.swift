@@ -35,11 +35,19 @@ class Converter {
     }
 
     static func convertToBaseUnit(_ measure: Measure) -> String? {
-        guard let measurement = measure.measurement, let baseUnit = measure.baseUnit as? Dimension else {
+        guard let measurement = measure.measurement else {
             return ""
         }
-
-        let converted = measurement.converted(to: baseUnit)
-        return String(converted.value)
+        
+        if measure.symbol.isUnitMass {
+            let converted = measurement.converted(to: UnitMass.kilograms)
+            return String(converted.value)
+        } else if measure.symbol.isUnitVolume {
+            let converted = measurement.converted(to: UnitVolume.liters)
+            return String(converted.value)
+        } else {
+            print("no base unit")
+            return "no base unit"
+        }
     }
 }

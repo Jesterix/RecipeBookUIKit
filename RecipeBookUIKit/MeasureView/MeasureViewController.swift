@@ -100,14 +100,11 @@ final class MeasureViewController: UIViewController {
     private func setupPickerView() {
         measureView.pickerView.delegate = self
 
-        var row = 0
-        switch measure.type {
-        case .mass:
+        var row = 2
+        if measure.symbol.isUnitMass {
             row = 0
-        case .volume:
+        } else if measure.symbol.isUnitVolume {
             row = 1
-        case .custom:
-            row = 2
         }
 
         passPickerData(row: row)

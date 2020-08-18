@@ -380,9 +380,9 @@ enum DimensionType: Equatable {
     }
 
     init(with symbol: String) {
-        if DimensionType.allMassCases.contains(symbol) {
+        if symbol.isUnitMass {
             self = .mass(DimensionType.Mass.init(symbol: symbol)!)
-        } else if DimensionType.allVolumeCases.contains(symbol) {
+        } else if symbol.isUnitVolume {
             self = .volume(DimensionType.Volume.init(symbol: symbol)!)
         } else {
             self = .custom
@@ -394,85 +394,75 @@ enum DimensionType: Equatable {
 
 struct Measure {
     var value: Double
-    var type: DimensionType
     var coefficient: Double = 1
-    var baseUnit: Unit {
-        switch type {
-        case .mass:
-            return UnitMass.kilograms
-        case .volume:
-            return UnitVolume.liters
-        case .custom:
-            return Unit(symbol: _baseSymbol)
-        }
-    }
-    
-    private var _baseSymbol: String = ""
-    var baseSymbol: String {
-        get {
-            baseUnit.symbol
-        }
-        set {
-            _baseSymbol = newValue
-        }
-    }
-    
-    private var _symbol: String = ""
-    var symbol: String {
-        get {
-            switch type {
-            case .mass(let unit):
-                return unit.symbol
-            case .volume(let unit):
-                return unit.symbol
-            case .custom:
-                return _symbol
-            }
-        }
-        set {
-            _symbol = newValue
-        }
-    }
+    var symbol: String
+    var baseUnitSymbol: String = ""
 
     init(value: Double, symbol: String) {
         self.value = value
-        self.type = .init(with: symbol)
-        self._symbol = symbol
+        self.symbol = symbol
+        if symbol.isUnitMass {
+            baseUnitSymbol = UnitMass.kilograms.symbol
+        } else if symbol.isUnitVolume {
+            baseUnitSymbol = UnitVolume.liters.symbol
+        }
     }
 }
 
 extension Measure {
     ///do not include value comparing for converter needs
     public static func != (lhs: Measure, rhs: Measure) -> Bool {
-        return lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
+//        return lhs.type != rhs.type || lhs.coefficient != rhs.coefficient || lhs._symbol != rhs._symbol
+        return lhs.coefficient != rhs.coefficient || lhs.symbol != rhs.symbol || lhs.baseUnitSymbol != rhs.baseUnitSymbol
     }
 }
 
 extension Measure {
     var measurement: Measurement<Dimension>? {
-        switch self.type {
-        case .mass(let mass):
-            let unit = mass.measurement.unit
-            return Measurement(value: value, unit: unit)//mass.measurement.unit)
-
-        case .volume(let volume):
-            return Measurement(value: value, unit: volume.measurement.unit)
-
-        case .custom:
-            guard coefficient != 0 else {
+        if symbol.isUnitMass {
+            
+            guard let dimension = DimensionType.Mass.init(symbol: symbol) else {
                 return nil
             }
-            if DimensionType.allMassCases.contains(symbol) {
-                let unit = UnitMass(symbol: symbol, converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
-                let measure = Measurement(value: value, unit: unit)
-                return measure
-            } else if DimensionType.allVolumeCases.contains(symbol) {
-                let unit = UnitVolume(symbol: symbol, converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
-                let measure = Measurement(value: value, unit: unit)
-                return measure
-            } else {
+            let measure = Measurement(value: value, unit: dimension.measurement.unit) as Measurement<Dimension>
+            return measure
+            
+        } else if symbol.isUnitVolume {
+            
+            guard let dimension = DimensionType.Volume.init(symbol: symbol) else {
                 return nil
             }
+            let measure = Measurement(value: value, unit: dimension.measurement.unit) as Measurement<Dimension>
+            return measure
+            
+        } else if baseUnitSymbol.isUnitMass {
+            
+            let unit = UnitMass(
+                symbol: symbol,
+                converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
+            let measure = Measurement(value: value, unit: unit)
+            return measure
+        
+        } else if baseUnitSymbol.isUnitVolume {
+            
+            let unit = UnitVolume(
+                symbol: symbol,
+                converter: UnitConverterLinear(coefficient: coefficient)) as Dimension
+            let measure = Measurement(value: value, unit: unit)
+            return measure
+            
+        } else {
+            return nil
         }
+    }
+}
+
+extension String {
+    var isUnitMass: Bool {
+        return DimensionType.allMassCases.contains(self)
+    }
+    
+    var isUnitVolume: Bool {
+        return DimensionType.allVolumeCases.contains(self)
     }
 }
