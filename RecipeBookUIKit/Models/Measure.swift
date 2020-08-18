@@ -360,6 +360,17 @@ enum DimensionType: Equatable {
             return "custom"
         }
     }
+    
+    var baseSymbol: String {
+        switch self {
+        case .mass:
+            return "kg"
+        case .volume:
+            return "L"
+        case .custom:
+            return ""
+        }
+    }
 
     static var allMassCases: [String] {
         var result: [String] = []
@@ -401,6 +412,10 @@ struct Measure {
         }
     }
     var baseUnitSymbol: String = ""
+    
+    var isStandart: Bool {
+        return symbol.isUnitMass || symbol.isUnitVolume
+    }
     
     init(value: Double, symbol: String) {
         self.value = value

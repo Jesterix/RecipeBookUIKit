@@ -45,6 +45,12 @@ class Converter {
         } else if measure.symbol.isUnitVolume {
             let converted = measurement.converted(to: UnitVolume.liters)
             return String(converted.value)
+        } else if measure.baseUnitSymbol.isUnitMass {
+            let converted = measurement.converted(to: UnitMass.kilograms)
+            return String(converted.value)
+        } else if measure.baseUnitSymbol.isUnitVolume {
+            let converted = measurement.converted(to: UnitVolume.liters)
+            return String(converted.value)
         } else {
             print("no base unit")
             return "no base unit"

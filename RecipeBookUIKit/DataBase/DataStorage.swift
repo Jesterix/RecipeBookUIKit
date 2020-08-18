@@ -14,4 +14,8 @@ final class DataStorage {
     var userMeasures: [String] = []
     
     var customMeasures: [CustomMeasure] = []
+    
+    func updateMeasures(_ measures: [CustomMeasure]) {
+        customMeasures = measures
+    }
 }

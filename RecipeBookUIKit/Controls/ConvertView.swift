@@ -143,9 +143,9 @@ final class ConvertView: UIView {
             unitTextField.mode = .editable
             baseUnitTextField.mode = .disabled
             if measurement.symbol.isUnitMass || measurement.symbol.isUnitVolume {
-                baseAmountTextField.mode = .editable
-            } else {
                 baseAmountTextField.mode = .disabled
+            } else {
+                baseAmountTextField.mode = .editable
             }
         }
     }
@@ -171,8 +171,9 @@ final class ConvertView: UIView {
                 $0.title
             }
         }
-
-//        baseUnitTextField.text = measure?.baseUnitSymbol
+        if state == .editing {
+            baseUnitTextField.text = dimension.baseSymbol
+        }
     }
 
     private func convertedAmount() -> String {
@@ -199,6 +200,7 @@ final class ConvertView: UIView {
         guard let measure = measure else {
             return ""
         }
+        print("measure to convert: ", measure)
         guard let converted = Converter.convertToBaseUnit(measure) else {
             return ""
         }
@@ -224,6 +226,16 @@ final class ConvertView: UIView {
             coefficient: coef)
         print("customMeasure", customMeasure)
         dataManager.update(measure: customMeasure)
+        DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
+    }
+    
+    private func setupMeasureFromCustomMeasure(with title: String) {
+        guard let customMeasure = (DataStorage.shared.customMeasures.first { $0.title == title }) else {
+            return
+        }
+        measure?.symbol = title
+        measure?.baseUnitSymbol = customMeasure.baseUnitSymbol
+        measure?.coefficient = customMeasure.coefficient
     }
 }
 
@@ -234,40 +246,52 @@ extension ConvertView: UITextFieldDelegate {
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let text = textField.text else {
+        guard let text = textField.text, let measurement = measure else {
             return
         }
         switch state {
         case .normal:
             switch textField {
             case amountTextField:
-                guard let valueToConvert = Double(text), let measure = measure else {
+                guard let valueToConvert = Double(text) else {
                     break
                 }
-                let measureToConvert: Measure = .init(value: valueToConvert, symbol: measure.symbol)
+                let measureToConvert: Measure = .init(
+                    value: valueToConvert,
+                    symbol: measurement.symbol)
                 baseAmountTextField.text = Converter.convertToBaseUnit(measureToConvert)
                 
             case unitTextField:
+                
+                if !measurement.isStandart {
+                    setupMeasureFromCustomMeasure(with: text)
+                } else {
+                    measure?.symbol = text
+                }
+                baseUnitTextField.text = measurement.baseUnitSymbol
                 convertBaseUnit()
-                baseUnitTextField.text = measure?.baseUnitSymbol
             default:
                 break
             }
         case .editing:
-            break
+            switch textField {
+            case unitTextField:
+                measure?.symbol = text
+                baseUnitTextField.text = measurement.baseUnitSymbol
+            default:
+                break
+            }
         case .converting:
             switch textField {
             case unitTextField:
                 convertAmount()
+                measure?.symbol = text
             default:
                 break
             }
         }
 
         switch textField {
-        case unitTextField:
-            measure?.symbol = text
-
         case baseAmountTextField:
             measure?.coefficient = Double(text) ?? 0
 
