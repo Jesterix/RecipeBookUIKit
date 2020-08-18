@@ -18,12 +18,7 @@ final class TwoModeTextField: UITextField {
             }
             picker.reloadAllComponents()
 
-            guard
-                let text = text,
-                let index = pickerData.firstIndex(of: text) else {
-                return
-            }
-            picker.selectRow(index, inComponent: 0, animated: false)
+            pickerSelectCurrentValue()
         }
     }
 
@@ -83,6 +78,20 @@ final class TwoModeTextField: UITextField {
         picker.delegate = self
         picker.dataSource = self
         inputView = picker
+        pickerSelectCurrentValue()
+    }
+    
+    private func pickerSelectCurrentValue() {
+        guard let picker = inputView as? UIPickerView else {
+            return
+        }
+
+        guard
+            let text = text,
+            let index = pickerData.firstIndex(of: text) else {
+            return
+        }
+        picker.selectRow(index, inComponent: 0, animated: false)
     }
 }
 
