@@ -172,7 +172,7 @@ final class ConvertView: UIView {
             }
         }
 
-        baseUnitTextField.text = measure?.baseUnitSymbol
+//        baseUnitTextField.text = measure?.baseUnitSymbol
     }
 
     private func convertedAmount() -> String {
@@ -249,6 +249,7 @@ extension ConvertView: UITextFieldDelegate {
                 
             case unitTextField:
                 convertBaseUnit()
+                baseUnitTextField.text = measure?.baseUnitSymbol
             default:
                 break
             }

@@ -395,12 +395,20 @@ enum DimensionType: Equatable {
 struct Measure {
     var value: Double
     var coefficient: Double = 1
-    var symbol: String
+    var symbol: String {
+        didSet {
+            setBaseUnitSymbol()
+        }
+    }
     var baseUnitSymbol: String = ""
-
+    
     init(value: Double, symbol: String) {
         self.value = value
         self.symbol = symbol
+        setBaseUnitSymbol()
+    }
+    
+    private mutating func setBaseUnitSymbol() {
         if symbol.isUnitMass {
             baseUnitSymbol = UnitMass.kilograms.symbol
         } else if symbol.isUnitVolume {
