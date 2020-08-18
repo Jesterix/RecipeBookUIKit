@@ -200,7 +200,6 @@ final class ConvertView: UIView {
         guard let measure = measure else {
             return ""
         }
-        print("measure to convert: ", measure)
         guard let converted = Converter.convertToBaseUnit(measure) else {
             return ""
         }
@@ -224,7 +223,6 @@ final class ConvertView: UIView {
             title: title,
             baseUnitSymbol: baseUnit,
             coefficient: coef)
-        print("customMeasure", customMeasure)
         dataManager.update(measure: customMeasure)
         DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
     }
@@ -268,7 +266,10 @@ extension ConvertView: UITextFieldDelegate {
                 } else {
                     measure?.symbol = text
                 }
-                baseUnitTextField.text = measurement.baseUnitSymbol
+                guard let newMeasure = measure else {
+                    return
+                }
+                baseUnitTextField.text = newMeasure.baseUnitSymbol
                 convertBaseUnit()
             default:
                 break
