@@ -47,6 +47,15 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.onMeasureChange = { [unowned self] measure in
             self.measure = measure
         }
+        measureView.convertView.onStateChange = { [unowned self] state in
+            self.measureView.pickerView.isUserInteractionEnabled = state != .converting
+            switch state {
+            case .converting:
+                self.measureView.pickerView.alpha = 0.5
+            default:
+                self.measureView.pickerView.alpha = 1
+            }
+        }
 
         setupPickerView()
 

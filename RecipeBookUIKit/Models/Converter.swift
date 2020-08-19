@@ -64,4 +64,21 @@ class Converter {
             return "no base unit"
         }
     }
+    
+    static func convertBaseToUnit(_ measure: Measure, to stringDescription: String) -> String? {
+        guard let measurement = measure.measurement else {
+            return ""
+        }
+        let destinationMeasure = Measure.init(
+            customProvider: DataStorage.shared,
+            value: 0,
+            symbol: stringDescription) ?? Measure.init(value: 0, symbol: stringDescription)
+        guard let destinationMeasurement = destinationMeasure.measurement else {
+            return ""
+        }
+    
+        let converted = measurement.converted(to: destinationMeasurement.unit)
+        
+        return String(converted.value)
+    }
 }
