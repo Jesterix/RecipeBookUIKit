@@ -16,6 +16,7 @@ final class ConvertView: UIView {
     var state: State = .normal {
         didSet {
             toggleTextFieldsVisibility()
+            setupText()
         }
     }
 
@@ -133,13 +134,11 @@ final class ConvertView: UIView {
         switch state {
         case .normal, .converting:
             amountTextField.mode = .editable
-            amountTextField.text = "\(measurement.value)"
             unitTextField.mode = .changeable
             baseAmountTextField.mode = .disabled
             baseUnitTextField.mode = .disabled
         case .editing:
             amountTextField.mode = .disabled
-            amountTextField.text = "1"
             unitTextField.mode = .editable
             baseUnitTextField.mode = .disabled
             if measurement.symbol.isUnitMass || measurement.symbol.isUnitVolume {
@@ -154,12 +153,24 @@ final class ConvertView: UIView {
         guard let measurement = measure else {
             return
         }
-        amountTextField.text = "\(measurement.value)"
+        
+        switch state {
+        case .normal, .converting:
+            amountTextField.text = "\(measurement.value)"
+        case .editing:
+            measure?.value = 1
+            guard let newMeasure = measure else {
+                return
+            }
+            amountTextField.text = "\(newMeasure.value)"
+        }
+        
         unitTextField.text = measurement.symbol
         baseAmountTextField.text = convertedBaseUnit()
         baseUnitTextField.text = measurement.baseUnitSymbol
     }
 
+    //MARK: - input of new dimension
     func setPickerDataForMeasurement(with dimension: DimensionType) {
         switch dimension {
         case .mass:
@@ -243,6 +254,7 @@ extension ConvertView: UITextFieldDelegate {
         textField.resignFirstResponder()
     }
 
+//    TODO: covertion of custom units
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text, let measurement = measure else {
             return
