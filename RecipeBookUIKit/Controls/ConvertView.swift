@@ -192,19 +192,29 @@ final class ConvertView: UIView {
             print("measure or text == nil")
             return ""
         }
+        print("measure to convert amount: ", measure)
 
-        let type: DimensionType = .init(with: text)
-        guard let converted = Converter.convert(measure: measure, to: type) else {
-            print("converter failed")
-            return ""
+        if let type: DimensionType = DimensionType.init(with: DataStorage.shared, symbol: text) {
+            print("type = ", type, " symbol = ", text)
+            guard let converted = Converter.convert(measure: measure, to: type) else {
+                print("converter failed")
+                return ""
+            }
+            return converted
+        } else {
+            let type: DimensionType = .init(with: text)
+            print("type = ", type, " symbol = ", text)
+            guard let converted = Converter.convert(measure: measure, to: type) else {
+                print("converter failed")
+                return ""
+            }
+            return converted
         }
-
-        return converted
     }
 
     private func convertAmount() {
         amountTextField.text = convertedAmount()
-        measure?.value = Double(convertedAmount()) ?? 0
+//        measure?.value = Double(convertedAmount()) ?? 0
     }
 
     private func convertedBaseUnit() -> String {
@@ -239,8 +249,9 @@ final class ConvertView: UIView {
     }
     
     private func setupMeasureFromCustomMeasure(with title: String) {
-        guard let customMeasure = (DataStorage.shared.customMeasures.first { $0.title == title }) else {
-            return
+        guard let customMeasure = (DataStorage.shared.customMeasures
+            .first { $0.title == title }) else {
+                return
         }
         measure?.symbol = title
         measure?.baseUnitSymbol = customMeasure.baseUnitSymbol
@@ -254,7 +265,7 @@ extension ConvertView: UITextFieldDelegate {
         textField.resignFirstResponder()
     }
 
-//    TODO: covertion of custom units
+//    TODO: covertion of custom unit
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text, let measurement = measure else {
             return
@@ -263,12 +274,13 @@ extension ConvertView: UITextFieldDelegate {
         case .normal:
             switch textField {
             case amountTextField:
-                guard let valueToConvert = Double(text) else {
+                guard let valueToConvert = Double(text), let measureToConvert = Measure.init(customProvider: DataStorage.shared, value: valueToConvert, symbol: measurement.symbol) else {
                     break
                 }
-                let measureToConvert: Measure = .init(
-                    value: valueToConvert,
-                    symbol: measurement.symbol)
+//                let measureToConvert: Measure = .init(
+//                    value: valueToConvert,
+//                    symbol: measurement.symbol)
+                print(measureToConvert)
                 baseAmountTextField.text = Converter.convertToBaseUnit(measureToConvert)
                 
             case unitTextField:

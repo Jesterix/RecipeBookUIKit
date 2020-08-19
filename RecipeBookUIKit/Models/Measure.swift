@@ -399,6 +399,14 @@ enum DimensionType: Equatable {
             self = .custom
         }
     }
+    
+    init?(with customProvider: CustomMeasureProvider, symbol: String) {
+        guard let customMeasure = (customProvider.customMeasures
+            .first { $0.title == symbol }) else {
+                return nil
+        }
+        self.init(with: customMeasure.baseUnitSymbol)
+    }
 }
 
 //    MARK: - Measure struct
@@ -421,6 +429,17 @@ struct Measure {
         self.value = value
         self.symbol = symbol
         setBaseUnitSymbol()
+    }
+    
+    init?(customProvider: CustomMeasureProvider, value: Double, symbol: String) {
+        guard let customMeasure = (customProvider.customMeasures
+            .first { $0.title == symbol }) else {
+                return nil
+        }
+        self.value = value
+        self.symbol = symbol
+        self.baseUnitSymbol = customMeasure.baseUnitSymbol
+        self.coefficient = customMeasure.coefficient
     }
     
     private mutating func setBaseUnitSymbol() {
