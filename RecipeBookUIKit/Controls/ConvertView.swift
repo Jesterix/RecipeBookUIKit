@@ -194,29 +194,6 @@ final class ConvertView: UIView {
         }
     }
 
-    private func convertedAmount() -> String {
-        guard let measure = measure, let text = unitTextField.text else {
-            return ""
-        }
-
-        if let type: DimensionType = DimensionType.init(with: DataStorage.shared, symbol: text) {
-            guard let converted = Converter.convert(measure: measure, to: type) else {
-                return ""
-            }
-            return converted
-        } else {
-            let type: DimensionType = .init(with: text)
-            guard let converted = Converter.convert(measure: measure, to: type) else {
-                return ""
-            }
-            return converted
-        }
-    }
-
-    private func convertAmount() {
-        amountTextField.text = convertedAmount()
-    }
-
     private func convertedBaseUnit() -> String {
         guard
             let measure = measure,
@@ -224,10 +201,6 @@ final class ConvertView: UIView {
                 return ""
         }
         return converted
-    }
-
-    private func convertBaseUnit() {
-        baseAmountTextField.text = convertedBaseUnit()
     }
     
     func saveCustomMeasure() {
@@ -246,16 +219,6 @@ final class ConvertView: UIView {
         dataManager.update(measure: customMeasure)
         DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
         setMeasureFromText()
-    }
-    
-    private func setupMeasureFromCustomMeasure(with title: String) {
-        guard let customMeasure = (DataStorage.shared.customMeasures
-            .first { $0.title == title }) else {
-                return
-        }
-        measure?.symbol = title
-        measure?.baseUnitSymbol = customMeasure.baseUnitSymbol
-        measure?.coefficient = customMeasure.coefficient
     }
 }
 
