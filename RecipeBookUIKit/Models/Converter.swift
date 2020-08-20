@@ -14,8 +14,6 @@ class Converter {
             return "measure == nil"
         }
         
-        print("compare: 1) ", measurement.unit, " with: 2) ", type.type)
-        
         var result = 0.0
         switch type {
         case .mass(let mass):

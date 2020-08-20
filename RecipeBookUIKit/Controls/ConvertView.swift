@@ -17,18 +17,12 @@ final class ConvertView: UIView {
         didSet {
             toggleTextFieldsVisibility()
             setMeasureFromText()
-//            setupText()
             onStateChange?(state)
         }
     }
 
     var measure: Measure? {
         didSet {
-//            if oldValue == nil {
-//                setupText()
-//                convertBaseUnit()
-//            }
-//            toggleTextFieldsVisibility()
             setupText()
             guard let measure = measure else {
                 return
@@ -39,6 +33,7 @@ final class ConvertView: UIView {
 
     var onMeasureChange: ((Measure) -> Void)?
     var onStateChange: ((State) -> Void)?
+    var onBaseUnitChange: ((Measure) -> Void)?
 
     private var amountTextField: TwoModeTextField!
     private var unitTextField: TwoModeTextField!
@@ -145,11 +140,7 @@ final class ConvertView: UIView {
             amountTextField.mode = .disabled
             unitTextField.mode = .editable
             baseUnitTextField.mode = .disabled
-            if measurement.symbol.isUnitMass || measurement.symbol.isUnitVolume {
-                baseAmountTextField.mode = .disabled
-            } else {
-                baseAmountTextField.mode = .editable
-            }
+            baseAmountTextField.mode = .disabled
         }
     }
     
@@ -177,10 +168,6 @@ final class ConvertView: UIView {
         case .normal, .converting:
             amountTextField.text = "\(measurement.value)"
         case .editing:
-//            measure?.value = 1
-//            guard let newMeasure = measure else {
-//                return
-//            }
             amountTextField.text = "1.0"
         }
         
@@ -212,23 +199,17 @@ final class ConvertView: UIView {
 
     private func convertedAmount() -> String {
         guard let measure = measure, let text = unitTextField.text else {
-            print("measure or text == nil")
             return ""
         }
-        print("measure to convert amount: ", measure)
 
         if let type: DimensionType = DimensionType.init(with: DataStorage.shared, symbol: text) {
-            print("type = ", type, " symbol = ", text)
             guard let converted = Converter.convert(measure: measure, to: type) else {
-                print("converter failed")
                 return ""
             }
             return converted
         } else {
             let type: DimensionType = .init(with: text)
-            print("type = ", type, " symbol = ", text)
             guard let converted = Converter.convert(measure: measure, to: type) else {
-                print("converter failed")
                 return ""
             }
             return converted
@@ -237,7 +218,6 @@ final class ConvertView: UIView {
 
     private func convertAmount() {
         amountTextField.text = convertedAmount()
-//        measure?.value = Double(convertedAmount()) ?? 0
     }
 
     private func convertedBaseUnit() -> String {
@@ -269,6 +249,7 @@ final class ConvertView: UIView {
             coefficient: coef)
         dataManager.update(measure: customMeasure)
         DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
+        setMeasureFromText()
     }
     
     private func setupMeasureFromCustomMeasure(with title: String) {
@@ -288,7 +269,6 @@ extension ConvertView: UITextFieldDelegate {
         textField.resignFirstResponder()
     }
 
-//    TODO: covertion of custom unit
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text, let measurement = measure else {
             return
@@ -316,16 +296,6 @@ extension ConvertView: UITextFieldDelegate {
             case unitTextField:
                 print("normal, unitTextField")
                 setMeasureFromText()
-//                if !measurement.isStandart {
-//                    setupMeasureFromCustomMeasure(with: text)
-//                } else {
-//                    measure?.symbol = text
-//                }
-//                guard let newMeasure = measure else {
-//                    return
-//                }
-//                baseUnitTextField.text = newMeasure.baseUnitSymbol
-//                convertBaseUnit()
                 
             default:
                 break
@@ -334,8 +304,15 @@ extension ConvertView: UITextFieldDelegate {
             switch textField {
             case unitTextField:
                 print("editing, unitTextField")
-//                measure?.symbol = text
-//                baseUnitTextField.text = measurement.baseUnitSymbol
+                let newMeasure = Measure(
+                    customProvider: DataStorage.shared,
+                    value: 1,
+                    symbol: text) ?? Measure(value: 1, symbol: text)
+                
+                baseUnitTextField.text = newMeasure.baseUnitSymbol
+                baseAmountTextField.mode = baseUnitTextField.text == "" ? .editable : .disabled
+                onBaseUnitChange?(newMeasure)
+                
             default:
                 break
             }
@@ -379,7 +356,6 @@ extension ConvertView: UITextFieldDelegate {
         switch textField {
         case baseAmountTextField:
             print("all states, baseAmountTextField")
-//            measure?.coefficient = Double(text) ?? 0
 
         default:
             return
@@ -395,7 +371,7 @@ extension ConvertView: UITextFieldDelegate {
             switch textField {
             case amountTextField:
                 print("amountTextField didEndEditing")
-//                measure?.value = Double(text) ?? 0
+                
             default:
                 break
             }

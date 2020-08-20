@@ -46,6 +46,7 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.measure = measure
         measureView.convertView.onMeasureChange = { [unowned self] measure in
             self.measure = measure
+            self.setupPickerView(from: measure)
         }
         measureView.convertView.onStateChange = { [unowned self] state in
             self.measureView.pickerView.isUserInteractionEnabled = state != .converting
@@ -56,8 +57,12 @@ final class MeasureViewController: UIViewController {
                 self.measureView.pickerView.alpha = 1
             }
         }
+        measureView.convertView.onBaseUnitChange = { [unowned self] measure in
+            self.setupPickerView(from: measure)
+        }
 
-        setupPickerView()
+        measureView.pickerView.delegate = self
+        setupPickerView(from: measure)
 
         hideKeyboardOnTap()
     }
@@ -84,7 +89,7 @@ final class MeasureViewController: UIViewController {
 
         measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
         if measureView.convertView.state == .converting {
-            setupPickerView()
+            setupPickerView(from: measure)
         }
     }
 
@@ -109,17 +114,17 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.setPickerDataForMeasurement(with: dimension)
     }
 
-    private func setupPickerView() {
-        measureView.pickerView.delegate = self
-
+    private func setupPickerView(from measure: Measure) {
         var row = 2
         if measure.symbol.isUnitMass {
             row = 0
         } else if measure.symbol.isUnitVolume {
             row = 1
         }
-
-        passPickerData(row: row)
+        if measure != self.measure {
+        } else {
+            passPickerData(row: row)
+        }
         measureView.pickerView.selectRow(row: row, inComponent: 0)
     }
 }
