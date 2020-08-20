@@ -9,32 +9,6 @@
 import Foundation
 
 class Converter {
-    static func convert(measure: Measure, to type: DimensionType) -> String? {
-        guard let measurement = measure.measurement else {
-            return "measure == nil"
-        }
-        
-        var result = 0.0
-        switch type {
-        case .mass(let mass):
-            let massMeasure = mass.measurement
-            let converted = measurement.converted(to: massMeasure.unit)
-            print("converted mass ", converted)
-            result = converted.value
-
-        case .volume(let volume):
-            let volumeMeasure = volume.measurement
-            let converted = measurement.converted(to: volumeMeasure.unit)
-            print("converted volume ", converted)
-            result = converted.value
-
-        default:
-            print("dimension type: ", type.baseSymbol)
-            return ""
-        }
-        return String(result)
-    }
-
     static func convertToBaseUnit(_ measure: Measure) -> String? {
         guard let measurement = measure.measurement else {
             return ""
