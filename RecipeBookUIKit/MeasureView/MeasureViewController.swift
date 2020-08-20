@@ -105,6 +105,7 @@ final class MeasureViewController: UIViewController {
     }
     
     @objc func close(){
+        measureView.convertView.setMeasureFromText()
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)
     }

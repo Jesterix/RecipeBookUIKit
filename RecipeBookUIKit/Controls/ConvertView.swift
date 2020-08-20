@@ -141,7 +141,7 @@ final class ConvertView: UIView {
         }
     }
     
-    private func setMeasureFromText() {
+    func setMeasureFromText() {
         guard
             let symbol = unitTextField.text,
             let textValue = amountTextField.text else {
