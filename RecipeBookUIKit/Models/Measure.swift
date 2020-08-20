@@ -57,37 +57,37 @@ enum DimensionType: Equatable {
         var measurement: Measurement<UnitMass> {
             switch self {
                 case .kilograms:
-                    return 0.0.kilograms
+                    return 0.2.kilograms
                 case .grams:
                     return 0.0.grams
                 case .decigrams:
-                    return 0.0.decigrams
+                    return 0.7.decigrams
                 case .centigrams:
-                    return 0.0.centigrams
+                    return 0.8.centigrams
                 case .milligrams:
-                    return 0.0.milligrams
+                    return 0.1.milligrams
                 case .micrograms:
-                    return 0.0.micrograms
+                    return 0.9.micrograms
                 case .nanograms:
-                    return 0.0.nanograms
+                    return 1.0.nanograms
                 case .picograms:
-                    return 0.0.picograms
+                    return 1.1.picograms
                 case .ounces:
-                    return 0.0.ounces
+                    return 0.3.ounces
                 case .pounds:
-                    return 0.0.pounds
+                    return 0.4.pounds
                 case .stones:
-                    return 0.0.stones
+                    return 1.2.stones
                 case .metricTons:
-                    return 0.0.metricTons
+                    return 1.3.metricTons
                 case .shortTons:
-                    return 0.0.shortTons
+                    return 1.4.shortTons
                 case .carats:
-                    return 0.0.carats
+                    return 0.6.carats
                 case .ouncesTroy:
-                    return 0.0.ouncesTroy
+                    return 0.5.ouncesTroy
                 case .slugs:
-                    return 0.0.slugs
+                    return 1.5.slugs
             }
         }
 
@@ -208,67 +208,67 @@ enum DimensionType: Equatable {
         var measurement: Measurement<UnitVolume> {
             switch self {
             case .megaliters:
-                return 0.0.megaliters
+                return 2.6.megaliters
             case .kiloliters:
-                return 0.0.kiloliters
+                return 2.5.kiloliters
             case .liters:
-                return 0.0.liters
+                return 0.1.liters
             case .deciliters:
-                return 0.0.deciliters
+                return 2.4.deciliters
             case .centiliters:
-                return 0.0.centiliters
+                return 2.3.centiliters
             case .milliliters:
                 return 0.0.milliliters
             case .cubicKilometers:
-                return 0.0.cubicKilometers
+                return 2.2.cubicKilometers
             case .cubicMeters:
-                return 0.0.cubicMeters
+                return 2.1.cubicMeters
             case .cubicDecimeters:
-                return 0.0.cubicDecimeters
+                return 2.0.cubicDecimeters
             case .cubicCentimeters:
-                return 0.0.cubicCentimeters
+                return 1.9.cubicCentimeters
             case .cubicMillimeters:
-                return 0.0.cubicMillimeters
+                return 1.8.cubicMillimeters
             case .cubicInches:
-                return 0.0.cubicInches
+                return 2.7.cubicInches
             case .cubicFeet:
-                return 0.0.cubicFeet
+                return 2.8.cubicFeet
             case .cubicYards:
-                return 0.0.cubicYards
+                return 2.9.cubicYards
             case .cubicMiles:
-                return 0.0.cubicMiles
+                return 3.0.cubicMiles
             case .acreFeet:
-                return 0.0.acreFeet
+                return 1.7.acreFeet
             case .bushels:
-                return 0.0.bushels
+                return 1.0.bushels
             case .teaspoons:
-                return 0.0.teaspoons
+                return 0.2.teaspoons
             case .tablespoons:
-                return 0.0.tablespoons
+                return 0.3.tablespoons
             case .fluidOunces:
-                return 0.0.fluidOunces
+                return 0.4.fluidOunces
             case .cups:
-                return 0.0.cups
+                return 0.5.cups
             case .pints:
-                return 0.0.pints
+                return 0.7.pints
             case .quarts:
-                return 0.0.quarts
+                return 0.8.quarts
             case .gallons:
-                return 0.0.gallons
+                return 0.9.gallons
             case .imperialTeaspoons:
-                return 0.0.imperialTeaspoons
+                return 1.1.imperialTeaspoons
             case .imperialTablespoons:
-                return 0.0.imperialTablespoons
+                return 1.2.imperialTablespoons
             case .imperialFluidOunces:
-                return 0.0.imperialFluidOunces
+                return 1.3.imperialFluidOunces
             case .imperialPints:
-                return 0.0.imperialPints
+                return 1.4.imperialPints
             case .imperialQuarts:
-                return 0.0.imperialQuarts
+                return 1.5.imperialQuarts
             case .imperialGallons:
-                return 0.0.imperialGallons
+                return 1.6.imperialGallons
             case .metricCups:
-                return 0.0.metricCups
+                return 0.6.metricCups
             }
         }
 
@@ -390,11 +390,15 @@ enum DimensionType: Equatable {
     }
     
     static var allMass: [String] {
-        return DimensionType.Mass.allCases.sorted().map { $0.rawValue }
+        return DimensionType.Mass.allCases
+            .sorted { $0.measurement.value < $1.measurement.value }
+            .map { $0.rawValue }
     }
     
     static var allMassSymbols: [String] {
-        return DimensionType.Mass.allCases.sorted().map { $0.symbol }
+        return DimensionType.Mass.allCases
+            .sorted { $0.measurement.value < $1.measurement.value }
+            .map { $0.symbol }
     }
 
     static var allVolumeCases: [String] {
@@ -407,11 +411,15 @@ enum DimensionType: Equatable {
     }
     
     static var allVolume: [String] {
-        return DimensionType.Volume.allCases.sorted().map { $0.rawValue }
+        return DimensionType.Volume.allCases
+            .sorted { $0.measurement.value < $1.measurement.value }
+            .map { $0.rawValue }
     }
     
     static var allVolumeSymbols: [String] {
-        return DimensionType.Volume.allCases.sorted().map { $0.symbol }
+        return DimensionType.Volume.allCases
+            .sorted { $0.measurement.value < $1.measurement.value }
+            .map { $0.symbol }
     }
 
     init(with symbol: String) {
