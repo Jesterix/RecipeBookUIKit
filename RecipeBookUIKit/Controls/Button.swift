@@ -116,7 +116,7 @@ extension Button {
 
         var name: String {
             switch self {
-            case .edit: return "Edit"
+            case .edit: return "New"
             case .cancel: return "Cancel"
             case .convert: return "Convert"
             case .save: return "Save"
