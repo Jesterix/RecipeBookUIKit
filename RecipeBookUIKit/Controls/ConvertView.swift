@@ -220,6 +220,22 @@ final class ConvertView: UIView {
         DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
         setMeasureFromText()
     }
+    
+    private func handleAmountConverting(textAmount: String) {
+        guard
+            let valueToConvert = Double(textAmount),
+            let symbol = unitTextField.text else {
+                return
+        }
+        let measureToConvert = Measure.init(
+            customProvider: DataStorage.shared,
+            value: valueToConvert,
+            symbol: symbol) ?? Measure.init(
+                value: valueToConvert,
+                symbol: symbol)
+        
+        baseAmountTextField.text = Converter.convertToBaseUnit(measureToConvert)
+    }
 }
 
 //MARK: - TextFieldDelegate
@@ -237,20 +253,7 @@ extension ConvertView: UITextFieldDelegate {
             switch textField {
             case amountTextField:
                 print("normal, amountTextField")
-                
-                guard
-                    let valueToConvert = Double(text),
-                    let symbol = unitTextField.text else {
-                    break
-                }
-                let measureToConvert = Measure.init(
-                    customProvider: DataStorage.shared,
-                    value: valueToConvert,
-                    symbol: symbol) ?? Measure.init(
-                        value: valueToConvert,
-                        symbol: symbol)
-                
-                baseAmountTextField.text = Converter.convertToBaseUnit(measureToConvert)
+                handleAmountConverting(textAmount: text)
                 
             case unitTextField:
                 print("normal, unitTextField")
@@ -280,20 +283,7 @@ extension ConvertView: UITextFieldDelegate {
             switch textField {
             case amountTextField:
                 print("converting, amountTextField")
-                
-                guard
-                    let valueToConvert = Double(text),
-                    let symbol = unitTextField.text else {
-                    break
-                }
-                let measureToConvert = Measure.init(
-                    customProvider: DataStorage.shared,
-                    value: valueToConvert,
-                    symbol: symbol) ?? Measure.init(
-                        value: valueToConvert,
-                        symbol: symbol)
-                
-                baseAmountTextField.text = Converter.convertToBaseUnit(measureToConvert)
+                handleAmountConverting(textAmount: text)
                 
             case unitTextField:
                 print("converting, unitTextField")
