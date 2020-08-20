@@ -177,9 +177,11 @@ final class ConvertView: UIView {
     func setPickerDataForMeasurement(with dimension: DimensionType) {
         switch dimension {
         case .mass:
-            unitTextField.pickerData = DimensionType.allMassCases
+            unitTextField.pickerData = DimensionType.allMass
+            unitTextField.additionalPickerData = DimensionType.allMassSymbols
         case .volume:
-            unitTextField.pickerData = DimensionType.allVolumeCases
+            unitTextField.pickerData = DimensionType.allVolume
+            unitTextField.additionalPickerData = DimensionType.allVolumeSymbols
         case .custom:
             unitTextField.pickerData = DataStorage.shared.customMeasures.map {
                 $0.title

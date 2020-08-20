@@ -10,7 +10,11 @@ import Foundation
 
 enum DimensionType: Equatable {
 //    MARK: - Mass enum
-    enum Mass: String, CaseIterable {
+    enum Mass: String, CaseIterable, Comparable {
+        static func < (lhs: DimensionType.Mass, rhs: DimensionType.Mass) -> Bool {
+            lhs.rawValue < rhs.rawValue
+        }
+        
         case kilograms, grams, decigrams, centigrams, milligrams, micrograms, nanograms, picograms, ounces, pounds, stones, metricTons, shortTons, carats, ouncesTroy, slugs
 
         var symbol: String {
@@ -127,7 +131,11 @@ enum DimensionType: Equatable {
         }
     }
 //    MARK: - Volume enum
-    enum Volume: String, CaseIterable {
+    enum Volume: String, CaseIterable, Comparable {
+        static func < (lhs: DimensionType.Volume, rhs: DimensionType.Volume) -> Bool {
+            lhs.rawValue < rhs.rawValue
+        }
+        
         case megaliters, kiloliters, liters, deciliters, centiliters, milliliters, cubicKilometers, cubicMeters, cubicDecimeters, cubicCentimeters, cubicMillimeters, cubicInches, cubicFeet, cubicYards, cubicMiles, acreFeet, bushels, teaspoons, tablespoons, fluidOunces, cups, pints, quarts, gallons, imperialTeaspoons, imperialTablespoons, imperialFluidOunces, imperialPints, imperialQuarts, imperialGallons, metricCups
 
         var symbol: String {
@@ -380,6 +388,14 @@ enum DimensionType: Equatable {
         }
         return result
     }
+    
+    static var allMass: [String] {
+        return DimensionType.Mass.allCases.sorted().map { $0.rawValue }
+    }
+    
+    static var allMassSymbols: [String] {
+        return DimensionType.Mass.allCases.sorted().map { $0.symbol }
+    }
 
     static var allVolumeCases: [String] {
         var result: [String] = []
@@ -388,6 +404,14 @@ enum DimensionType: Equatable {
             result.append(type.symbol)
         }
         return result
+    }
+    
+    static var allVolume: [String] {
+        return DimensionType.Volume.allCases.sorted().map { $0.rawValue }
+    }
+    
+    static var allVolumeSymbols: [String] {
+        return DimensionType.Volume.allCases.sorted().map { $0.symbol }
     }
 
     init(with symbol: String) {

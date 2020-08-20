@@ -21,6 +21,8 @@ final class TwoModeTextField: UITextField {
             pickerSelectCurrentValue()
         }
     }
+    
+    var additionalPickerData: [String] = []
 
     private weak var _delegate: UITextFieldDelegate?
     public override var delegate: UITextFieldDelegate? {
@@ -82,14 +84,12 @@ final class TwoModeTextField: UITextField {
     }
     
     private func pickerSelectCurrentValue() {
-        guard let picker = inputView as? UIPickerView else {
-            return
-        }
-
         guard
+            let picker = inputView as? UIPickerView,
             let text = text,
-            let index = pickerData.firstIndex(of: text) else {
-            return
+            let index = pickerData.firstIndex(of: text)
+                ?? additionalPickerData.firstIndex(of: text) else {
+                    return
         }
         picker.selectRow(index, inComponent: 0, animated: false)
     }
