@@ -83,6 +83,9 @@ final class MeasureViewController: UIViewController {
         measureView.addButton.isEnabled = measureView.convertButton.isPrimary
 
         measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
+        if measureView.convertView.state == .converting {
+            setupPickerView()
+        }
     }
 
     private func toggleVisibility() {
