@@ -127,9 +127,6 @@ final class ConvertView: UIView {
 //    MARK: - methods
 
     private func toggleTextFieldsVisibility() {
-        guard let measurement = measure else {
-            return
-        }
         switch state {
         case .normal, .converting:
             amountTextField.mode = .editable
@@ -221,11 +218,10 @@ final class ConvertView: UIView {
     }
 
     private func convertedBaseUnit() -> String {
-        guard let measure = measure else {
-            return ""
-        }
-        guard let converted = Converter.convertToBaseUnit(measure) else {
-            return ""
+        guard
+            let measure = measure,
+            let converted = Converter.convertToBaseUnit(measure) else {
+                return ""
         }
         return converted
     }
@@ -270,7 +266,7 @@ extension ConvertView: UITextFieldDelegate {
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let text = textField.text, let measurement = measure else {
+        guard let text = textField.text else {
             return
         }
         switch state {
@@ -351,32 +347,6 @@ extension ConvertView: UITextFieldDelegate {
             default:
                 break
             }
-        }
-
-        switch textField {
-        case baseAmountTextField:
-            print("all states, baseAmountTextField")
-
-        default:
-            return
-        }
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else {
-            return
-        }
-        switch state {
-        case .normal:
-            switch textField {
-            case amountTextField:
-                print("amountTextField didEndEditing")
-                
-            default:
-                break
-            }
-        default:
-            break
         }
     }
 }
