@@ -37,12 +37,12 @@ class Converter {
         }
     }
     
-    static func convertBaseToUnit(_ measure: Measure, to stringDescription: String) -> String? {
+    static func convertBaseToUnit(_ measure: Measure, to stringDescription: String, with customProvider: CustomMeasureProvider) -> String? {
         guard let measurement = measure.measurement else {
             return ""
         }
         let destinationMeasure = Measure.init(
-            customProvider: DataStorage.shared,
+            customProvider: customProvider,
             value: 0,
             symbol: stringDescription) ?? Measure.init(value: 0, symbol: stringDescription)
         guard let destinationMeasurement = destinationMeasure.measurement else {
@@ -52,5 +52,19 @@ class Converter {
         let converted = measurement.converted(to: destinationMeasurement.unit)
         
         return String(converted.value)
+    }
+    
+    static func convertPortions(in recipe: inout Recipe, with coefficient: Double) {
+        let multiplier = coefficient / (recipe.numberOfPortions ?? 1)
+        recipe.numberOfPortions = coefficient
+        
+        recipe.ingredients = recipe.ingredients.map { ing in
+            var mutableIng = ing
+            guard let ingValue = ing.measurement?.value else {
+                return ing
+            }
+            mutableIng.measurement?.value = ingValue * multiplier
+            return mutableIng
+        }
     }
 }

@@ -301,7 +301,7 @@ extension ConvertView: UITextFieldDelegate {
                     break
                 }
                 let baseMeasure = Measure(value: valueToConvert, symbol: symbol)
-                amountTextField.text = Converter.convertBaseToUnit(baseMeasure, to: text)
+                amountTextField.text = Converter.convertBaseToUnit(baseMeasure, to: text, with: DataStorage.shared)
 
             default:
                 break

@@ -77,18 +77,8 @@ final class RecipeViewController: UIViewController {
         recipeView.convertPortionsView.stateToggle()
     }
     
-    func convertPortions(to coef: Double){
-        let multiplier = coef / (recipe.numberOfPortions ?? 1)
-        recipe.numberOfPortions = coef
-        
-        recipe.ingredients = recipe.ingredients.map { ing in
-            var mutableIng = ing
-            guard let ingValue = ing.measurement?.value else {
-                return ing
-            }
-            mutableIng.measurement?.value = ingValue * multiplier
-            return mutableIng
-        }
+    private func convertPortions(with coefficient: Double) {
+        Converter.convertPortions(in: &recipe, with: coefficient)
     }
 }
 
@@ -109,7 +99,7 @@ extension RecipeViewController: UITableViewDataSource {
         }
         cell.configureCell(with: recipe.ingredients[indexPath.row])
         
-        cell.ingredientChanged { [weak tableView] (ingredient: Ingredient) in
+        cell.ingredientChanged { [unowned self, weak tableView] (ingredient: Ingredient) in
             self.recipe.ingredients[indexPath.row] = ingredient
 //            TODO: fix jumping
 //            DispatchQueue.main.async {
@@ -117,9 +107,7 @@ extension RecipeViewController: UITableViewDataSource {
 //                tableView?.endUpdates()
 //            }
         }
-
         cell.tableView = tableView
-
         return cell
     }
 }
@@ -193,7 +181,7 @@ extension RecipeViewController: UITextFieldDelegate {
         if textField != recipeView.titleField {
             switch recipeView.convertPortionsView.state {
             case .converting:
-                convertPortions(to: recipeView.convertPortionsView.coefficient)
+                convertPortions(with: recipeView.convertPortionsView.coefficient)
             case .normal:
                 recipe.numberOfPortions = recipeView.convertPortionsView.coefficient
             }
