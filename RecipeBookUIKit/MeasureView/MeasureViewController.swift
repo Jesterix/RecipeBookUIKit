@@ -22,7 +22,14 @@ final class MeasureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupButtonActions()
+        setupConvertView()
+        measureView.pickerView.delegate = self
+        setupPickerView(from: measure)
+        hideKeyboardOnTap()
+    }
+    
+    private func setupButtonActions() {
         measureView.addButton.addTarget(
             self,
             action: #selector(tapAdd),
@@ -42,7 +49,9 @@ final class MeasureViewController: UIViewController {
             self,
             action: #selector(close),
             for: .touchUpInside)
-
+    }
+    
+    private func setupConvertView() {
         measureView.convertView.measure = measure
         measureView.convertView.onMeasureChange = { [unowned self] measure in
             self.measure = measure
@@ -60,16 +69,10 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.onBaseUnitChange = { [unowned self] measure in
             self.setupPickerView(from: measure)
         }
-
-        measureView.pickerView.delegate = self
-        setupPickerView(from: measure)
-
-        hideKeyboardOnTap()
     }
 
     @objc private func tapAdd() {
-        print(#function)
-        toggleVisibility()
+        toggleButtonsVisibility()
         if measureView.convertView.state == .editing {
             measureView.convertView.saveCustomMeasure()
         }
@@ -77,13 +80,11 @@ final class MeasureViewController: UIViewController {
     }
 
     @objc private func tapCancel() {
-        print(#function)
-        toggleVisibility()
+        toggleButtonsVisibility()
         measureView.convertView.state = .normal
     }
 
     @objc private func tapConvert() {
-        print(#function)
         measureView.convertButton.isPrimary.toggle()
         measureView.addButton.isEnabled = measureView.convertButton.isPrimary
 
@@ -93,10 +94,6 @@ final class MeasureViewController: UIViewController {
         }
     }
 
-    private func toggleVisibility() {
-        toggleButtonsVisibility()
-    }
-
     private func toggleButtonsVisibility() {
         measureView.addButton.isPrimary.toggle()
         measureView.cancelButton.isHidden = measureView.addButton.isPrimary
@@ -104,7 +101,7 @@ final class MeasureViewController: UIViewController {
         measureView.closeButton.enable(measureView.addButton.isPrimary)
     }
     
-    @objc func close(){
+    @objc private func close(){
         measureView.convertView.onClose()
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)
@@ -116,23 +113,22 @@ final class MeasureViewController: UIViewController {
     }
 
     private func setupPickerView(from measure: Measure) {
-        var row = 2
+        var row = Settings.defaultDimensions.firstIndex(of: .custom)
         if measure.symbol.isUnitMass {
-            row = 0
+            row = Settings.defaultDimensions.firstIndex(of: .mass(.grams))
         } else if measure.symbol.isUnitVolume {
-            row = 1
+            row = Settings.defaultDimensions.firstIndex(of: .volume(.liters))
         }
         if measure != self.measure {
         } else {
-            passPickerData(row: row)
+            passPickerData(row: row!)
         }
-        measureView.pickerView.selectRow(row: row, inComponent: 0)
+        measureView.pickerView.selectRow(row: row!, inComponent: 0)
     }
 }
 
 extension MeasureViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("row selected in controller: ", row)
         passPickerData(row: row)
     }
 }
