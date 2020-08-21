@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43824DFF6340054C6DD /* LabeledPickerView.swift */; };
-		4428C43B24E02FDA0054C6DD /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43A24E02FDA0054C6DD /* Measure.swift */; };
-		4428C43D24E037F30054C6DD /* Double+Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C43C24E037F30054C6DD /* Double+Measurement.swift */; };
 		4428C44A24E2CC780054C6DD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44924E2CC780054C6DD /* Settings.swift */; };
 		4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44B24E2ED100054C6DD /* DataStorage.swift */; };
 		4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44D24E3D1960054C6DD /* Predicate.swift */; };
-		4428C45024E4092D0054C6DD /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C44F24E4092C0054C6DD /* Converter.swift */; };
 		4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */; };
 		4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486324C60B1300EA5B2C /* AppDelegate.swift */; };
 		4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474486524C60B1300EA5B2C /* SceneDelegate.swift */; };
@@ -40,7 +37,6 @@
 		449F022F24D845B800A556E1 /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F022E24D845B800A556E1 /* ConvertView.swift */; };
 		449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F023024D85A3600A556E1 /* TwoModeTextField.swift */; };
 		5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */; };
-		5E18C0DA24EADA5A003F7D74 /* CustomMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
@@ -48,12 +44,9 @@
 
 /* Begin PBXFileReference section */
 		4428C43824DFF6340054C6DD /* LabeledPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledPickerView.swift; sourceTree = "<group>"; };
-		4428C43A24E02FDA0054C6DD /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
-		4428C43C24E037F30054C6DD /* Double+Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Measurement.swift"; sourceTree = "<group>"; };
 		4428C44924E2CC780054C6DD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4428C44B24E2ED100054C6DD /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		4428C44D24E3D1960054C6DD /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
-		4428C44F24E4092C0054C6DD /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertPortionsView.swift; sourceTree = "<group>"; };
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +73,6 @@
 		449F022E24D845B800A556E1 /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
 		449F023024D85A3600A556E1 /* TwoModeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoModeTextField.swift; sourceTree = "<group>"; };
 		5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCustomMeasurement.swift; sourceTree = "<group>"; };
-		5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeasure.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataHandler.swift; sourceTree = "<group>"; };
@@ -151,7 +143,6 @@
 				4428C44924E2CC780054C6DD /* Settings.swift */,
 				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
 				4474488224C622CC00EA5B2C /* Recipe.swift */,
-				5EAC22DC24F06E0A003BA90E /* MeasureLibrary */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,17 +200,6 @@
 				5EA0584724D050F900631E04 /* MeasureView.swift */,
 			);
 			path = MeasureView;
-			sourceTree = "<group>";
-		};
-		5EAC22DC24F06E0A003BA90E /* MeasureLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */,
-				4428C43A24E02FDA0054C6DD /* Measure.swift */,
-				4428C44F24E4092C0054C6DD /* Converter.swift */,
-				4428C43C24E037F30054C6DD /* Double+Measurement.swift */,
-			);
-			path = MeasureLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +283,6 @@
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
-				4428C43B24E02FDA0054C6DD /* Measure.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainView.swift in Sources */,
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
@@ -327,11 +306,8 @@
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
 				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
-				4428C43D24E037F30054C6DD /* Double+Measurement.swift in Sources */,
-				5E18C0DA24EADA5A003F7D74 /* CustomMeasure.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
-				4428C45024E4092D0054C6DD /* Converter.swift in Sources */,
 				5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
