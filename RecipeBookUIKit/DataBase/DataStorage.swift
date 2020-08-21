@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol CustomMeasureProvider {
-    var customMeasures: [CustomMeasure] { get set }
-    func updateMeasures(_ measures: [CustomMeasure])
-}
-
 final class DataStorage: CustomMeasureProvider {
     public static let shared: DataStorage = DataStorage()
     

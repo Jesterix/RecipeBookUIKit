@@ -146,13 +146,8 @@
 		4474488124C6229F00EA5B2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
 				4428C44924E2CC780054C6DD /* Settings.swift */,
-				4474488224C622CC00EA5B2C /* Recipe.swift */,
-				5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */,
-				4428C43A24E02FDA0054C6DD /* Measure.swift */,
-				4428C44F24E4092C0054C6DD /* Converter.swift */,
-				4428C43C24E037F30054C6DD /* Double+Measurement.swift */,
+				5EAC22DC24F06E0A003BA90E /* MeasureLibrary */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,6 +204,19 @@
 				5EA0584724D050F900631E04 /* MeasureView.swift */,
 			);
 			path = MeasureView;
+			sourceTree = "<group>";
+		};
+		5EAC22DC24F06E0A003BA90E /* MeasureLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
+				4474488224C622CC00EA5B2C /* Recipe.swift */,
+				5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */,
+				4428C43A24E02FDA0054C6DD /* Measure.swift */,
+				4428C44F24E4092C0054C6DD /* Converter.swift */,
+				4428C43C24E037F30054C6DD /* Double+Measurement.swift */,
+			);
+			path = MeasureLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
