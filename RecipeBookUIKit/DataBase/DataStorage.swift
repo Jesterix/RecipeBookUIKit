@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MeasureLibrary
 
 final class DataStorage: CustomMeasureProvider {
     public static let shared: DataStorage = DataStorage()

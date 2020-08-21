@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import MeasureLibrary
 
 class RealmCustomMeasurement: Object {
     @objc dynamic var id: String = ""

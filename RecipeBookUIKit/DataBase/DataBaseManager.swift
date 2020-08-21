@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import MeasureLibrary
 
 class DataBaseManager {
     private var realm: Realm = try! Realm()

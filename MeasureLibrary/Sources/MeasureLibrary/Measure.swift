@@ -1,10 +1,10 @@
 import Foundation
 
 ///This enum help to initiate measures from user input
-enum DimensionType: Equatable {
+public enum DimensionType: Equatable {
 //    MARK: - Mass enum
-    enum Mass: String, CaseIterable, Comparable {
-        static func < (lhs: DimensionType.Mass, rhs: DimensionType.Mass) -> Bool {
+    public enum Mass: String, CaseIterable, Comparable {
+        public static func < (lhs: DimensionType.Mass, rhs: DimensionType.Mass) -> Bool {
             lhs.rawValue < rhs.rawValue
         }
         
@@ -124,8 +124,8 @@ enum DimensionType: Equatable {
         }
     }
 //    MARK: - Volume enum
-    enum Volume: String, CaseIterable, Comparable {
-        static func < (lhs: DimensionType.Volume, rhs: DimensionType.Volume) -> Bool {
+    public enum Volume: String, CaseIterable, Comparable {
+        public static func < (lhs: DimensionType.Volume, rhs: DimensionType.Volume) -> Bool {
             lhs.rawValue < rhs.rawValue
         }
         
@@ -351,7 +351,7 @@ enum DimensionType: Equatable {
         }
     }
 
-    var typeDescription: String {
+    public var typeDescription: String {
         switch self {
         case .mass:
             return "mass"
@@ -362,7 +362,7 @@ enum DimensionType: Equatable {
         }
     }
     
-    var baseSymbol: String {
+    public var baseSymbol: String {
         switch self {
         case .mass:
             return "kg"
@@ -382,13 +382,13 @@ enum DimensionType: Equatable {
         return result
     }
     
-    static var allMass: [String] {
+    public static var allMass: [String] {
         return DimensionType.Mass.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
             .map { $0.rawValue }
     }
     
-    static var allMassSymbols: [String] {
+    public static var allMassSymbols: [String] {
         return DimensionType.Mass.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
             .map { $0.symbol }
@@ -403,13 +403,13 @@ enum DimensionType: Equatable {
         return result
     }
     
-    static var allVolume: [String] {
+    public static var allVolume: [String] {
         return DimensionType.Volume.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
             .map { $0.rawValue }
     }
     
-    static var allVolumeSymbols: [String] {
+    public static var allVolumeSymbols: [String] {
         return DimensionType.Volume.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
             .map { $0.symbol }
@@ -436,27 +436,27 @@ enum DimensionType: Equatable {
 
 //    MARK: - Measure struct
 
-struct Measure {
-    var value: Double
-    var coefficient: Double = 1
-    var symbol: String {
+public struct Measure {
+    public var value: Double
+    public var coefficient: Double = 1
+    public var symbol: String {
         didSet {
             setBaseUnitSymbol()
         }
     }
-    var baseUnitSymbol: String = ""
+    public var baseUnitSymbol: String = ""
     
-    var isStandart: Bool {
+    public var isStandart: Bool {
         return symbol.isUnitMass || symbol.isUnitVolume
     }
     
-    init(value: Double, symbol: String) {
+    public init(value: Double, symbol: String) {
         self.value = value
         self.symbol = symbol
         setBaseUnitSymbol()
     }
     
-    init?(customProvider: CustomMeasureProvider, value: Double, symbol: String) {
+    public init?(customProvider: CustomMeasureProvider, value: Double, symbol: String) {
         guard let customMeasure = (customProvider.customMeasures
             .first { $0.title == symbol }) else {
                 return nil
@@ -485,7 +485,7 @@ extension Measure {
 }
 
 extension Measure {
-    var measurement: Measurement<Dimension>? {
+    public var measurement: Measurement<Dimension>? {
         if symbol.isUnitMass {
             
             guard let dimension = DimensionType.Mass.init(symbol: symbol) else {
@@ -524,7 +524,7 @@ extension Measure {
     }
 }
 
-extension String {
+public extension String {
     var isUnitMass: Bool {
         return DimensionType.allMassCases.contains(self)
     }

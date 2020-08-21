@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MeasureLibrary
 
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!

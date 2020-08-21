@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MeasureLibrary
 
 struct Ingredient {
     var id: String = UUID().uuidString

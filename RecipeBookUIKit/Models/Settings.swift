@@ -6,6 +6,8 @@
 //  Copyright © 2020 George Khaydenko. All rights reserved.
 //
 
+import MeasureLibrary
+
 class Settings {
     static var defaultRecipes = [
         Recipe(

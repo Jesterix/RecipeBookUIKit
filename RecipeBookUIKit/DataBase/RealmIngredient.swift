@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import MeasureLibrary
 
 class RealmIngredient: Object {
     @objc dynamic var id: String = ""

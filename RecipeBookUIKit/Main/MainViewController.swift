@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MeasureLibrary
 
 final class MainViewController: UIViewController {
     private var mainView: MainView!

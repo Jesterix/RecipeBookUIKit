@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MeasureLibrary
 
 final class IngredientCell: UITableViewCell {
     static var reuseID = "IngredientCell"

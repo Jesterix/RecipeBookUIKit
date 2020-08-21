@@ -1,7 +1,7 @@
 import Foundation
 
-class Converter {
-    static func convertToBaseUnit(_ measure: Measure) -> String? {
+public class Converter {
+    public static func convertToBaseUnit(_ measure: Measure) -> String? {
         guard let measurement = measure.measurement else {
             return ""
         }
@@ -23,7 +23,7 @@ class Converter {
         }
     }
     
-    static func convertBaseToUnit(_ measure: Measure, to stringDescription: String, with customProvider: CustomMeasureProvider) -> String? {
+    public static func convertBaseToUnit(_ measure: Measure, to stringDescription: String, with customProvider: CustomMeasureProvider) -> String? {
         guard let measurement = measure.measurement else {
             return ""
         }
