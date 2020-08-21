@@ -1,11 +1,3 @@
-//
-//  Converter.swift
-//  RecipeBookUIKit
-//
-//  Created by Георгий Хайденко on 12.08.2020.
-//  Copyright © 2020 George Khaydenko. All rights reserved.
-//
-
 import Foundation
 
 class Converter {
@@ -13,26 +5,20 @@ class Converter {
         guard let measurement = measure.measurement else {
             return ""
         }
-        print("measure to convert: ", measurement)
         
         if measure.symbol.isUnitMass {
             let converted = measurement.converted(to: UnitMass.kilograms)
-            print("converted sym to mass", converted.value)
             return String(converted.value)
         } else if measure.symbol.isUnitVolume {
             let converted = measurement.converted(to: UnitVolume.liters)
-            print("converted sym to volume", converted.value)
             return String(converted.value)
         } else if measure.baseUnitSymbol.isUnitMass {
             let converted = measurement.converted(to: UnitMass.kilograms)
-            print("converted base to mass", converted.value)
             return String(converted.value)
         } else if measure.baseUnitSymbol.isUnitVolume {
             let converted = measurement.converted(to: UnitVolume.liters)
-            print("converted base to volume", converted.value)
             return String(converted.value)
         } else {
-            print("no base unit")
             return "no base unit"
         }
     }

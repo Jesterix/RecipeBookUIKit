@@ -1,13 +1,6 @@
-//
-//  Measure.swift
-//  RecipeBookUIKit
-//
-//  Created by Георгий Хайденко on 09.08.2020.
-//  Copyright © 2020 George Khaydenko. All rights reserved.
-//
-
 import Foundation
 
+///This enum help to initiate measures from user input
 enum DimensionType: Equatable {
 //    MARK: - Mass enum
     enum Mass: String, CaseIterable, Comparable {
