@@ -78,7 +78,7 @@ final class RecipeViewController: UIViewController {
     }
     
     private func convertPortions(with coefficient: Double) {
-        Converter.convertPortions(in: &recipe, with: coefficient)
+        RecipeDataHandler.convertPortions(in: &recipe, with: coefficient)
     }
 }
 

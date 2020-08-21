@@ -43,6 +43,7 @@
 		5E18C0DA24EADA5A003F7D74 /* CustomMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
+		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeasure.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
+		5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				4428C44924E2CC780054C6DD /* Settings.swift */,
+				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
+				4474488224C622CC00EA5B2C /* Recipe.swift */,
 				5EAC22DC24F06E0A003BA90E /* MeasureLibrary */,
 			);
 			path = Models;
@@ -179,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				4474488C24C781B800EA5B2C /* RecipeViewController.swift */,
+				5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */,
 				4474488F24C7832200EA5B2C /* RecipeView.swift */,
 				4474489124C786FE00EA5B2C /* IngredientCell.swift */,
 			);
@@ -209,8 +214,6 @@
 		5EAC22DC24F06E0A003BA90E /* MeasureLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				4474487F24C6216C00EA5B2C /* Ingredient.swift */,
-				4474488224C622CC00EA5B2C /* Recipe.swift */,
 				5E18C0D924EADA5A003F7D74 /* CustomMeasure.swift */,
 				4428C43A24E02FDA0054C6DD /* Measure.swift */,
 				4428C44F24E4092C0054C6DD /* Converter.swift */,
@@ -318,6 +321,7 @@
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
+				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				449F022F24D845B800A556E1 /* ConvertView.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,

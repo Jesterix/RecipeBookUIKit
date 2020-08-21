@@ -53,18 +53,4 @@ class Converter {
         
         return String(converted.value)
     }
-    
-    static func convertPortions(in recipe: inout Recipe, with coefficient: Double) {
-        let multiplier = coefficient / (recipe.numberOfPortions ?? 1)
-        recipe.numberOfPortions = coefficient
-        
-        recipe.ingredients = recipe.ingredients.map { ing in
-            var mutableIng = ing
-            guard let ingValue = ing.measurement?.value else {
-                return ing
-            }
-            mutableIng.measurement?.value = ingValue * multiplier
-            return mutableIng
-        }
-    }
 }
