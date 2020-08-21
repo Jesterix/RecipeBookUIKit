@@ -40,6 +40,7 @@
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
+		5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5EAC22E324F0790D003BA90E /* MeasureLibrary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataHandler.swift; sourceTree = "<group>"; };
+		5EAC22E124F078F3003BA90E /* MeasureLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeasureLibrary; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */,
+				5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */,
 				4474487924C60B8100EA5B2C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,8 +97,10 @@
 		4474485724C60B1300EA5B2C = {
 			isa = PBXGroup;
 			children = (
+				5EAC22E124F078F3003BA90E /* MeasureLibrary */,
 				4474486224C60B1300EA5B2C /* RecipeBookUIKit */,
 				4474486124C60B1300EA5B2C /* Products */,
+				5EAC22E224F0790D003BA90E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +207,13 @@
 			path = MeasureView;
 			sourceTree = "<group>";
 		};
+		5EAC22E224F0790D003BA90E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,6 +233,7 @@
 			packageProductDependencies = (
 				4474487824C60B8100EA5B2C /* SnapKit */,
 				4474489824C84B0300EA5B2C /* RealmSwift */,
+				5EAC22E324F0790D003BA90E /* MeasureLibrary */,
 			);
 			productName = RecipeBookUIKit;
 			productReference = 4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */;
@@ -530,6 +543,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4474489724C84B0300EA5B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		5EAC22E324F0790D003BA90E /* MeasureLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MeasureLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
