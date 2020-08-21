@@ -105,14 +105,14 @@ final class MeasureViewController: UIViewController {
     }
     
     @objc func close(){
-        measureView.convertView.setMeasureFromText()
+        measureView.convertView.onClose()
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)
     }
 
     private func passPickerData(row: Int) {
         let dimension = Settings.defaultDimensions[row]
-        measureView.convertView.setPickerDataForMeasurement(with: dimension)
+        measureView.convertView.setPickerData(with: dimension)
     }
 
     private func setupPickerView(from measure: Measure) {

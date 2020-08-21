@@ -125,6 +125,10 @@ final class ConvertView: UIView {
     }
 
 //    MARK: - methods
+    
+    func onClose() {
+        setMeasureFromText()
+    }
 
     private func toggleTextFieldsVisibility() {
         switch state {
@@ -141,7 +145,7 @@ final class ConvertView: UIView {
         }
     }
     
-    func setMeasureFromText() {
+    private func setMeasureFromText() {
         guard
             let symbol = unitTextField.text,
             let textValue = amountTextField.text else {
@@ -174,7 +178,7 @@ final class ConvertView: UIView {
     }
 
     //MARK: - input of new dimension
-    func setPickerDataForMeasurement(with dimension: DimensionType) {
+    func setPickerData(with dimension: DimensionType) {
         switch dimension {
         case .mass:
             unitTextField.pickerData = DimensionType.allMass
