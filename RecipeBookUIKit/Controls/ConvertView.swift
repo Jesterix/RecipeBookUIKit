@@ -44,6 +44,7 @@ final class ConvertView: UIView {
     private var baseUnitTextField: TwoModeTextField!
     
     private let dataManager = DataBaseManager()
+    private var customProvider: CustomMeasureProvider = DataStorage.shared
 
     init() {
         super.init(frame: .zero)
@@ -154,7 +155,7 @@ final class ConvertView: UIView {
         let value = Double(textValue) ?? 0.0
         
         let newMeasure = Measure.init(
-            customProvider: DataStorage.shared,
+            customProvider: customProvider,
             value: value,
             symbol: symbol) ?? Measure.init(value: value, symbol: symbol)
         measure = newMeasure
@@ -187,7 +188,7 @@ final class ConvertView: UIView {
             unitTextField.pickerData = DimensionType.allVolume
             unitTextField.additionalPickerData = DimensionType.allVolumeSymbols
         case .custom:
-            unitTextField.pickerData = DataStorage.shared.customMeasures.map {
+            unitTextField.pickerData = customProvider.customMeasures.map {
                 $0.title
             }
         }
@@ -223,7 +224,7 @@ final class ConvertView: UIView {
             baseUnitSymbol: baseUnit,
             coefficient: coef)
         dataManager.update(measure: customMeasure)
-        DataStorage.shared.updateMeasures(dataManager.getCustomMeasures())
+        customProvider.updateMeasures(dataManager.getCustomMeasures())
         setMeasureFromText()
     }
     
@@ -234,7 +235,7 @@ final class ConvertView: UIView {
                 return
         }
         let measureToConvert = Measure.init(
-            customProvider: DataStorage.shared,
+            customProvider: customProvider,
             value: valueToConvert,
             symbol: symbol) ?? Measure.init(
                 value: valueToConvert,
@@ -273,7 +274,7 @@ extension ConvertView: UITextFieldDelegate {
             case unitTextField:
                 print("editing, unitTextField")
                 let newMeasure = Measure(
-                    customProvider: DataStorage.shared,
+                    customProvider: customProvider,
                     value: 1,
                     symbol: text) ?? Measure(value: 1, symbol: text)
                 
@@ -301,7 +302,7 @@ extension ConvertView: UITextFieldDelegate {
                     break
                 }
                 let baseMeasure = Measure(value: valueToConvert, symbol: symbol)
-                amountTextField.text = Converter.convertBaseToUnit(baseMeasure, to: text, with: DataStorage.shared)
+                amountTextField.text = Converter.convertBaseToUnit(baseMeasure, to: text, with: customProvider)
 
             default:
                 break

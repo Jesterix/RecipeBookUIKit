@@ -11,6 +11,7 @@ import UIKit
 final class MainViewController: UIViewController {
     private var mainView: MainView!
     private let dataManager = DataBaseManager()
+    private var customProvider: CustomMeasureProvider = DataStorage.shared
 
     override func loadView() {
         self.mainView = MainView()
@@ -47,8 +48,7 @@ final class MainViewController: UIViewController {
     }
 
     private func doFirstFetch() {
-        DataStorage.shared.userMeasures = dataManager.getUserMeasures()
-        DataStorage.shared.customMeasures = dataManager.getCustomMeasures()
+        customProvider.customMeasures = dataManager.getCustomMeasures()
     }
 }
 
