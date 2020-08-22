@@ -22,37 +22,6 @@ public let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
 
 // MARK: Localization Syntax
 
-///**
-//Swift 1.x friendly localization syntax, replaces NSLocalizedString
-//- Parameter string: Key to be localized.
-//- Returns: The localized string.
-//*/
-//public func Localized(_ string: String) -> String {
-//    return string.localized()
-//}
-//
-///**
-// Swift 1.x friendly localization syntax with format arguments, replaces String(format:NSLocalizedString)
-// - Parameter string: Key to be localized.
-// - Returns: The formatted localized string with arguments.
-// */
-//public func Localized(_ string: String, arguments: CVarArg...) -> String {
-//    return String(format: string.localized(), arguments: arguments)
-//}
-//
-///**
-// Swift 1.x friendly plural localization syntax with a format argument
-//
-// - parameter string:   String to be formatted
-// - parameter argument: Argument to determine pluralisation
-//
-// - returns: Pluralized localized string.
-// */
-//public func LocalizedPlural(_ string: String, argument: CVarArg) -> String {
-//    return string.localizedPlural(argument)
-//}
-
-
 public extension String {
     /**
      Swift 2 friendly localization syntax, replaces NSLocalizedString

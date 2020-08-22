@@ -131,11 +131,7 @@
 			children = (
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
-				5EAC22EB24F1B557003BA90E /* Localize.swift */,
-				5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */,
-				5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */,
-				5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */,
-				5EAC22F524F1B7B1003BA90E /* Localizable.strings */,
+				5EAC22F724F1B914003BA90E /* Localize */,
 				5EA0584624D050DB00631E04 /* MeasureView */,
 				447448A024C8505D00EA5B2C /* DataBase */,
 				4474488B24C6F09400EA5B2C /* Controls */,
@@ -240,6 +236,18 @@
 				5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */,
 			);
 			path = RealmDataImplementation;
+			sourceTree = "<group>";
+		};
+		5EAC22F724F1B914003BA90E /* Localize */ = {
+			isa = PBXGroup;
+			children = (
+				5EAC22F524F1B7B1003BA90E /* Localizable.strings */,
+				5EAC22EB24F1B557003BA90E /* Localize.swift */,
+				5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */,
+				5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */,
+				5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */,
+			);
+			path = Localize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
