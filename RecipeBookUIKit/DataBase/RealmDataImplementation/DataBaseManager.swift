@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import MeasureLibrary
 
-class DataBaseManager {
+class DataBaseManager: DataManager {
     private var realm: Realm = try! Realm()
 
     private lazy var recipes: Results<RealmRecipe> = { self.realm.objects(RealmRecipe.self)
@@ -22,7 +22,7 @@ class DataBaseManager {
     private lazy var customMeasures: Results<RealmCustomMeasurement> = { self.realm.objects(RealmCustomMeasurement.self)
     }()
 
-    func createBaseData() {
+    func createDefaultData() {
         do {
             if recipes.count == 0 {
                 try realm.write() {

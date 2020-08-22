@@ -44,7 +44,7 @@ final class ConvertView: UIView {
     private var baseAmountTextField: TwoModeTextField!
     private var baseUnitTextField: TwoModeTextField!
     
-    private let dataManager = DataBaseManager()
+    private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
 
     init() {

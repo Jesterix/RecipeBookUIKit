@@ -11,7 +11,7 @@ import MeasureLibrary
 
 final class MainViewController: UIViewController {
     private var mainView: MainView!
-    private let dataManager = DataBaseManager()
+    private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
 
     override func loadView() {
@@ -44,7 +44,7 @@ final class MainViewController: UIViewController {
     }
     
     private func getDataFromDatabase() {
-        dataManager.createBaseData()
+        dataManager.createDefaultData()
         self.mainView.recipeTableView.reloadData()
     }
 

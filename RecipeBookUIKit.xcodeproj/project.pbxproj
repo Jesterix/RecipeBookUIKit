@@ -41,6 +41,7 @@
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
 		5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5EAC22E324F0790D003BA90E /* MeasureLibrary */; };
+		5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22E524F1A94E003BA90E /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataHandler.swift; sourceTree = "<group>"; };
 		5EAC22E124F078F3003BA90E /* MeasureLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeasureLibrary; sourceTree = "<group>"; };
+		5EAC22E524F1A94E003BA90E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,11 +191,9 @@
 		447448A024C8505D00EA5B2C /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
-				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
-				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
-				5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */,
+				5EAC22E724F1A982003BA90E /* RealmDataImplementation */,
 				4428C44B24E2ED100054C6DD /* DataStorage.swift */,
+				5EAC22E524F1A94E003BA90E /* DataManager.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -212,6 +212,17 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EAC22E724F1A982003BA90E /* RealmDataImplementation */ = {
+			isa = PBXGroup;
+			children = (
+				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
+				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
+				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
+				5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */,
+			);
+			path = RealmDataImplementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
+				5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,

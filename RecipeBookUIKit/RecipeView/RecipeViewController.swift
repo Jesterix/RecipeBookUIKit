@@ -18,7 +18,7 @@ final class RecipeViewController: UIViewController {
         }
     }
     
-    private let dataManager = DataBaseManager()
+    private let dataManager: DataManager = DataBaseManager()
 
     init(_ recipe: Recipe) {
         self.recipe = recipe
