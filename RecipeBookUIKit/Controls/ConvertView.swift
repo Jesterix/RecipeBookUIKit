@@ -196,7 +196,7 @@ final class ConvertView: UIView {
         
         switch state {
         case .editing:
-            baseUnitTextField.text = dimension.baseSymbol
+            baseUnitTextField.text = dimension.baseSymbol.localized()
         default:
             return
         }

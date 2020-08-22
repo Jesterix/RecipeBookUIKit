@@ -24,3 +24,13 @@
 "Portions.Convert.Text" = "Порций:";
 
 "BaseUnit.Label.Text" = "базовая единица:";
+
+"Library.Dimension.Mass" = "Масса";
+
+"Library.Dimension.Volume" = "Объём";
+
+"Library.Dimension.Custom" = "Созданный";
+
+"Library.BaseSymbol.Mass" = "кг";
+
+"Library.BaseSymbol.Volume" = "л";

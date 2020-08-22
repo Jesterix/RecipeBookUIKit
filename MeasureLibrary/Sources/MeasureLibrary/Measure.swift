@@ -354,20 +354,20 @@ public enum DimensionType: Equatable {
     public var typeDescription: String {
         switch self {
         case .mass:
-            return "mass"
+            return "Library.Dimension.Mass"
         case .volume:
-            return "volume"
+            return "Library.Dimension.Volume"
         case .custom:
-            return "custom"
+            return "Library.Dimension.Custom"
         }
     }
     
     public var baseSymbol: String {
         switch self {
         case .mass:
-            return "kg"
+            return "Library.BaseSymbol.Mass"
         case .volume:
-            return "L"
+            return "Library.BaseSymbol.Volume"
         case .custom:
             return ""
         }

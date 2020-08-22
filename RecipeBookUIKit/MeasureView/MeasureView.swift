@@ -47,7 +47,7 @@ final class MeasureView: UIView {
 
         addButton = layout(Button.add) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
-            make.centerX.equalTo(backBiew.leading).offset(30)
+            make.centerX.equalTo(backBiew.leading).offset(40)
         }
 
         cancelButton = layout(Button.cancel) { make in
@@ -90,7 +90,7 @@ final class MeasureView: UIView {
 
         cancelButton.isHidden = true
 
-        pickerView.data = Settings.defaultDimensions.map { $0.typeDescription }
+        pickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
 
         closeButton.layer.cornerRadius = 15
         closeButton.backgroundColor = .systemBlue

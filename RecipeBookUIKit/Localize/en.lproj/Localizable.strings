@@ -24,3 +24,13 @@
 "Portions.Convert.Text" = "Portions:";
 
 "BaseUnit.Label.Text" = "base units:";
+
+"Library.Dimension.Mass" = "Mass";
+
+"Library.Dimension.Volume" = "Volume";
+
+"Library.Dimension.Custom" = "Custom";
+
+"Library.BaseSymbol.Mass" = "kg";
+
+"Library.BaseSymbol.Volume" = "L";
