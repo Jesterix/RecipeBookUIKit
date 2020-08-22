@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Recipes"
+        title = "Recipes".localized()
 
         setupDelegates()
         hideKeyboardOnTap()

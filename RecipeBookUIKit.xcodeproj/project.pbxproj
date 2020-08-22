@@ -42,7 +42,11 @@
 		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
 		5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5EAC22E324F0790D003BA90E /* MeasureLibrary */; };
 		5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22E524F1A94E003BA90E /* DataManager.swift */; };
-		5EAC22EA24F1AE51003BA90E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC22E924F1AE51003BA90E /* Localizable.strings */; };
+		5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22EB24F1B557003BA90E /* Localize.swift */; };
+		5EAC22EE24F1B629003BA90E /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */; };
+		5EAC22F024F1B6F8003BA90E /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */; };
+		5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */; };
+		5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC22F524F1B7B1003BA90E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +86,12 @@
 		5EAC22E124F078F3003BA90E /* MeasureLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeasureLibrary; sourceTree = "<group>"; };
 		5EAC22E524F1A94E003BA90E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5EAC22E824F1AD37003BA90E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5EAC22E924F1AE51003BA90E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		5EAC22EB24F1B557003BA90E /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizedBundleTableName.swift"; sourceTree = "<group>"; };
+		5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeBundle.swift"; sourceTree = "<group>"; };
+		5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
+		5EAC22F424F1B7B1003BA90E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5EAC22F624F1B7B6003BA90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +131,11 @@
 			children = (
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
-				5EAC22E924F1AE51003BA90E /* Localizable.strings */,
+				5EAC22EB24F1B557003BA90E /* Localize.swift */,
+				5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */,
+				5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */,
+				5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */,
+				5EAC22F524F1B7B1003BA90E /* Localizable.strings */,
 				5EA0584624D050DB00631E04 /* MeasureView */,
 				447448A024C8505D00EA5B2C /* DataBase */,
 				4474488B24C6F09400EA5B2C /* Controls */,
@@ -298,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474487024C60B1700EA5B2C /* LaunchScreen.storyboard in Resources */,
-				5EAC22EA24F1AE51003BA90E /* Localizable.strings in Resources */,
+				5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */,
 				4474486D24C60B1700EA5B2C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +329,7 @@
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainView.swift in Sources */,
+				5EAC22F024F1B6F8003BA90E /* String+LocalizeBundle.swift in Sources */,
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
 				4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */,
 				4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */,
@@ -330,6 +344,8 @@
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
+				5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */,
+				5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
@@ -337,6 +353,7 @@
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
 				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
+				5EAC22EE24F1B629003BA90E /* String+LocalizedBundleTableName.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
 				5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */,
@@ -353,6 +370,15 @@
 				5EAC22E824F1AD37003BA90E /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5EAC22F524F1B7B1003BA90E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5EAC22F424F1B7B1003BA90E /* ru */,
+				5EAC22F624F1B7B6003BA90E /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
