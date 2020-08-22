@@ -1,2 +1,26 @@
 
-"Recipes" = "Recipes!";
+"Main.Recipes.Title" = "Рецепты";
+
+"Main.Delete.Action" = "Удалить";
+
+"Main.Add.Placeholder" = "Добавить рецепт";
+
+"Recipe.Add.Placeholder" = "Добавить ингредиент";
+
+"Measure.Choose.Title" = "Выберите меру";
+
+"Measure.Choose.Dimension" = "Выберите тип:";
+
+"Measure.Close.Button" = "Закрыть";
+
+"Button.New.Text" = "Создать";
+
+"Button.Cancel.Text" = "Отменить";
+
+"Button.Convert.Text" = "Пересчёт";
+
+"Button.Save.Text" = "Сохранить";
+
+"Portions.Convert.Text" = "Порций:";
+
+"BaseUnit.Label.Text" = "базовая единица:";

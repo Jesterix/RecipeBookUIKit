@@ -116,10 +116,10 @@ extension Button {
 
         var name: String {
             switch self {
-            case .edit: return "New"
-            case .cancel: return "Cancel"
-            case .convert: return "Convert"
-            case .save: return "Save"
+            case .edit: return "Button.New.Text".localized()
+            case .cancel: return "Button.Cancel.Text".localized()
+            case .convert: return "Button.Convert.Text".localized()
+            case .save: return "Button.Save.Text".localized()
             }
         }
     }

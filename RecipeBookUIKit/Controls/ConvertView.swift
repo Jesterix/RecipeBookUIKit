@@ -74,7 +74,7 @@ final class ConvertView: UIView {
         }
         unitTextField.delegate = self
 
-        baseUnitLabel = layout(UILabel(text: "base units:")) { make in
+        baseUnitLabel = layout(UILabel(text: "BaseUnit.Label.Text".localized())) { make in
             make.top.equalTo(amountTextField.bottom).offset(10)
             make.leading.equalTo(amountTextField).offset(5)
         }
@@ -119,11 +119,11 @@ final class ConvertView: UIView {
         baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
 
-        //Demo
-        amountTextField.text = "5"
-        baseAmountTextField.text = "100"
-        unitTextField.text = "spoon"
-        baseUnitTextField.text = "gramm"
+//        //Demo
+//        amountTextField.text = "5"
+//        baseAmountTextField.text = "100"
+//        unitTextField.text = "spoon"
+//        baseUnitTextField.text = "gramm"
     }
 
 //    MARK: - methods

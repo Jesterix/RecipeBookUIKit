@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Recipes".localized()
+        title = "Main.Recipes.Title".localized()
 
         setupDelegates()
         hideKeyboardOnTap()
@@ -93,7 +93,7 @@ extension MainViewController: UITableViewDelegate {
 
         let deleteAction = UIContextualAction(
             style: .destructive,
-            title: "Delete"
+            title: "Main.Delete.Action".localized()
         ) { _, _, _ in
             self.dataManager.remove(
                 recipe: self.dataManager.getRecipes()[indexPath.row])

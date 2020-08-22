@@ -53,7 +53,7 @@ final class ConvertPortionsView: UIView {
             make.centerX.equalTo(view.trailing).offset(-40)
         }
         
-        label = layout(UILabel(text: "Portions:")) { make in
+        label = layout(UILabel(text: "Portions.Convert.Text".localized())) { make in
             make.top.leading.equalToSuperview()
         }
         

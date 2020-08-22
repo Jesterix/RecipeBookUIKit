@@ -40,7 +40,7 @@ final class MeasureView: UIView {
             make.bottom.trailing.equalTo(safeArea).offset(-40)
         }
         
-        titleLabel = layout(UILabel(text: "Choose measurement")) { make in
+        titleLabel = layout(UILabel(text: "Measure.Choose.Title".localized())) { make in
             make.top.equalTo(backBiew).offset(10)
             make.centerX.equalToSuperview()
         }
@@ -60,7 +60,7 @@ final class MeasureView: UIView {
             make.centerX.equalTo(backBiew.trailing).offset(-40)
         }
 
-        pickerView = layout(LabeledPickerView("Choose dimension:")) { make in
+        pickerView = layout(LabeledPickerView("Measure.Choose.Dimension".localized())) { make in
             make.top.equalTo(addButton.bottom)
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
@@ -94,7 +94,7 @@ final class MeasureView: UIView {
 
         closeButton.layer.cornerRadius = 15
         closeButton.backgroundColor = .systemBlue
-        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitle("Measure.Close.Button".localized(), for: .normal)
     }
 }
 

@@ -140,7 +140,7 @@ extension RecipeViewController: UITableViewDelegate {
 
         let deleteAction = UIContextualAction(
             style: .destructive,
-            title: "Delete"
+            title: "Main.Delete.Action".localized()
         ) { _, _, _ in
             self.recipe.ingredients.remove(at: indexPath.row)
         }
