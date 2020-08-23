@@ -26,7 +26,6 @@
 		4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488624C62F8600EA5B2C /* RecipeCell.swift */; };
 		4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488924C6E29C00EA5B2C /* AddTextField.swift */; };
 		4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488C24C781B800EA5B2C /* RecipeViewController.swift */; };
-		4474489024C7832200EA5B2C /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488F24C7832200EA5B2C /* RecipeView.swift */; };
 		4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489124C786FE00EA5B2C /* IngredientCell.swift */; };
 		4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */; };
 		4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4474489824C84B0300EA5B2C /* RealmSwift */; };
@@ -48,6 +47,7 @@
 		5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */; };
 		5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC22F524F1B7B1003BA90E /* Localizable.strings */; };
 		5EAC22FA24F29AE9003BA90E /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */; };
+		5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FC24F2A29F003BA90E /* RecipeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +71,6 @@
 		4474488624C62F8600EA5B2C /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		4474488924C6E29C00EA5B2C /* AddTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextField.swift; sourceTree = "<group>"; };
 		4474488C24C781B800EA5B2C /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
-		4474488F24C7832200EA5B2C /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeView.swift; path = RecipeBookUIKit/RecipeView/RecipeView.swift; sourceTree = SOURCE_ROOT; };
 		4474489124C786FE00EA5B2C /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserversExtensions.swift; sourceTree = "<group>"; };
 		4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRecipe.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		5EAC22F424F1B7B1003BA90E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5EAC22F624F1B7B6003BA90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
+		5EAC22FC24F2A29F003BA90E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +196,7 @@
 			children = (
 				4474488C24C781B800EA5B2C /* RecipeViewController.swift */,
 				5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */,
-				4474488F24C7832200EA5B2C /* RecipeView.swift */,
+				5EAC22FC24F2A29F003BA90E /* RecipeView.swift */,
 				4474489124C786FE00EA5B2C /* IngredientCell.swift */,
 			);
 			path = RecipeView;
@@ -342,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */,
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
 				5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
@@ -358,7 +359,6 @@
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,
 				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
 				4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */,
-				4474489024C7832200EA5B2C /* RecipeView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
