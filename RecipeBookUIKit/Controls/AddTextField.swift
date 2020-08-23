@@ -48,7 +48,7 @@ class AddTextField: UITextField {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .warmBrown
+        backgroundColor = .honeyYellow
         layer.cornerRadius = 20
         font = .systemFont(ofSize: 17)
         textColor = .darkBrown

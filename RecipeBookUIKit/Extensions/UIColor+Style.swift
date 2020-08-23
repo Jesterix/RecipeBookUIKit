@@ -42,12 +42,3 @@ extension UIColor {
     //#DBD3D1
     static let lightlyGray: UIColor = #colorLiteral(red: 0.8588235294, green: 0.8274509804, blue: 0.8196078431, alpha: 1) //.init(red: 219, green: 211, blue: 209)
 }
-
-extension UIView {
-    func addGradient() {
-        let gradient = CAGradientLayer()
-        gradient.frame = self.bounds
-        gradient.colors = [UIColor.brightRed.cgColor, UIColor.honeyYellow.cgColor]
-        self.layer.addSublayer(gradient)
-    }
-}

@@ -42,7 +42,7 @@ final class RecipeCell: UITableViewCell {
         recipeInfoLabel.contentInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         recipeInfoLabel.textColor = .darkBrown
         recipeInfoLabel.font = .systemFont(ofSize: 17)
-        recipeInfoLabel.backgroundColor = .honeyYellow
+        recipeInfoLabel.backgroundColor = .milkWhite
         recipeInfoLabel.layer.cornerRadius = 5
         recipeInfoLabel.layer.masksToBounds = true
     }

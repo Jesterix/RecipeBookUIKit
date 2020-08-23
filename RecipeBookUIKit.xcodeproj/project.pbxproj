@@ -49,6 +49,7 @@
 		5EAC22FA24F29AE9003BA90E /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */; };
 		5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FC24F2A29F003BA90E /* RecipeView.swift */; };
 		5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */; };
+		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
 		5EAC22FC24F2A29F003BA90E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedLabel.swift; sourceTree = "<group>"; };
+		5EAC230024F2F1EB003BA90E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */,
 				449F023024D85A3600A556E1 /* TwoModeTextField.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
+				5EAC230024F2F1EB003BA90E /* NavigationController.swift */,
 				449F022E24D845B800A556E1 /* ConvertView.swift */,
 				4428C43824DFF6340054C6DD /* LabeledPickerView.swift */,
 				4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */,
@@ -369,6 +372,7 @@
 				5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */,
 				5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
+				5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */,
