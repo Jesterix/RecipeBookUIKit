@@ -42,18 +42,18 @@ class AddTextField: UITextField {
     private func layoutContent(in view: UIView) {
         addButton = layout(UIButton(type: .contactAdd)) { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
 
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .systemOrange
-        layer.cornerRadius = 15
+        layer.cornerRadius = 20
         font = .systemFont(ofSize: 15)
         textColor = .black
         autocorrectionType = .no
-        textInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 30)
+        textInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 40)
 
         addButton.tintColor = .black
     }

@@ -43,7 +43,7 @@ final class RecipeView: UIView {
             make.top.equalTo(convertPortionsView.bottom).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(30)
+            make.height.equalTo(40)
         }
 
         ingredientTableView = layout(UITableView()) { make in

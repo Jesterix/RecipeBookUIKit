@@ -28,7 +28,7 @@ final class MainView: UIView {
             make.top.equalTo(safeArea).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(30)
+            make.height.equalTo(40)
         }
 
         recipeTableView = layout(UITableView()) { make in
