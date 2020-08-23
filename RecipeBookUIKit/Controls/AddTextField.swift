@@ -48,14 +48,14 @@ class AddTextField: UITextField {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .systemOrange
+        backgroundColor = .warmBrown
         layer.cornerRadius = 20
-        font = .systemFont(ofSize: 15)
-        textColor = .black
+        font = .systemFont(ofSize: 17)
+        textColor = .darkBrown
         autocorrectionType = .no
         textInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 40)
 
-        addButton.tintColor = .black
+        addButton.tintColor = .darkBrown
     }
 
     //MARK: - set delegates
