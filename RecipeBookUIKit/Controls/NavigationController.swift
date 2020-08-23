@@ -12,6 +12,12 @@ final class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradientBackground()
+        setupTitle()
+    }
+    
+    private func setupTitle() {
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkBrown]
+        navigationBar.titleTextAttributes = textAttributes
     }
     
     private func setupGradientBackground() {

@@ -99,6 +99,7 @@ extension MainViewController: UITableViewDelegate {
                 recipe: self.dataManager.getRecipes()[indexPath.row])
             tableView.reloadData()
         }
+        deleteAction.backgroundColor = .brightRed
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
