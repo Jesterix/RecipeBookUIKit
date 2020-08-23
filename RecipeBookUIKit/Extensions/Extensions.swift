@@ -72,9 +72,70 @@ extension UIView {
     }
 }
 
+//MARK: - UIButton opacity
 extension UIButton {
     func enable(_ bool: Bool) {
         isEnabled = bool
         alpha = isEnabled ? 1 : 0.5
+    }
+}
+
+//MARK: - Gradient to UIView
+extension UIView {
+    enum GradientDirection {
+        case up, down, left, right, upLeft, upRight, downLeft, downRight
+        
+        var start: CGPoint {
+            switch self {
+            case .up:
+                return CGPoint(x: 0.5, y: 1)
+            case .down:
+                return CGPoint(x: 0.5, y: 0)
+            case .left:
+                return CGPoint(x: 1, y: 0.5)
+            case .right:
+                return CGPoint(x: 0, y: 0.5)
+            case .upLeft:
+                return CGPoint(x: 1, y: 1)
+            case .upRight:
+                return CGPoint(x: 0, y: 1)
+            case .downLeft:
+                return CGPoint(x: 1, y: 0)
+            case .downRight:
+                return CGPoint(x: 0, y: 0)
+            }
+        }
+        
+        var end: CGPoint {
+            switch self {
+            case .up:
+                return CGPoint(x: 0.5, y: 0)
+            case .down:
+                return CGPoint(x: 0.5, y: 1)
+            case .left:
+                return CGPoint(x: 0, y: 0.5)
+            case .right:
+                return CGPoint(x: 1, y: 0.5)
+            case .upLeft:
+                return CGPoint(x: 0, y: 0)
+            case .upRight:
+                return CGPoint(x: 1, y: 0)
+            case .downLeft:
+                return CGPoint(x: 0, y: 1)
+            case .downRight:
+                return CGPoint(x: 1, y: 1)
+            }
+        }
+    }
+    
+    func addGradient(startColor: UIColor, endColor: UIColor, direction: GradientDirection) {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = [startColor.cgColor, endColor.cgColor]
+        
+        gradient.startPoint = direction.start
+        gradient.endPoint = direction.end
+        
+        self.layer.insertSublayer(gradient, at: 0)
     }
 }
