@@ -9,41 +9,41 @@ public enum DimensionType: Equatable {
         }
         
         case kilograms, grams, decigrams, centigrams, milligrams, micrograms, nanograms, picograms, ounces, pounds, stones, metricTons, shortTons, carats, ouncesTroy, slugs
-
+        
         var symbol: String {
             switch self {
             case .kilograms:
-                return UnitMass.kilograms.symbol
+                return String.shortFormatted(from: UnitMass.kilograms)
             case .grams:
-                return UnitMass.grams.symbol
+                return String.shortFormatted(from: UnitMass.grams)
             case .decigrams:
-                return UnitMass.decigrams.symbol
+                return String.shortFormatted(from: UnitMass.decigrams)
             case .centigrams:
-                return UnitMass.centigrams.symbol
+                return String.shortFormatted(from: UnitMass.centigrams)
             case .milligrams:
-                return UnitMass.milligrams.symbol
+                return String.shortFormatted(from: UnitMass.milligrams)
             case .micrograms:
-                return UnitMass.micrograms.symbol
+                return String.shortFormatted(from: UnitMass.micrograms)
             case .nanograms:
-                return UnitMass.nanograms.symbol
+                return String.shortFormatted(from: UnitMass.nanograms)
             case .picograms:
-                return UnitMass.picograms.symbol
+                return String.shortFormatted(from: UnitMass.picograms)
             case .ounces:
-                return UnitMass.ounces.symbol
+                return String.shortFormatted(from: UnitMass.ounces)
             case .pounds:
-                return UnitMass.pounds.symbol
+                return String.shortFormatted(from: UnitMass.pounds)
             case .stones:
-                return UnitMass.stones.symbol
+                return String.shortFormatted(from: UnitMass.stones)
             case .metricTons:
-                return UnitMass.metricTons.symbol
+                return String.shortFormatted(from: UnitMass.metricTons)
             case .shortTons:
-                return UnitMass.shortTons.symbol
+                return String.shortFormatted(from: UnitMass.shortTons)
             case .carats:
-                return UnitMass.carats.symbol
+                return String.shortFormatted(from: UnitMass.carats)
             case .ouncesTroy:
-                return UnitMass.ouncesTroy.symbol
+                return String.shortFormatted(from: UnitMass.ouncesTroy)
             case .slugs:
-                return UnitMass.slugs.symbol
+                return String.shortFormatted(from: UnitMass.slugs)
             }
         }
 
@@ -85,40 +85,39 @@ public enum DimensionType: Equatable {
         }
 
         init?(symbol: String) {
-            switch symbol {
-            case DimensionType.Mass.kilograms.rawValue, UnitMass.kilograms.symbol:
+            if symbol.isSymbol(of: UnitMass.kilograms) {
                 self = .kilograms
-            case DimensionType.Mass.grams.rawValue, UnitMass.grams.symbol:
+            } else if symbol.isSymbol(of: UnitMass.grams) {
                 self = .grams
-            case DimensionType.Mass.decigrams.rawValue, UnitMass.decigrams.symbol:
+            } else if symbol.isSymbol(of: UnitMass.decigrams) {
                 self = .decigrams
-            case DimensionType.Mass.centigrams.rawValue, UnitMass.centigrams.symbol:
+            } else if symbol.isSymbol(of: UnitMass.centigrams) {
                 self = .centigrams
-            case DimensionType.Mass.milligrams.rawValue, UnitMass.milligrams.symbol:
+            } else if symbol.isSymbol(of: UnitMass.milligrams) {
                 self = .milligrams
-            case DimensionType.Mass.micrograms.rawValue, UnitMass.micrograms.symbol:
+            } else if symbol.isSymbol(of: UnitMass.micrograms) {
                 self = .micrograms
-            case DimensionType.Mass.nanograms.rawValue, UnitMass.nanograms.symbol:
+            } else if symbol.isSymbol(of: UnitMass.nanograms) {
                 self = .nanograms
-            case DimensionType.Mass.picograms.rawValue, UnitMass.picograms.symbol:
+            } else if symbol.isSymbol(of: UnitMass.picograms) {
                 self = .picograms
-            case DimensionType.Mass.ounces.rawValue, UnitMass.ounces.symbol:
+            } else if symbol.isSymbol(of: UnitMass.ounces) {
                 self = .ounces
-            case DimensionType.Mass.pounds.rawValue, UnitMass.pounds.symbol:
+            } else if symbol.isSymbol(of: UnitMass.pounds) {
                 self = .pounds
-            case DimensionType.Mass.stones.rawValue, UnitMass.stones.symbol:
+            } else if symbol.isSymbol(of: UnitMass.stones) {
                 self = .stones
-            case DimensionType.Mass.metricTons.rawValue, UnitMass.metricTons.symbol:
+            } else if symbol.isSymbol(of: UnitMass.metricTons) {
                 self = .metricTons
-            case DimensionType.Mass.shortTons.rawValue, UnitMass.shortTons.symbol:
+            } else if symbol.isSymbol(of: UnitMass.shortTons) {
                 self = .shortTons
-            case DimensionType.Mass.carats.rawValue, UnitMass.carats.symbol:
+            } else if symbol.isSymbol(of: UnitMass.carats) {
                 self = .carats
-            case DimensionType.Mass.ouncesTroy.rawValue, UnitMass.ouncesTroy.symbol:
+            } else if symbol.isSymbol(of: UnitMass.ouncesTroy) {
                 self = .ouncesTroy
-            case DimensionType.Mass.slugs.rawValue, UnitMass.slugs.symbol:
+            } else if symbol.isSymbol(of: UnitMass.slugs) {
                 self = .slugs
-            default:
+            } else {
                 return nil
             }
         }
@@ -134,67 +133,67 @@ public enum DimensionType: Equatable {
         var symbol: String {
             switch self {
             case .megaliters:
-                return UnitVolume.megaliters.symbol
+                return String.shortFormatted(from: UnitVolume.megaliters)
             case .kiloliters:
-                return UnitVolume.kiloliters.symbol
+                return String.shortFormatted(from: UnitVolume.kiloliters)
             case .liters:
-                return UnitVolume.liters.symbol
+                return String.shortFormatted(from: UnitVolume.liters)
             case .deciliters:
-                return UnitVolume.deciliters.symbol
+                return String.shortFormatted(from: UnitVolume.deciliters)
             case .centiliters:
-                return UnitVolume.centiliters.symbol
+                return String.shortFormatted(from: UnitVolume.centiliters)
             case .milliliters:
-                return UnitVolume.milliliters.symbol
+                return String.shortFormatted(from: UnitVolume.milliliters)
             case .cubicKilometers:
-                return UnitVolume.cubicKilometers.symbol
+                return String.shortFormatted(from: UnitVolume.cubicKilometers)
             case .cubicMeters:
-                return UnitVolume.cubicMeters.symbol
+                return String.shortFormatted(from: UnitVolume.cubicMeters)
             case .cubicDecimeters:
-                return UnitVolume.cubicDecimeters.symbol
+                return String.shortFormatted(from: UnitVolume.cubicDecimeters)
             case .cubicCentimeters:
-                return UnitVolume.cubicCentimeters.symbol
+                return String.shortFormatted(from: UnitVolume.cubicCentimeters)
             case .cubicMillimeters:
-                return UnitVolume.cubicMillimeters.symbol
+                return String.shortFormatted(from: UnitVolume.cubicMillimeters)
             case .cubicInches:
-                return UnitVolume.cubicInches.symbol
+                return String.shortFormatted(from: UnitVolume.cubicInches)
             case .cubicFeet:
-                return UnitVolume.cubicFeet.symbol
+                return String.shortFormatted(from: UnitVolume.cubicFeet)
             case .cubicYards:
-                return UnitVolume.cubicYards.symbol
+                return String.shortFormatted(from: UnitVolume.cubicYards)
             case .cubicMiles:
-                return UnitVolume.cubicMiles.symbol
+                return String.shortFormatted(from: UnitVolume.cubicMiles)
             case .acreFeet:
-                return UnitVolume.acreFeet.symbol
+                return String.shortFormatted(from: UnitVolume.acreFeet)
             case .bushels:
-                return UnitVolume.bushels.symbol
+                return String.shortFormatted(from: UnitVolume.bushels)
             case .teaspoons:
-                return UnitVolume.teaspoons.symbol
+                return String.shortFormatted(from: UnitVolume.teaspoons)
             case .tablespoons:
-                return UnitVolume.tablespoons.symbol
+                return String.shortFormatted(from: UnitVolume.tablespoons)
             case .fluidOunces:
-                return UnitVolume.fluidOunces.symbol
+                return String.shortFormatted(from: UnitVolume.fluidOunces)
             case .cups:
-                return UnitVolume.cups.symbol
+                return String.shortFormatted(from: UnitVolume.cups)
             case .pints:
-                return UnitVolume.pints.symbol
+                return String.shortFormatted(from: UnitVolume.pints)
             case .quarts:
-                return UnitVolume.quarts.symbol
+                return String.shortFormatted(from: UnitVolume.quarts)
             case .gallons:
-                return UnitVolume.gallons.symbol
+                return String.shortFormatted(from: UnitVolume.gallons)
             case .imperialTeaspoons:
-                return UnitVolume.imperialTeaspoons.symbol
+                return String.shortFormatted(from: UnitVolume.imperialTeaspoons)
             case .imperialTablespoons:
-                return UnitVolume.imperialTablespoons.symbol
+                return String.shortFormatted(from: UnitVolume.imperialTablespoons)
             case .imperialFluidOunces:
-                return UnitVolume.imperialFluidOunces.symbol
+                return String.shortFormatted(from: UnitVolume.imperialFluidOunces)
             case .imperialPints:
-                return UnitVolume.imperialPints.symbol
+                return String.shortFormatted(from: UnitVolume.imperialPints)
             case .imperialQuarts:
-                return UnitVolume.imperialQuarts.symbol
+                return String.shortFormatted(from: UnitVolume.imperialQuarts)
             case .imperialGallons:
-                return UnitVolume.imperialGallons.symbol
+                return String.shortFormatted(from: UnitVolume.imperialGallons)
             case .metricCups:
-                return UnitVolume.metricCups.symbol
+                return String.shortFormatted(from: UnitVolume.metricCups)
             }
         }
 
@@ -266,70 +265,69 @@ public enum DimensionType: Equatable {
         }
 
         init?(symbol: String) {
-            switch symbol {
-            case DimensionType.Volume.megaliters.rawValue, UnitVolume.megaliters.symbol:
+            if symbol.isSymbol(of: UnitVolume.megaliters) {
                 self = .megaliters
-            case DimensionType.Volume.kiloliters.rawValue, UnitVolume.kiloliters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.kiloliters) {
                 self = .kiloliters
-            case DimensionType.Volume.liters.rawValue, UnitVolume.liters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.liters) {
                 self = .liters
-            case DimensionType.Volume.deciliters.rawValue, UnitVolume.deciliters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.deciliters) {
                 self = .deciliters
-            case DimensionType.Volume.centiliters.rawValue, UnitVolume.centiliters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.centiliters) {
                 self = .centiliters
-            case DimensionType.Volume.milliliters.rawValue, UnitVolume.milliliters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.milliliters) {
                 self = .milliliters
-            case DimensionType.Volume.cubicKilometers.rawValue, UnitVolume.cubicKilometers.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicKilometers) {
                 self = .cubicKilometers
-            case DimensionType.Volume.cubicMeters.rawValue, UnitVolume.cubicMeters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicMeters) {
                 self = .cubicMeters
-            case DimensionType.Volume.cubicDecimeters.rawValue, UnitVolume.cubicDecimeters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicDecimeters) {
                 self = .cubicDecimeters
-            case DimensionType.Volume.cubicCentimeters.rawValue, UnitVolume.cubicCentimeters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicCentimeters) {
                 self = .cubicCentimeters
-            case DimensionType.Volume.cubicMillimeters.rawValue, UnitVolume.cubicMillimeters.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicMillimeters) {
                 self = .cubicMillimeters
-            case DimensionType.Volume.cubicInches.rawValue, UnitVolume.cubicInches.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicInches) {
                 self = .cubicInches
-            case DimensionType.Volume.cubicFeet.rawValue, UnitVolume.cubicFeet.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicFeet) {
                 self = .cubicFeet
-            case DimensionType.Volume.cubicYards.rawValue, UnitVolume.cubicYards.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicYards) {
                 self = .cubicYards
-            case DimensionType.Volume.cubicMiles.rawValue, UnitVolume.cubicMiles.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cubicMiles) {
                 self = .cubicMiles
-            case DimensionType.Volume.acreFeet.rawValue, UnitVolume.acreFeet.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.acreFeet) {
                 self = .acreFeet
-            case DimensionType.Volume.bushels.rawValue, UnitVolume.bushels.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.bushels) {
                 self = .bushels
-            case DimensionType.Volume.teaspoons.rawValue, UnitVolume.teaspoons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.teaspoons) {
                 self = .teaspoons
-            case DimensionType.Volume.tablespoons.rawValue, UnitVolume.tablespoons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.tablespoons) {
                 self = .tablespoons
-            case DimensionType.Volume.fluidOunces.rawValue, UnitVolume.fluidOunces.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.fluidOunces) {
                 self = .fluidOunces
-            case DimensionType.Volume.cups.rawValue, UnitVolume.cups.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.cups) {
                 self = .cups
-            case DimensionType.Volume.pints.rawValue, UnitVolume.pints.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.pints) {
                 self = .pints
-            case DimensionType.Volume.quarts.rawValue, UnitVolume.quarts.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.quarts) {
                 self = .quarts
-            case DimensionType.Volume.gallons.rawValue, UnitVolume.gallons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.gallons) {
                 self = .gallons
-            case DimensionType.Volume.imperialTeaspoons.rawValue, UnitVolume.imperialTeaspoons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialTeaspoons) {
                 self = .imperialTeaspoons
-            case DimensionType.Volume.imperialTablespoons.rawValue, UnitVolume.imperialTablespoons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialTablespoons) {
                 self = .imperialTablespoons
-            case DimensionType.Volume.imperialFluidOunces.rawValue, UnitVolume.imperialFluidOunces.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialFluidOunces) {
                 self = .imperialFluidOunces
-            case DimensionType.Volume.imperialPints.rawValue, UnitVolume.imperialPints.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialPints) {
                 self = .imperialPints
-            case DimensionType.Volume.imperialQuarts.rawValue, UnitVolume.imperialQuarts.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialQuarts) {
                 self = .imperialQuarts
-            case DimensionType.Volume.imperialGallons.rawValue, UnitVolume.imperialGallons.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.imperialGallons) {
                 self = .imperialGallons
-            case DimensionType.Volume.metricCups.rawValue, UnitVolume.metricCups.symbol:
+            } else if symbol.isSymbol(of: UnitVolume.metricCups) {
                 self = .metricCups
-            default:
+            } else {
                 return nil
             }
         }
@@ -365,27 +363,25 @@ public enum DimensionType: Equatable {
     public var baseSymbol: String {
         switch self {
         case .mass:
-            return "Library.BaseSymbol.Mass"
+            return String.shortFormatted(from: UnitMass.kilograms)
         case .volume:
-            return "Library.BaseSymbol.Volume"
+            return String.shortFormatted(from: UnitVolume.liters)
         case .custom:
             return ""
         }
     }
 
     static var allMassCases: [String] {
-        var result: [String] = []
-        for type in DimensionType.Mass.allCases {
-            result.append(type.rawValue)
-            result.append(type.symbol)
-        }
-        return result
+        return allMass + allMassSymbols
     }
     
     public static var allMass: [String] {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .long
+        formatter.locale = Locale.current
         return DimensionType.Mass.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
-            .map { $0.rawValue }
+            .map { formatter.string(from: $0.measurement.unit) }
     }
     
     public static var allMassSymbols: [String] {
@@ -395,18 +391,16 @@ public enum DimensionType: Equatable {
     }
 
     static var allVolumeCases: [String] {
-        var result: [String] = []
-        for type in DimensionType.Volume.allCases {
-            result.append(type.rawValue)
-            result.append(type.symbol)
-        }
-        return result
+        return allVolume + allVolumeSymbols
     }
     
     public static var allVolume: [String] {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .long
+        formatter.locale = Locale.current
         return DimensionType.Volume.allCases
             .sorted { $0.measurement.value < $1.measurement.value }
-            .map { $0.rawValue }
+            .map { formatter.string(from: $0.measurement.unit) }
     }
     
     public static var allVolumeSymbols: [String] {
@@ -469,9 +463,9 @@ public struct Measure {
     
     private mutating func setBaseUnitSymbol() {
         if symbol.isUnitMass {
-            baseUnitSymbol = UnitMass.kilograms.symbol
+            baseUnitSymbol = String.shortFormatted(from: UnitMass.kilograms)
         } else if symbol.isUnitVolume {
-            baseUnitSymbol = UnitVolume.liters.symbol
+            baseUnitSymbol = String.shortFormatted(from: UnitVolume.liters)
         }
     }
 }
@@ -531,5 +525,35 @@ public extension String {
     
     var isUnitVolume: Bool {
         return DimensionType.allVolumeCases.contains(self)
+    }
+}
+
+//MeasurementFormatter extension for string
+public extension String {
+    static func longFormatted(
+        from unit: Unit,
+        locale: Locale = Locale.current
+    ) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .long
+        formatter.locale = locale
+        return formatter.string(from: unit)
+    }
+    
+    static func shortFormatted(
+        from unit: Unit,
+        locale: Locale = Locale.current
+    ) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .short
+        formatter.locale = locale
+        return formatter.string(from: unit)
+    }
+    
+    func isSymbol(of unit: Unit) -> Bool {
+        return self == String.longFormatted(from: unit)
+            || self == String.longFormatted(from: unit, locale: Locale(identifier: "en_US"))
+            || self == String.shortFormatted(from: unit)
+            || self == String.shortFormatted(from: unit, locale: Locale(identifier: "en_US"))
     }
 }

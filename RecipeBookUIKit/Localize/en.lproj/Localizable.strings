@@ -30,7 +30,3 @@
 "Library.Dimension.Volume" = "Volume";
 
 "Library.Dimension.Custom" = "Custom";
-
-"Library.BaseSymbol.Mass" = "kg";
-
-"Library.BaseSymbol.Volume" = "L";

@@ -30,7 +30,3 @@
 "Library.Dimension.Volume" = "Объём";
 
 "Library.Dimension.Custom" = "Созданный";
-
-"Library.BaseSymbol.Mass" = "кг";
-
-"Library.BaseSymbol.Volume" = "л";
