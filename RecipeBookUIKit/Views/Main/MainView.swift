@@ -26,8 +26,8 @@ final class MainView: UIView {
     private func layoutContent(in view: UIView) {
         addRecipeTextField = layout(AddTextField()) { make in
             make.top.equalTo(safeArea).offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
             make.height.equalTo(40)
         }
 

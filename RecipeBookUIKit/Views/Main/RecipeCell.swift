@@ -11,7 +11,7 @@ import UIKit
 final class RecipeCell: UITableViewCell {
     static var reuseID = "RecipeCell"
 
-    private var recipeInfoLabel: UILabel!
+    private var recipeInfoLabel: InsettedLabel!
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -28,17 +28,23 @@ final class RecipeCell: UITableViewCell {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        recipeInfoLabel = layout(UILabel(text: "recipe info")) { make in
-            make.top.leading.equalToSuperview().offset(5)
-            make.trailing.bottom.equalToSuperview().offset(-5)
+        recipeInfoLabel = layout(InsettedLabel(text: "recipe info")) { make in
+            make.top.equalToSuperview().offset(5)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-5)
+            make.height.equalTo(40)
         }
     }
 
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
-        recipeInfoLabel.textColor = .black
-        recipeInfoLabel.font = .systemFont(ofSize: 15)
+        recipeInfoLabel.contentInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        recipeInfoLabel.textColor = .darkBrown
+        recipeInfoLabel.font = .systemFont(ofSize: 17)
+        recipeInfoLabel.backgroundColor = .honeyYellow
+        recipeInfoLabel.layer.cornerRadius = 5
+        recipeInfoLabel.layer.masksToBounds = true
     }
 
     func configureCell(with recipe: Recipe) {

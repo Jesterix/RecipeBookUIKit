@@ -48,6 +48,7 @@
 		5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC22F524F1B7B1003BA90E /* Localizable.strings */; };
 		5EAC22FA24F29AE9003BA90E /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */; };
 		5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FC24F2A29F003BA90E /* RecipeView.swift */; };
+		5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		5EAC22F624F1B7B6003BA90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
 		5EAC22FC24F2A29F003BA90E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
+				5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */,
 				449F023024D85A3600A556E1 /* TwoModeTextField.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
 				449F022E24D845B800A556E1 /* ConvertView.swift */,
@@ -368,6 +371,7 @@
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
+				5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */,
 				449F022F24D845B800A556E1 /* ConvertView.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
