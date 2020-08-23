@@ -144,6 +144,7 @@ extension RecipeViewController: UITableViewDelegate {
         ) { _, _, _ in
             self.recipe.ingredients.remove(at: indexPath.row)
         }
+        deleteAction.backgroundColor = .brightRed
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }

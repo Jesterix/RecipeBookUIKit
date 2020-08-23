@@ -64,21 +64,21 @@ final class RecipeView: UIView {
         backgroundColor = .white
         
         titleField.font = .systemFont(ofSize: 21)
-        titleField.textColor = .black
+        titleField.textColor = .darkBrown
         titleField.autocorrectionType = .no
 
         addIngredientTextField.placeholder = "Recipe.Add.Placeholder".localized()
         
-        ingredientTableView.backgroundColor = .white
+        ingredientTableView.backgroundColor = .milkWhite
         ingredientTableView.allowsSelection = false
 
         textView.autocorrectionType = .no
 
-        let color = #colorLiteral(red: 0.9609501958, green: 0.8888508081, blue: 0.8478230238, alpha: 0.9998855591)
-        textView.backgroundColor = color
+//        let color = #colorLiteral(red: 0.9609501958, green: 0.8888508081, blue: 0.8478230238, alpha: 0.9998855591)
+        textView.backgroundColor = .lightlyGray
         textView.layer.cornerRadius = 10
         textView.font = .systemFont(ofSize: 15)
-        textView.textColor = .black
+        textView.textColor = .darkBrown
     }
 }
 

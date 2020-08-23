@@ -18,6 +18,8 @@ final class NavigationController: UINavigationController {
     private func setupTitle() {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkBrown]
         navigationBar.titleTextAttributes = textAttributes
+        navigationBar.tintColor = .darkBrown
+//        navigationBar.barTintColor = .darkBrown
     }
     
     private func setupGradientBackground() {

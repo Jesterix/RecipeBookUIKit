@@ -68,20 +68,24 @@ final class IngredientCell: UITableViewCell {
         valueTextField.font = .systemFont(ofSize: 15)
         measurementTextField.font = .systemFont(ofSize: 15)
         
-        titleTextField.textColor = .black
-        valueTextField.textColor = .black
-        measurementTextField.textColor = .black
+        titleTextField.textColor = .darkBrown
+        valueTextField.textColor = .darkBrown
+        measurementTextField.textColor = .darkBrown
 
         valueTextField.textAlignment = .right
 
         titleTextField.autocorrectionType = .no
         valueTextField.autocorrectionType = .no
 
-        titleTextField.backgroundColor = .systemTeal
-        valueTextField.backgroundColor = .systemPink
-        measurementTextField.backgroundColor = .systemOrange
+        titleTextField.backgroundColor = .lightlyGray
+        valueTextField.backgroundColor = .warmGray
+        measurementTextField.backgroundColor = .warmBrown
 
         valueTextField.keyboardType = .decimalPad
+        
+        titleTextField.layer.cornerRadius = 3
+        valueTextField.layer.cornerRadius = 3
+        measurementTextField.layer.cornerRadius = 3
     }
 
     func configureCell(with ingredient: Ingredient) {

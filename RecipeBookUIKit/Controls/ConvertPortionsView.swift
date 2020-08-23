@@ -70,14 +70,15 @@ final class ConvertPortionsView: UIView {
         backgroundColor = .clear
         
         label.font = .systemFont(ofSize: 10)
-        label.textColor = .black
+        label.textColor = .darkBrown
 
         textField.keyboardType = .decimalPad
         textField.layer.cornerRadius = 10
         textField.font = .systemFont(ofSize: 15)
-        textField.textColor = .black
+        textField.textColor = .darkBrown
         textField.borderStyle = .roundedRect
         textField.textAlignment = .right
+        textField.backgroundColor = .warmGray
     }
     
     private func setup() {

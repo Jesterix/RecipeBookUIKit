@@ -75,12 +75,14 @@ final class Button: UIButton {
     override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
         super.setTitleColor(color, for: state)
         label.textColor = color
+        customImageView.tintColor = color
     }
 
     private func setup(from type: ButtonType) {
         let config = UIImage.SymbolConfiguration.init(pointSize: 30)
         customImageView.image = UIImage(systemName: type.rawValue, withConfiguration: config)
         label.text = type.name
+        setTitleColor(type.color, for: .normal)
     }
 
     private func changeType(to type: ButtonType) {
@@ -121,6 +123,19 @@ extension Button {
             case .cancel: return "Button.Cancel.Text".localized()
             case .convert: return "Button.Convert.Text".localized()
             case .save: return "Button.Save.Text".localized()
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .edit:
+                return .darkBrown
+            case .cancel:
+                return .brightRed
+            case .convert:
+                return .darkBrown
+            case .save:
+                return .darkBrown
             }
         }
     }
