@@ -20,13 +20,21 @@ extension UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    var navBarHeight: CGFloat {
+        navigationController?.navigationBar.frame.height ?? 0
+    }
+    
+    var statusBarHeight: CGFloat {
+        view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+    }
 
     @objc func keyboardWillHide() {
-        self.view.frame.origin.y = 0
+        self.view.frame.origin.y = 0 + navBarHeight + statusBarHeight
     }
 
     func adjustView(with notification: KeyboardNotification) {
-        self.view.frame.origin.y = notification.dy
+        self.view.frame.origin.y = notification.dy + navBarHeight + statusBarHeight
     }
 }
 

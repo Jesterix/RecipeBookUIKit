@@ -19,14 +19,12 @@ final class NavigationController: UINavigationController {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkBrown]
         navigationBar.titleTextAttributes = textAttributes
         navigationBar.tintColor = .darkBrown
-//        navigationBar.barTintColor = .darkBrown
     }
     
     private func setupGradientBackground() {
         let gradient = CAGradientLayer()
         var bounds = navigationBar.bounds
-        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        bounds.size.height += height
+        bounds.size.height += statusBarHeight
         gradient.frame = bounds
         
         gradient.colors = [UIColor.warmBrown.cgColor, UIColor.honeyYellow.cgColor, UIColor.honeyYellow.cgColor, UIColor.brightRed.cgColor]
