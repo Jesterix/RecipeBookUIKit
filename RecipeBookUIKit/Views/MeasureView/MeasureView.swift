@@ -84,16 +84,19 @@ final class MeasureView: UIView {
     private func applyStyle() {
         backgroundColor = .clear
         
-        let color = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        backBiew.backgroundColor = color
+//        let color = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        backBiew.backgroundColor = .honeyYellow
         backBiew.layer.cornerRadius = 25
+        
+        titleLabel.textColor = .darkBrown
 
         cancelButton.isHidden = true
 
         pickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
 
         closeButton.layer.cornerRadius = 15
-        closeButton.backgroundColor = .systemBlue
+        closeButton.backgroundColor = .warmGray
+        closeButton.setTitleColor(.darkBrown, for: .normal)
         closeButton.setTitle("Measure.Close.Button".localized(), for: .normal)
     }
 }

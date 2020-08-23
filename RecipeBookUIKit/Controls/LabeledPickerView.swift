@@ -53,6 +53,7 @@ final class LabeledPickerView: UIView {
         label.font = .systemFont(ofSize: 13)
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = .darkBrown
 
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -67,7 +68,7 @@ extension LabeledPickerView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel(text: data?[row] ?? "no value")
         label.font = .systemFont(ofSize: 13)
-        label.textColor = .black
+        label.textColor = .darkBrown
         label.textAlignment = .center
         return label
     }

@@ -56,13 +56,13 @@ final class TwoModeTextField: UITextField {
         switch mode {
         case .editable:
             self.alpha = 1
-            self.backgroundColor = .systemBackground
+            self.backgroundColor = .milkWhite
             self.borderStyle = .roundedRect
             self.isEnabled = true
             inputView = defaultInput
         case .changeable:
             self.alpha = 1
-            self.backgroundColor = .systemGray3
+            self.backgroundColor = .lightlyGray
             self.borderStyle = .roundedRect
             self.isEnabled = true
             setupPicker()
@@ -79,6 +79,7 @@ final class TwoModeTextField: UITextField {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
+        picker.backgroundColor = .lightlyGray
         inputView = picker
         pickerSelectCurrentValue()
     }
@@ -114,8 +115,12 @@ extension TwoModeTextField: UIPickerViewDataSource {
 }
 
 extension TwoModeTextField: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        pickerData[row]
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel(text: pickerData[row])
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .darkBrown
+        label.textAlignment = .center
+        return label
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

@@ -105,19 +105,24 @@ final class ConvertView: UIView {
         amountTextField.textAlignment = .right
         amountTextField.mode = .editable
         amountTextField.keyboardType = .decimalPad
+        amountTextField.textColor = .darkBrown
 
         unitTextField.autocorrectionType = .no
         unitTextField.mode = .changeable
+        unitTextField.textColor = .darkBrown
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
+        baseUnitLabel.textColor = .darkBrown
 
         baseAmountTextField.autocorrectionType = .no
         baseAmountTextField.textAlignment = .right
         baseAmountTextField.mode = .disabled
         baseAmountTextField.keyboardType = .decimalPad
+        baseAmountTextField.textColor = .darkBrown
 
         baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
+        baseUnitTextField.textColor = .darkBrown
 
 //        //Demo
 //        amountTextField.text = "5"
