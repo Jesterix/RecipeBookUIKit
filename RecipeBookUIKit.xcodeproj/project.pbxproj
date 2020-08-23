@@ -47,6 +47,7 @@
 		5EAC22F024F1B6F8003BA90E /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22EF24F1B6F8003BA90E /* String+LocalizeBundle.swift */; };
 		5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */; };
 		5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC22F524F1B7B1003BA90E /* Localizable.strings */; };
+		5EAC22FA24F29AE9003BA90E /* UIColor+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
 		5EAC22F424F1B7B1003BA90E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5EAC22F624F1B7B6003BA90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Style.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +134,9 @@
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
 				5EAC22F724F1B914003BA90E /* Localize */,
-				5EA0584624D050DB00631E04 /* MeasureView */,
 				447448A024C8505D00EA5B2C /* DataBase */,
 				4474488B24C6F09400EA5B2C /* Controls */,
-				4474488824C6363C00EA5B2C /* Main */,
-				4474488E24C781C200EA5B2C /* RecipeView */,
+				5EAC22F824F29A6D003BA90E /* Views */,
 				4474488124C6229F00EA5B2C /* Models */,
 				4474487E24C60C7A00EA5B2C /* Extensions */,
 				4474486C24C60B1700EA5B2C /* Assets.xcassets */,
@@ -150,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
+				5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */,
 				4428C44D24E3D1960054C6DD /* Predicate.swift */,
 				4474487C24C60C7000EA5B2C /* Extensions.swift */,
 				4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */,
@@ -248,6 +249,16 @@
 				5EAC22F124F1B700003BA90E /* String+LocalizeTableName.swift */,
 			);
 			path = Localize;
+			sourceTree = "<group>";
+		};
+		5EAC22F824F29A6D003BA90E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4474488824C6363C00EA5B2C /* Main */,
+				4474488E24C781C200EA5B2C /* RecipeView */,
+				5EA0584624D050DB00631E04 /* MeasureView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
 				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
+				5EAC22FA24F29AE9003BA90E /* UIColor+Style.swift in Sources */,
 				5EAC22EE24F1B629003BA90E /* String+LocalizedBundleTableName.swift in Sources */,
 				4474486424C60B1300EA5B2C /* AppDelegate.swift in Sources */,
 				4474486624C60B1300EA5B2C /* SceneDelegate.swift in Sources */,
