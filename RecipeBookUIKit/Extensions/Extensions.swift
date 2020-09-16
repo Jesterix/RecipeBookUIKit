@@ -139,3 +139,16 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
     }
 }
+
+//MARK: - String exts
+extension String {
+    func firstWord() -> String {
+        return String(self.split(separator: " ", omittingEmptySubsequences: true)[0])
+    }
+
+    func dropFirstWord() -> String {
+        return String(self.split(separator: " ", omittingEmptySubsequences: true)
+            .dropFirst()
+            .joined(separator: " "))
+    }
+}

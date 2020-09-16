@@ -35,6 +35,8 @@
 		447448A224D6E0CC00EA5B2C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447448A124D6E0CC00EA5B2C /* Button.swift */; };
 		449F022F24D845B800A556E1 /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F022E24D845B800A556E1 /* ConvertView.swift */; };
 		449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F023024D85A3600A556E1 /* TwoModeTextField.swift */; };
+		44F34385250510D2009495B3 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F34384250510D2009495B3 /* ShareViewController.swift */; };
+		44F3438C250510D2009495B3 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 44F34382250510D1009495B3 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5E18C0D824EAD8DC003F7D74 /* RealmCustomMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */; };
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
@@ -52,12 +54,38 @@
 		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		44F3438A250510D2009495B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4474485824C60B1300EA5B2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44F34381250510D1009495B3;
+			remoteInfo = Share;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44F3438D250510D2009495B3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				44F3438C250510D2009495B3 /* Share.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4428C43824DFF6340054C6DD /* LabeledPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledPickerView.swift; sourceTree = "<group>"; };
 		4428C44924E2CC780054C6DD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4428C44B24E2ED100054C6DD /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		4428C44D24E3D1960054C6DD /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertPortionsView.swift; sourceTree = "<group>"; };
+		4449C324251234970011C7F3 /* RecipeBookUIKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecipeBookUIKit.entitlements; sourceTree = "<group>"; };
+		4449C325251237250011C7F3 /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Share.entitlements; sourceTree = "<group>"; };
 		4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBookUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4474486324C60B1300EA5B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4474486524C60B1300EA5B2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +109,9 @@
 		447448A124D6E0CC00EA5B2C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		449F022E24D845B800A556E1 /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
 		449F023024D85A3600A556E1 /* TwoModeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoModeTextField.swift; sourceTree = "<group>"; };
+		44F34382250510D1009495B3 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F34384250510D2009495B3 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		44F34389250510D2009495B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCustomMeasurement.swift; sourceTree = "<group>"; };
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
@@ -111,6 +142,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44F3437F250510D1009495B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -119,6 +157,7 @@
 			children = (
 				5EAC22E124F078F3003BA90E /* MeasureLibrary */,
 				4474486224C60B1300EA5B2C /* RecipeBookUIKit */,
+				44F34383250510D2009495B3 /* Share */,
 				4474486124C60B1300EA5B2C /* Products */,
 				5EAC22E224F0790D003BA90E /* Frameworks */,
 			);
@@ -128,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */,
+				44F34382250510D1009495B3 /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +175,7 @@
 		4474486224C60B1300EA5B2C /* RecipeBookUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				4449C324251234970011C7F3 /* RecipeBookUIKit.entitlements */,
 				4474486324C60B1300EA5B2C /* AppDelegate.swift */,
 				4474486524C60B1300EA5B2C /* SceneDelegate.swift */,
 				5EAC22F724F1B914003BA90E /* Localize */,
@@ -218,6 +259,16 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		44F34383250510D2009495B3 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				4449C325251237250011C7F3 /* Share.entitlements */,
+				44F34384250510D2009495B3 /* ShareViewController.swift */,
+				44F34389250510D2009495B3 /* Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		5EA0584624D050DB00631E04 /* MeasureView */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,10 +328,12 @@
 				4474485C24C60B1300EA5B2C /* Sources */,
 				4474485D24C60B1300EA5B2C /* Frameworks */,
 				4474485E24C60B1300EA5B2C /* Resources */,
+				44F3438D250510D2009495B3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				44F3438B250510D2009495B3 /* PBXTargetDependency */,
 			);
 			name = RecipeBookUIKit;
 			packageProductDependencies = (
@@ -292,18 +345,38 @@
 			productReference = 4474486024C60B1300EA5B2C /* RecipeBookUIKit.app */;
 			productType = "com.apple.product-type.application";
 		};
+		44F34381250510D1009495B3 /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F34390250510D2009495B3 /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				44F3437E250510D1009495B3 /* Sources */,
+				44F3437F250510D1009495B3 /* Frameworks */,
+				44F34380250510D1009495B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Share;
+			productName = Share;
+			productReference = 44F34382250510D1009495B3 /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4474485824C60B1300EA5B2C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "George Khaydenko";
 				TargetAttributes = {
 					4474485F24C60B1300EA5B2C = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					44F34381250510D1009495B3 = {
+						CreatedOnToolsVersion = 11.6;
 					};
 				};
 			};
@@ -326,6 +399,7 @@
 			projectRoot = "";
 			targets = (
 				4474485F24C60B1300EA5B2C /* RecipeBookUIKit */,
+				44F34381250510D1009495B3 /* Share */,
 			);
 		};
 /* End PBXProject section */
@@ -338,6 +412,13 @@
 				4474487024C60B1700EA5B2C /* LaunchScreen.storyboard in Resources */,
 				5EAC22F324F1B7B1003BA90E /* Localizable.strings in Resources */,
 				4474486D24C60B1700EA5B2C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F34380250510D1009495B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +469,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44F3437E250510D1009495B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F34385250510D2009495B3 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44F3438B250510D2009495B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44F34381250510D1009495B3 /* Share */;
+			targetProxy = 44F3438A250510D2009495B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4474486E24C60B1700EA5B2C /* LaunchScreen.storyboard */ = {
@@ -531,7 +628,9 @@
 		4474487524C60B1700EA5B2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
@@ -550,7 +649,9 @@
 		4474487624C60B1700EA5B2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
@@ -561,6 +662,48 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		44F3438E250510D2009495B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBXSN34678;
+				INFOPLIST_FILE = Share/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		44F3438F250510D2009495B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBXSN34678;
+				INFOPLIST_FILE = Share/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -583,6 +726,15 @@
 			buildConfigurations = (
 				4474487524C60B1700EA5B2C /* Debug */,
 				4474487624C60B1700EA5B2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F34390250510D2009495B3 /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F3438E250510D2009495B3 /* Debug */,
+				44F3438F250510D2009495B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

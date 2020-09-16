@@ -10,6 +10,10 @@ import UIKit
 import MeasureLibrary
 
 final class MainViewController: UIViewController {
+    let sharedDefaults = UserDefaults.init(
+        suiteName: "group.com.jesterix.RecipeBook")
+    var isSharing = false
+
     private var mainView: MainView!
     private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
@@ -32,6 +36,20 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         mainView.recipeTableView.reloadData()
+        showSharedTask()
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil,
+            queue: .main) { [unowned self] _ in
+                self.showSharedTask()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil)
     }
     
     private func setupDelegates() {
@@ -50,6 +68,14 @@ final class MainViewController: UIViewController {
 
     private func doFirstFetch() {
         customProvider.customMeasures = dataManager.getCustomMeasures()
+    }
+
+    private func showSharedTask() {
+        guard let shareTask = sharedDefaults?.string(forKey: "shareTask") else { return }
+        isSharing = true
+        addObject(from: shareTask)
+        sharedDefaults?.removeObject(forKey: "shareTask")
+        isSharing = false
     }
 }
 
@@ -107,8 +133,11 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
-        dataManager.update(recipe: Recipe(title: string))
+        if isSharing {
+            dataManager.update(recipe: Recipe(title: string.firstWord(), text: string.dropFirstWord()))
+        } else {
+            dataManager.update(recipe: Recipe(title: string))
+        }
         mainView.recipeTableView.reloadData()
     }
 }
-
