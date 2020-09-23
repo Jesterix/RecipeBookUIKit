@@ -3,9 +3,9 @@
 
 "Main.Delete.Action" = "Удалить";
 
-"Main.Add.Placeholder" = "Добавить рецепт";
+"Main.Add.Placeholder" = "Введите название нового рецепта";
 
-"Recipe.Add.Placeholder" = "Добавить ингредиент";
+"Recipe.Add.Placeholder" = "Введите новый ингредиент";
 
 "Measure.Choose.Title" = "Выберите меру";
 

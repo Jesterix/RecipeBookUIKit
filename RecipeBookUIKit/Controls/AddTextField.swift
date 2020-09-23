@@ -14,7 +14,7 @@ protocol ObjectFromStringAdding: class {
 
 class AddTextField: UITextField {
 
-    private var addButton: UIButton!
+    private var clearButton: UIButton!
     weak var addingDelegate: ObjectFromStringAdding?
 
     private weak var _delegate: UITextFieldDelegate?
@@ -40,7 +40,7 @@ class AddTextField: UITextField {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        addButton = layout(UIButton(type: .contactAdd)) { make in
+        clearButton = layout(UIButton()) { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -55,17 +55,29 @@ class AddTextField: UITextField {
         autocorrectionType = .no
         textInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 40)
 
-        addButton.tintColor = .darkBrown
+        clearButton.setImage(
+            UIImage.init(systemName: "xmark.circle.fill"),
+            for: .normal)
+        clearButton.tintColor = .coldBrown
+        clearButton.addTarget(
+            self,
+            action: #selector(clearSearchField),
+            for: .touchUpInside)
+        guard let text = text else {
+            return
+        }
+        clearButton.isHidden = !(text.count > 0)
+    }
+
+    @objc private func clearSearchField() {
+        text = ""
+        clearButton.isHidden = true
+        _ = delegate?.textFieldShouldClear?(self)
     }
 
     //MARK: - set delegates
     private func setDelegates() {
         super.delegate = self
-
-        addButton.addTarget(
-            addingDelegate,
-            action: #selector(addObject),
-            for: .touchUpInside)
     }
 
     // MARK: - TextField Insets
@@ -97,6 +109,7 @@ class AddTextField: UITextField {
         }
         addingDelegate?.addObject(from: text)
         self.text = ""
+        clearButton.isHidden = true
     }
 }
 
@@ -106,7 +119,12 @@ extension AddTextField: UITextFieldDelegate {
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String
     ) -> Bool {
-        self._delegate?.textField?(
+        let text = (textField.text as NSString?)?.replacingCharacters(
+            in: range,
+            with: string) ?? string
+        clearButton.isHidden = !(text.count > 0)
+
+        return self._delegate?.textField?(
             textField,
             shouldChangeCharactersIn: range,
             replacementString: string) ?? true
@@ -139,6 +157,7 @@ extension AddTextField: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addObject()
         textField.resignFirstResponder()
         return self._delegate?.textFieldShouldReturn?(textField) ?? true
     }

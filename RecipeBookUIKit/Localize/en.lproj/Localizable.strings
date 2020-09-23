@@ -3,9 +3,9 @@
 
 "Main.Delete.Action" = "Delete";
 
-"Main.Add.Placeholder" = "Add recipe";
+"Main.Add.Placeholder" = "Enter new recipe title";
 
-"Recipe.Add.Placeholder" = "Add ingredient";
+"Recipe.Add.Placeholder" = "Enter new ingredient";
 
 "Measure.Choose.Title" = "Choose measurement";
 
