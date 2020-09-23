@@ -108,6 +108,12 @@ extension Button {
         button.types = [.cancel, .cancel]
         return button
     }
+
+    static var converted: Button {
+        let button = Button()
+        button.types = [.convert, .save]
+        return button
+    }
 }
 
 extension Button {

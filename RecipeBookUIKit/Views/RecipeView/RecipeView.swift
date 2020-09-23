@@ -30,7 +30,7 @@ final class RecipeView: UIView {
         convertPortionsView = layout(ConvertPortionsView()) { make in
             make.top.equalTo(safeArea).offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.width.equalTo(125)
+            make.width.equalTo(175)
         }
         
         titleField = layout(UITextField()) { make in

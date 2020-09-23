@@ -17,11 +17,13 @@
 
 "Button.Cancel.Text" = "Отменить";
 
-"Button.Convert.Text" = "Пересчёт";
+"Button.Convert.Text" = "Пересчитать";
 
 "Button.Save.Text" = "Сохранить";
 
 "Portions.Convert.Text" = "Порций:";
+
+"Portions.Label.Text" = " на:";
 
 "BaseUnit.Label.Text" = "базовая единица:";
 

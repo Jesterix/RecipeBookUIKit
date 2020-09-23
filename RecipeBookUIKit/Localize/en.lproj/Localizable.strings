@@ -23,6 +23,8 @@
 
 "Portions.Convert.Text" = "Portions:";
 
+"Portions.Label.Text" = " to:";
+
 "BaseUnit.Label.Text" = "base units:";
 
 "Library.Dimension.Mass" = "Mass";

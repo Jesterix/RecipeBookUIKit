@@ -7,22 +7,31 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ConvertPortionsView: UIView {
     enum State {
         case normal, converting
     }
 
-    var state: State = .normal
+    var state: State = .normal {
+        didSet {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.layoutContentIfNeeded()
+            })
+        }
+    }
 
     private var label: UILabel!
     private var textField: UITextField!
-    private var button: Button!
+    private var convertButton: Button!
+    private var cancelButton: Button!
     var coefficient: Double = 1 {
         didSet {
             textField.text = String(coefficient)
         }
     }
+    private var previousCoefficient: Double = 1
     
     private weak var _delegate: UITextFieldDelegate?
     public var delegate: UITextFieldDelegate? {
@@ -48,27 +57,69 @@ final class ConvertPortionsView: UIView {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        button = layout(Button.convert) { make in
+        cancelButton = layout(Button.cancel) { make in
             make.top.bottom.equalToSuperview()
-            make.centerX.equalTo(view.trailing).offset(-40)
+            make.trailing.equalToSuperview()
         }
-        
-        label = layout(UILabel(text: "Portions.Convert.Text".localized())) { make in
-            make.top.leading.equalToSuperview()
+
+        convertButton = layout(Button.converted) { make in
+            make.top.bottom.equalToSuperview()
+            make.trailing.equalTo(cancelButton.leading).offset(-5)
         }
-        
+
         textField = layout(UITextField()) { make in
-            make.leading.equalToSuperview()
-            make.height.equalTo(30)
-            make.bottom.equalTo(button.bottom)
-            make.trailing.lessThanOrEqualTo(button.leading)
+            textFieldConstraints(make: make)
         }
+
+        label = layout(UILabel(text: "Portions.Convert.Text".localized())) { make in
+            labelConstraints(make: make)
+        }
+    }
+
+    private func layoutContentIfNeeded() {
+        convertButton.snp.remakeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            switch state {
+            case .normal:
+                make.trailing.equalToSuperview()
+            case .converting:
+                make.trailing.equalTo(cancelButton.leading).offset(-5)
+            }
+        }
+
+        textField.snp.remakeConstraints { make in
+            textFieldConstraints(make: make)
+        }
+
+        label.snp.remakeConstraints { make in
+            labelConstraints(make: make)
+        }
+
+        switch state {
+        case .normal:
+            cancelButton.alpha = 0
+        case .converting:
+            cancelButton.alpha = 1
+        }
+        layoutIfNeeded()
+    }
+
+    private func textFieldConstraints(make: ConstraintMaker) {
+        make.height.equalTo(30)
+        make.width.equalTo(50)
+        make.bottom.equalTo(convertButton.bottom)
+        make.trailing.lessThanOrEqualTo(convertButton.leading).offset(-5)
+    }
+
+    private func labelConstraints(make: ConstraintMaker) {
+        make.top.equalToSuperview()
+        make.leading.equalTo(textField)
     }
     
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .clear
-        
+
         label.font = .systemFont(ofSize: 10)
         label.textColor = .darkBrown
 
@@ -82,17 +133,45 @@ final class ConvertPortionsView: UIView {
     }
     
     private func setup() {
-        button.addTarget(
+        convertButton.addTarget(
             self,
-            action: #selector(stateToggle),
+            action: #selector(convertTapped),
+            for: .touchUpInside)
+
+        cancelButton.addTarget(
+            self,
+            action: #selector(cancelTapped),
             for: .touchUpInside)
         
         textField.delegate = self
+
+        layoutContentIfNeeded()
     }
     
-    @objc func stateToggle() {
-        button.isPrimary.toggle()
-        state = button.isPrimary ? .normal : .converting
+    func stateToggle() {
+        convertButton.isPrimary.toggle()
+        state = convertButton.isPrimary ? .normal : .converting
+    }
+
+    @objc func convertTapped() {
+        stateToggle()
+        switch state {
+        case .normal:
+            label.text = "Portions.Convert.Text".localized()
+            textField.text = String(coefficient)
+        case .converting:
+            previousCoefficient = coefficient
+            label.text = String(coefficient) + "Portions.Label.Text".localized()
+            textField.text = ""
+        }
+    }
+
+    @objc func cancelTapped() {
+        coefficient = previousCoefficient
+        self._delegate?.textFieldDidEndEditing?(textField)
+        label.text = "Portions.Convert.Text".localized()
+        textField.text = String(coefficient)
+        stateToggle()
     }
 }
 
