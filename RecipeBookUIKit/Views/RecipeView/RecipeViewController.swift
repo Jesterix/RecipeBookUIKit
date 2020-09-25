@@ -142,24 +142,27 @@ extension RecipeViewController: UITableViewDelegate {
         _ tableView: UITableView,
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
     ) -> UISwipeActionsConfiguration? {
-
-        let deleteAction = UIContextualAction(
-            style: .destructive,
-            title: "Main.Delete.Action".localized()
-        ) { [unowned self] _, _, _ in
-            self.recipe.ingredients.remove(at: indexPath.row - 1)
-            self.recipeView.showTablePlaceholder(self.recipe.ingredients.count > 0)
+        if indexPath.row == 0 {
+            return UISwipeActionsConfiguration(actions: [])
+        } else {
+            let deleteAction = UIContextualAction(
+                style: .destructive,
+                title: "Main.Delete.Action".localized()
+            ) { [unowned self] _, _, _ in
+                self.recipe.ingredients.remove(at: indexPath.row - 1)
+                self.recipeView.showTablePlaceholder(self.recipe.ingredients.isEmpty)
+            }
+            deleteAction.backgroundColor = .brightRed
+            
+            return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-        deleteAction.backgroundColor = .brightRed
-
-        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
 
 extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
         recipe.ingredients.append(Ingredient(title: string))
-        recipeView.showTablePlaceholder(recipe.ingredients.count > 0)
+        recipeView.showTablePlaceholder(recipe.ingredients.isEmpty)
         recipeView.ingredientTableView.reloadData()
     }
 }

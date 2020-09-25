@@ -90,7 +90,7 @@ final class RecipeView: UIView {
     }
     
     func showTablePlaceholder(_ bool: Bool) {
-        tablePlaceholder.isHidden = bool
+        tablePlaceholder.isHidden = !bool
     }
     
     func showTextViewPlaceholder(_ bool: Bool) {
