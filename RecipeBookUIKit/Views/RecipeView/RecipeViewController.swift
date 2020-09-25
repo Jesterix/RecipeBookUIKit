@@ -87,7 +87,7 @@ extension RecipeViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        recipe.ingredients.count
+        recipe.ingredients.count + 1
     }
 
     func tableView(
@@ -97,17 +97,18 @@ extension RecipeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.reuseID) as? IngredientCell else {
             return UITableViewCell()
         }
-        cell.configureCell(with: recipe.ingredients[indexPath.row])
         
-        cell.ingredientChanged { [unowned self, weak tableView] (ingredient: Ingredient) in
-            self.recipe.ingredients[indexPath.row] = ingredient
-//            TODO: fix jumping
-//            DispatchQueue.main.async {
-//                tableView?.beginUpdates()
-//                tableView?.endUpdates()
-//            }
+        if indexPath.row == 0 {
+            cell.configureHeader()
+        } else {
+            cell.configureCell(with: recipe.ingredients[indexPath.row - 1])
+
+            cell.ingredientChanged { [unowned self] (ingredient: Ingredient) in
+                self.recipe.ingredients[indexPath.row - 1] = ingredient
+            }
+            cell.tableView = tableView
         }
-        cell.tableView = tableView
+
         return cell
     }
 }

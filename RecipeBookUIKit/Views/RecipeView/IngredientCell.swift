@@ -99,6 +99,28 @@ final class IngredientCell: UITableViewCell {
         valueTextField.text = "\(measure.value)"
         measurementTextField.text = "\(measure.symbol)"
     }
+
+    func configureHeader() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        let headerTextAttributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: 15, weight: .bold),
+            .paragraphStyle: paragraphStyle
+        ]
+
+        titleTextField.attributedText = NSAttributedString(string: "Title", attributes: headerTextAttributes)
+        valueTextField.attributedText = NSAttributedString(string: "Value", attributes: headerTextAttributes)
+        measurementTextField.attributedText = NSAttributedString(string: "Measure", attributes: headerTextAttributes)
+
+//        titleTextField.alpha = 0.7
+//        valueTextField.alpha = 0.7
+//        measurementTextField.alpha = 0.7
+        
+        titleTextField.isUserInteractionEnabled = false
+        valueTextField.isUserInteractionEnabled = false
+        measurementTextField.isUserInteractionEnabled = false
+    }
  
     func ingredientChanged(action: @escaping (Ingredient) -> Void) {
         self.ingredientChanged = action
