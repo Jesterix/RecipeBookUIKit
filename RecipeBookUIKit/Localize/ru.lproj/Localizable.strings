@@ -40,3 +40,5 @@
 "Ingredient.Measure" = "Мера";
 
 "Placeholder.Ingredients.Text" = "Ингредиентов еще нет";
+
+"Placeholder.Recipe.Text" = "Впишите рецепт";

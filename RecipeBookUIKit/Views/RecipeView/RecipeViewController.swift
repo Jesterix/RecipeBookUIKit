@@ -45,12 +45,14 @@ final class RecipeViewController: UIViewController {
             forCellReuseIdentifier: IngredientCell.reuseID)
         recipeView.addIngredientTextField.addingDelegate = self
         recipeView.textView.delegate = self
+        
         recipeView.textView.text = recipe.text
+        recipeView.showTextViewPlaceholder(recipe.text.isEmpty)
         
         recipeView.convertPortionsView.coefficient = recipe.numberOfPortions ?? 1
         recipeView.convertPortionsView.delegate = self
         
-        recipeView.showPlaceholder(recipe.ingredients.count > 0)
+        recipeView.showTablePlaceholder(recipe.ingredients.isEmpty)
 
         hideKeyboardOnTap()
     }
@@ -146,7 +148,7 @@ extension RecipeViewController: UITableViewDelegate {
             title: "Main.Delete.Action".localized()
         ) { [unowned self] _, _, _ in
             self.recipe.ingredients.remove(at: indexPath.row - 1)
-            self.recipeView.showPlaceholder(self.recipe.ingredients.count > 0)
+            self.recipeView.showTablePlaceholder(self.recipe.ingredients.count > 0)
         }
         deleteAction.backgroundColor = .brightRed
 
@@ -157,7 +159,7 @@ extension RecipeViewController: UITableViewDelegate {
 extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
         recipe.ingredients.append(Ingredient(title: string))
-        recipeView.showPlaceholder(recipe.ingredients.count > 0)
+        recipeView.showTablePlaceholder(recipe.ingredients.count > 0)
         recipeView.ingredientTableView.reloadData()
     }
 }
@@ -165,6 +167,41 @@ extension RecipeViewController: ObjectFromStringAdding {
 extension RecipeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         recipe.text = textView.text
+    }
+    
+    func textView(
+        _ textView: UITextView,
+        shouldChangeTextIn range: NSRange,
+        replacementText text: String
+    ) -> Bool {
+        let currentText: String = textView.text
+        let updatedText = (currentText as NSString).replacingCharacters(
+            in: range,
+            with: text)
+        
+        if updatedText.isEmpty {
+            recipeView.showTextViewPlaceholder(true)
+            textView.selectedTextRange = textView.textRange(
+                from: textView.beginningOfDocument,
+                to: textView.beginningOfDocument)
+        } else if textView.textColor == .coldBrown && !text.isEmpty {
+            recipeView.showTextViewPlaceholder(false)
+            textView.text = text
+        } else {
+            return true
+        }
+        
+        return false
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == UIColor.coldBrown {
+                textView.selectedTextRange = textView.textRange(
+                    from: textView.beginningOfDocument,
+                    to: textView.beginningOfDocument)
+            }
+        }
     }
 }
 

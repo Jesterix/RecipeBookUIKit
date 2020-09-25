@@ -40,3 +40,5 @@
 "Ingredient.Measure" = "Measure";
 
 "Placeholder.Ingredients.Text" = "No ingredients yet";
+
+"Placeholder.Recipe.Text" = "Write in a recipe";

@@ -89,8 +89,17 @@ final class RecipeView: UIView {
         textView.textColor = .darkBrown
     }
     
-    func showPlaceholder(_ bool: Bool) {
+    func showTablePlaceholder(_ bool: Bool) {
         tablePlaceholder.isHidden = bool
+    }
+    
+    func showTextViewPlaceholder(_ bool: Bool) {
+        if bool {
+            textView.textColor = .coldBrown
+            textView.text = "Placeholder.Recipe.Text".localized()
+        } else {
+            textView.textColor = .darkBrown
+        }
     }
 }
 
