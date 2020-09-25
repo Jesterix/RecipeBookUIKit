@@ -53,6 +53,7 @@
 		5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */; };
 		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
 		CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */; };
+		CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12788251E935900FBFFB5 /* InsettedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedLabel.swift; sourceTree = "<group>"; };
 		5EAC230024F2F1EB003BA90E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		CFA12788251E935900FBFFB5 /* InsettedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
+				CFA12788251E935900FBFFB5 /* InsettedTextField.swift */,
 				5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */,
 				449F023024D85A3600A556E1 /* TwoModeTextField.swift */,
 				447448A124D6E0CC00EA5B2C /* Button.swift */,
@@ -454,6 +457,7 @@
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
+				CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */,
 				5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */,
 				5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,

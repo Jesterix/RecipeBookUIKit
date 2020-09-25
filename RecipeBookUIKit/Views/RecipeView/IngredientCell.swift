@@ -15,9 +15,9 @@ final class IngredientCell: UITableViewCell {
     private var ingredient: Ingredient = Ingredient(title: "")
     private var ingredientChanged: ((Ingredient) -> Void)?
 
-    private var titleTextField: UITextField!
-    private var valueTextField: UITextField!
-    private var measurementTextField: UITextField!
+    private var titleTextField: InsettedTextField!
+    private var valueTextField: InsettedTextField!
+    private var measurementTextField: InsettedTextField!
 
     weak var tableView: UITableView?
 
@@ -39,20 +39,20 @@ final class IngredientCell: UITableViewCell {
 
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        titleTextField = layout(UITextField()) { make in
+        titleTextField = layout(InsettedTextField()) { make in
             make.top.leading.equalToSuperview().offset(5)
             make.bottom.equalToSuperview().offset(-5)
             make.width.equalToSuperview().dividedBy(2)
         }
 
-        valueTextField = layout(UITextField()) { make in
+        valueTextField = layout(InsettedTextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(titleTextField.trailing).offset(5)
             make.width.equalToSuperview().dividedBy(5.5)
         }
         valueTextField.tag = 1
 
-        measurementTextField = layout(UITextField()) { make in
+        measurementTextField = layout(InsettedTextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(valueTextField.trailing).offset(5)
             make.trailing.equalToSuperview()
@@ -63,14 +63,6 @@ final class IngredientCell: UITableViewCell {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
-        
-        titleTextField.font = .systemFont(ofSize: 15)
-        valueTextField.font = .systemFont(ofSize: 15)
-        measurementTextField.font = .systemFont(ofSize: 15)
-        
-        titleTextField.textColor = .darkBrown
-        valueTextField.textColor = .darkBrown
-        measurementTextField.textColor = .darkBrown
 
         valueTextField.textAlignment = .right
 
@@ -83,9 +75,14 @@ final class IngredientCell: UITableViewCell {
 
         valueTextField.keyboardType = .decimalPad
         
-        titleTextField.layer.cornerRadius = 3
-        valueTextField.layer.cornerRadius = 3
-        measurementTextField.layer.cornerRadius = 3
+        [titleTextField,
+         valueTextField,
+         measurementTextField].forEach { item in
+            item?.font = .systemFont(ofSize: 15)
+            item?.textColor = .darkBrown
+            item?.layer.cornerRadius = 3
+            item?.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        }
     }
 
     func configureCell(with ingredient: Ingredient) {
