@@ -12,13 +12,13 @@ protocol ObjectFromStringAdding: class {
     func addObject(from string: String)
 }
 
-class AddTextField: UITextField {
+final class AddTextField: UITextField {
 
     private var clearButton: UIButton!
     weak var addingDelegate: ObjectFromStringAdding?
 
     private weak var _delegate: UITextFieldDelegate?
-    open override var delegate: UITextFieldDelegate? {
+    public override var delegate: UITextFieldDelegate? {
         get {
             return self._delegate
         }
