@@ -49,6 +49,8 @@ final class RecipeViewController: UIViewController {
         
         recipeView.convertPortionsView.coefficient = recipe.numberOfPortions ?? 1
         recipeView.convertPortionsView.delegate = self
+        
+        recipeView.showPlaceholder(recipe.ingredients.count > 0)
 
         hideKeyboardOnTap()
     }
@@ -122,12 +124,12 @@ extension RecipeViewController: UITableViewDelegate {
 
         let vc = MeasureViewController()
 
-        if let measure = recipe.ingredients[indexPath.row].measurement {
+        if let measure = recipe.ingredients[indexPath.row - 1].measurement {
             vc.measure = measure
         }
 
         vc.onClose = { [unowned self] measure in
-            self.recipe.ingredients[indexPath.row].measurement = measure
+            self.recipe.ingredients[indexPath.row - 1].measurement = measure
         }
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
@@ -142,8 +144,9 @@ extension RecipeViewController: UITableViewDelegate {
         let deleteAction = UIContextualAction(
             style: .destructive,
             title: "Main.Delete.Action".localized()
-        ) { _, _, _ in
-            self.recipe.ingredients.remove(at: indexPath.row)
+        ) { [unowned self] _, _, _ in
+            self.recipe.ingredients.remove(at: indexPath.row - 1)
+            self.recipeView.showPlaceholder(self.recipe.ingredients.count > 0)
         }
         deleteAction.backgroundColor = .brightRed
 
@@ -154,6 +157,7 @@ extension RecipeViewController: UITableViewDelegate {
 extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
         recipe.ingredients.append(Ingredient(title: string))
+        recipeView.showPlaceholder(recipe.ingredients.count > 0)
         recipeView.ingredientTableView.reloadData()
     }
 }

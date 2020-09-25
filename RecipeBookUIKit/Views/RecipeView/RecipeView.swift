@@ -13,6 +13,7 @@ final class RecipeView: UIView {
     var convertPortionsView: ConvertPortionsView!
     var addIngredientTextField: AddTextField!
     var ingredientTableView: UITableView!
+    private var tablePlaceholder: PlaceholderView!
     var textView: UITextView!
 
     init() {
@@ -51,7 +52,13 @@ final class RecipeView: UIView {
             make.leading.trailing.equalTo(addIngredientTextField)
             make.bottom.equalTo(safeArea).dividedBy(2)
         }
-
+        
+        tablePlaceholder = layout(PlaceholderView(
+            text: "Placeholder.Ingredients.Text".localized())) { make in
+                make.top.bottom.leading.trailing.equalTo(ingredientTableView)
+        }
+        tablePlaceholder.isHidden = true
+        
         textView = layout(UITextView()) { make in
             make.top.equalTo(ingredientTableView.bottom).offset(10)
             make.leading.trailing.equalTo(addIngredientTextField)
@@ -71,6 +78,7 @@ final class RecipeView: UIView {
         
         ingredientTableView.backgroundColor = .milkWhite
         ingredientTableView.allowsSelection = false
+        ingredientTableView.separatorStyle = .none
 
         textView.autocorrectionType = .no
 
@@ -79,6 +87,10 @@ final class RecipeView: UIView {
         textView.layer.cornerRadius = 10
         textView.font = .systemFont(ofSize: 15)
         textView.textColor = .darkBrown
+    }
+    
+    func showPlaceholder(_ bool: Bool) {
+        tablePlaceholder.isHidden = bool
     }
 }
 

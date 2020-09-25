@@ -48,7 +48,7 @@ final class IngredientCell: UITableViewCell {
         valueTextField = layout(UITextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(titleTextField.trailing).offset(5)
-            make.width.equalToSuperview().dividedBy(6)
+            make.width.equalToSuperview().dividedBy(5.5)
         }
         valueTextField.tag = 1
 
@@ -105,17 +105,24 @@ final class IngredientCell: UITableViewCell {
         paragraphStyle.alignment = .center
 
         let headerTextAttributes: [NSAttributedString.Key : Any] = [
-            .font: UIFont.systemFont(ofSize: 15, weight: .bold),
-            .paragraphStyle: paragraphStyle
+            .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+            .paragraphStyle: paragraphStyle,
+            .foregroundColor: UIColor.darkBrown.withAlphaComponent(0.7)
         ]
 
-        titleTextField.attributedText = NSAttributedString(string: "Title", attributes: headerTextAttributes)
-        valueTextField.attributedText = NSAttributedString(string: "Value", attributes: headerTextAttributes)
-        measurementTextField.attributedText = NSAttributedString(string: "Measure", attributes: headerTextAttributes)
-
-//        titleTextField.alpha = 0.7
-//        valueTextField.alpha = 0.7
-//        measurementTextField.alpha = 0.7
+        titleTextField.attributedText = NSAttributedString(
+            string: "Ingredient.Title".localized(),
+            attributes: headerTextAttributes)
+        valueTextField.attributedText = NSAttributedString(
+            string: "Ingredient.Value".localized(),
+            attributes: headerTextAttributes)
+        measurementTextField.attributedText = NSAttributedString(
+            string: "Ingredient.Measure".localized(),
+            attributes: headerTextAttributes)
+        
+        titleTextField.backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.3)
+        valueTextField.backgroundColor = UIColor.warmGray.withAlphaComponent(0.3)
+        measurementTextField.backgroundColor = UIColor.warmBrown.withAlphaComponent(0.3)
         
         titleTextField.isUserInteractionEnabled = false
         valueTextField.isUserInteractionEnabled = false

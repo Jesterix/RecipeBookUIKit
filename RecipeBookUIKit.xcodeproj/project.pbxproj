@@ -52,6 +52,7 @@
 		5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FC24F2A29F003BA90E /* RecipeView.swift */; };
 		5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */; };
 		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
+		CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		5EAC22FC24F2A29F003BA90E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedLabel.swift; sourceTree = "<group>"; };
 		5EAC230024F2F1EB003BA90E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 				4474488824C6363C00EA5B2C /* Main */,
 				4474488E24C781C200EA5B2C /* RecipeView */,
 				5EA0584624D050DB00631E04 /* MeasureView */,
+				CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */,
 				4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */,
 				4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */,
+				CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */,
 				447448A224D6E0CC00EA5B2C /* Button.swift in Sources */,
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,

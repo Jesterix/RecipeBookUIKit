@@ -32,3 +32,11 @@
 "Library.Dimension.Volume" = "Volume";
 
 "Library.Dimension.Custom" = "Custom";
+
+"Ingredient.Title" = "Title";
+
+"Ingredient.Value" = "Value";
+
+"Ingredient.Measure" = "Measure";
+
+"Placeholder.Ingredients.Text" = "No ingredients yet";

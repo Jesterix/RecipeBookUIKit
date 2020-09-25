@@ -32,3 +32,11 @@
 "Library.Dimension.Volume" = "Объём";
 
 "Library.Dimension.Custom" = "Созданный";
+
+"Ingredient.Title" = "Название";
+
+"Ingredient.Value" = "Сколько";
+
+"Ingredient.Measure" = "Мера";
+
+"Placeholder.Ingredients.Text" = "Ингредиентов еще нет";
