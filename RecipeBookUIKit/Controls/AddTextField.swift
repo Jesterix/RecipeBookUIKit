@@ -74,6 +74,15 @@ final class AddTextField: UITextField {
         clearButton.isHidden = true
         _ = delegate?.textFieldShouldClear?(self)
     }
+    
+    func setPlaceholder(text: String) {
+        let placeholderAttributes: [NSAttributedString.Key: Any]? = [
+            .foregroundColor: UIColor.coldBrown.withAlphaComponent(0.7)
+        ]
+        attributedPlaceholder = NSAttributedString(
+            string: text,
+            attributes: placeholderAttributes)
+    }
 
     //MARK: - set delegates
     private func setDelegates() {

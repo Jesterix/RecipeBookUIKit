@@ -41,7 +41,7 @@ final class MainView: UIView {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
-        addRecipeTextField.placeholder = "Main.Add.Placeholder".localized()
+        addRecipeTextField.setPlaceholder(text: "Main.Add.Placeholder".localized())
         recipeTableView.backgroundColor = .white
     }
 }

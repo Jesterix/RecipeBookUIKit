@@ -74,7 +74,7 @@ final class RecipeView: UIView {
         titleField.textColor = .darkBrown
         titleField.autocorrectionType = .no
 
-        addIngredientTextField.placeholder = "Recipe.Add.Placeholder".localized()
+        addIngredientTextField.setPlaceholder(text: "Recipe.Add.Placeholder".localized())
         
         ingredientTableView.backgroundColor = .milkWhite
         ingredientTableView.allowsSelection = false
