@@ -54,6 +54,7 @@
 		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
 		CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */; };
 		CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12788251E935900FBFFB5 /* InsettedTextField.swift */; };
+		CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		5EAC230024F2F1EB003BA90E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		CFA12788251E935900FBFFB5 /* InsettedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedTextField.swift; sourceTree = "<group>"; };
+		CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSegmentedPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				5EAC230024F2F1EB003BA90E /* NavigationController.swift */,
 				449F022E24D845B800A556E1 /* ConvertView.swift */,
 				4428C43824DFF6340054C6DD /* LabeledPickerView.swift */,
+				CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */,
 				4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */,
 			);
 			path = Controls;
@@ -461,6 +464,7 @@
 				5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */,
 				5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
+				CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */,
 				5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
