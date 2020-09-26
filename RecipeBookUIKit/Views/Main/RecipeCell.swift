@@ -39,6 +39,7 @@ final class RecipeCell: UITableViewCell {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
+        selectionStyle = .none
         recipeInfoLabel.contentInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         recipeInfoLabel.textColor = .darkBrown
         recipeInfoLabel.font = .systemFont(ofSize: 17)

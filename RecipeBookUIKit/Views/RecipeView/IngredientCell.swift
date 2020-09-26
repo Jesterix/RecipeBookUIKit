@@ -63,6 +63,7 @@ final class IngredientCell: UITableViewCell {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .white
+        selectionStyle = .none
 
         valueTextField.textAlignment = .right
 
