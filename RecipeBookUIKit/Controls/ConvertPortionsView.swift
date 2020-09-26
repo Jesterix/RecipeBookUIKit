@@ -16,14 +16,14 @@ final class ConvertPortionsView: UIView {
 
     var state: State = .normal {
         didSet {
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.layoutContentIfNeeded()
             })
         }
     }
 
     private var label: UILabel!
-    private var textField: UITextField!
+    private var textField: InsettedTextField!
     private var convertButton: Button!
     private var cancelButton: Button!
     var coefficient: Double = 1 {
@@ -67,7 +67,7 @@ final class ConvertPortionsView: UIView {
             make.trailing.equalTo(cancelButton.leading).offset(-5)
         }
 
-        textField = layout(UITextField()) { make in
+        textField = layout(InsettedTextField()) { make in
             textFieldConstraints(make: make)
         }
 
@@ -124,12 +124,12 @@ final class ConvertPortionsView: UIView {
         label.textColor = .darkBrown
 
         textField.keyboardType = .decimalPad
-        textField.layer.cornerRadius = 10
+        textField.layer.cornerRadius = 5
         textField.font = .systemFont(ofSize: 15)
         textField.textColor = .darkBrown
-        textField.borderStyle = .roundedRect
         textField.textAlignment = .right
         textField.backgroundColor = .warmGray
+        textField.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
     private func setup() {
