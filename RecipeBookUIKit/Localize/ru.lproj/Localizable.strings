@@ -9,7 +9,7 @@
 
 "Measure.Choose.Title" = "Выберите меру";
 
-"Measure.Choose.Dimension" = "Выберите тип:";
+"Measure.Choose.Dimension" = "Выберите тип измерения:";
 
 "Measure.Close.Button" = "Закрыть";
 
@@ -31,7 +31,7 @@
 
 "Library.Dimension.Volume" = "Объём";
 
-"Library.Dimension.Custom" = "Созданный";
+"Library.Dimension.Custom" = "Произв.";
 
 "Ingredient.Title" = "Название";
 

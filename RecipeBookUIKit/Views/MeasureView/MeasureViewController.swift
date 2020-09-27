@@ -23,11 +23,11 @@ final class MeasureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardOnTap()
         setupButtonActions()
         setupConvertView()
-        measureView.pickerView.delegate = self
+        setupSegmentedPicker()
         setupPickerView(from: measure)
-        hideKeyboardOnTap()
     }
     
     private func setupButtonActions() {
@@ -59,12 +59,12 @@ final class MeasureViewController: UIViewController {
             self.setupPickerView(from: measure)
         }
         measureView.convertView.onStateChange = { [unowned self] state in
-            self.measureView.pickerView.isUserInteractionEnabled = state != .converting
+            self.measureView.segmentedPickerView.isUserInteractionEnabled = state != .converting
             switch state {
             case .converting:
-                self.measureView.pickerView.alpha = 0.5
+                self.measureView.segmentedPickerView.alpha = 0.5
             default:
-                self.measureView.pickerView.alpha = 1
+                self.measureView.segmentedPickerView.alpha = 1
             }
         }
         measureView.convertView.onBaseUnitChange = { [unowned self] measure in
@@ -124,12 +124,25 @@ final class MeasureViewController: UIViewController {
         } else {
             passPickerData(row: row!)
         }
-        measureView.pickerView.selectRow(row: row!, inComponent: 0)
+        select(segment: row ?? 0)
+    }
+    
+    private func setupSegmentedPicker() {
+        measureView.segmentedPickerView.delegate = self
+        if let hideKeyboardGesture = view.gestureRecognizers?.first(where: {
+            $0.name == "HideKeyboard"
+        }) {
+            measureView.segmentedPickerView.setGestureToPrevent(hideKeyboardGesture)
+        }
     }
 }
 
-extension MeasureViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        passPickerData(row: row)
+extension MeasureViewController: SegmentedControlDelegate {
+    func select(segment: Int) {
+        measureView.segmentedPickerView.select(segment: segment)
+    }
+    
+    func didSelect(segment: Int) {
+        passPickerData(row: segment)
     }
 }

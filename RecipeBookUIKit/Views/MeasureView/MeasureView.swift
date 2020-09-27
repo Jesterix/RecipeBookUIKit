@@ -15,7 +15,7 @@ final class MeasureView: UIView {
     var cancelButton: Button!
     var convertButton: Button!
 
-    var pickerView: LabeledPickerView!
+    var segmentedPickerView: LabeledSegmentedPicker!
 
     var convertView: ConvertView!
 
@@ -60,7 +60,7 @@ final class MeasureView: UIView {
             make.centerX.equalTo(backBiew.trailing).offset(-40)
         }
 
-        pickerView = layout(LabeledPickerView("Measure.Choose.Dimension".localized())) { make in
+        segmentedPickerView = layout(LabeledSegmentedPicker("Measure.Choose.Dimension".localized())) { make in
             make.top.equalTo(addButton.bottom)
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
@@ -68,7 +68,7 @@ final class MeasureView: UIView {
         }
 
         convertView = layout(ConvertView()) { make in
-            make.top.equalTo(pickerView.bottom)
+            make.top.equalTo(segmentedPickerView.bottom)
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
         }
@@ -92,7 +92,7 @@ final class MeasureView: UIView {
 
         cancelButton.isHidden = true
 
-        pickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
+        segmentedPickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
 
         closeButton.layer.cornerRadius = 15
         closeButton.backgroundColor = .warmGray

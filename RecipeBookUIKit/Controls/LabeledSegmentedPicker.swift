@@ -23,6 +23,8 @@ final class LabeledSegmentedPicker: UIView {
     }
 
     public var delegate: SegmentedControlDelegate?
+    
+    private var hideKeyboardGesture: UIGestureRecognizer?
 
     init(_ text: String) {
         super.init(frame: .zero)
@@ -65,6 +67,13 @@ final class LabeledSegmentedPicker: UIView {
             self,
             action: #selector(segmentedPickerDidChange),
             for: .valueChanged)
+        
+        let tapGesture = UITapGestureRecognizer()
+        if let gestureToPrevent = hideKeyboardGesture {
+            tapGesture.canPrevent(gestureToPrevent)
+        }
+        tapGesture.cancelsTouchesInView = false
+        segmentedPicker.addGestureRecognizer(tapGesture)
     }
     
     private func setupSegments() {
@@ -85,5 +94,9 @@ final class LabeledSegmentedPicker: UIView {
     
     public func select(segment: Int) {
         segmentedPicker.selectedSegmentIndex = segment
+    }
+    
+    public func setGestureToPrevent(_ gesture: UIGestureRecognizer) {
+        hideKeyboardGesture = gesture
     }
 }
