@@ -70,6 +70,7 @@ final class Button: UIButton {
         customImageView.contentMode = .scaleAspectFit
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 11)
+        label.numberOfLines = 0
     }
 
     override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {

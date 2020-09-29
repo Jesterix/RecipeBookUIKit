@@ -295,11 +295,11 @@ extension ConvertView: UITextFieldDelegate {
         case .converting:
             switch textField {
             case amountTextField:
-                print("converting, amountTextField")
+                print("extended, amountTextField")
                 handleAmountConverting(textAmount: text)
                 
             case unitTextField:
-                print("converting, unitTextField")
+                print("extended, unitTextField")
                 
                 guard
                     let textToConvert = baseAmountTextField.text,

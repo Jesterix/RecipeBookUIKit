@@ -31,19 +31,25 @@ final class MeasureViewController: UIViewController {
     }
     
     private func setupButtonActions() {
-        measureView.addButton.addTarget(
-            self,
-            action: #selector(tapAdd),
-            for: .touchUpInside)
-
+        measureView.addButton.didTapMain = { [weak self] in
+            guard let self = self else { return }
+            self.updateButtonsVisibility()
+            if self.measureView.convertView.state == .editing {
+                self.measureView.convertView.saveCustomMeasure()
+            }
+            self.measureView.convertView.state = self.measureView.addButton.state == .normal ? .normal : .editing
+        }
+        
+        measureView.addButton.didTapSecondary = { [weak self] in
+            guard let self = self else { return }
+            self.updateButtonsVisibility()
+            self.measureView.convertView.measure = self.measure
+            self.measureView.convertView.state = .normal
+        }
+        
         measureView.convertButton.addTarget(
             self,
             action: #selector(tapConvert),
-            for: .touchUpInside)
-
-        measureView.cancelButton.addTarget(
-            self,
-            action: #selector(tapCancel),
             for: .touchUpInside)
 
         measureView.closeButton.addTarget(
@@ -72,22 +78,9 @@ final class MeasureViewController: UIViewController {
         }
     }
 
-    @objc private func tapAdd() {
-        toggleButtonsVisibility()
-        if measureView.convertView.state == .editing {
-            measureView.convertView.saveCustomMeasure()
-        }
-        measureView.convertView.state = measureView.addButton.isPrimary ? .normal : .editing
-    }
-
-    @objc private func tapCancel() {
-        toggleButtonsVisibility()
-        measureView.convertView.state = .normal
-    }
-
     @objc private func tapConvert() {
         measureView.convertButton.isPrimary.toggle()
-        measureView.addButton.isEnabled = measureView.convertButton.isPrimary
+        measureView.addButton.isUserInteractionEnabled = measureView.convertButton.isPrimary
 
         measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
         if measureView.convertView.state == .converting {
@@ -95,11 +88,15 @@ final class MeasureViewController: UIViewController {
         }
     }
 
-    private func toggleButtonsVisibility() {
-        measureView.addButton.isPrimary.toggle()
-        measureView.cancelButton.isHidden = measureView.addButton.isPrimary
-        measureView.convertButton.isEnabled = measureView.addButton.isPrimary
-        measureView.closeButton.enable(measureView.addButton.isPrimary)
+    private func updateButtonsVisibility() {
+        switch measureView.addButton.state {
+        case .normal:
+            measureView.convertButton.isEnabled = true
+            measureView.closeButton.enable(true)
+        case .extended:
+            measureView.convertButton.isEnabled = false
+            measureView.closeButton.enable(false)
+        }
     }
     
     @objc private func close(){

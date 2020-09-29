@@ -10,11 +10,7 @@ import UIKit
 import SnapKit
 
 final class ConvertPortionsView: UIView {
-    enum State {
-        case normal, converting
-    }
-
-    var state: State = .normal {
+    var state: CustomControlState = .normal {
         didSet {
             UIView.animate(withDuration: 0.3, animations: {
                 self.layoutContentIfNeeded()
@@ -82,7 +78,7 @@ final class ConvertPortionsView: UIView {
             switch state {
             case .normal:
                 make.trailing.equalToSuperview()
-            case .converting:
+            case .extended:
                 make.trailing.equalTo(cancelButton.leading).offset(-5)
             }
         }
@@ -98,7 +94,7 @@ final class ConvertPortionsView: UIView {
         switch state {
         case .normal:
             cancelButton.alpha = 0
-        case .converting:
+        case .extended:
             cancelButton.alpha = 1
         }
         layoutIfNeeded()
@@ -150,7 +146,7 @@ final class ConvertPortionsView: UIView {
     
     func stateToggle() {
         convertButton.isPrimary.toggle()
-        state = convertButton.isPrimary ? .normal : .converting
+        state = convertButton.isPrimary ? .normal : .extended
     }
 
     @objc func convertTapped() {
@@ -159,7 +155,7 @@ final class ConvertPortionsView: UIView {
         case .normal:
             label.text = "Portions.Convert.Text".localized()
             textField.text = String(coefficient)
-        case .converting:
+        case .extended:
             previousCoefficient = coefficient
             label.text = String(coefficient) + "Portions.Label.Text".localized()
             textField.text = ""

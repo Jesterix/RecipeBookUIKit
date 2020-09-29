@@ -11,8 +11,8 @@ import UIKit
 final class MeasureView: UIView {
     private var backBiew: UIView!
     private var titleLabel: UILabel!
-    var addButton: Button!
-    var cancelButton: Button!
+    var addButton: DoubleButton!
+
     var convertButton: Button!
 
     var segmentedPickerView: LabeledSegmentedPicker!
@@ -45,14 +45,10 @@ final class MeasureView: UIView {
             make.centerX.equalToSuperview()
         }
 
-        addButton = layout(Button.add) { make in
+        addButton = layout(DoubleButton(animated: true, alignment: .leading)) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
-            make.centerX.equalTo(backBiew.leading).offset(40)
-        }
-
-        cancelButton = layout(Button.cancel) { make in
-            make.top.equalTo(titleLabel.bottom).offset(20)
-            make.leading.equalTo(addButton.trailing).offset(5)
+            make.leading.equalTo(backBiew).offset(10)
+            make.width.equalTo(150)
         }
 
         convertButton = layout(Button.convert) { make in
@@ -89,8 +85,6 @@ final class MeasureView: UIView {
         backBiew.layer.cornerRadius = 25
         
         titleLabel.textColor = .darkBrown
-
-        cancelButton.isHidden = true
 
         segmentedPickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
 

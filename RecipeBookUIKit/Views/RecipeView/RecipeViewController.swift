@@ -226,7 +226,7 @@ extension RecipeViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField != recipeView.titleField {
             switch recipeView.convertPortionsView.state {
-            case .converting:
+            case .extended:
                 convertPortions(with: recipeView.convertPortionsView.coefficient)
             case .normal:
                 recipe.numberOfPortions = recipeView.convertPortionsView.coefficient
