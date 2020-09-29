@@ -13,7 +13,7 @@ final class MeasureView: UIView {
     private var titleLabel: UILabel!
     var addButton: DoubleButton!
 
-    var convertButton: Button!
+    var convertButton: DoubleButton!
 
     var segmentedPickerView: LabeledSegmentedPicker!
 
@@ -45,15 +45,24 @@ final class MeasureView: UIView {
             make.centerX.equalToSuperview()
         }
 
-        addButton = layout(DoubleButton(animated: true, alignment: .leading)) { make in
+        addButton = layout(DoubleButton(
+            animated: true,
+            alignment: .leading
+        )) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
             make.leading.equalTo(backBiew).offset(10)
             make.width.equalTo(150)
         }
 
-        convertButton = layout(Button.convert) { make in
+        convertButton = layout(DoubleButton(
+            animated: true,
+            alignment: .trailing,
+            mainButton: .converted,
+            secondaryButton: .cancel
+        )) { make in
             make.top.equalTo(titleLabel.bottom).offset(20)
-            make.centerX.equalTo(backBiew.trailing).offset(-40)
+            make.trailing.equalTo(backBiew).offset(-5)
+            make.width.equalTo(150)
         }
 
         segmentedPickerView = layout(LabeledSegmentedPicker("Measure.Choose.Dimension".localized())) { make in
@@ -95,7 +104,10 @@ final class MeasureView: UIView {
     }
     
     override func layoutSubviews() {
-        backBiew.addGradient(startColor: .milkWhite, endColor: .honeyYellow, direction: .upRight)
+        backBiew.addGradient(
+            startColor: .milkWhite,
+            endColor: .honeyYellow,
+            direction: .upRight)
         backBiew.layer.masksToBounds = true
         super.layoutSubviews()
     }

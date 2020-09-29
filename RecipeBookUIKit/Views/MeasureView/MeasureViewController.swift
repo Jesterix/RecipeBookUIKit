@@ -47,10 +47,31 @@ final class MeasureViewController: UIViewController {
             self.measureView.convertView.state = .normal
         }
         
-        measureView.convertButton.addTarget(
-            self,
-            action: #selector(tapConvert),
-            for: .touchUpInside)
+        measureView.convertButton.didTapMain = { [weak self] in
+            guard let self = self else { return }
+            
+            switch self.measureView.convertButton.state {
+                
+            case .normal:
+                self.measureView.addButton.isUserInteractionEnabled = true
+                self.measureView.closeButton.enable(true)
+                self.measureView.convertView.state = .normal
+                
+            case .extended:
+                self.measureView.addButton.isUserInteractionEnabled = false
+                self.measureView.closeButton.enable(false)
+                self.measureView.convertView.state = .converting
+                self.setupPickerView(from: self.measure)
+            }
+        }
+        
+        measureView.convertButton.didTapSecondary = { [weak self] in
+            guard let self = self else { return }
+            self.measureView.addButton.isUserInteractionEnabled = true
+            self.measureView.closeButton.enable(true)
+            self.measureView.convertView.measure = self.measure
+            self.measureView.convertView.state = .normal
+        }
 
         measureView.closeButton.addTarget(
             self,
@@ -78,23 +99,13 @@ final class MeasureViewController: UIViewController {
         }
     }
 
-    @objc private func tapConvert() {
-        measureView.convertButton.isPrimary.toggle()
-        measureView.addButton.isUserInteractionEnabled = measureView.convertButton.isPrimary
-
-        measureView.convertView.state = measureView.convertButton.isPrimary ? .normal : .converting
-        if measureView.convertView.state == .converting {
-            setupPickerView(from: measure)
-        }
-    }
-
     private func updateButtonsVisibility() {
         switch measureView.addButton.state {
         case .normal:
-            measureView.convertButton.isEnabled = true
+            measureView.convertButton.isUserInteractionEnabled = true
             measureView.closeButton.enable(true)
         case .extended:
-            measureView.convertButton.isEnabled = false
+            measureView.convertButton.isUserInteractionEnabled = false
             measureView.closeButton.enable(false)
         }
     }
