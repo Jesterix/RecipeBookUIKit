@@ -29,46 +29,33 @@ final class MeasureViewController: UIViewController {
         setupSegmentedPicker()
         setupPickerView(from: measure)
     }
-    
+//    починить фильтрацию кастомных мер
+// починить возвращение значения меры при нажатии на отмену в режиме создания
     private func setupButtonActions() {
-        measureView.addButton.didTapMain = { [weak self] in
-            guard let self = self else { return }
-            self.updateButtonsVisibility()
+        measureView.addButton.didTapMain = { [unowned self] in
+            self.updateVisibilityFromAddButton()
             if self.measureView.convertView.state == .editing {
                 self.measureView.convertView.saveCustomMeasure()
             }
             self.measureView.convertView.state = self.measureView.addButton.state == .normal ? .normal : .editing
         }
         
-        measureView.addButton.didTapSecondary = { [weak self] in
-            guard let self = self else { return }
-            self.updateButtonsVisibility()
+        measureView.addButton.didTapSecondary = { [unowned self] in
+            self.updateVisibilityFromAddButton()
             self.measureView.convertView.measure = self.measure
             self.measureView.convertView.state = .normal
         }
         
-        measureView.convertButton.didTapMain = { [weak self] in
-            guard let self = self else { return }
-            
-            switch self.measureView.convertButton.state {
-                
-            case .normal:
-                self.measureView.addButton.isUserInteractionEnabled = true
-                self.measureView.closeButton.enable(true)
-                self.measureView.convertView.state = .normal
-                
-            case .extended:
-                self.measureView.addButton.isUserInteractionEnabled = false
-                self.measureView.closeButton.enable(false)
-                self.measureView.convertView.state = .converting
+        measureView.convertButton.didTapMain = { [unowned self] in
+            self.updateVisibilityFromConvertButton()
+            self.measureView.convertView.state = self.measureView.convertButton.state == .normal ? .normal : .converting
+            if self.measureView.convertView.state == .converting {
                 self.setupPickerView(from: self.measure)
             }
         }
         
-        measureView.convertButton.didTapSecondary = { [weak self] in
-            guard let self = self else { return }
-            self.measureView.addButton.isUserInteractionEnabled = true
-            self.measureView.closeButton.enable(true)
+        measureView.convertButton.didTapSecondary = { [unowned self] in
+            self.updateVisibilityFromConvertButton()
             self.measureView.convertView.measure = self.measure
             self.measureView.convertView.state = .normal
         }
@@ -99,15 +86,16 @@ final class MeasureViewController: UIViewController {
         }
     }
 
-    private func updateButtonsVisibility() {
-        switch measureView.addButton.state {
-        case .normal:
-            measureView.convertButton.isUserInteractionEnabled = true
-            measureView.closeButton.enable(true)
-        case .extended:
-            measureView.convertButton.isUserInteractionEnabled = false
-            measureView.closeButton.enable(false)
-        }
+    private func updateVisibilityFromAddButton() {
+        let enable = measureView.addButton.state == .normal
+        measureView.convertButton.isUserInteractionEnabled = enable
+        measureView.closeButton.enable(enable)
+    }
+    
+    private func updateVisibilityFromConvertButton() {
+        let enable = measureView.convertButton.state == .normal
+        measureView.addButton.isUserInteractionEnabled = enable
+        measureView.closeButton.enable(enable)
     }
     
     @objc private func close(){
