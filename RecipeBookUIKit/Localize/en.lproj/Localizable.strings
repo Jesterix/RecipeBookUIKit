@@ -42,3 +42,5 @@
 "Placeholder.Ingredients.Text" = "No ingredients yet";
 
 "Placeholder.Recipe.Text" = "Write in a recipe";
+
+"Placeholder.NotSet" = "Not set";

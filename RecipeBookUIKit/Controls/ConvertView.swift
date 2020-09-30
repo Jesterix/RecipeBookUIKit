@@ -120,10 +120,18 @@ final class ConvertView: UIView {
         baseAmountTextField.mode = .disabled
         baseAmountTextField.keyboardType = .decimalPad
         baseAmountTextField.textColor = .darkBrown
+        baseAmountTextField.placeholder = "-"
 
         baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
         baseUnitTextField.textColor = .darkBrown
+        let placeholderAttributes: [NSAttributedString.Key: Any]? = [
+            .foregroundColor: UIColor.coldBrown.withAlphaComponent(0.7),
+            .font: UIFont.systemFont(ofSize: 13)
+        ]
+        baseUnitTextField.attributedPlaceholder = NSAttributedString(
+            string: "Placeholder.NotSet".localized(),
+            attributes: placeholderAttributes)
 
 //        //Demo
 //        amountTextField.text = "5"

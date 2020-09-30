@@ -25,7 +25,7 @@
 
 "Portions.Label.Text" = " на:";
 
-"BaseUnit.Label.Text" = "базовая единица:";
+"BaseUnit.Label.Text" = "базовая единица измерения:";
 
 "Library.Dimension.Mass" = "Масса";
 
@@ -42,3 +42,5 @@
 "Placeholder.Ingredients.Text" = "Ингредиентов еще нет";
 
 "Placeholder.Recipe.Text" = "Впишите рецепт";
+
+"Placeholder.NotSet" = "Не установлено";

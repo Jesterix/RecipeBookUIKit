@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TwoModeTextField: UITextField {
+final class TwoModeTextField: InsettedTextField {
     var defaultInput: UIView?
 
     var pickerData: [String] = [] {
@@ -65,6 +65,7 @@ final class TwoModeTextField: UITextField {
             self.backgroundColor = .lightlyGray
             self.borderStyle = .roundedRect
             self.isEnabled = true
+            self.tintColor = .clear
             setupPicker()
         case .disabled:
             self.alpha = 0.5
@@ -73,13 +74,14 @@ final class TwoModeTextField: UITextField {
             self.isEnabled = false
             inputView = defaultInput
         }
+        textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
 
     private func setupPicker() {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
-        picker.backgroundColor = .lightlyGray
+        picker.backgroundColor = .milkWhite
         inputView = picker
         pickerSelectCurrentValue()
     }
