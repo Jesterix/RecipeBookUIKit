@@ -56,10 +56,10 @@ final class DoubleButton: UIView {
     
     var isHalfEnabled: Bool {
         get {
-            mainButton.isEnabled
+            !mainButton.isEnabled
         }
         set {
-            mainButton.isEnabled = newValue
+            mainButton.isEnabled = !newValue
         }
     }
     

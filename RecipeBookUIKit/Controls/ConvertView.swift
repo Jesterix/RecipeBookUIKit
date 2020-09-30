@@ -218,18 +218,19 @@ final class ConvertView: UIView {
     }
     
     func saveCustomMeasure() {
-        guard
-            let title = unitTextField.text,
-            let baseUnit = baseUnitTextField.text,
-            let baseAmountText = baseAmountTextField.text,
-            let coef = Double(baseAmountText) else {
+        guard let title = unitTextField.text else {
             return
+        }
+        
+        var customCoef: Double = 1.0
+        if let baseAmount = baseAmountTextField.text, let coef = Double(baseAmount) {
+            customCoef = coef
         }
         
         let customMeasure: CustomMeasure = CustomMeasure(
             title: title,
-            baseUnitSymbol: baseUnit,
-            coefficient: coef)
+            baseUnitSymbol: baseUnitTextField.text ?? "",
+            coefficient: customCoef)
         dataManager.update(measure: customMeasure)
         customProvider.updateMeasures(dataManager.getCustomMeasures())
         setMeasureFromText()
@@ -284,7 +285,7 @@ extension ConvertView: UITextFieldDelegate {
                     customProvider: customProvider,
                     value: 1,
                     symbol: text) ?? Measure(value: 1, symbol: text)
-                measureIsStandart?(newMeasure.isStandart)
+                measureIsStandart?(newMeasure.isStandart || customProvider.customMeasures.contains(where: { $0.title == text }))
                 baseUnitTextField.text = newMeasure.baseUnitSymbol
                 baseAmountTextField.mode = baseUnitTextField.text == "" ? .editable : .disabled
                 onBaseUnitChange?(newMeasure)

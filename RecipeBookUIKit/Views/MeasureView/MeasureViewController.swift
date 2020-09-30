@@ -14,6 +14,8 @@ final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
     var measure: Measure = Measure(value: 0, symbol: "")
     private var savedValue = Measure(value: 0, symbol: "")
+    
+    private var customProvider: CustomMeasureProvider = DataStorage.shared
 
     var onClose: ((Measure) -> Void)?
 
@@ -36,21 +38,29 @@ final class MeasureViewController: UIViewController {
             self.updateVisibilityFromAddButton()
             if self.measureView.convertView.state == .editing {
                 self.measureView.convertView.saveCustomMeasure()
+                self.measureView.addButton.isHalfEnabled = false
             } else if self.measureView.convertView.state == .normal {
+                let measureIsAlreadyInBase = self.measure.isStandart
+                    || self.customProvider.customMeasures.contains(where: {
+                        $0.title == self.measure.symbol })
+                self.measureView.addButton.isHalfEnabled = measureIsAlreadyInBase
                 self.savedValue = self.measure
             }
-            self.measureView.convertView.state = self.measureView.addButton.state == .normal ? .normal : .editing
+            self.measureView.convertView.state =
+                self.measureView.addButton.state == .normal ? .normal : .editing
         }
         
         measureView.addButton.didTapSecondary = { [unowned self] in
             self.updateVisibilityFromAddButton()
+            self.measureView.addButton.isHalfEnabled = false
             self.measureView.convertView.state = .normal
             self.measureView.convertView.measure? = self.savedValue
         }
         
         measureView.convertButton.didTapMain = { [unowned self] in
             self.updateVisibilityFromConvertButton()
-            self.measureView.convertView.state = self.measureView.convertButton.state == .normal ? .normal : .converting
+            self.measureView.convertView.state =
+                self.measureView.convertButton.state == .normal ? .normal : .converting
             if self.measureView.convertView.state == .converting {
                 self.setupPickerView(from: self.measure)
             }
@@ -88,12 +98,11 @@ final class MeasureViewController: UIViewController {
         }
         
         measureView.convertView.measureIsStandart = { [unowned self] isStandart in
-            self.measureView.addButton.isHalfEnabled = !isStandart
+            self.measureView.addButton.isHalfEnabled = isStandart
         }
     }
 
     private func updateVisibilityFromAddButton() {
-        measureView.addButton.isHalfEnabled = !measure.isStandart
         let enable = measureView.addButton.state == .normal
         measureView.convertButton.isUserInteractionEnabled = enable
         measureView.closeButton.enable(enable)
