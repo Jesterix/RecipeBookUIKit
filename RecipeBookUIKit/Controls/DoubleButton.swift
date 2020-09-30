@@ -54,6 +54,15 @@ final class DoubleButton: UIView {
         }
     }
     
+    var isHalfEnabled: Bool {
+        get {
+            mainButton.isEnabled
+        }
+        set {
+            mainButton.isEnabled = newValue
+        }
+    }
+    
     init(
         animated: Bool = false,
         alignment: CustomControlAlignment = .leading,

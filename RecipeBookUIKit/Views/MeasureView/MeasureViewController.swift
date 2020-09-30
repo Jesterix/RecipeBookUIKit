@@ -88,11 +88,12 @@ final class MeasureViewController: UIViewController {
         }
         
         measureView.convertView.measureIsStandart = { [unowned self] isStandart in
-            self.measureView.addButton.isUserInteractionEnabled = !isStandart
+            self.measureView.addButton.isHalfEnabled = !isStandart
         }
     }
 
     private func updateVisibilityFromAddButton() {
+        measureView.addButton.isHalfEnabled = !measure.isStandart
         let enable = measureView.addButton.state == .normal
         measureView.convertButton.isUserInteractionEnabled = enable
         measureView.closeButton.enable(enable)
