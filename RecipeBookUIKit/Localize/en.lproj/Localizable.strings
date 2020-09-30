@@ -25,7 +25,11 @@
 
 "Portions.Label.Text" = " to:";
 
-"BaseUnit.Label.Text" = "base units:";
+"BaseUnit.Label.Text" = "Base units:";
+
+"Quantity.Label.Text" = "Quantity:";
+
+"Unit.Label.Text" = "Measure:";
 
 "Library.Dimension.Mass" = "Mass";
 
@@ -44,3 +48,9 @@
 "Placeholder.Recipe.Text" = "Write in a recipe";
 
 "Placeholder.NotSet" = "Not set";
+
+"Info.Label.Normal" = "Choose dimension type, quantity and measure for your ingredient.";
+
+"Info.Label.Converting" = "Change measure for converting to another one.";
+
+"Info.Label.Editing" = "Create your own measure. You can specify the conversion factor to base units for further convenience.";

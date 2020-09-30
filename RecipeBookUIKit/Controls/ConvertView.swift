@@ -36,6 +36,9 @@ final class ConvertView: UIView {
     var onStateChange: ((State) -> Void)?
     var onBaseUnitChange: ((Measure) -> Void)?
     var measureIsStandart: ((Bool) -> Void)?
+    
+    private var amountLabel: UILabel!
+    private var unitLabel: UILabel!
 
     private var amountTextField: TwoModeTextField!
     private var unitTextField: TwoModeTextField!
@@ -61,11 +64,17 @@ final class ConvertView: UIView {
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
         amountTextField = layout(TwoModeTextField()) { make in
-            make.leading.top.equalToSuperview()
+            make.leading.equalToSuperview()
             make.height.equalTo(30)
             make.width.equalTo(100)
         }
         amountTextField.delegate = self
+        
+        amountLabel = layout(UILabel(text: "Quantity.Label.Text".localized())) { make in
+            make.top.equalToSuperview()
+            make.centerX.equalTo(amountTextField)
+            make.bottom.equalTo(amountTextField.top).offset(-5)
+        }
 
         unitTextField = layout(TwoModeTextField()) { make in
             make.top.equalTo(amountTextField)
@@ -74,9 +83,15 @@ final class ConvertView: UIView {
             make.height.equalTo(amountTextField)
         }
         unitTextField.delegate = self
+        
+        unitLabel = layout(UILabel(text: "Unit.Label.Text".localized())) { make in
+            make.top.equalToSuperview()
+            make.centerX.equalTo(unitTextField)
+            make.bottom.equalTo(unitTextField.top).offset(-5)
+        }
 
         baseUnitLabel = layout(UILabel(text: "BaseUnit.Label.Text".localized())) { make in
-            make.top.equalTo(amountTextField.bottom).offset(10)
+            make.top.equalTo(amountTextField.bottom).offset(20)
             make.leading.equalTo(amountTextField).offset(5)
         }
 
@@ -111,6 +126,11 @@ final class ConvertView: UIView {
         unitTextField.autocorrectionType = .no
         unitTextField.mode = .changeable
         unitTextField.textColor = .darkBrown
+        
+        amountLabel.font = .systemFont(ofSize: 10)
+        amountLabel.textColor = .darkBrown
+        unitLabel.font = .systemFont(ofSize: 10)
+        amountLabel.textColor = .darkBrown
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
         baseUnitLabel.textColor = .darkBrown

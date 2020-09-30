@@ -18,6 +18,8 @@ final class MeasureView: UIView {
     var segmentedPickerView: LabeledSegmentedPicker!
 
     var convertView: ConvertView!
+    
+    var infoLabel: UILabel!
 
     var closeButton: UIButton!
     
@@ -77,9 +79,15 @@ final class MeasureView: UIView {
             make.leading.equalTo(backBiew).offset(10)
             make.trailing.equalTo(backBiew).offset(-10)
         }
+        
+        infoLabel = layout(UILabel()) { make in
+            make.top.equalTo(convertView.bottom).offset(20)
+            make.leading.equalTo(backBiew).offset(10)
+            make.trailing.equalTo(backBiew).offset(-10)
+        }
 
         closeButton = layout(UIButton()) { make in
-            make.top.greaterThanOrEqualTo(convertView.bottom)
+            make.top.greaterThanOrEqualTo(infoLabel.bottom)
             make.leading.trailing.equalTo(convertView)
             make.bottom.equalTo(backBiew.bottom).offset(-10)
         }
@@ -97,6 +105,11 @@ final class MeasureView: UIView {
 
         segmentedPickerView.data = Settings.defaultDimensions.map { $0.typeDescription.localized() }
 
+        infoLabel.textColor = .darkBrown
+        infoLabel.font = .systemFont(ofSize: 10)
+        infoLabel.numberOfLines = 0
+        infoLabel.textAlignment = .center
+        
         closeButton.layer.cornerRadius = 15
         closeButton.backgroundColor = .warmGray
         closeButton.setTitleColor(.darkBrown, for: .normal)

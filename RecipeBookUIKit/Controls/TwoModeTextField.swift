@@ -59,6 +59,7 @@ final class TwoModeTextField: InsettedTextField {
             self.backgroundColor = .milkWhite
             self.borderStyle = .roundedRect
             self.isEnabled = true
+            self.tintColor = .darkBrown
             inputView = defaultInput
         case .changeable:
             self.alpha = 1

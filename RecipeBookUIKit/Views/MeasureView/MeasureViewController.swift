@@ -89,8 +89,13 @@ final class MeasureViewController: UIViewController {
             switch state {
             case .converting:
                 self.measureView.segmentedPickerView.alpha = 0.5
-            default:
+                self.measureView.infoLabel.text = "Info.Label.Converting".localized()
+            case .normal:
                 self.measureView.segmentedPickerView.alpha = 1
+                self.measureView.infoLabel.text = "Info.Label.Normal".localized()
+            case .editing:
+                self.measureView.segmentedPickerView.alpha = 1
+                self.measureView.infoLabel.text = "Info.Label.Editing".localized()
             }
         }
         measureView.convertView.onBaseUnitChange = { [unowned self] measure in
@@ -100,6 +105,8 @@ final class MeasureViewController: UIViewController {
         measureView.convertView.measureIsStandart = { [unowned self] isStandart in
             self.measureView.addButton.isHalfEnabled = isStandart
         }
+        
+        self.measureView.infoLabel.text = "Info.Label.Normal".localized()
     }
 
     private func updateVisibilityFromAddButton() {
