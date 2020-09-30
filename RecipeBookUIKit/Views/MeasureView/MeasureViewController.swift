@@ -13,7 +13,7 @@ import MeasureLibrary
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
     var measure: Measure = Measure(value: 0, symbol: "")
-    private var savedValue: Double = 0
+    private var savedValue = Measure(value: 0, symbol: "")
 
     var onClose: ((Measure) -> Void)?
 
@@ -30,14 +30,14 @@ final class MeasureViewController: UIViewController {
         setupSegmentedPicker()
         setupPickerView(from: measure)
     }
-//     починить фильтрацию кастомных мер
+
     private func setupButtonActions() {
         measureView.addButton.didTapMain = { [unowned self] in
             self.updateVisibilityFromAddButton()
             if self.measureView.convertView.state == .editing {
                 self.measureView.convertView.saveCustomMeasure()
             } else if self.measureView.convertView.state == .normal {
-                self.savedValue = self.measure.value
+                self.savedValue = self.measure
             }
             self.measureView.convertView.state = self.measureView.addButton.state == .normal ? .normal : .editing
         }
@@ -45,7 +45,7 @@ final class MeasureViewController: UIViewController {
         measureView.addButton.didTapSecondary = { [unowned self] in
             self.updateVisibilityFromAddButton()
             self.measureView.convertView.state = .normal
-            self.measureView.convertView.measure?.value = self.savedValue
+            self.measureView.convertView.measure? = self.savedValue
         }
         
         measureView.convertButton.didTapMain = { [unowned self] in
@@ -85,6 +85,10 @@ final class MeasureViewController: UIViewController {
         }
         measureView.convertView.onBaseUnitChange = { [unowned self] measure in
             self.setupPickerView(from: measure)
+        }
+        
+        measureView.convertView.measureIsStandart = { [unowned self] isStandart in
+            self.measureView.addButton.isUserInteractionEnabled = !isStandart
         }
     }
 

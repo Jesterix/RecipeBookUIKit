@@ -35,6 +35,7 @@ final class ConvertView: UIView {
     var onMeasureChange: ((Measure) -> Void)?
     var onStateChange: ((State) -> Void)?
     var onBaseUnitChange: ((Measure) -> Void)?
+    var measureIsStandart: ((Bool) -> Void)?
 
     private var amountTextField: TwoModeTextField!
     private var unitTextField: TwoModeTextField!
@@ -283,7 +284,7 @@ extension ConvertView: UITextFieldDelegate {
                     customProvider: customProvider,
                     value: 1,
                     symbol: text) ?? Measure(value: 1, symbol: text)
-                
+                measureIsStandart?(newMeasure.isStandart)
                 baseUnitTextField.text = newMeasure.baseUnitSymbol
                 baseAmountTextField.mode = baseUnitTextField.text == "" ? .editable : .disabled
                 onBaseUnitChange?(newMeasure)
