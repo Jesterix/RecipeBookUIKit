@@ -13,6 +13,7 @@ import MeasureLibrary
 final class MeasureViewController: UIViewController {
     private var measureView: MeasureView!
     var measure: Measure = Measure(value: 0, symbol: "")
+    private var savedValue: Double = 0
 
     var onClose: ((Measure) -> Void)?
 
@@ -29,21 +30,22 @@ final class MeasureViewController: UIViewController {
         setupSegmentedPicker()
         setupPickerView(from: measure)
     }
-//    починить фильтрацию кастомных мер
-// починить возвращение значения меры при нажатии на отмену в режиме создания
+//     починить фильтрацию кастомных мер
     private func setupButtonActions() {
         measureView.addButton.didTapMain = { [unowned self] in
             self.updateVisibilityFromAddButton()
             if self.measureView.convertView.state == .editing {
                 self.measureView.convertView.saveCustomMeasure()
+            } else if self.measureView.convertView.state == .normal {
+                self.savedValue = self.measure.value
             }
             self.measureView.convertView.state = self.measureView.addButton.state == .normal ? .normal : .editing
         }
         
         measureView.addButton.didTapSecondary = { [unowned self] in
             self.updateVisibilityFromAddButton()
-            self.measureView.convertView.measure = self.measure
             self.measureView.convertView.state = .normal
+            self.measureView.convertView.measure?.value = self.savedValue
         }
         
         measureView.convertButton.didTapMain = { [unowned self] in
