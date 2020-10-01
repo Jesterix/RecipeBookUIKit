@@ -63,6 +63,9 @@ final class LabeledSegmentedPicker: UIView {
             .font: UIFont.systemFont(ofSize: 11),
             .foregroundColor: UIColor.darkBrown]
         segmentedPicker.setTitleTextAttributes(attributes, for: .normal)
+        segmentedPicker.selectedSegmentTintColor = .honeyYellow
+        segmentedPicker.backgroundColor = .lightlyGray
+        fixBackgroundSegmentControl()
         segmentedPicker.addTarget(
             self,
             action: #selector(segmentedPickerDidChange),
@@ -98,5 +101,16 @@ final class LabeledSegmentedPicker: UIView {
     
     public func setGestureToPrevent(_ gesture: UIGestureRecognizer) {
         hideKeyboardGesture = gesture
+    }
+    
+    private func fixBackgroundSegmentControl(){
+        //just to be sure it is full loaded
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            for i in 0..<self.segmentedPicker.numberOfSegments {
+                let backgroundSegmentView = self.segmentedPicker.subviews[i]
+                //it is not enogh changing the background color. It has some kind of shadow layer
+                backgroundSegmentView.isHidden = true
+            }
+        }
     }
 }

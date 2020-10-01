@@ -57,25 +57,24 @@ final class TwoModeTextField: InsettedTextField {
         case .editable:
             self.alpha = 1
             self.backgroundColor = .milkWhite
-            self.borderStyle = .roundedRect
             self.isEnabled = true
             self.tintColor = .darkBrown
             inputView = defaultInput
         case .changeable:
             self.alpha = 1
             self.backgroundColor = .lightlyGray
-            self.borderStyle = .roundedRect
             self.isEnabled = true
             self.tintColor = .clear
             setupPicker()
         case .disabled:
             self.alpha = 0.5
             self.backgroundColor = .clear
-            self.borderStyle = .none
             self.isEnabled = false
             inputView = defaultInput
         }
         textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        self.borderStyle = .none
+        self.layer.cornerRadius = 5
     }
 
     private func setupPicker() {

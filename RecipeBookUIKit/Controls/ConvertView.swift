@@ -130,7 +130,7 @@ final class ConvertView: UIView {
         amountLabel.font = .systemFont(ofSize: 10)
         amountLabel.textColor = .darkBrown
         unitLabel.font = .systemFont(ofSize: 10)
-        amountLabel.textColor = .darkBrown
+        unitLabel.textColor = .darkBrown
 
         baseUnitLabel.font = .systemFont(ofSize: 10)
         baseUnitLabel.textColor = .darkBrown
@@ -140,15 +140,18 @@ final class ConvertView: UIView {
         baseAmountTextField.mode = .disabled
         baseAmountTextField.keyboardType = .decimalPad
         baseAmountTextField.textColor = .darkBrown
-        baseAmountTextField.placeholder = "-"
 
         baseUnitTextField.autocorrectionType = .no
         baseUnitTextField.mode = .disabled
         baseUnitTextField.textColor = .darkBrown
+        
         let placeholderAttributes: [NSAttributedString.Key: Any]? = [
             .foregroundColor: UIColor.coldBrown.withAlphaComponent(0.7),
             .font: UIFont.systemFont(ofSize: 13)
         ]
+        baseAmountTextField.attributedPlaceholder = NSAttributedString(
+            string: "-",
+            attributes: placeholderAttributes)
         baseUnitTextField.attributedPlaceholder = NSAttributedString(
             string: "Placeholder.NotSet".localized(),
             attributes: placeholderAttributes)

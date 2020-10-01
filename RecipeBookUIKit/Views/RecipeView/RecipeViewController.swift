@@ -9,6 +9,10 @@
 import UIKit
 
 final class RecipeViewController: UIViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .darkContent
+    }
+    
     private var recipeView: RecipeView!
 
     private var recipe: Recipe {

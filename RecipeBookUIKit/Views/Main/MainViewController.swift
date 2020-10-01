@@ -17,6 +17,10 @@ final class MainViewController: UIViewController {
     private var mainView: MainView!
     private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .darkContent
+    }
 
     override func loadView() {
         self.mainView = MainView()
