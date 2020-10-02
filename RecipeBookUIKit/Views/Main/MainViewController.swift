@@ -13,6 +13,7 @@ final class MainViewController: UIViewController {
     let sharedDefaults = UserDefaults.init(
         suiteName: "group.com.jesterix.RecipeBook")
     var isSharing = false
+    private var observer: Any?
 
     private var mainView: MainView!
     private let dataManager: DataManager = DataBaseManager()
@@ -40,20 +41,25 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         mainView.recipeTableView.reloadData()
-        showSharedTask()
-        NotificationCenter.default.addObserver(
+        showSharedTask { _ in }
+        observer = NotificationCenter.default.addObserver(
             forName: UIApplication.willEnterForegroundNotification,
             object: nil,
-            queue: .main) { [unowned self] _ in
-                self.showSharedTask()
+            queue: .main) { [weak self] _ in
+                self?.isSharing = true
+                self?.showSharedTask { _ in }
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIApplication.willEnterForegroundNotification,
-            object: nil)
+        unsubscribe()
+    }
+    
+    private func unsubscribe() {
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
+            self.observer = nil
+        }
     }
     
     private func setupDelegates() {
@@ -73,13 +79,20 @@ final class MainViewController: UIViewController {
     private func doFirstFetch() {
         customProvider.customMeasures = dataManager.getCustomMeasures()
     }
-
-    private func showSharedTask() {
-        guard let shareTask = sharedDefaults?.string(forKey: "shareTask") else { return }
+    
+    private func handleSharedTask(completion: @escaping(Bool)->()) {
+        guard let shareTask = sharedDefaults?.string(forKey: "shareTask") else {
+            return
+        }
         isSharing = true
         addObject(from: shareTask)
         sharedDefaults?.removeObject(forKey: "shareTask")
         isSharing = false
+        completion(isSharing)
+    }
+    
+    func showSharedTask(completion: @escaping(Bool)->()) {
+        handleSharedTask(completion: completion)
     }
 }
 
