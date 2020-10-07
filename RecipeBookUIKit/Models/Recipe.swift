@@ -13,4 +13,12 @@ struct Recipe {
     var numberOfPortions: Double?
     var ingredients: [Ingredient] = []
     var text: String = ""
+    var description: String {
+        var full = title
+        for ingredient in ingredients {
+            full += "\n\(ingredient.description)"
+        }
+        full += "\n\(text)"
+        return full
+    }
 }

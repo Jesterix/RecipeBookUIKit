@@ -59,6 +59,12 @@ final class RecipeViewController: UIViewController {
         recipeView.showTablePlaceholder(recipe.ingredients.isEmpty)
 
         hideKeyboardOnTap()
+        
+        let share = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(shareRecipe))
+        navigationItem.rightBarButtonItem = share
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +93,13 @@ final class RecipeViewController: UIViewController {
     
     private func convertPortions(with coefficient: Double) {
         RecipeDataHandler.convertPortions(in: &recipe, with: coefficient)
+    }
+    
+    @objc func shareRecipe() {
+        let vc = UIActivityViewController(
+            activityItems: [recipe.description],
+            applicationActivities: [])
+        present(vc, animated: true)
     }
 }
 

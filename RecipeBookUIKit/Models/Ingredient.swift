@@ -13,6 +13,14 @@ struct Ingredient {
     var id: String = UUID().uuidString
     var title: String
     var measurement: Measure? = nil
+    var description: String {
+        var full = title
+        guard let measure = measurement else {
+            return full
+        }
+        full += " \(measure.value) \(measure.symbol)"
+        return full
+    }
 
     static func empty() -> Ingredient {
         return Ingredient(title: "")
