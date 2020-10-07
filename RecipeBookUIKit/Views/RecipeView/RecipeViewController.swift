@@ -50,6 +50,9 @@ final class RecipeViewController: UIViewController {
         recipeView.addIngredientTextField.addingDelegate = self
         recipeView.textView.delegate = self
         
+//        recipeView.textView.addCameraToolbar(
+//            target: self,
+//            action: #selector(tapConvert))
         recipeView.textView.text = recipe.text
         recipeView.showTextViewPlaceholder(recipe.text.isEmpty)
         

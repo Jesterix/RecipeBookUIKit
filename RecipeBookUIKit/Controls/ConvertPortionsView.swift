@@ -126,6 +126,7 @@ final class ConvertPortionsView: UIView {
         textField.textAlignment = .right
         textField.backgroundColor = .warmGray
         textField.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        textField.addStandartToolbar()
     }
     
     private func setup() {

@@ -54,3 +54,5 @@
 "Info.Label.Converting" = "Change measure for converting to another one.";
 
 "Info.Label.Editing" = "Create your own measure. You can specify the conversion factor to base units for further convenience.";
+
+"Button.Done.Text" = "Done";

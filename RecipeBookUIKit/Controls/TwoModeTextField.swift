@@ -60,17 +60,20 @@ final class TwoModeTextField: InsettedTextField {
             self.isEnabled = true
             self.tintColor = .darkBrown
             inputView = defaultInput
+            addStandartToolbar()
         case .changeable:
             self.alpha = 1
             self.backgroundColor = .lightlyGray
             self.isEnabled = true
             self.tintColor = .clear
             setupPicker()
+            addPickerToolbar()
         case .disabled:
             self.alpha = 0.5
             self.backgroundColor = .clear
             self.isEnabled = false
             inputView = defaultInput
+            inputAccessoryView = nil
         }
         textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.borderStyle = .none

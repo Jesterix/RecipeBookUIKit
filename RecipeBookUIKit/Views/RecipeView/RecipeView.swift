@@ -73,6 +73,7 @@ final class RecipeView: UIView {
         titleField.font = .systemFont(ofSize: 21)
         titleField.textColor = .darkBrown
         titleField.autocorrectionType = .no
+        titleField.addStandartToolbar()
 
         addIngredientTextField.setPlaceholder(text: "Recipe.Add.Placeholder".localized())
         
@@ -87,6 +88,7 @@ final class RecipeView: UIView {
         textView.layer.cornerRadius = 10
         textView.font = .systemFont(ofSize: 15)
         textView.textColor = .darkBrown
+        textView.addStandartToolbar()
     }
     
     func showTablePlaceholder(_ bool: Bool) {

@@ -69,6 +69,9 @@ final class IngredientCell: UITableViewCell {
 
         titleTextField.autocorrectionType = .no
         valueTextField.autocorrectionType = .no
+        
+        titleTextField.addStandartToolbar()
+        valueTextField.addStandartToolbar()
 
         titleTextField.backgroundColor = .lightlyGray
         valueTextField.backgroundColor = .warmGray

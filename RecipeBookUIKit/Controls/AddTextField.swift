@@ -67,6 +67,8 @@ final class AddTextField: UITextField {
             return
         }
         clearButton.isHidden = !(text.count > 0)
+        
+        addStandartToolbar()
     }
 
     @objc private func clearSearchField() {
