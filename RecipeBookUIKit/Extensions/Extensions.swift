@@ -153,3 +153,59 @@ extension String {
             .joined(separator: " "))
     }
 }
+
+//MARK: - UIImage resize
+extension UIImage {
+    func resizeToFit(size: CGSize) -> UIImage? {
+        if self.size.width <= size.width && self.size.height <= size.height {
+            return self
+        }
+        
+        let widthScaleFactor = self.size.width / size.width
+        let heightScaleFactor = self.size.height / size.height
+        
+        var newSize: CGSize!
+        if widthScaleFactor > heightScaleFactor {
+            newSize = CGSize(
+                width: self.size.width / widthScaleFactor,
+                height: self.size.height / widthScaleFactor)
+        } else {
+            newSize = CGSize(
+                width: self.size.width / heightScaleFactor,
+                height: self.size.height / heightScaleFactor)
+        }
+        
+        return resizeWithUIKit(to: newSize)
+    }
+    
+    private func resizeWithUIKit(to newSize: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(newSize, true, 1.0)
+        self.draw(in: CGRect(origin: .zero, size: newSize))
+        defer { UIGraphicsEndImageContext() }
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+
+//MARK: - UITextView image inserting
+extension UITextView {
+    func insertImage(
+        _ image: UIImage,
+        widthScale: CGFloat = 1,
+        heightScale: CGFloat = 1
+    ) {
+        let textAttachment = NSTextAttachment()
+        
+        let sizeToFit = CGSize(
+            width: frame.size.width * widthScale,
+            height: frame.size.height * heightScale)
+        
+        textAttachment.image = image.resizeToFit(size: sizeToFit)
+        
+        let attrStringWithImage = NSAttributedString(attachment: textAttachment)
+        let attributedString = NSMutableAttributedString(attributedString: attributedText)
+        attributedString.replaceCharacters(
+            in: selectedRange,
+            with: attrStringWithImage)
+        attributedText = attributedString
+    }
+}
