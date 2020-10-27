@@ -188,25 +188,6 @@ final class RecipeViewController: UIViewController {
         }
     }
     
-//    // 4. Save image
-//    /// "Save" button action handler
-//    ///
-//    /// - parameter sender: the button
-//    func saveImageButtonAction(_ sender: Any) {
-//        guard let image = self.image else { return }
-//        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-//    }
-//
-//    // Called when image save is complete (with error or not)
-//    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-//        if let error = error {
-//            print("ERROR: \(error)")
-//        }
-//        else {
-//            self.showAlert("Image saved", message: "The image is saved into your Photo Library.")
-//        }
-//    }
-//
     /// Show popup with title and message
     /// - Parameters:
     ///   - title: the title
@@ -230,13 +211,11 @@ final class RecipeViewController: UIViewController {
         //get the image path
         let fileURL = documentsDirectory.appendingPathComponent(imageName)
         
-//        print("imagePath to save:", fileURL)
-        
         recipe.attachmentsInfo.append(AttachmentInfo(
             url: imageName,
             range: recipeView.textView.selectedRange))
 
-        guard let data = image.pngData() else { return }
+        guard let rotated = image.rotateUpwards(), let data = rotated.pngData() else { return }
         
         if FileManager.default.fileExists(atPath: fileURL.path) {
             do {

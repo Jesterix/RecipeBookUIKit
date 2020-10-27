@@ -184,6 +184,18 @@ extension UIImage {
         defer { UIGraphicsEndImageContext() }
         return UIGraphicsGetImageFromCurrentImageContext()
     }
+    
+    //rotating before saving
+    func rotateUpwards() -> UIImage? {
+        if (self.imageOrientation == UIImage.Orientation.up ) {
+            return self
+        }
+        UIGraphicsBeginImageContext(self.size)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: self.size))
+        let copy = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return copy
+    }
 }
 
 //MARK: - UITextView image inserting
