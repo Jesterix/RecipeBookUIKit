@@ -21,4 +21,11 @@ struct Recipe {
         full += "\n\(text)"
         return full
     }
+    var attachmentsInfo: [AttachmentInfo] = []
+}
+
+struct AttachmentInfo {
+    var id: String = UUID().uuidString
+    var url: String = ""
+    var range: NSRange = NSRange(location: 0, length: 0)
 }

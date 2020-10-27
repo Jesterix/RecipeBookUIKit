@@ -56,6 +56,9 @@
 		CF9B0763252600C00008A7C9 /* ARecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0762252600C00008A7C9 /* ARecipeTests.swift */; };
 		CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */; };
 		CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */; };
+		CF9B077B2530F5BB0008A7C9 /* RealmAttachmentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B077A2530F5BB0008A7C9 /* RealmAttachmentInfo.swift */; };
+		CF9B077D2530FB5E0008A7C9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B077C2530FB5E0008A7C9 /* Helper.swift */; };
+		CF9B078F2541C2350008A7C9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B078E2541C2350008A7C9 /* Theme.swift */; };
 		CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */; };
 		CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12788251E935900FBFFB5 /* InsettedTextField.swift */; };
 		CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */; };
@@ -149,6 +152,9 @@
 		CF9B0764252600C00008A7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToolBar.swift; sourceTree = "<group>"; };
 		CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarInputView.swift; sourceTree = "<group>"; };
+		CF9B077A2530F5BB0008A7C9 /* RealmAttachmentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAttachmentInfo.swift; sourceTree = "<group>"; };
+		CF9B077C2530FB5E0008A7C9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CF9B078E2541C2350008A7C9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		CFA12788251E935900FBFFB5 /* InsettedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedTextField.swift; sourceTree = "<group>"; };
 		CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSegmentedPicker.swift; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 				5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */,
 				4428C44D24E3D1960054C6DD /* Predicate.swift */,
 				4474487C24C60C7000EA5B2C /* Extensions.swift */,
+				CF9B078E2541C2350008A7C9 /* Theme.swift */,
+				CF9B077C2530FB5E0008A7C9 /* Helper.swift */,
 				4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */,
 			);
 			path = Extensions;
@@ -328,6 +336,7 @@
 				4474489E24C8505200EA5B2C /* DataBaseManager.swift */,
 				4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */,
 				4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */,
+				CF9B077A2530F5BB0008A7C9 /* RealmAttachmentInfo.swift */,
 				5E18C0D724EAD8DC003F7D74 /* RealmCustomMeasurement.swift */,
 			);
 			path = RealmDataImplementation;
@@ -509,6 +518,7 @@
 				5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */,
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
 				5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */,
+				CF9B078F2541C2350008A7C9 /* Theme.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
@@ -538,8 +548,10 @@
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */,
+				CF9B077D2530FB5E0008A7C9 /* Helper.swift in Sources */,
 				449F022F24D845B800A556E1 /* ConvertView.swift in Sources */,
 				CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */,
+				CF9B077B2530F5BB0008A7C9 /* RealmAttachmentInfo.swift in Sources */,
 				CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,

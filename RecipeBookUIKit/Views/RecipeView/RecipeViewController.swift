@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import MobileCoreServices
 
 final class RecipeViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -19,6 +21,16 @@ final class RecipeViewController: UIViewController {
         didSet {
             dataManager.update(recipe: recipe)
             recipeView.ingredientTableView.reloadData()
+        }
+    }
+    private var image: UIImage? {
+        didSet {
+            guard let pic = image else { return }
+            saveImage(pic)
+            recipeView.textView.insertImage(
+                pic,
+                widthScale: 0.75,
+                heightScale: 0.7)
         }
     }
     
@@ -50,10 +62,30 @@ final class RecipeViewController: UIViewController {
         recipeView.addIngredientTextField.addingDelegate = self
         recipeView.textView.delegate = self
         
-//        recipeView.textView.addCameraToolbar(
-//            target: self,
-//            action: #selector(tapConvert))
+        recipeView.textView.addCameraToolbar(
+            target: self,
+            cameraAction: #selector(insertImageFromCamera),
+            galleryAction: #selector(insertImageFromGallery))
+        
         recipeView.textView.text = recipe.text
+        //TODO: refactor
+        if recipe.attachmentsInfo.count > 0 {
+            recipe.attachmentsInfo.sort {
+                $0.range.location < $1.range.location
+            }
+            for attach in recipe.attachmentsInfo {
+                DispatchQueue.main.async {
+                    self.recipeView.textView.selectedRange = attach.range
+                    if let savedImage = self.loadImageFromDiskWith(fileName: attach.url) {
+                        self.recipeView.textView.insertImage(
+                            savedImage,
+                            widthScale: 0.75,
+                            heightScale: 0.7)
+                    }
+                }
+            }
+        }
+        
         recipeView.showTextViewPlaceholder(recipe.text.isEmpty)
         
         recipeView.convertPortionsView.coefficient = recipe.numberOfPortions ?? 1
@@ -103,6 +135,177 @@ final class RecipeViewController: UIViewController {
             activityItems: [recipe.description],
             applicationActivities: [])
         present(vc, animated: true)
+    }
+    
+    @objc private func insertImageFromCamera() {
+        if AVCaptureDevice.authorizationStatus(for: .video) ==  .authorized {
+            self.showPickerWithSourceType(.camera)
+        } else {
+            AVCaptureDevice.requestAccess(
+                for: .video,
+                completionHandler: { (granted: Bool) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            self.showPickerWithSourceType(.camera)
+                        } else {
+                            self.showAlert(
+                                title: "No access to camera",
+                                message: "You need to grant permissions to camera to take a picture.") {
+                                    self.showPickerWithSourceType(.photoLibrary)
+                            }
+                        }
+                    }
+            })
+        }
+    }
+    
+    @objc private func insertImageFromGallery() {
+        self.showPickerWithSourceType(.photoLibrary)
+    }
+    
+    // 2. Open photo capture
+    /// Show image picker
+    /// - Parameter sourceType: the type of the source
+    private func showPickerWithSourceType(_ sourceType: UIImagePickerController.SourceType) {
+        var vc: UIViewController!
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.mediaTypes = [kUTTypeImage as String]       // if you also need a video, then use [kUTTypeImage as String, kUTTypeMovie as String]
+            imagePicker.sourceType = sourceType
+            imagePicker.videoQuality = UIImagePickerController.QualityType.typeMedium
+            vc = imagePicker
+        } else {
+            let alert = UIAlertController(
+                title: "Error",
+                message: "This feature is supported on real devices only",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            vc = alert
+        }
+        DispatchQueue.main.async {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+//    // 4. Save image
+//    /// "Save" button action handler
+//    ///
+//    /// - parameter sender: the button
+//    func saveImageButtonAction(_ sender: Any) {
+//        guard let image = self.image else { return }
+//        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+//    }
+//
+//    // Called when image save is complete (with error or not)
+//    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+//        if let error = error {
+//            print("ERROR: \(error)")
+//        }
+//        else {
+//            self.showAlert("Image saved", message: "The image is saved into your Photo Library.")
+//        }
+//    }
+//
+    /// Show popup with title and message
+    /// - Parameters:
+    ///   - title: the title
+    ///   - message: the message
+    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { action in
+            completion?()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: completion)
+    }
+    
+    private func saveImage(_ image: UIImage){
+        let imageName = Helper.imageName()
+        //create an instance of the FileManager
+        guard let documentsDirectory = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask).first else { return }
+
+        //get the image path
+        let fileURL = documentsDirectory.appendingPathComponent(imageName)
+        
+//        print("imagePath to save:", fileURL)
+        
+        recipe.attachmentsInfo.append(AttachmentInfo(
+            url: imageName,
+            range: recipeView.textView.selectedRange))
+
+        guard let data = image.pngData() else { return }
+        
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                try FileManager.default.removeItem(atPath: fileURL.path)
+                print("Removed old image")
+            } catch let removeError {
+                print("couldn't remove file at path", removeError)
+            }
+        }
+        
+        do {
+            try data.write(to: fileURL)
+            print("saved to disk")
+        } catch let error {
+            print("error saving file with error", error)
+        }
+    }
+    
+    private func loadImageFromDiskWith(fileName: String) -> UIImage? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+            let image = UIImage(contentsOfFile: imageUrl.path)
+            return image
+        }
+        return nil
+    }
+    
+    private func checkAttachments() {
+        var newRanges: [Int] = []
+        recipeView.textView.attributedText.enumerateAttribute(
+            .attachment,
+            in: NSRange(location: 0, length: recipeView.textView.attributedText.length),
+            options: []
+        ) { (value, range, stop) in
+            if (value is NSTextAttachment) {
+                newRanges.append(range.location)
+            }
+        }
+        guard newRanges.count == recipe.attachmentsInfo.count else { return }
+        for index in recipe.attachmentsInfo.indices {
+            recipe.attachmentsInfo[index].range.location = newRanges[index]
+        }
+    }
+    
+    private func removeAttachments(in range: NSRange, of textView: UITextView) {
+        var indicesToRemove: Set<Int> = Set()
+        textView.attributedText.enumerateAttribute(
+            .attachment,
+            in: range,
+            options: []
+        ) { (value, attachRange, stop) in
+            if (value is NSTextAttachment) {
+                if let index = (recipe.attachmentsInfo.firstIndex {
+                    $0.range.location == attachRange.location
+                }) {
+                    indicesToRemove.insert(index)
+                }
+            }
+        }
+        if indicesToRemove.count > 0 {
+            let removingIndices = Array(indicesToRemove).sorted().reversed()
+            removingIndices.forEach { index in
+                recipe.attachmentsInfo.remove(at: index)
+            }
+        }
     }
 }
 
@@ -190,6 +393,7 @@ extension RecipeViewController: ObjectFromStringAdding {
 extension RecipeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         recipe.text = textView.text
+        checkAttachments()
     }
     
     func textView(
@@ -197,6 +401,9 @@ extension RecipeViewController: UITextViewDelegate {
         shouldChangeTextIn range: NSRange,
         replacementText text: String
     ) -> Bool {
+        //removing attachments if needed
+        removeAttachments(in: range, of: textView)
+        
         let currentText: String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(
             in: range,
@@ -209,8 +416,11 @@ extension RecipeViewController: UITextViewDelegate {
                 to: textView.beginningOfDocument)
         } else if textView.textColor == .coldBrown && !text.isEmpty {
             recipeView.showTextViewPlaceholder(false)
-            textView.text = text
+            textView.attributedText = NSAttributedString(
+                string: text,
+                attributes: Theme.textAttributes)
         } else {
+            textView.setStandartThemeTextAttributes()
             return true
         }
         
@@ -252,5 +462,23 @@ extension RecipeViewController: UITextFieldDelegate {
                 recipe.numberOfPortions = recipeView.convertPortionsView.coefficient
             }
         }
+    }
+}
+
+extension RecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // 3. Temporary save image in `self.image`
+    /// Image selected/captured
+    /// - Parameters:
+    ///   - picker: the picker
+    ///   - info: the info
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let mediaType = info[UIImagePickerController.InfoKey.mediaType] {
+            if (mediaType as AnyObject).description == kUTTypeImage as String {
+                if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                    self.image = image
+                }
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

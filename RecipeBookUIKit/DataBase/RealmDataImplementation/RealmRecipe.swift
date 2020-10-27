@@ -15,6 +15,7 @@ class RealmRecipe: Object {
     let portions = RealmOptional<Double>()
     let ingredients = List<RealmIngredient>()
     @objc dynamic var text: String = ""
+    let attachmentsInfo = List<RealmAttachmentInfo>()
     
     override class func primaryKey() -> String? {
         return "id"
@@ -25,8 +26,13 @@ class RealmRecipe: Object {
         id = recipe.id
         title = recipe.title
         portions.value = recipe.numberOfPortions
-        ingredients.append(objectsIn: recipe.ingredients.map { RealmIngredient(from: $0) })
+        ingredients.append(objectsIn: recipe.ingredients.map {
+            RealmIngredient(from: $0)
+        })
         text = recipe.text
+        attachmentsInfo.append(objectsIn: recipe.attachmentsInfo.map {
+            RealmAttachmentInfo(from: $0)
+        })
     }
 
     func converted() -> Recipe {
@@ -35,7 +41,8 @@ class RealmRecipe: Object {
             title: title,
             numberOfPortions: portions.value,
             ingredients: ingredients.map { $0.converted() },
-            text: text
+            text: text,
+            attachmentsInfo: attachmentsInfo.map { $0.converted() }
         )
     }
 }

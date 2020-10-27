@@ -11,10 +11,11 @@ extension UITextField {
         self.resignFirstResponder()
     }
     
-    func addCameraToolbar(target: Any?, action: Selector) {
+    func addCameraToolbar(target: Any?, cameraAction: Selector, galleryAction: Selector) {
         let cameraToolbar = ToolbarInputView(height: 40)
         cameraToolbar.setDoneAction(target: self, action: #selector(doneButtonAction))
-        cameraToolbar.setCameraAction(target: target, action: action)
+        cameraToolbar.setCameraAction(target: target, action: cameraAction)
+        cameraToolbar.setGalleryAction(target: target, action: galleryAction)
         self.inputAccessoryView = cameraToolbar
     }
     
@@ -37,10 +38,11 @@ extension UITextView {
         self.resignFirstResponder()
     }
     
-    func addCameraToolbar(target: Any?, action: Selector) {
+    func addCameraToolbar(target: Any?, cameraAction: Selector, galleryAction: Selector) {
         let cameraToolbar = ToolbarInputView(height: 40)
         cameraToolbar.setDoneAction(target: self, action: #selector(doneButtonAction))
-        cameraToolbar.setCameraAction(target: target, action: action)
+        cameraToolbar.setCameraAction(target: target, action: cameraAction)
+        cameraToolbar.setGalleryAction(target: target, action: galleryAction)
         self.inputAccessoryView = cameraToolbar
     }
 }

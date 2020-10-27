@@ -3,6 +3,7 @@ import UIKit
 final class ToolbarInputView: UIInputView {
     private var doneButton: UIButton!
     private var cameraButton: UIButton!
+    private var galleryButton: UIButton!
     
     override init(frame: CGRect, inputViewStyle: UIInputView.Style) {
         super.init(frame: frame, inputViewStyle: inputViewStyle)
@@ -24,6 +25,11 @@ final class ToolbarInputView: UIInputView {
         cameraButton = layout(UIButton(type: .system)) { make in
             make.centerY.equalToSuperview().offset(5)
             make.leading.equalToSuperview().offset(15)
+        }
+        
+        galleryButton = layout(UIButton(type: .system)) { make in
+            make.centerY.equalTo(cameraButton)
+            make.leading.equalTo(cameraButton.trailing).offset(10)
         }
     }
     
@@ -47,6 +53,14 @@ final class ToolbarInputView: UIInputView {
             for: .normal)
         cameraButton.tintColor = .darkBrown
         cameraButton.isHidden = true
+        
+        galleryButton.setImage(
+            UIImage(
+                systemName: "photo",
+                withConfiguration: config),
+            for: .normal)
+        galleryButton.tintColor = .darkBrown
+        galleryButton.isHidden = true
     }
     
     func setDoneAction(target: Any?, action: Selector) {
@@ -56,6 +70,11 @@ final class ToolbarInputView: UIInputView {
     func setCameraAction(target: Any?, action: Selector) {
         cameraButton.addTarget(target, action: action, for: .touchUpInside)
         cameraButton.isHidden = false
+    }
+    
+    func setGalleryAction(target: Any?, action: Selector) {
+        galleryButton.addTarget(target, action: action, for: .touchUpInside)
+        galleryButton.isHidden = false
     }
 }
 
