@@ -26,9 +26,9 @@ To launch this project clone repository and open it with Xcode. SwiftPM is used 
 ## Project status
 
 Project is being developed now. There are plans for adding some functionality:
-* sharing of recipes
+
 * different layouts for recipe screen for better usability
-* image inserting for recipe textView
 * tutorial for the first launch
-* toolbar for keyboards with additional functions (like closing keyboard)
 * default basic ingredients (like water, flour and some others) and ability to convert them from Mass to Volume with density value.
+* rethink coloring
+* animations of UI
