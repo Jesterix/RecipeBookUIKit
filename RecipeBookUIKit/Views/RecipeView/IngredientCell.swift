@@ -18,15 +18,15 @@ final class IngredientCell: UITableViewCell {
     private var titleTextField: InsettedTextField!
     private var valueTextField: InsettedTextField!
     private var measurementTextField: InsettedTextField!
-
-    weak var tableView: UITableView?
+    
+    public var didTapMeasurement: (() -> Void)?
 
     override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
     ) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        layoutContent(in: self)
+        layoutContent(in: self.contentView)
         applyStyle()
         titleTextField.delegate = self
         valueTextField.delegate = self
@@ -50,14 +50,12 @@ final class IngredientCell: UITableViewCell {
             make.leading.equalTo(titleTextField.trailing).offset(5)
             make.width.equalToSuperview().dividedBy(5.5)
         }
-        valueTextField.tag = 1
 
         measurementTextField = layout(InsettedTextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(valueTextField.trailing).offset(5)
             make.trailing.equalToSuperview()
         }
-        measurementTextField.tag = 2
     }
 
     // MARK: - applyStyle
@@ -133,27 +131,12 @@ final class IngredientCell: UITableViewCell {
     func ingredientChanged(action: @escaping (Ingredient) -> Void) {
         self.ingredientChanged = action
     }
-
-    private func selectRow() {
-        guard
-            let tableView = self.tableView,
-            let indexpath = tableView.indexPath(for: self) else { return }
-
-        tableView.selectRow(
-            at: indexpath,
-            animated: true,
-            scrollPosition: .none)
-        tableView.delegate?.tableView?(
-            tableView,
-            didSelectRowAt: indexpath)
-    }
 }
 
 extension IngredientCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        switch textField.tag {
-            
-        case 1:
+        switch textField {
+        case valueTextField:
             guard let text = textField.text, let value = Double(text) else {
                 return
             }
@@ -163,7 +146,7 @@ extension IngredientCell: UITextFieldDelegate {
                 ingredient.measurement = Measure(value: value, symbol: "")
             }
 
-        case 2:
+        case measurementTextField:
             ingredient.measurement?.symbol = textField.text ?? ""
             
         default: ingredient.title = textField.text ?? ""
@@ -171,10 +154,10 @@ extension IngredientCell: UITextFieldDelegate {
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        switch textField.tag {
-        case 2:
+        switch textField {
+        case measurementTextField:
             self.endEditing(true)
-            selectRow()
+            didTapMeasurement?()
             return false
         default:
             return true

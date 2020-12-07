@@ -62,6 +62,8 @@
 		CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */; };
 		CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA12788251E935900FBFFB5 /* InsettedTextField.swift */; };
 		CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */; };
+		CFADB80F257D6E02003AFC31 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB80E257D6E02003AFC31 /* Alerts.swift */; };
+		CFADB814257D700E003AFC31 /* UIViewController+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB813257D700E003AFC31 /* UIViewController+FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,8 @@
 		CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		CFA12788251E935900FBFFB5 /* InsettedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedTextField.swift; sourceTree = "<group>"; };
 		CFA1278C251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledSegmentedPicker.swift; sourceTree = "<group>"; };
+		CFADB80E257D6E02003AFC31 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		CFADB813257D700E003AFC31 /* UIViewController+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FileManager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +237,9 @@
 			isa = PBXGroup;
 			children = (
 				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
+				CFADB80E257D6E02003AFC31 /* Alerts.swift */,
 				CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */,
+				CFADB813257D700E003AFC31 /* UIViewController+FileManager.swift */,
 				5EAC22F924F29AE9003BA90E /* UIColor+Style.swift */,
 				4428C44D24E3D1960054C6DD /* Predicate.swift */,
 				4474487C24C60C7000EA5B2C /* Extensions.swift */,
@@ -531,8 +537,10 @@
 				4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */,
 				CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */,
 				447448A224D6E0CC00EA5B2C /* Button.swift in Sources */,
+				CFADB814257D700E003AFC31 /* UIViewController+FileManager.swift in Sources */,
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,
+				CFADB80F257D6E02003AFC31 /* Alerts.swift in Sources */,
 				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
 				4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,

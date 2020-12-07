@@ -163,7 +163,7 @@ final class RecipeViewController: UIViewController {
         self.showPickerWithSourceType(.photoLibrary)
     }
     
-    // 2. Open photo capture
+    // Open photo capture
     /// Show image picker
     /// - Parameter sourceType: the type of the source
     private func showPickerWithSourceType(_ sourceType: UIImagePickerController.SourceType) {
@@ -188,63 +188,15 @@ final class RecipeViewController: UIViewController {
         }
     }
     
-    /// Show popup with title and message
-    /// - Parameters:
-    ///   - title: the title
-    ///   - message: the message
-    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { action in
-            completion?()
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: completion)
-    }
-    
     private func saveImage(_ image: UIImage){
         let imageName = Helper.imageName()
-        //create an instance of the FileManager
-        guard let documentsDirectory = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask).first else { return }
-
-        //get the image path
-        let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        
+       
         recipe.attachmentsInfo.append(AttachmentInfo(
             url: imageName,
             range: recipeView.textView.selectedRange))
 
         guard let rotated = image.rotateUpwards(), let data = rotated.pngData() else { return }
-        
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                try FileManager.default.removeItem(atPath: fileURL.path)
-                print("Removed old image")
-            } catch let removeError {
-                print("couldn't remove file at path", removeError)
-            }
-        }
-        
-        do {
-            try data.write(to: fileURL)
-            print("saved to disk")
-        } catch let error {
-            print("error saving file with error", error)
-        }
-    }
-    
-    private func loadImageFromDiskWith(fileName: String) -> UIImage? {
-        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
-        
-        if let dirPath = paths.first {
-            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
-            let image = UIImage(contentsOfFile: imageUrl.path)
-            return image
-        }
-        return nil
+        saveToDiskImage(name: imageName, with: data)
     }
     
     private func checkAttachments() {
@@ -288,6 +240,7 @@ final class RecipeViewController: UIViewController {
     }
 }
 
+//MARK:- TableViewDataSource
 extension RecipeViewController: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView,
@@ -312,33 +265,26 @@ extension RecipeViewController: UITableViewDataSource {
             cell.ingredientChanged { [unowned self] (ingredient: Ingredient) in
                 self.recipe.ingredients[indexPath.row - 1] = ingredient
             }
-            cell.tableView = tableView
+            cell.didTapMeasurement = { [unowned self] in
+                let vc = MeasureViewController()
+                if let measure = recipe.ingredients[indexPath.row - 1].measurement {
+                    vc.measure = measure
+                }
+                vc.onClose = { [unowned self] measure in
+                    self.recipe.ingredients[indexPath.row - 1].measurement = measure
+                }
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overCurrentContext
+                self.navigationController?.present(vc, animated: true, completion: nil)
+            }
         }
 
         return cell
     }
 }
 
+//MARK:- TableViewDelegate
 extension RecipeViewController: UITableViewDelegate {
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        let vc = MeasureViewController()
-
-        if let measure = recipe.ingredients[indexPath.row - 1].measurement {
-            vc.measure = measure
-        }
-
-        vc.onClose = { [unowned self] measure in
-            self.recipe.ingredients[indexPath.row - 1].measurement = measure
-        }
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
-        navigationController?.present(vc, animated: true, completion: nil)
-    }
 
     func tableView(
         _ tableView: UITableView,
@@ -361,6 +307,7 @@ extension RecipeViewController: UITableViewDelegate {
     }
 }
 
+//MARK:- ObjectFromStringAdding
 extension RecipeViewController: ObjectFromStringAdding {
     func addObject(from string: String) {
         recipe.ingredients.append(Ingredient(title: string))
@@ -369,6 +316,7 @@ extension RecipeViewController: ObjectFromStringAdding {
     }
 }
 
+//MARK:- TextViewDelegate
 extension RecipeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         recipe.text = textView.text
@@ -417,6 +365,7 @@ extension RecipeViewController: UITextViewDelegate {
     }
 }
 
+//MARK:- TextFieldDelegate
 extension RecipeViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         switch textField {
@@ -444,8 +393,9 @@ extension RecipeViewController: UITextFieldDelegate {
     }
 }
 
+//MARK:- ImagePickerDelegate
 extension RecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // 3. Temporary save image in `self.image`
+    // Temporary save image in `self.image`
     /// Image selected/captured
     /// - Parameters:
     ///   - picker: the picker
