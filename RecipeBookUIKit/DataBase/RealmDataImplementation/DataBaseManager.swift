@@ -40,7 +40,9 @@ class DataBaseManager: DataManager {
     }
     
     func getRecipes() -> [Recipe] {
-        return recipes.map { $0.converted() }
+        return recipes
+            .map { $0.converted() }
+            .sorted { $0.title < $1.title }
     }
     
     func getCustomMeasures() -> [CustomMeasure] {

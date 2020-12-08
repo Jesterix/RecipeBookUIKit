@@ -71,6 +71,8 @@ final class IngredientCell: UITableViewCell {
         titleTextField.addStandartToolbar()
         valueTextField.addStandartToolbar()
 
+        titleTextField.layer.borderColor = UIColor.warmBrown.cgColor
+        setTitleStyle()
         titleTextField.backgroundColor = .lightlyGray
         valueTextField.backgroundColor = .warmGray
         measurementTextField.backgroundColor = .warmBrown
@@ -86,11 +88,22 @@ final class IngredientCell: UITableViewCell {
             item?.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         }
     }
+    
+    private func setTitleStyle() {
+        titleTextField.layer.borderWidth = 0
+        Settings.basicIngredients.forEach { basic in
+            if basic.title.caseInsensitiveCompare(ingredient.title) == .orderedSame || basic.titleLocalized.caseInsensitiveCompare(ingredient.title) == .orderedSame {
+                titleTextField.layer.borderWidth = 2
+            }
+        }
+    }
 
     func configureCell(with ingredient: Ingredient) {
         self.ingredient = ingredient
         
         titleTextField.text = ingredient.title
+        
+        setTitleStyle()
 
         guard let measure = ingredient.measurement else {
             return
@@ -149,7 +162,9 @@ extension IngredientCell: UITextFieldDelegate {
         case measurementTextField:
             ingredient.measurement?.symbol = textField.text ?? ""
             
-        default: ingredient.title = textField.text ?? ""
+        default:
+            ingredient.title = textField.text ?? ""
+            setTitleStyle()
         }
     }
 
@@ -168,4 +183,19 @@ extension IngredientCell: UITextFieldDelegate {
         ingredientChanged?(ingredient)
     }
 }
+///Think about setting ingredient title equal to basic ingredient if they match
+//switch textField {
+//case titleTextField:
+//    Settings.basicIngredients.forEach { basic in
+//        if basic.title.caseInsensitiveCompare(ingredient.title) == .orderedSame {
+//            textField.text = basic.title
+//            ingredient.title = basic.title
+//        } else if basic.titleLocalized.caseInsensitiveCompare(ingredient.title) == .orderedSame {
+//            textField.text = basic.titleLocalized
+//            ingredient.title = basic.titleLocalized
+//        }
+//    }
+//default:
+//    return
+//}
 
