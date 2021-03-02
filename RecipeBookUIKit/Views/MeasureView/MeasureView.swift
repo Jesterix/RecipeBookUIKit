@@ -35,8 +35,6 @@ final class MeasureView: UIView {
     
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
-        layoutBlur(in: view, intensity: 0.15)
-        
         backBiew = layout(UIView()) { make in
             make.top.leading.equalTo(safeArea).offset(40)
             make.bottom.trailing.equalTo(safeArea).offset(-40)

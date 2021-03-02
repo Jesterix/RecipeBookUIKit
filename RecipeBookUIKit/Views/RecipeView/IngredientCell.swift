@@ -144,6 +144,10 @@ final class IngredientCell: UITableViewCell {
     func ingredientChanged(action: @escaping (Ingredient) -> Void) {
         self.ingredientChanged = action
     }
+    
+    func getViewToTransiteFrom() -> UIView? {
+        measurementTextField
+    }
 }
 
 extension IngredientCell: UITextFieldDelegate {

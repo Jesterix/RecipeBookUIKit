@@ -62,7 +62,7 @@ class CustomVisualEffectView: UIVisualEffectView {
 }
 
 extension UIView {
-    func layoutBlur(in view: UIView, intensity: CGFloat) {
+    func layoutBlur(intensity: CGFloat) {
         let blur = UIBlurEffect(style: .light)
         let blurEffectView = CustomVisualEffectView(
             effect: blur,
@@ -219,5 +219,16 @@ extension UITextView {
             in: selectedRange,
             with: attrStringWithImage)
         attributedText = attributedString
+    }
+}
+
+//MARK:- UIView global coordinates
+extension UIView {
+    var globalPoint: CGPoint? {
+        return self.superview?.convert(self.frame.origin, to: nil)
+    }
+    
+    var globalFrame: CGRect? {
+        return self.superview?.convert(self.frame, to: nil)
     }
 }

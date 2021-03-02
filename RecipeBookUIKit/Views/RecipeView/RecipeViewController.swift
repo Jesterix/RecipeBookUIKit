@@ -35,6 +35,8 @@ final class RecipeViewController: UIViewController {
     }
     
     private let dataManager: DataManager = DataBaseManager()
+    
+    private var measureViewTransitioningDelegate: MeasureViewTransitioningDelegate?
 
     init(_ recipe: Recipe) {
         self.recipe = recipe
@@ -273,8 +275,15 @@ extension RecipeViewController: UITableViewDataSource {
                 vc.onClose = { [unowned self] measure in
                     self.recipe.ingredients[indexPath.row - 1].measurement = measure
                 }
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .overCurrentContext
+                //custom transition setup
+                if let viewToTransiteFrom = cell.getViewToTransiteFrom(),
+                   let frameToTransiteFrom = viewToTransiteFrom.globalFrame
+                {
+                    self.measureViewTransitioningDelegate = MeasureViewTransitioningDelegate(sourceRect: frameToTransiteFrom)
+                    vc.transitioningDelegate = self.measureViewTransitioningDelegate
+                }
+        
+                vc.modalPresentationStyle = .custom
                 self.navigationController?.present(vc, animated: true, completion: nil)
             }
         }
