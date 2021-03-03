@@ -420,16 +420,40 @@
 				CF58ECA125F01BC60065E2D4 /* TableViewDecorator.swift */,
 				CF58ECA625F01DE40065E2D4 /* TableViewDataSource.swift */,
 				CF58ECAB25F01E4F0065E2D4 /* Event.swift */,
-				CF58ECB025F01EAD0065E2D4 /* BaseTableViewSection.swift */,
-				CF58ECB525F0237B0065E2D4 /* BaseTableViewProxy.swift */,
-				CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */,
-				CF58ECBF25F0263C0065E2D4 /* DefaultSectionWithBackground.swift */,
-				CF58ECC425F0268A0065E2D4 /* CellFooteredTableViewSection.swift */,
-				CF58ECC925F026F60065E2D4 /* TableCellWithBackground.swift */,
-				CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */,
-				CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */,
+				CF58ECD825F02AFE0065E2D4 /* Sections */,
+				CF58ECD925F02B130065E2D4 /* Proxies */,
+				CF58ECE025F02B240065E2D4 /* Cells */,
 			);
 			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		CF58ECD825F02AFE0065E2D4 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				CF58ECB025F01EAD0065E2D4 /* BaseTableViewSection.swift */,
+				CF58ECC425F0268A0065E2D4 /* CellFooteredTableViewSection.swift */,
+				CF58ECBF25F0263C0065E2D4 /* DefaultSectionWithBackground.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		CF58ECD925F02B130065E2D4 /* Proxies */ = {
+			isa = PBXGroup;
+			children = (
+				CF58ECB525F0237B0065E2D4 /* BaseTableViewProxy.swift */,
+				CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */,
+			);
+			path = Proxies;
+			sourceTree = "<group>";
+		};
+		CF58ECE025F02B240065E2D4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */,
+				CF58ECC925F026F60065E2D4 /* TableCellWithBackground.swift */,
+				CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		CF9B0761252600C00008A7C9 /* ARecipeTests */ = {
