@@ -194,6 +194,27 @@ extension IngredientCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         ingredientChanged?(ingredient)
     }
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        switch textField {
+        case valueTextField:
+            if let text = (textField.text as NSString?)?.replacingCharacters(
+                in: range,
+                with: string), text.contains(",") {
+                textField.text = text.replacingOccurrences(of: ",", with: ".")
+                return false
+            } else {
+                return true
+            }
+            
+        default:
+            return true
+        }
+    }
 }
 ///Think about setting ingredient title equal to basic ingredient if they match
 //switch textField {

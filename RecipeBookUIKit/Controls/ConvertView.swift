@@ -348,5 +348,26 @@ extension ConvertView: UITextFieldDelegate {
             }
         }
     }
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        switch textField {
+        case amountTextField, baseAmountTextField:
+            if let text = (textField.text as NSString?)?.replacingCharacters(
+                in: range,
+                with: string), text.contains(",") {
+                textField.text = text.replacingOccurrences(of: ",", with: ".")
+                return false
+            } else {
+                return true
+            }
+            
+        default:
+            return true
+        }
+    }
 }
 
