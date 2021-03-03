@@ -56,6 +56,13 @@
 		CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */; };
 		CF58EC8125EED3260065E2D4 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8025EED3260065E2D4 /* PresentationController.swift */; };
 		CF58EC8625EED4470065E2D4 /* MeasureViewTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */; };
+		CF58EC9A25F01ACF0065E2D4 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC9925F01ACF0065E2D4 /* TableViewController.swift */; };
+		CF58ECA225F01BC60065E2D4 /* TableViewDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECA125F01BC60065E2D4 /* TableViewDecorator.swift */; };
+		CF58ECA725F01DE40065E2D4 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECA625F01DE40065E2D4 /* TableViewDataSource.swift */; };
+		CF58ECAC25F01E4F0065E2D4 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECAB25F01E4F0065E2D4 /* Event.swift */; };
+		CF58ECB125F01EAE0065E2D4 /* BaseTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECB025F01EAD0065E2D4 /* BaseTableViewSection.swift */; };
+		CF58ECB625F0237B0065E2D4 /* BaseTableViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECB525F0237B0065E2D4 /* BaseTableViewProxy.swift */; };
+		CF58ECBB25F023B60065E2D4 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */; };
 		CF9B0763252600C00008A7C9 /* ARecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0762252600C00008A7C9 /* ARecipeTests.swift */; };
 		CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */; };
 		CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */; };
@@ -155,6 +162,13 @@
 		CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		CF58EC8025EED3260065E2D4 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitionAnimator.swift; sourceTree = "<group>"; };
+		CF58EC9925F01ACF0065E2D4 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		CF58ECA125F01BC60065E2D4 /* TableViewDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDecorator.swift; sourceTree = "<group>"; };
+		CF58ECA625F01DE40065E2D4 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		CF58ECAB25F01E4F0065E2D4 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		CF58ECB025F01EAD0065E2D4 /* BaseTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewSection.swift; sourceTree = "<group>"; };
+		CF58ECB525F0237B0065E2D4 /* BaseTableViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewProxy.swift; sourceTree = "<group>"; };
+		CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		CF9B0760252600C00008A7C9 /* ARecipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARecipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9B0762252600C00008A7C9 /* ARecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARecipeTests.swift; sourceTree = "<group>"; };
 		CF9B0764252600C00008A7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -279,6 +293,7 @@
 		4474488B24C6F09400EA5B2C /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				CF58EC9825F01AAD0065E2D4 /* TableViewController */,
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
 				CFA12788251E935900FBFFB5 /* InsettedTextField.swift */,
 				5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */,
@@ -386,6 +401,20 @@
 				CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */,
 			);
 			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		CF58EC9825F01AAD0065E2D4 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CF58EC9925F01ACF0065E2D4 /* TableViewController.swift */,
+				CF58ECA125F01BC60065E2D4 /* TableViewDecorator.swift */,
+				CF58ECA625F01DE40065E2D4 /* TableViewDataSource.swift */,
+				CF58ECAB25F01E4F0065E2D4 /* Event.swift */,
+				CF58ECB025F01EAD0065E2D4 /* BaseTableViewSection.swift */,
+				CF58ECB525F0237B0065E2D4 /* BaseTableViewProxy.swift */,
+				CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */,
+			);
+			path = TableViewController;
 			sourceTree = "<group>";
 		};
 		CF9B0761252600C00008A7C9 /* ARecipeTests */ = {
@@ -538,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF58ECA725F01DE40065E2D4 /* TableViewDataSource.swift in Sources */,
 				5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */,
 				CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */,
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
@@ -553,6 +583,7 @@
 				4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */,
 				CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */,
 				4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */,
+				CF58EC9A25F01ACF0065E2D4 /* TableViewController.swift in Sources */,
 				4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */,
 				CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */,
 				447448A224D6E0CC00EA5B2C /* Button.swift in Sources */,
@@ -560,20 +591,24 @@
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,
 				CFADB80F257D6E02003AFC31 /* Alerts.swift in Sources */,
+				CF58ECA225F01BC60065E2D4 /* TableViewDecorator.swift in Sources */,
 				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
 				4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
+				CF58ECBB25F023B60065E2D4 /* CustomTableViewCell.swift in Sources */,
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,
 				4474488024C6216C00EA5B2C /* Ingredient.swift in Sources */,
 				5EA0584824D050F900631E04 /* MeasureView.swift in Sources */,
 				CFA12789251E935900FBFFB5 /* InsettedTextField.swift in Sources */,
 				5EAC22F224F1B700003BA90E /* String+LocalizeTableName.swift in Sources */,
 				5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */,
+				CF58ECAC25F01E4F0065E2D4 /* Event.swift in Sources */,
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */,
 				5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
+				CF58ECB125F01EAE0065E2D4 /* BaseTableViewSection.swift in Sources */,
 				CF58EC8625EED4470065E2D4 /* MeasureViewTransitionAnimator.swift in Sources */,
 				5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */,
 				CF9B077D2530FB5E0008A7C9 /* Helper.swift in Sources */,
@@ -581,6 +616,7 @@
 				CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */,
 				CF9B077B2530F5BB0008A7C9 /* RealmAttachmentInfo.swift in Sources */,
 				CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */,
+				CF58ECB625F0237B0065E2D4 /* BaseTableViewProxy.swift in Sources */,
 				5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */,
 				4428C44E24E3D1960054C6DD /* Predicate.swift in Sources */,
 				449F023124D85A3600A556E1 /* TwoModeTextField.swift in Sources */,
