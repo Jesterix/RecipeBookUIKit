@@ -812,7 +812,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8.1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
@@ -835,7 +835,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8.1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;

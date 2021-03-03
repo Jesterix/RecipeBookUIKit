@@ -148,6 +148,14 @@ final class IngredientCell: UITableViewCell {
     func getViewToTransiteFrom() -> UIView? {
         measurementTextField
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        applyStyle()
+        titleTextField.isUserInteractionEnabled = true
+        valueTextField.isUserInteractionEnabled = true
+        measurementTextField.isUserInteractionEnabled = true
+    }
 }
 
 extension IngredientCell: UITextFieldDelegate {
