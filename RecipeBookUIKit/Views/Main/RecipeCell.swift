@@ -8,10 +8,16 @@
 
 import UIKit
 
-final class RecipeCell: UITableViewCell {
+final class RecipeCell: CustomTableViewCell {
     static var reuseID = "RecipeCell"
 
     private var recipeInfoLabel: InsettedLabel!
+    private var separatorView: UIView!
+    public var isSeparatorVisible = true {
+        didSet {
+            applyStyle()
+        }
+    }
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -34,18 +40,25 @@ final class RecipeCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-5)
             make.height.equalTo(40)
         }
+        
+        separatorView = layout(UIView()) { make in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        separatorView.backgroundColor = UIColor.darkBrown.withAlphaComponent(0.1)
     }
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .white
+        backgroundColor = .clear
         selectionStyle = .none
         recipeInfoLabel.contentInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
         recipeInfoLabel.textColor = .darkBrown
         recipeInfoLabel.font = .systemFont(ofSize: 17)
-        recipeInfoLabel.backgroundColor = .milkWhite
+//        recipeInfoLabel.backgroundColor = .milkWhite
         recipeInfoLabel.layer.cornerRadius = 5
         recipeInfoLabel.layer.masksToBounds = true
+        separatorView.isHidden = !isSeparatorVisible
     }
 
     func configureCell(with recipe: Recipe) {

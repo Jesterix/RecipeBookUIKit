@@ -15,6 +15,7 @@ class TableViewController: UIViewController {
     var tableViewDecorator: TableViewDecorator!
 //    var emptyView = EmptyView()
     var tableView = CustomTableView()
+    private let topContainerView: UIView = UIView()
     private let containerView: UIView = UIView()
     private var containerViewBottomConstraint: Constraint?
 //    private let contentLockSpinner = T2SpinnerWithNoBackground()
@@ -57,14 +58,16 @@ class TableViewController: UIViewController {
     
     // MARK: - Configuration
     private func setupTableView() {
+        view.addSubview(topContainerView)
+        topContainerView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        
         view.addSubview(containerView)
         containerView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            if #available(iOS 11, *) {
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            } else {
-                make.top.equalToSuperview().offset(40)
-            }
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
         }
         
@@ -73,10 +76,10 @@ class TableViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
-        tableView.clipsToBounds = false
+//        tableView.clipsToBounds = false
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(8)
-            make.left.right.equalTo(containerView)
+            make.top.equalToSuperview().offset(8)
+            make.leading.trailing.equalTo(containerView)
             make.bottom.equalTo(containerView)
         }
         
@@ -92,16 +95,17 @@ class TableViewController: UIViewController {
 //        }
         setRoundedBackground()
     }
+    
     func setRoundedBackground() {
         containerView.backgroundColor = UIColor.clear
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
-        containerView.layer.shadowOpacity = 0.1
-        containerView.layer.shadowRadius = 10
+//        containerView.layer.shadowColor = UIColor.black.cgColor
+//        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
+//        containerView.layer.shadowOpacity = 0.1
+//        containerView.layer.shadowRadius = 10
         
         containerView.snp.remakeConstraints { (make) in
-            make.left.right.equalToSuperview().inset(16)
-            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
         }
         tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top,
@@ -109,6 +113,29 @@ class TableViewController: UIViewController {
                                               bottom: tableView.contentInset.bottom + 8,
                                               right: tableView.contentInset.right)
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: -16)
+    }
+    
+    func layoutInHeader(
+        view: UIView,
+        insets: UIEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0)
+    ) {
+        topContainerView.addSubview(view)
+        view.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(insets.top)
+            make.leading.equalToSuperview().inset(insets.left)
+            make.trailing.equalToSuperview().inset(insets.right)
+            make.bottom.equalToSuperview().inset(insets.bottom)
+        }
+
+        containerView.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(topContainerView.snp.bottom)
+            containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
+        }
     }
     
 //    public func addPlayerCotrollerStateObserver() {

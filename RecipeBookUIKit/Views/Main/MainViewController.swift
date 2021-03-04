@@ -9,13 +9,13 @@
 import UIKit
 import MeasureLibrary
 
-final class MainViewController: UIViewController {
+final class MainViewController: TableViewController {
     let sharedDefaults = UserDefaults.init(
         suiteName: "group.com.jesterix.RecipeBook")
     var isSharing = false
     private var observer: Any?
 
-    private var mainView: MainView!
+    private var addRecipeTextField = AddTextField()
     private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
     
@@ -23,24 +23,24 @@ final class MainViewController: UIViewController {
         .darkContent
     }
 
-    override func loadView() {
-        self.mainView = MainView()
-        self.view = mainView
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Main.Recipes.Title".localized()
-
-        setupDelegates()
+        
+        self.view.backgroundColor = .white
+        setupHeader()
+        
+        tableViewDecorator = TableViewDecorator(forTableView: tableView, selfSizing: true)
+        tableViewDecorator.sections = [ mainSection() ]
+        tableViewDecorator.rowActionsDelegate = self
+        
         hideKeyboardOnTap()
         getDataFromDatabase()
         doFirstFetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mainView.recipeTableView.reloadData()
+        tableViewDecorator.reloadAllSections()
         showSharedTask { _ in }
         observer = NotificationCenter.default.addObserver(
             forName: UIApplication.willEnterForegroundNotification,
@@ -62,18 +62,22 @@ final class MainViewController: UIViewController {
         }
     }
     
-    private func setupDelegates() {
-        mainView.recipeTableView.dataSource = self
-        mainView.recipeTableView.delegate = self
-        mainView.recipeTableView.register(
-            RecipeCell.self,
-            forCellReuseIdentifier: RecipeCell.reuseID)
-        mainView.addRecipeTextField.addingDelegate = self
+    private func setupHeader() {
+        layoutInHeader(
+            view: addRecipeTextField,
+            insets: UIEdgeInsets(
+                top: 10,
+                left: 16,
+                bottom: 0,
+                right: 16)
+        )
+        addRecipeTextField.setPlaceholder(text: "Main.Add.Placeholder".localized())
+        addRecipeTextField.addingDelegate = self
     }
     
     private func getDataFromDatabase() {
         dataManager.createDefaultData()
-        self.mainView.recipeTableView.reloadData()
+        tableViewDecorator.reloadAllSections()
     }
 
     private func doFirstFetch() {
@@ -94,56 +98,31 @@ final class MainViewController: UIViewController {
     func showSharedTask(completion: @escaping(Bool)->()) {
         handleSharedTask(completion: completion)
     }
-}
-
-extension MainViewController: UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        dataManager.getRecipes().count
-    }
-
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.reuseID) as? RecipeCell else {
-            return UITableViewCell()
+    
+    func mainSection() -> BaseTableViewSection {
+        let section = MainSection(dataManager: dataManager)
+        section.didSelect = { [weak self] row in
+            guard let self = self else { return }
+            self.navigationController?.pushViewController(
+                RecipeViewController(self.dataManager.getRecipes()[row]),
+                animated: true)
         }
-        cell.configureCell(with: dataManager.getRecipes()[indexPath.row])
-
-        return cell
+        return section
     }
 }
 
-extension MainViewController: UITableViewDelegate {
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        navigationController?.pushViewController(
-            RecipeViewController(dataManager.getRecipes()[indexPath.row]),
-            animated: true)
-    }
-
-    func tableView(
-        _ tableView: UITableView,
-        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
-    ) -> UISwipeActionsConfiguration? {
-
+extension MainViewController: RowEditActionsDelegate {
+    func editActionsConfigForRowAt(_ indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(
             style: .destructive,
             title: "Main.Delete.Action".localized()
         ) { _, _, _ in
             self.dataManager.remove(
                 recipe: self.dataManager.getRecipes()[indexPath.row])
-            tableView.reloadData()
+            self.tableViewDecorator.reloadAllSections()
         }
         deleteAction.backgroundColor = .brightRed
-
+        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
@@ -155,6 +134,6 @@ extension MainViewController: ObjectFromStringAdding {
         } else {
             dataManager.update(recipe: Recipe(title: string))
         }
-        mainView.recipeTableView.reloadData()
+        tableViewDecorator.reloadAllSections()
     }
 }

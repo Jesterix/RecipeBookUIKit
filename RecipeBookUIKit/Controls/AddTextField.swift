@@ -41,7 +41,8 @@ final class AddTextField: UITextField {
     // MARK: - layoutContent
     private func layoutContent(in view: UIView) {
         clearButton = layout(UIButton()) { make in
-            make.centerY.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.height.equalTo(40)
             make.trailing.equalToSuperview().offset(-10)
         }
     }
