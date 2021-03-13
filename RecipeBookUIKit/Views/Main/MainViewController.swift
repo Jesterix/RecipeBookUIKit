@@ -35,6 +35,7 @@ final class MainViewController: TableViewController {
         tableViewDecorator.rowActionsDelegate = self
         
         hideKeyboardOnTap()
+//        configureEmptyView(image: UIImage(), title: "No recipes yet", description: "")
         getDataFromDatabase()
         doFirstFetch()
     }

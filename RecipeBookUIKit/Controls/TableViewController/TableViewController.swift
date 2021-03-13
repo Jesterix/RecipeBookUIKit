@@ -12,6 +12,7 @@ import SnapKit
 //protocol Draggable {}
 
 class TableViewController: UIViewController {
+    private var keyboardHandler: TableViewKeyboardHandler?
     var tableViewDecorator: TableViewDecorator!
 //    var emptyView = EmptyView()
     var tableView = CustomTableView()
@@ -36,7 +37,12 @@ class TableViewController: UIViewController {
 //        automaticallyAdjustsScrollViewInsets = false
         tableView.contentInsetAdjustmentBehavior = .never
         setupTableView()
+        configureKeyboardHandler()
 //        configureOfflineMode()
+    }
+    
+    func configureKeyboardHandler() {
+        keyboardHandler = TableViewKeyboardHandler(from: self)
     }
     
 //    func configureEmptyView(image: UIImage, title: String, description: String, actionTitle: String? = nil, action: (() -> Void)? = nil) {
@@ -85,8 +91,9 @@ class TableViewController: UIViewController {
         
 //        containerView.addSubview(emptyView)
 //        emptyView.alpha = 0
-//        emptyView.snp.makeConstraints { (make) in
-//            make.edges.equalTo(tableView)
+//        emptyView.snp.remakeConstraints { (make) in
+////            make.edges.equalTo(tableView)
+//            make.center.equalTo(tableView)
 //        }
 //        contentLockSpinner.isHidden = true
 //        view.addSubview(contentLockSpinner)
