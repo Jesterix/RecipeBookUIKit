@@ -52,7 +52,9 @@
 		5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FC24F2A29F003BA90E /* RecipeView.swift */; };
 		5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */; };
 		5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC230024F2F1EB003BA90E /* NavigationController.swift */; };
+		CF12784025FC0FAD00E49E20 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12783F25FC0FAD00E49E20 /* PlaceholderCell.swift */; };
 		CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D847B25226AF000649BB8 /* DoubleButton.swift */; };
+		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
 		CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */; };
 		CF58EC8125EED3260065E2D4 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8025EED3260065E2D4 /* PresentationController.swift */; };
 		CF58EC8625EED4470065E2D4 /* MeasureViewTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */; };
@@ -68,6 +70,7 @@
 		CF58ECCA25F026F60065E2D4 /* TableCellWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECC925F026F60065E2D4 /* TableCellWithBackground.swift */; };
 		CF58ECCF25F0273A0065E2D4 /* SpacerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */; };
 		CF58ECD425F0276D0065E2D4 /* CellFooteredTableViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */; };
+		CF58ECF625F2B96A0065E2D4 /* TableViewKeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECF525F2B96A0065E2D4 /* TableViewKeyboardHandler.swift */; };
 		CF9B0763252600C00008A7C9 /* ARecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0762252600C00008A7C9 /* ARecipeTests.swift */; };
 		CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */; };
 		CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */; };
@@ -163,7 +166,9 @@
 		5EAC22FC24F2A29F003BA90E /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsettedLabel.swift; sourceTree = "<group>"; };
 		5EAC230024F2F1EB003BA90E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		CF12783F25FC0FAD00E49E20 /* PlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
 		CF1D847B25226AF000649BB8 /* DoubleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleButton.swift; sourceTree = "<group>"; };
+		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		CF58EC8025EED3260065E2D4 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -179,6 +184,7 @@
 		CF58ECC925F026F60065E2D4 /* TableCellWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellWithBackground.swift; sourceTree = "<group>"; };
 		CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerCell.swift; sourceTree = "<group>"; };
 		CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFooteredTableViewProxy.swift; sourceTree = "<group>"; };
+		CF58ECF525F2B96A0065E2D4 /* TableViewKeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewKeyboardHandler.swift; sourceTree = "<group>"; };
 		CF9B0760252600C00008A7C9 /* ARecipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARecipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9B0762252600C00008A7C9 /* ARecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARecipeTests.swift; sourceTree = "<group>"; };
 		CF9B0764252600C00008A7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 				CF9B078E2541C2350008A7C9 /* Theme.swift */,
 				CF9B077C2530FB5E0008A7C9 /* Helper.swift */,
 				4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */,
+				CF58ECF525F2B96A0065E2D4 /* TableViewKeyboardHandler.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -399,6 +406,7 @@
 				4474488E24C781C200EA5B2C /* RecipeView */,
 				5EA0584624D050DB00631E04 /* MeasureView */,
 				CFA12786251E786D00FBFFB5 /* PlaceholderView.swift */,
+				CF3D31C325FBFCA000D1F055 /* EmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -452,6 +460,7 @@
 				CF58ECBA25F023B60065E2D4 /* CustomTableViewCell.swift */,
 				CF58ECC925F026F60065E2D4 /* TableCellWithBackground.swift */,
 				CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */,
+				CF12783F25FC0FAD00E49E20 /* PlaceholderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -607,9 +616,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF58ECA725F01DE40065E2D4 /* TableViewDataSource.swift in Sources */,
+				CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */,
 				5EAC22FD24F2A29F003BA90E /* RecipeView.swift in Sources */,
 				CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */,
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
+				CF12784025FC0FAD00E49E20 /* PlaceholderCell.swift in Sources */,
 				5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */,
 				CF9B078F2541C2350008A7C9 /* Theme.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
@@ -649,6 +660,7 @@
 				4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */,
 				CFA1278D251FDC6300FBFFB5 /* LabeledSegmentedPicker.swift in Sources */,
 				5EAC230124F2F1EB003BA90E /* NavigationController.swift in Sources */,
+				CF58ECF625F2B96A0065E2D4 /* TableViewKeyboardHandler.swift in Sources */,
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				CF58ECB125F01EAE0065E2D4 /* BaseTableViewSection.swift in Sources */,
