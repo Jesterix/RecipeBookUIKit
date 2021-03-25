@@ -107,7 +107,7 @@ class TableViewKeyboardHandler {
         tableView.contentInset = contentInset
         tableView.scrollIndicatorInsets = scrollIndicatorInsets
         if scrollToVisible {
-            tableView.scrollRectToVisible(scrollToRect, animated: false)
+            tableView.scrollRectToVisible(scrollToRect, animated: true)
         }
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 import MeasureLibrary
 
-final class IngredientCell: UITableViewCell {
+final class IngredientCell: CustomTableViewCell {
     static var reuseID = "IngredientCell"
     
     private var ingredient: Ingredient = Ingredient(title: "")
@@ -158,6 +158,7 @@ final class IngredientCell: UITableViewCell {
     }
 }
 
+//MARK:- UITextFieldDelegate
 extension IngredientCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         switch textField {

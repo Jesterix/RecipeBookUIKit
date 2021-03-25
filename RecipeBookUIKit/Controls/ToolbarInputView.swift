@@ -5,6 +5,22 @@ final class ToolbarInputView: UIInputView {
     private var cameraButton: UIButton!
     private var galleryButton: UIButton!
     
+    public var doneAction: (() -> Void)? {
+        didSet {
+            setDoneAction()
+        }
+    }
+    public var cameraAction: (() -> Void)? {
+        didSet {
+            setCameraAction()
+        }
+    }
+    public var galleryAction: (() -> Void)? {
+        didSet {
+            setGalleryAction()
+        }
+    }
+    
     override init(frame: CGRect, inputViewStyle: UIInputView.Style) {
         super.init(frame: frame, inputViewStyle: inputViewStyle)
         layoutContent(in: self)
@@ -67,13 +83,33 @@ final class ToolbarInputView: UIInputView {
         doneButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
+     private func setDoneAction() {
+        doneButton.addControlEvent(.touchUpInside) { [unowned self] in
+            self.doneAction?()
+        }
+    }
+    
     func setCameraAction(target: Any?, action: Selector) {
         cameraButton.addTarget(target, action: action, for: .touchUpInside)
         cameraButton.isHidden = false
     }
     
+    private func setCameraAction() {
+        cameraButton.addControlEvent(.touchUpInside) { [unowned self] in
+            self.cameraAction?()
+        }
+        cameraButton.isHidden = false
+    }
+    
     func setGalleryAction(target: Any?, action: Selector) {
         galleryButton.addTarget(target, action: action, for: .touchUpInside)
+        galleryButton.isHidden = false
+    }
+    
+    private func setGalleryAction() {
+        galleryButton.addControlEvent(.touchUpInside) { [unowned self] in
+            self.galleryAction?()
+        }
         galleryButton.isHidden = false
     }
 }

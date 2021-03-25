@@ -37,6 +37,8 @@ extension UIViewController {
     @objc private func hideKeyboard(){
         view.endEditing(true)
     }
+    
+    //TODO: remove recognizers on dismiss
 }
 
 //MARK: blur with custom intensity

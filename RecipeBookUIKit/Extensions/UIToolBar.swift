@@ -45,5 +45,15 @@ extension UITextView {
         cameraToolbar.setGalleryAction(target: target, action: galleryAction)
         self.inputAccessoryView = cameraToolbar
     }
+    
+    func addCameraToolbar(cameraAction: (() -> Void)?, galleryAction: (() -> Void)?) {
+        let cameraToolbar = ToolbarInputView(height: 40)
+        cameraToolbar.doneAction = { [unowned self] in
+            self.doneButtonAction()
+        }
+        cameraToolbar.cameraAction = cameraAction
+        cameraToolbar.galleryAction = galleryAction
+        self.inputAccessoryView = cameraToolbar
+    }
 }
 
