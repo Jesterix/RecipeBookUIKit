@@ -9,12 +9,11 @@
 import UIKit
 
 final class TextViewSection: DefaultSectionWithBackground {
-    private let textViewCellIdentifier = TextViewCell.reuseID
+    private let textViewCellIdentifier = RecipeTextViewCell.reuseID
     
     private var recipe: Recipe
     
-    private var currentSelectedRange: NSRange?
-//    public var didSelect: ((Int) -> Void)?
+    private var selectedRange: NSRange = NSRange(location: 0, length: 0)
 
     public var didChangeRecipe: ((Recipe) -> Void)?
     public var cameraAction: (() -> Void)?
@@ -22,14 +21,7 @@ final class TextViewSection: DefaultSectionWithBackground {
     public var imageToInsert: UIImage? {
         didSet {
             guard let image = imageToInsert else { return }
-            print("recipe.attachmentsInfo.count",recipe.attachmentsInfo.count)
-            print("section imageToInsert", image)
             saveImage(image)
-            //TODO
-//            recipeView.textView.insertImage(
-//                pic,
-//                widthScale: 0.75,
-//                heightScale: 0.7)
         }
     }
     
@@ -47,7 +39,7 @@ final class TextViewSection: DefaultSectionWithBackground {
 
     override var cellReuseIdentifiers: [String: UITableViewCell.Type] {
         return [
-            textViewCellIdentifier: TextViewCell.self
+            textViewCellIdentifier: RecipeTextViewCell.self
         ]
     }
 
@@ -56,23 +48,25 @@ final class TextViewSection: DefaultSectionWithBackground {
     }
 
     override func cellView(forIndex index: Int) -> CustomTableViewCell {
-        let cell: TextViewCell = dequeueCell(forReuseIdentifier: textViewCellIdentifier)
-        cell.initialTextViewText = recipe.text
-        cell.attachments = recipe.attachmentsInfo
-        cell.textViewDidChange = { [unowned self] textView in
-            self.recipe.text = textView.text
-            self.checkAttachments(for: textView)
+        let cell: RecipeTextViewCell = dequeueCell(forReuseIdentifier: textViewCellIdentifier)
+        cell.recipe = recipe
+        
+        cell.didChangeRecipe = { [weak self] recipe in
+            guard let self = self else { return }
+            self.recipe = recipe
             self.didChangeRecipe?(recipe)
-            self.currentSelectedRange = textView.selectedRange
         }
+
         cell.textViewCallback = { [weak self] in
             guard let self = self else { return }
             self.updateTableView()
         }
-        cell.removeAttachments = { [weak self] range, textField in
+        
+        cell.didChangeRange = { [weak self] range in
             guard let self = self else { return }
-            self.removeAttachments(in: range, of: textField)
+            self.selectedRange = range
         }
+
         cell.cameraAction = { [weak self] in
             guard let self = self else { return }
             self.cameraAction?()
@@ -84,57 +78,17 @@ final class TextViewSection: DefaultSectionWithBackground {
         return cell
     }
     
-    private func checkAttachments(for textView: UITextView) {
-        var newRanges: [Int] = []
-        textView.attributedText.enumerateAttribute(
-            .attachment,
-            in: NSRange(location: 0, length: textView.attributedText.length),
-            options: []
-        ) { (value, range, stop) in
-            if (value is NSTextAttachment) {
-                newRanges.append(range.location)
-            }
-        }
-        guard newRanges.count == recipe.attachmentsInfo.count else { return }
-        for index in recipe.attachmentsInfo.indices {
-            recipe.attachmentsInfo[index].range.location = newRanges[index]
-        }
-    }
-    
-    private func removeAttachments(in range: NSRange, of textView: UITextView) {
-        var indicesToRemove: Set<Int> = Set()
-        textView.attributedText.enumerateAttribute(
-            .attachment,
-            in: range,
-            options: []
-        ) { (value, attachRange, stop) in
-            if (value is NSTextAttachment) {
-                if let index = (recipe.attachmentsInfo.firstIndex {
-                    $0.range.location == attachRange.location
-                }) {
-                    indicesToRemove.insert(index)
-                }
-            }
-        }
-        if indicesToRemove.count > 0 {
-            let removingIndices = Array(indicesToRemove).sorted().reversed()
-            removingIndices.forEach { index in
-                recipe.attachmentsInfo.remove(at: index)
-            }
-        }
-    }
-    
     private func saveImage(_ image: UIImage) {
         print("TODO saveImage")
         let imageName = Helper.imageName()
         
-        print("currentSelectedRange",currentSelectedRange)
-        if let range = currentSelectedRange {
-            recipe.attachmentsInfo.append(AttachmentInfo(
-                                            url: imageName,
-                                            range: range))
-        }
-        
+        recipe.attachmentsInfo.append(
+            AttachmentInfo(
+                url: imageName,
+                range: selectedRange))
+        reloadRow(index: 0)
+        didChangeRecipe?(recipe)
+
         guard let rotated = image.rotateUpwards(), let data = rotated.pngData() else { return }
         Helper.saveToDiskImage(name: imageName, with: data)
     }

@@ -216,11 +216,13 @@ extension UITextView {
         textAttachment.image = image.resizeToFit(size: sizeToFit)
         
         let attrStringWithImage = NSAttributedString(attachment: textAttachment)
-        let attributedString = NSMutableAttributedString(attributedString: attributedText)
-        attributedString.replaceCharacters(
-            in: selectedRange,
-            with: attrStringWithImage)
-        attributedText = attributedString
+        
+        if let selectedRange = self.selectedTextRange {
+            let cursorPosition = self.offset(
+                from: self.beginningOfDocument,
+                to: selectedRange.start)
+            textStorage.insert(attrStringWithImage, at: cursorPosition)
+        }
     }
 }
 

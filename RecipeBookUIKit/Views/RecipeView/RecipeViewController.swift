@@ -20,13 +20,12 @@ final class RecipeViewController: TableViewController {
     private var recipe: Recipe {
         didSet {
             dataManager.update(recipe: recipe)
-//            tableViewDecorator.reloadAllSections()
         }
     }
     private var image: UIImage? {
         didSet {
-            guard let recipeSection = tableViewDecorator.sections[0] as? RecipeSection else { return }
-            recipeSection.imageToInsert = image
+            guard let textViewSection = tableViewDecorator.sections[1] as? TextViewSection else { return }
+            textViewSection.imageToInsert = image
         }
     }
     
@@ -53,8 +52,6 @@ final class RecipeViewController: TableViewController {
         tableViewDecorator.sections = [ recipeSection(),
                                         textViewSection()]
         tableViewDecorator.rowActionsDelegate = self
-        
-        setupTextView()
 
         hideKeyboardOnTap()
         
@@ -76,27 +73,6 @@ final class RecipeViewController: TableViewController {
         recipeHeader.titleField.delegate = self
         recipeHeader.convertPortionsView.coefficient = recipe.numberOfPortions ?? 1
         recipeHeader.convertPortionsView.delegate = self
-    }
-    
-    private func setupTextView() {
-        print("TODO setupTextView")
-//        //TODO: refactor
-//        if recipe.attachmentsInfo.count > 0 {
-//            recipe.attachmentsInfo.sort {
-//                $0.range.location < $1.range.location
-//            }
-//            for attach in recipe.attachmentsInfo {
-//                DispatchQueue.main.async {
-//                    self.recipeView.textView.selectedRange = attach.range
-//                    if let savedImage = self.loadImageFromDiskWith(fileName: attach.url) {
-//                        self.recipeView.textView.insertImage(
-//                            savedImage,
-//                            widthScale: 0.75,
-//                            heightScale: 0.7)
-//                    }
-//                }
-//            }
-//        }
     }
     
     func recipeSection() -> BaseTableViewSection {
@@ -121,14 +97,6 @@ final class RecipeViewController: TableViewController {
         section.didChangeRecipe = { [weak self] recipe in
             guard let self = self else { return }
             self.recipe = recipe
-        }
-        section.cameraAction = { [weak self] in
-            guard let self = self else { return }
-            self.insertImageFromCamera()
-        }
-        section.galleryAction = { [weak self] in
-            guard let self = self else { return }
-            self.insertImageFromGallery()
         }
 
         return section
@@ -202,7 +170,7 @@ final class RecipeViewController: TableViewController {
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.mediaTypes = [kUTTypeImage as String]       // if you also need a video, then use [kUTTypeImage as String, kUTTypeMovie as String]
+            imagePicker.mediaTypes = [kUTTypeImage as String]// if you also need a video, then use [kUTTypeImage as String, kUTTypeMovie as String]
             imagePicker.sourceType = sourceType
             imagePicker.videoQuality = UIImagePickerController.QualityType.typeMedium
             vc = imagePicker
@@ -218,18 +186,6 @@ final class RecipeViewController: TableViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
-//    private func saveImage(_ image: UIImage) {
-//        print("TODO saveImage")
-//        let imageName = Helper.imageName()
-////
-////        recipe.attachmentsInfo.append(AttachmentInfo(
-////            url: imageName,
-////            range: recipeView.textView.selectedRange))
-////
-//        guard let rotated = image.rotateUpwards(), let data = rotated.pngData() else { return }
-//        saveToDiskImage(name: imageName, with: data)
-//    }
 }
 
 //MARK:- ObjectFromStringAdding
@@ -240,8 +196,6 @@ extension RecipeViewController: ObjectFromStringAdding {
         section.update(viewModel: self.recipe)
     }
 }
-
-
 
 //MARK:- TextFieldDelegate
 extension RecipeViewController: UITextFieldDelegate {
@@ -295,7 +249,7 @@ extension RecipeViewController: RowEditActionsDelegate {
     func editActionsConfigForRowAt(_ indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.row == 0 {
             return UISwipeActionsConfiguration(actions: [])
-        } else if tableView.cellForRow(at: indexPath) is TextViewCell {
+        } else if tableView.cellForRow(at: indexPath) is RecipeTextViewCell {
             return UISwipeActionsConfiguration(actions: [])
         } else {
             let deleteAction = UIContextualAction(

@@ -60,7 +60,7 @@
 		CF05A59F260C991600A69580 /* RecipeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF05A59E260C991600A69580 /* RecipeSection.swift */; };
 		CF12784025FC0FAD00E49E20 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12783F25FC0FAD00E49E20 /* PlaceholderCell.swift */; };
 		CF12784525FD501900E49E20 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784425FD501900E49E20 /* TextView.swift */; };
-		CF12784A25FD505B00E49E20 /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784925FD505B00E49E20 /* TextViewCell.swift */; };
+		CF12784A25FD505B00E49E20 /* RecipeTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */; };
 		CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D847B25226AF000649BB8 /* DoubleButton.swift */; };
 		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
 		CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */; };
@@ -182,7 +182,7 @@
 		CF05A59E260C991600A69580 /* RecipeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSection.swift; sourceTree = "<group>"; };
 		CF12783F25FC0FAD00E49E20 /* PlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
 		CF12784425FD501900E49E20 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		CF12784925FD505B00E49E20 /* TextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
+		CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTextViewCell.swift; sourceTree = "<group>"; };
 		CF1D847B25226AF000649BB8 /* DoubleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleButton.swift; sourceTree = "<group>"; };
 		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 				5EAC22FC24F2A29F003BA90E /* RecipeHeaderView.swift */,
 				4474489124C786FE00EA5B2C /* IngredientCell.swift */,
 				CF12784425FD501900E49E20 /* TextView.swift */,
-				CF12784925FD505B00E49E20 /* TextViewCell.swift */,
+				CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */,
 				CF05A599260C95DC00A69580 /* TextViewSection.swift */,
 				CF05A59E260C991600A69580 /* RecipeSection.swift */,
 			);
@@ -700,7 +700,7 @@
 				5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */,
 				4474487B24C60C3800EA5B2C /* UIView+SnapKit.swift in Sources */,
 				CF58ECB125F01EAE0065E2D4 /* BaseTableViewSection.swift in Sources */,
-				CF12784A25FD505B00E49E20 /* TextViewCell.swift in Sources */,
+				CF12784A25FD505B00E49E20 /* RecipeTextViewCell.swift in Sources */,
 				CF58EC8625EED4470065E2D4 /* MeasureViewTransitionAnimator.swift in Sources */,
 				5EAC22FF24F2AA26003BA90E /* InsettedLabel.swift in Sources */,
 				CF58ECD425F0276D0065E2D4 /* CellFooteredTableViewProxy.swift in Sources */,
