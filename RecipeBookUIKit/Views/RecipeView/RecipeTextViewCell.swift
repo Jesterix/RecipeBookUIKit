@@ -83,6 +83,12 @@ final class RecipeTextViewCell: CustomTableViewCell {
     
     private func setupTextView() {
         guard var recipe = self.recipe else { return }
+        
+        guard !recipe.text.isEmpty || recipe.attachmentsInfo.count > 0 else {
+            showTextViewPlaceholder(true)
+            return
+        }
+//        didChangeRecipe?(recipe)
         //set text
         textView.attributedText = NSAttributedString(string: recipe.text, attributes: Theme.textAttributes)
         
@@ -184,7 +190,7 @@ extension RecipeTextViewCell: UITextViewDelegate {
             removeAttachments(in: range, of: textView)
         }
         
-        if updatedText.isEmpty {
+        if updatedText.isEmpty || updatedText == "Placeholder.Recipe.Text".localized() && textView.textColor == .coldBrown {
             showTextViewPlaceholder(true)
             textView.selectedTextRange = textView.textRange(
                 from: textView.beginningOfDocument,
@@ -194,9 +200,14 @@ extension RecipeTextViewCell: UITextViewDelegate {
             textView.attributedText = NSAttributedString(
                 string: text,
                 attributes: Theme.textAttributes)
+            recipe?.text = text
         } else {
             textView.setStandartThemeTextAttributes()
             return true
+        }
+        
+        if updatedText.isEmpty {
+            recipe?.text = updatedText
         }
         
         return false
@@ -211,5 +222,20 @@ extension RecipeTextViewCell: UITextViewDelegate {
                     to: textView.beginningOfDocument)
             }
 //        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("didEnd")
+//        setupTextView()
+        guard let recipe = self.recipe else { return }
+        
+        didChangeRecipe?(recipe)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+//        setupTextView()
+        print("textViewDidBeginEditing", textView)
+        print("textViewDidBeginEditing, range",textView.selectedRange)
+        didChangeRange?(textView.selectedRange)
     }
 }
