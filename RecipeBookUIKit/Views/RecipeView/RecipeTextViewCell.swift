@@ -97,8 +97,8 @@ final class RecipeTextViewCell: CustomTableViewCell {
                     if let savedImage = Helper.loadImageFromDiskWith(fileName: attach.url) {
                         self.textView.insertImage(
                             savedImage,
-                            widthScale: 0.75,
-                            heightScale: 0.7)
+                            widthScale: 1,
+                            heightScale: 1)
                         self.textViewCallback?()
                     }
                 }
