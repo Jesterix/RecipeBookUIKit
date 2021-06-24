@@ -211,7 +211,7 @@ extension UITextView {
         
         let sizeToFit = CGSize(
             width: frame.size.width * widthScale,
-            height: frame.size.height * heightScale)
+            height: frame.size.width * widthScale)
         
         textAttachment.image = image.resizeToFit(size: sizeToFit)
         
