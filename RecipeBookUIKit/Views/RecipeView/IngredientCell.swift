@@ -54,7 +54,7 @@ final class IngredientCell: CustomTableViewCell {
         measurementTextField = layout(InsettedTextField()) { make in
             make.centerY.equalTo(titleTextField)
             make.leading.equalTo(valueTextField.trailing).offset(5)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-5)
         }
     }
 
@@ -73,9 +73,9 @@ final class IngredientCell: CustomTableViewCell {
 
         titleTextField.layer.borderColor = UIColor.warmBrown.cgColor
         setTitleStyle()
-        titleTextField.backgroundColor = .lightlyGray
-        valueTextField.backgroundColor = .warmGray
-        measurementTextField.backgroundColor = .warmBrown
+        titleTextField.backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.3)
+        valueTextField.backgroundColor = UIColor.warmGray.withAlphaComponent(0.3)
+        measurementTextField.backgroundColor = UIColor.warmBrown.withAlphaComponent(0.3)
 
         valueTextField.keyboardType = .decimalPad
         
@@ -84,7 +84,7 @@ final class IngredientCell: CustomTableViewCell {
          measurementTextField].forEach { item in
             item?.font = .systemFont(ofSize: 15)
             item?.textColor = .darkBrown
-            item?.layer.cornerRadius = 3
+            item?.layer.cornerRadius = 4
             item?.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         }
     }
@@ -114,11 +114,18 @@ final class IngredientCell: CustomTableViewCell {
 
     func configureHeader() {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
+        let paragraphStyleRight = NSMutableParagraphStyle()
+        paragraphStyleRight.alignment = .right
 
         let headerTextAttributes: [NSAttributedString.Key : Any] = [
             .font: UIFont.systemFont(ofSize: 14, weight: .bold),
             .paragraphStyle: paragraphStyle,
+            .foregroundColor: UIColor.darkBrown.withAlphaComponent(0.7)
+        ]
+        
+        let headerValueTextAttributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+            .paragraphStyle: paragraphStyleRight,
             .foregroundColor: UIColor.darkBrown.withAlphaComponent(0.7)
         ]
 
@@ -127,14 +134,14 @@ final class IngredientCell: CustomTableViewCell {
             attributes: headerTextAttributes)
         valueTextField.attributedText = NSAttributedString(
             string: "Ingredient.Value".localized(),
-            attributes: headerTextAttributes)
+            attributes: headerValueTextAttributes)
         measurementTextField.attributedText = NSAttributedString(
             string: "Ingredient.Measure".localized(),
             attributes: headerTextAttributes)
         
-        titleTextField.backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.3)
-        valueTextField.backgroundColor = UIColor.warmGray.withAlphaComponent(0.3)
-        measurementTextField.backgroundColor = UIColor.warmBrown.withAlphaComponent(0.3)
+        titleTextField.backgroundColor = .lightlyGray
+        valueTextField.backgroundColor = .warmGray
+        measurementTextField.backgroundColor = .warmBrown
         
         titleTextField.isUserInteractionEnabled = false
         valueTextField.isUserInteractionEnabled = false

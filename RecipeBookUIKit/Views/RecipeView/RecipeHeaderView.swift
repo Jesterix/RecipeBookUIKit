@@ -34,7 +34,7 @@ final class RecipeHeaderView: UIView {
         titleField = layout(UITextField()) { make in
             make.centerY.equalTo(convertPortionsView)
             make.leading.equalToSuperview().offset(10)
-            make.trailing.lessThanOrEqualTo(convertPortionsView.leading)
+            make.trailing.equalTo(convertPortionsView.leading)
         }
         
         addIngredientTextField = layout(AddTextField()) { make in
