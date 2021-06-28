@@ -116,7 +116,7 @@ final class ConvertPortionsView: UIView {
     private func applyStyle() {
         backgroundColor = .clear
 
-        label.font = .systemFont(ofSize: 10)
+        label.font = .systemFont(ofSize: 11)
         label.textColor = .darkBrown
 
         textField.keyboardType = .decimalPad
