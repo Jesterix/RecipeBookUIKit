@@ -210,7 +210,7 @@ extension UITextView {
         let textAttachment = NSTextAttachment()
         
         let sizeToFit = CGSize(
-            width: frame.size.width * widthScale,
+            width: frame.size.width * widthScale - 10,
             height: frame.size.width * widthScale)
         
         textAttachment.image = image.resizeToFit(size: sizeToFit)
@@ -223,6 +223,7 @@ extension UITextView {
                 to: selectedRange.start)
             textStorage.insert(attrStringWithImage, at: cursorPosition)
         }
+        selectedRange = NSRange(location: selectedRange.location + 1, length: 0)
     }
 }
 

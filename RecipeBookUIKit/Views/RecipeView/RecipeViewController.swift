@@ -111,10 +111,12 @@ final class RecipeViewController: TableViewController {
         }
         section.cameraAction = { [weak self] in
             guard let self = self else { return }
+//            self.view.endEditing(true)
             self.insertImageFromCamera()
         }
         section.galleryAction = { [weak self] in
             guard let self = self else { return }
+//            self.view.endEditing(true)
             self.insertImageFromGallery()
         }
         
