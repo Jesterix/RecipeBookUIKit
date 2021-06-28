@@ -67,7 +67,8 @@ final class RecipeViewController: TableViewController {
             view: recipeHeader,
             insets: UIEdgeInsets()
         )
-        recipeHeader.addIngredientTextField.setPlaceholder(text: "Recipe.Add.Placeholder".localized())
+        recipeHeader.addIngredientTextField.setPlaceholder(text: "Recipe.Add.+Placeholder".localized())
+        recipeHeader.addIngredientTextField.setActivePlaceholder(text: "Recipe.Add.Placeholder".localized())
         recipeHeader.addIngredientTextField.addingDelegate = self
         recipeHeader.titleField.text = recipe.title
         recipeHeader.titleField.delegate = self

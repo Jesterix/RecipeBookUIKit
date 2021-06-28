@@ -72,7 +72,8 @@ final class MainViewController: TableViewController {
                 bottom: 0,
                 right: 16)
         )
-        addRecipeTextField.setPlaceholder(text: "Main.Add.Placeholder".localized())
+        addRecipeTextField.setPlaceholder(text: "Main.Add.+Placeholder".localized())
+        addRecipeTextField.setActivePlaceholder(text: "Main.Add.Placeholder".localized())
         addRecipeTextField.addingDelegate = self
     }
     

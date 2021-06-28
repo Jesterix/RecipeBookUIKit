@@ -5,7 +5,11 @@
 
 "Main.Add.Placeholder" = "Enter new recipe title";
 
+"Main.Add.+Placeholder" = "+ new recipe";
+
 "Recipe.Add.Placeholder" = "Enter new ingredient";
+
+"Recipe.Add.+Placeholder" = "+ new ingredient";
 
 "Measure.Choose.Title" = "Choose measurement";
 

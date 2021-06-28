@@ -5,7 +5,11 @@
 
 "Main.Add.Placeholder" = "Введите название нового рецепта";
 
+"Main.Add.+Placeholder" = "+ новый рецепт";
+
 "Recipe.Add.Placeholder" = "Введите новый ингредиент";
+
+"Recipe.Add.+Placeholder" = "+ новый ингредиент";
 
 "Measure.Choose.Title" = "Выберите меру";
 

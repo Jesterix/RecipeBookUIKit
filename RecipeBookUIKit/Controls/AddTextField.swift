@@ -16,6 +16,9 @@ final class AddTextField: UITextField {
 
     private var clearButton: UIButton!
     weak var addingDelegate: ObjectFromStringAdding?
+    
+    private var regularPlaceHolder: String?
+    private var activePlaceHolder: String?
 
     private weak var _delegate: UITextFieldDelegate?
     public override var delegate: UITextFieldDelegate? {
@@ -50,7 +53,7 @@ final class AddTextField: UITextField {
     // MARK: - applyStyle
     private func applyStyle() {
         backgroundColor = .honeyYellow
-        layer.cornerRadius = 20
+        layer.cornerRadius = 5
         font = .systemFont(ofSize: 17)
         textColor = .darkBrown
         autocorrectionType = .no
@@ -78,13 +81,33 @@ final class AddTextField: UITextField {
         _ = delegate?.textFieldShouldClear?(self)
     }
     
-    func setPlaceholder(text: String) {
+    private func activatePlaceHolder(regular: Bool) {
+        var text: String
+        if regular, let regularText = regularPlaceHolder {
+            text = regularText
+        } else if !regular, let activePlaceholder = activePlaceHolder {
+            text = activePlaceholder
+        } else if !regular, let regularText = regularPlaceHolder {
+            text = regularText
+        } else {
+            text = ""
+        }
+        
         let placeholderAttributes: [NSAttributedString.Key: Any]? = [
             .foregroundColor: UIColor.coldBrown.withAlphaComponent(0.7)
         ]
         attributedPlaceholder = NSAttributedString(
             string: text,
             attributes: placeholderAttributes)
+    }
+    
+    func setPlaceholder(text: String) {
+        regularPlaceHolder = text
+        activatePlaceHolder(regular: true)
+    }
+    
+    func setActivePlaceholder(text: String) {
+        activePlaceHolder = text
     }
 
     //MARK: - set delegates
@@ -153,6 +176,7 @@ extension AddTextField: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        activatePlaceHolder(regular: false)
         self._delegate?.textFieldDidBeginEditing?(textField)
     }
 
@@ -161,6 +185,7 @@ extension AddTextField: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
+        activatePlaceHolder(regular: true)
         self._delegate?.textFieldDidEndEditing?(textField)
     }
 
@@ -170,6 +195,7 @@ extension AddTextField: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addObject()
+        activatePlaceHolder(regular: true)
         textField.resignFirstResponder()
         return self._delegate?.textFieldShouldReturn?(textField) ?? true
     }
