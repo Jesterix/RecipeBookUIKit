@@ -33,15 +33,18 @@ final class NavigationController: UINavigationController {
         var bounds = navigationBar.bounds
         bounds.size.height += statusBarHeight
         gradient.frame = bounds
-        
-        gradient.colors = [UIColor.warmBrown.cgColor, UIColor.honeyYellow.cgColor, UIColor.honeyYellow.cgColor, UIColor.brightRed.cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 1)
-        gradient.endPoint = CGPoint(x: 1, y: 0)
+        gradient.colors = [UIColor.brightRed.cgColor,
+                           UIColor.honeyYellow.cgColor,
+                           UIColor.honeyYellow.cgColor,
+                           UIColor.honeyYellow.withAlphaComponent(0.3).cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
         gradient.locations = [0, 0.4, 0.5, 1]
 
         if let image = getImageFrom(gradientLayer: gradient) {
             navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
         }
+        navigationBar.shadowImage = UIImage()
     }
 
     private func getImageFrom(gradientLayer:CAGradientLayer) -> UIImage? {

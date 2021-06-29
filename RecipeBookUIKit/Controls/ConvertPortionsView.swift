@@ -124,7 +124,7 @@ final class ConvertPortionsView: UIView {
         textField.font = .systemFont(ofSize: 15)
         textField.textColor = .darkBrown
         textField.textAlignment = .right
-        textField.backgroundColor = .warmGray
+        textField.backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.5)
         textField.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         textField.addStandartToolbar()
     }

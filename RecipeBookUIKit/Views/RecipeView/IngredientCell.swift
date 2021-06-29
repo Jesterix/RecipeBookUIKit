@@ -73,9 +73,9 @@ final class IngredientCell: CustomTableViewCell {
 
         titleTextField.layer.borderColor = UIColor.warmBrown.cgColor
         setTitleStyle()
-        titleTextField.backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.3)
-        valueTextField.backgroundColor = UIColor.warmGray.withAlphaComponent(0.3)
-        measurementTextField.backgroundColor = UIColor.warmBrown.withAlphaComponent(0.3)
+        titleTextField.backgroundColor = UIColor.honeyYellow.withAlphaComponent(0.5)
+        valueTextField.backgroundColor = UIColor.honeyYellow.withAlphaComponent(0.5)
+//        measurementTextField.backgroundColor = UIColor.warmBrown.withAlphaComponent(0.7)
 
         valueTextField.keyboardType = .decimalPad
         
@@ -86,6 +86,19 @@ final class IngredientCell: CustomTableViewCell {
             item?.textColor = .darkBrown
             item?.layer.cornerRadius = 4
             item?.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        measurementTextField.layer.sublayers?.removeAll()
+        
+        if measurementTextField.isUserInteractionEnabled {
+            measurementTextField.addGradient(
+                startColor: .brightRed,
+                throughColor: UIColor.honeyYellow.withAlphaComponent(0.5),
+                endColor: UIColor.honeyYellow.withAlphaComponent(0.5),
+                direction: .downLeft)
         }
     }
     
@@ -139,9 +152,9 @@ final class IngredientCell: CustomTableViewCell {
             string: "Ingredient.Measure".localized(),
             attributes: headerTextAttributes)
         
-        titleTextField.backgroundColor = .lightlyGray
-        valueTextField.backgroundColor = .warmGray
-        measurementTextField.backgroundColor = .warmBrown
+        titleTextField.backgroundColor = .clear
+        valueTextField.backgroundColor = .clear
+//        measurementTextField.backgroundColor = .warmBrown
         
         titleTextField.isUserInteractionEnabled = false
         valueTextField.isUserInteractionEnabled = false

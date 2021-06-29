@@ -62,6 +62,11 @@ final class RecipeViewController: TableViewController {
         navigationItem.rightBarButtonItem = share
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        recipeHeader.addIngredientTextField.setupGradientBackground()
+    }
+    
     private func setupHeader() {
         layoutInHeader(
             view: recipeHeader,

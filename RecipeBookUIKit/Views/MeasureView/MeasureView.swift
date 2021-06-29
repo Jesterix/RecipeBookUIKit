@@ -98,6 +98,7 @@ final class MeasureView: UIView {
 //        let color = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
 //        backBiew.backgroundColor = .honeyYellow
         backBiew.layer.cornerRadius = 25
+        backBiew.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
         titleLabel.textColor = .darkBrown
 
@@ -109,16 +110,18 @@ final class MeasureView: UIView {
         infoLabel.textAlignment = .center
         
         closeButton.layer.cornerRadius = 15
-        closeButton.backgroundColor = .warmGray
+        closeButton.backgroundColor = UIColor.honeyYellow.withAlphaComponent(0.7)
         closeButton.setTitleColor(.darkBrown, for: .normal)
         closeButton.setTitle("Measure.Close.Button".localized(), for: .normal)
     }
     
     override func layoutSubviews() {
+        backBiew.layer.sublayers?.removeAll()
         backBiew.addGradient(
-            startColor: .milkWhite,
-            endColor: .honeyYellow,
-            direction: .upRight)
+            startColor: .brightRed,
+            throughColor: UIColor.honeyYellow.withAlphaComponent(0.6),
+            endColor: UIColor.honeyYellow.withAlphaComponent(0.2),
+            direction: .measureView)
         backBiew.layer.masksToBounds = true
         super.layoutSubviews()
     }

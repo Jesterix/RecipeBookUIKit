@@ -35,7 +35,7 @@ final class TextView: UITextView {
         autocorrectionType = .no
 
 //        let color = #colorLiteral(red: 0.9609501958, green: 0.8888508081, blue: 0.8478230238, alpha: 0.9998855591)
-        backgroundColor = .lightlyGray
+        backgroundColor = UIColor.lightlyGray.withAlphaComponent(0.3)
         layer.cornerRadius = 5
         font = .systemFont(ofSize: 15)
         textColor = .darkBrown

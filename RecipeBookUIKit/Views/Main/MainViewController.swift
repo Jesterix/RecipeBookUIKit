@@ -40,6 +40,11 @@ final class MainViewController: TableViewController {
         doFirstFetch()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addRecipeTextField.setupGradientBackground()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         tableViewDecorator.reloadAllSections()
         showSharedTask { _ in }

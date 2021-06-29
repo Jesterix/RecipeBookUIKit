@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RecipeHeaderView: UIView {
+final class RecipeHeaderView: GradientView {
     var titleField: UITextField!
     var convertPortionsView: ConvertPortionsView!
     var addIngredientTextField: AddTextField!
@@ -48,7 +48,7 @@ final class RecipeHeaderView: UIView {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .white
+//        colorScheme = .wideHeader
         
         titleField.font = .systemFont(ofSize: 21)
         titleField.textColor = .darkBrown
@@ -56,5 +56,6 @@ final class RecipeHeaderView: UIView {
         titleField.addStandartToolbar()
 
         addIngredientTextField.setPlaceholder(text: "Recipe.Add.Placeholder".localized())
+//        addIngredientTextField.setupGradientBackground()
     }
 }

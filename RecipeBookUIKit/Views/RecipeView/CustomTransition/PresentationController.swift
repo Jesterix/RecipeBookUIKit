@@ -11,7 +11,7 @@ import UIKit
 final class PresentationController: UIPresentationController {
     private lazy var backgroundDimmingView: UIView = {
         let dimmingView = UIView()
-        dimmingView.layoutBlur(intensity: 0.15)
+        dimmingView.layoutBlur(intensity: 0.2)
         return dimmingView
     }()
     

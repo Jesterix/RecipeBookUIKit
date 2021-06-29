@@ -79,6 +79,7 @@
 		CF58ECCF25F0273A0065E2D4 /* SpacerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */; };
 		CF58ECD425F0276D0065E2D4 /* CellFooteredTableViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */; };
 		CF58ECF625F2B96A0065E2D4 /* TableViewKeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58ECF525F2B96A0065E2D4 /* TableViewKeyboardHandler.swift */; };
+		CF68652B2689F17200881FE7 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF68652A2689F17200881FE7 /* UIView+Gradient.swift */; };
 		CF9B0763252600C00008A7C9 /* ARecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0762252600C00008A7C9 /* ARecipeTests.swift */; };
 		CF9B0775252DFB6F0008A7C9 /* UIToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0774252DFB6F0008A7C9 /* UIToolBar.swift */; };
 		CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */; };
@@ -201,6 +202,7 @@
 		CF58ECCE25F0273A0065E2D4 /* SpacerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerCell.swift; sourceTree = "<group>"; };
 		CF58ECD325F0276D0065E2D4 /* CellFooteredTableViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFooteredTableViewProxy.swift; sourceTree = "<group>"; };
 		CF58ECF525F2B96A0065E2D4 /* TableViewKeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewKeyboardHandler.swift; sourceTree = "<group>"; };
+		CF68652A2689F17200881FE7 /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		CF9B0760252600C00008A7C9 /* ARecipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARecipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9B0762252600C00008A7C9 /* ARecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARecipeTests.swift; sourceTree = "<group>"; };
 		CF9B0764252600C00008A7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		4474487E24C60C7A00EA5B2C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF68652A2689F17200881FE7 /* UIView+Gradient.swift */,
 				CF05A595260A772C00A69580 /* ActionKit */,
 				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
 				CFADB80E257D6E02003AFC31 /* Alerts.swift */,
@@ -660,6 +663,7 @@
 				CF9B078F2541C2350008A7C9 /* Theme.swift in Sources */,
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
+				CF68652B2689F17200881FE7 /* UIView+Gradient.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				CF58ECCA25F026F60065E2D4 /* TableCellWithBackground.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainSection.swift in Sources */,

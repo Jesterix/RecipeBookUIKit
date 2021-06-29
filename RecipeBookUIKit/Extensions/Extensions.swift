@@ -87,6 +87,7 @@ extension UIButton {
 extension UIView {
     enum GradientDirection {
         case up, down, left, right, upLeft, upRight, downLeft, downRight
+        case measureView
         
         var start: CGPoint {
             switch self {
@@ -102,7 +103,7 @@ extension UIView {
                 return CGPoint(x: 1, y: 1)
             case .upRight:
                 return CGPoint(x: 0, y: 1)
-            case .downLeft:
+            case .downLeft, .measureView:
                 return CGPoint(x: 1, y: 0)
             case .downRight:
                 return CGPoint(x: 0, y: 0)
@@ -127,18 +128,25 @@ extension UIView {
                 return CGPoint(x: 0, y: 1)
             case .downRight:
                 return CGPoint(x: 1, y: 1)
+            case .measureView:
+                return CGPoint(x: 0.75, y: 0.75)
             }
         }
     }
     
-    func addGradient(startColor: UIColor, endColor: UIColor, direction: GradientDirection) {
+    func addGradient(startColor: UIColor, throughColor: UIColor? = nil , endColor: UIColor, direction: GradientDirection) {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
+        gradient.cornerRadius = layer.cornerRadius
         gradient.colors = [startColor.cgColor, endColor.cgColor]
         
         gradient.startPoint = direction.start
         gradient.endPoint = direction.end
-        
+        gradient.locations = [0, 0.8]
+        if let color = throughColor {
+            gradient.colors?.insert(color.cgColor, at: 1)
+            gradient.locations?.insert(0.3, at: 1)
+        }
         self.layer.insertSublayer(gradient, at: 0)
     }
 }
