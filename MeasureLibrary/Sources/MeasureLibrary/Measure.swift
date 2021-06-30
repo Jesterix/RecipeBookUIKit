@@ -438,6 +438,21 @@ public struct Measure {
             setBaseUnitSymbol()
         }
     }
+    public var shortSymbol: String {
+        if symbol.isUnitMass {
+            guard let dimension = DimensionType.Mass.init(symbol: symbol) else {
+                return symbol
+            }
+            return dimension.symbol
+        } else if symbol.isUnitVolume {
+            guard let dimension = DimensionType.Volume.init(symbol: symbol) else {
+                return symbol
+            }
+            return dimension.symbol
+        } else {
+            return symbol
+        }
+    }
     public var baseUnitSymbol: String = ""
     
     public var isStandart: Bool {

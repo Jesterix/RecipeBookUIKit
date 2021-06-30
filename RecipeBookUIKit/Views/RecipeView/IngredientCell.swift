@@ -122,7 +122,7 @@ final class IngredientCell: CustomTableViewCell {
             return
         }
         valueTextField.text = "\(measure.value)"
-        measurementTextField.text = "\(measure.symbol)"
+        measurementTextField.text = "\(measure.shortSymbol)"
     }
 
     func configureHeader() {

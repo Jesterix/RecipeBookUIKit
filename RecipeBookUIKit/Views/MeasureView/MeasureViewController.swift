@@ -121,7 +121,7 @@ final class MeasureViewController: UIViewController {
         measureView.closeButton.enable(enable)
     }
     
-    @objc private func close(){
+    @objc private func close() {
         measureView.convertView.onClose()
         onClose?(measure)
         self.dismiss(animated: true, completion: nil)

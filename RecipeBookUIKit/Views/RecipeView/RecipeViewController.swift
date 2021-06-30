@@ -91,7 +91,7 @@ final class RecipeViewController: TableViewController {
             }
             vc.onClose = { [unowned self] measure in
                 self.recipe.ingredients[index].measurement = measure
-                self.tableViewDecorator.reloadAllSectionsAnimated()
+                section.update(viewModel: self.recipe)
             }
             //custom transition setup
             self.measureViewTransitioningDelegate = MeasureViewTransitioningDelegate(sourceRect: sourceRect)
