@@ -95,7 +95,7 @@ public final class TableViewDecorator {
     // MARK: - Internal
     
     func addCellReuseIdentifiers(_ reuseIdentifiers: [String: AnyClass]) {
-        for (reuseIdentifier, cellClass) in reuseIdentifiers {
+        reuseIdentifiers.forEach { (reuseIdentifier, cellClass) in
             if !registeredCellIdentifiers.contains(reuseIdentifier) {
                 registeredCellIdentifiers.insert(reuseIdentifier)
                 tableView.register(cellClass, forCellReuseIdentifier: reuseIdentifier)
@@ -104,7 +104,7 @@ public final class TableViewDecorator {
     }
     
     func addHeaderFooterReuseIdentifiers(_ reuseIdentifiers: [String: AnyClass]) {
-        for (reuseIdentifier, headerFooterClass) in reuseIdentifiers {
+        reuseIdentifiers.forEach { (reuseIdentifier, headerFooterClass) in
             if !registeredHeaderFooterIdentifiers.contains(reuseIdentifier) {
                 registeredHeaderFooterIdentifiers.insert(reuseIdentifier)
                 tableView.register(headerFooterClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)

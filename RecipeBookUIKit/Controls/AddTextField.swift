@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ObjectFromStringAdding: class {
+protocol ObjectFromStringAdding: AnyObject {
     func addObject(from string: String)
 }
 
