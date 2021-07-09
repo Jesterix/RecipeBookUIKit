@@ -91,10 +91,11 @@ final class IngredientCell: CustomTableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        measurementTextField.layer.sublayers?.removeAll()
         
         if measurementTextField.isUserInteractionEnabled {
-            measurementTextField.addGradient(
+            measurementTextField.layer.sublayers?.removeAll()
+            
+            _ = measurementTextField.addGradient(
                 startColor: .brightRed,
                 throughColor: UIColor.honeyYellow.withAlphaComponent(0.5),
                 endColor: UIColor.honeyYellow.withAlphaComponent(0.5),

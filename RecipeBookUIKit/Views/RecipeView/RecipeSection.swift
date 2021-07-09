@@ -56,7 +56,7 @@ final class RecipeSection: DefaultSectionWithBackground {
                 cell.didTapMeasurement = { [unowned self] in
                     if let viewToTransiteFrom = cell.getViewToTransiteFrom(),
                        let frameToTransiteFrom = viewToTransiteFrom.globalFrame {
-                        didTapMeasurement?(index - 1, frameToTransiteFrom)
+                        self.didTapMeasurement?(index - 1, frameToTransiteFrom)
                     }
                 }
             }

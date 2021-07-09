@@ -42,7 +42,15 @@ final class MainViewController: TableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addRecipeTextField.setupGradientBackground()
+        if let index = addRecipeTextField.layer.sublayers?.firstIndex(where: { $0 == addRecipeTextField.gradientLayer }) {
+            addRecipeTextField.layer.sublayers?.remove(at: index)
+        }
+        addRecipeTextField.gradientLayer = addRecipeTextField.addGradient(
+            startColor: .brightRed,
+            throughColor: UIColor.honeyYellow.withAlphaComponent(0.8),
+            throughAnother: UIColor.honeyYellow.withAlphaComponent(0.4),
+            endColor: UIColor.honeyYellow.withAlphaComponent(0.2),
+            direction: .addField)
     }
     
     override func viewWillAppear(_ animated: Bool) {

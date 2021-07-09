@@ -29,6 +29,8 @@ final class AddTextField: UITextField {
             self._delegate = newValue
         }
     }
+    
+    public var gradientLayer: CAGradientLayer?
 
     init() {
         super.init(frame: .zero)
@@ -52,7 +54,7 @@ final class AddTextField: UITextField {
 
     // MARK: - applyStyle
     private func applyStyle() {
-        backgroundColor = .honeyYellow
+//        backgroundColor = .honeyYellow
         layer.cornerRadius = 5
         font = .systemFont(ofSize: 17)
         textColor = .darkBrown
@@ -157,8 +159,9 @@ extension AddTextField: UITextFieldDelegate {
         let text = (textField.text as NSString?)?.replacingCharacters(
             in: range,
             with: string) ?? string
-        clearButton.isHidden = !(text.count > 0)
 
+        self.clearButton.isHidden = !(text.count > 0)
+    
         return self._delegate?.textField?(
             textField,
             shouldChangeCharactersIn: range,

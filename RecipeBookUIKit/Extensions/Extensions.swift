@@ -87,7 +87,7 @@ extension UIButton {
 extension UIView {
     enum GradientDirection {
         case up, down, left, right, upLeft, upRight, downLeft, downRight
-        case measureView
+        case measureView, addField
         
         var start: CGPoint {
             switch self {
@@ -105,7 +105,7 @@ extension UIView {
                 return CGPoint(x: 0, y: 1)
             case .downLeft, .measureView:
                 return CGPoint(x: 1, y: 0)
-            case .downRight:
+            case .downRight, .addField:
                 return CGPoint(x: 0, y: 0)
             }
         }
@@ -118,7 +118,7 @@ extension UIView {
                 return CGPoint(x: 0.5, y: 1)
             case .left:
                 return CGPoint(x: 0, y: 0.5)
-            case .right:
+            case .right, .addField:
                 return CGPoint(x: 1, y: 0.5)
             case .upLeft:
                 return CGPoint(x: 0, y: 0)
@@ -134,7 +134,7 @@ extension UIView {
         }
     }
     
-    func addGradient(startColor: UIColor, throughColor: UIColor? = nil , endColor: UIColor, direction: GradientDirection) {
+    func addGradient(startColor: UIColor, throughColor: UIColor? = nil, throughAnother: UIColor? = nil, endColor: UIColor, direction: GradientDirection) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         gradient.cornerRadius = layer.cornerRadius
@@ -147,7 +147,16 @@ extension UIView {
             gradient.colors?.insert(color.cgColor, at: 1)
             gradient.locations?.insert(0.3, at: 1)
         }
+        if let color = throughAnother, throughColor != nil {
+            gradient.colors?.insert(color.cgColor, at: 2)
+            gradient.locations = [0, 0.15, 0.7, 1]
+        } else if let color = throughAnother {
+            gradient.colors?.insert(color.cgColor, at: 1)
+            gradient.locations?.insert(0.3, at: 1)
+        }
+        
         self.layer.insertSublayer(gradient, at: 0)
+        return gradient
     }
 }
 

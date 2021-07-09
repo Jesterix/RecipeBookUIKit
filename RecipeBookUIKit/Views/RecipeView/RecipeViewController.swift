@@ -64,7 +64,15 @@ final class RecipeViewController: TableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        recipeHeader.addIngredientTextField.setupGradientBackground()
+        if let index = recipeHeader.addIngredientTextField.layer.sublayers?.firstIndex(where: { $0 == recipeHeader.addIngredientTextField.gradientLayer }) {
+            recipeHeader.addIngredientTextField.layer.sublayers?.remove(at: index)
+        }
+        recipeHeader.addIngredientTextField.gradientLayer = recipeHeader.addIngredientTextField.addGradient(
+            startColor: .brightRed,
+            throughColor: UIColor.honeyYellow.withAlphaComponent(0.8),
+            throughAnother: UIColor.honeyYellow.withAlphaComponent(0.4),
+            endColor: UIColor.honeyYellow.withAlphaComponent(0.2),
+            direction: .addField)
     }
     
     private func setupHeader() {
@@ -265,7 +273,7 @@ extension RecipeViewController: RowEditActionsDelegate {
                 title: "Main.Delete.Action".localized()
             ) { [unowned self] _, _, _ in
                 self.recipe.ingredients.remove(at: indexPath.row - 1)
-                guard let section = tableViewDecorator.sections[0] as? RecipeSection else { return }
+                guard let section = self.tableViewDecorator.sections[0] as? RecipeSection else { return }
                 section.update(viewModel: self.recipe)
             }
             deleteAction.backgroundColor = .brightRed

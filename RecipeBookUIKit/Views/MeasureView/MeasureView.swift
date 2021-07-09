@@ -117,7 +117,7 @@ final class MeasureView: UIView {
     
     override func layoutSubviews() {
         backBiew.layer.sublayers?.removeAll()
-        backBiew.addGradient(
+        _ = backBiew.addGradient(
             startColor: .brightRed,
             throughColor: UIColor.honeyYellow.withAlphaComponent(0.6),
             endColor: UIColor.honeyYellow.withAlphaComponent(0.2),
