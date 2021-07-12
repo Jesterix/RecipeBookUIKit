@@ -9,6 +9,7 @@
 import UIKit
 
 final class RecipeSection: DefaultSectionWithBackground {
+    private let headerCellIdentifier = "HeaderCell"
     private let cellIdentifier = IngredientCell.reuseID
     private let placeholderIdentifier = PlaceholderCell.reuseID
     
@@ -32,6 +33,7 @@ final class RecipeSection: DefaultSectionWithBackground {
 
     override var cellReuseIdentifiers: [String: UITableViewCell.Type] {
         return [
+            headerCellIdentifier: IngredientCell.self,
             cellIdentifier: IngredientCell.self,
             placeholderIdentifier: PlaceholderCell.self
         ]
@@ -43,15 +45,17 @@ final class RecipeSection: DefaultSectionWithBackground {
 
     override func cellView(forIndex index: Int) -> CustomTableViewCell {
         if recipe.ingredients.count > 0 {
-            let cell: IngredientCell = dequeueCell(forReuseIdentifier: cellIdentifier)
-            
             if index == 0 {
+                let cell: IngredientCell = dequeueCell(forReuseIdentifier: headerCellIdentifier)
                 cell.configureHeader()
+                return cell
             } else {
+                let cell: IngredientCell = dequeueCell(forReuseIdentifier: cellIdentifier)
                 cell.configureCell(with: recipe.ingredients[index - 1])
                 
-                cell.ingredientChanged { [unowned self] (ingredient: Ingredient) in
+                cell.ingredientChanged = { [unowned self] ingredient in
                     self.recipe.ingredients[index - 1] = ingredient
+                    self.didChangeRecipe?(self.recipe)
                 }
                 cell.didTapMeasurement = { [unowned self] in
                     if let viewToTransiteFrom = cell.getViewToTransiteFrom(),
@@ -59,8 +63,8 @@ final class RecipeSection: DefaultSectionWithBackground {
                         self.didTapMeasurement?(index - 1, frameToTransiteFrom)
                     }
                 }
+                return cell
             }
-            return cell
         } else {
             let cell: PlaceholderCell = dequeueCell(forReuseIdentifier: placeholderIdentifier)
             cell.configureEmptyView(

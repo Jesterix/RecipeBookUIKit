@@ -13,11 +13,13 @@ final class IngredientCell: CustomTableViewCell {
     static var reuseID = "IngredientCell"
     
     private var ingredient: Ingredient = Ingredient(title: "")
-    private var ingredientChanged: ((Ingredient) -> Void)?
+    public var ingredientChanged: ((Ingredient) -> Void)?
 
     private var titleTextField: InsettedTextField!
     private var valueTextField: InsettedTextField!
     private var measurementTextField: InsettedTextField!
+    
+    private var valueTextFieldDecorator: TextFieldDecorator?
     
     public var didTapMeasurement: (() -> Void)?
 
@@ -29,7 +31,6 @@ final class IngredientCell: CustomTableViewCell {
         layoutContent(in: self.contentView)
         applyStyle()
         titleTextField.delegate = self
-        valueTextField.delegate = self
         measurementTextField.delegate = self
     }
 
@@ -87,6 +88,10 @@ final class IngredientCell: CustomTableViewCell {
             item?.layer.cornerRadius = 4
             item?.textInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         }
+        
+        valueTextFieldDecorator = TextFieldDecorator(forTextField: valueTextField)
+        valueTextFieldDecorator?.mask = TextFieldMeasureValueMask()
+        valueTextFieldDecorator?.delegate = self
     }
     
     override func layoutSubviews() {
@@ -120,9 +125,11 @@ final class IngredientCell: CustomTableViewCell {
         setTitleStyle()
 
         guard let measure = ingredient.measurement else {
+            valueTextField.text = ""
+            measurementTextField.text = ""
             return
         }
-        valueTextField.text = "\(measure.value)"
+        valueTextField.text = TextFieldMeasureValueMask.correct(value: "\(measure.value)")
         measurementTextField.text = "\(measure.shortSymbol)"
     }
 
@@ -161,10 +168,6 @@ final class IngredientCell: CustomTableViewCell {
         valueTextField.isUserInteractionEnabled = false
         measurementTextField.isUserInteractionEnabled = false
     }
- 
-    func ingredientChanged(action: @escaping (Ingredient) -> Void) {
-        self.ingredientChanged = action
-    }
     
     func getViewToTransiteFrom() -> UIView? {
         measurementTextField
@@ -183,16 +186,6 @@ final class IngredientCell: CustomTableViewCell {
 extension IngredientCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         switch textField {
-        case valueTextField:
-            guard let text = textField.text, let value = Double(text) else {
-                return
-            }
-            if ingredient.measurement != nil {
-                ingredient.measurement?.value = value
-            } else {
-                ingredient.measurement = Measure(value: value, symbol: "")
-            }
-
         case measurementTextField:
             ingredient.measurement?.symbol = textField.text ?? ""
             
@@ -200,6 +193,7 @@ extension IngredientCell: UITextFieldDelegate {
             ingredient.title = textField.text ?? ""
             setTitleStyle()
         }
+        ingredientChanged?(self.ingredient)
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -216,26 +210,28 @@ extension IngredientCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         ingredientChanged?(ingredient)
     }
-    
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        switch textField {
-        case valueTextField:
-            if let text = (textField.text as NSString?)?.replacingCharacters(
-                in: range,
-                with: string), text.contains(",") {
-                textField.text = text.replacingOccurrences(of: ",", with: ".")
-                return false
-            } else {
-                return true
-            }
-            
-        default:
-            return true
+}
+
+extension IngredientCell: TextFieldDecoratorDelegate {
+    public func didChangeTextField(_ textField: UITextField) {
+        guard let text = textField.text, let value = Double(text) else {
+            return
         }
+        if ingredient.measurement != nil {
+            ingredient.measurement?.value = value
+        } else {
+            ingredient.measurement = Measure(value: value, symbol: "")
+        }
+        
+        ingredientChanged?(self.ingredient)
+    }
+    
+    public func didEndEditingTextField(_ textField: UITextField) {
+        if let text = textField.text {
+            textField.text = TextFieldMeasureValueMask.correct(value: text)
+        }
+         
+        ingredientChanged?(self.ingredient)
     }
 }
 ///Think about setting ingredient title equal to basic ingredient if they match

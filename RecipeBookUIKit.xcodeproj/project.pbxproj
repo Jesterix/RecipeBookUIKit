@@ -63,6 +63,8 @@
 		CF12784A25FD505B00E49E20 /* RecipeTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */; };
 		CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D847B25226AF000649BB8 /* DoubleButton.swift */; };
 		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
+		CF5264A92699E83C00440AEB /* TextFieldDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */; };
+		CF5264AB2699E87200440AEB /* TextFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264AA2699E87200440AEB /* TextFieldMask.swift */; };
 		CF58EC7825EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */; };
 		CF58EC8125EED3260065E2D4 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8025EED3260065E2D4 /* PresentationController.swift */; };
 		CF58EC8625EED4470065E2D4 /* MeasureViewTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */; };
@@ -186,6 +188,8 @@
 		CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTextViewCell.swift; sourceTree = "<group>"; };
 		CF1D847B25226AF000649BB8 /* DoubleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleButton.swift; sourceTree = "<group>"; };
 		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDecorator.swift; sourceTree = "<group>"; };
+		CF5264AA2699E87200440AEB /* TextFieldMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMask.swift; sourceTree = "<group>"; };
 		CF58EC7725EED2D20065E2D4 /* MeasureViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		CF58EC8025EED3260065E2D4 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		CF58EC8525EED4470065E2D4 /* MeasureViewTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				CF68652A2689F17200881FE7 /* UIView+Gradient.swift */,
+				CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */,
+				CF5264AA2699E87200440AEB /* TextFieldMask.swift */,
 				CF05A595260A772C00A69580 /* ActionKit */,
 				4474487A24C60C3800EA5B2C /* UIView+SnapKit.swift */,
 				CFADB80E257D6E02003AFC31 /* Alerts.swift */,
@@ -664,6 +670,7 @@
 				4428C43924DFF6340054C6DD /* LabeledPickerView.swift in Sources */,
 				4428C44A24E2CC780054C6DD /* Settings.swift in Sources */,
 				CF68652B2689F17200881FE7 /* UIView+Gradient.swift in Sources */,
+				CF5264AB2699E87200440AEB /* TextFieldMask.swift in Sources */,
 				4474488A24C6E29C00EA5B2C /* AddTextField.swift in Sources */,
 				CF58ECCA25F026F60065E2D4 /* TableCellWithBackground.swift in Sources */,
 				4474488524C6256800EA5B2C /* MainSection.swift in Sources */,
@@ -673,6 +680,7 @@
 				4474486824C60B1300EA5B2C /* MainViewController.swift in Sources */,
 				4474488724C62F8600EA5B2C /* RecipeCell.swift in Sources */,
 				CF9B0777252E41DD0008A7C9 /* ToolbarInputView.swift in Sources */,
+				CF5264A92699E83C00440AEB /* TextFieldDecorator.swift in Sources */,
 				4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */,
 				CF58EC9A25F01ACF0065E2D4 /* TableViewController.swift in Sources */,
 				4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */,
