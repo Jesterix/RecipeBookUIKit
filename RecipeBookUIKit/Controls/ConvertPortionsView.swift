@@ -24,7 +24,7 @@ final class ConvertPortionsView: UIView {
     private var cancelButton: Button!
     var coefficient: Double = 1 {
         didSet {
-            textField.text = String(coefficient)
+            textField.text = coefficient.removeZerosFromEnd()
         }
     }
     private var previousCoefficient: Double = 1
@@ -155,10 +155,10 @@ final class ConvertPortionsView: UIView {
         switch state {
         case .normal:
             label.text = "Portions.Convert.Text".localized()
-            textField.text = String(coefficient)
+            textField.text = coefficient.removeZerosFromEnd()
         case .extended:
             previousCoefficient = coefficient
-            label.text = String(coefficient) + "Portions.Label.Text".localized()
+            label.text = coefficient.removeZerosFromEnd() + "Portions.Label.Text".localized()
             textField.text = ""
         }
     }
@@ -167,7 +167,7 @@ final class ConvertPortionsView: UIView {
         coefficient = previousCoefficient
         self._delegate?.textFieldDidEndEditing?(textField)
         label.text = "Portions.Convert.Text".localized()
-        textField.text = String(coefficient)
+        textField.text = coefficient.removeZerosFromEnd()
         stateToggle()
     }
 }
@@ -185,9 +185,8 @@ extension ConvertPortionsView: UITextFieldDelegate {
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if #available(iOS 13.0, *) {
-            self._delegate?.textFieldDidChangeSelection?(textField)
-        }
+        textField.text = TextFieldMeasureValueMask.clean(value: textField.text ?? "")
+        self._delegate?.textFieldDidChangeSelection?(textField)
     }
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
