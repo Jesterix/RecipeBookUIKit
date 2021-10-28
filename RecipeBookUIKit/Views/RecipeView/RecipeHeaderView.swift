@@ -49,6 +49,7 @@ final class RecipeHeaderView: GradientView {
     // MARK: - applyStyle
     private func applyStyle() {
 //        colorScheme = .wideHeader
+        backgroundColor = .clear
         
         titleField.font = .systemFont(ofSize: 21)
         titleField.textColor = .darkBrown

@@ -28,7 +28,7 @@
 		4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474488C24C781B800EA5B2C /* RecipeViewController.swift */; };
 		4474489224C786FE00EA5B2C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489124C786FE00EA5B2C /* IngredientCell.swift */; };
 		4474489624C834A800EA5B2C /* KeyboardObserversExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489524C834A800EA5B2C /* KeyboardObserversExtensions.swift */; };
-		4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4474489824C84B0300EA5B2C /* RealmSwift */; };
+		4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4474489824C84B0300EA5B2C /* RealmSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489A24C84BCB00EA5B2C /* RealmRecipe.swift */; };
 		4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489C24C84C0D00EA5B2C /* RealmIngredient.swift */; };
 		4474489F24C8505200EA5B2C /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474489E24C8505200EA5B2C /* DataBaseManager.swift */; };
@@ -41,7 +41,6 @@
 		5EA0584524D050CF00631E04 /* MeasureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584424D050CE00631E04 /* MeasureViewController.swift */; };
 		5EA0584824D050F900631E04 /* MeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0584724D050F900631E04 /* MeasureView.swift */; };
 		5EAC22DE24F07022003BA90E /* RecipeDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */; };
-		5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 5EAC22E324F0790D003BA90E /* MeasureLibrary */; };
 		5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22E524F1A94E003BA90E /* DataManager.swift */; };
 		5EAC22EC24F1B557003BA90E /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22EB24F1B557003BA90E /* Localize.swift */; };
 		5EAC22EE24F1B629003BA90E /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC22ED24F1B629003BA90E /* String+LocalizedBundleTableName.swift */; };
@@ -62,6 +61,7 @@
 		CF12784525FD501900E49E20 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784425FD501900E49E20 /* TextView.swift */; };
 		CF12784A25FD505B00E49E20 /* RecipeTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */; };
 		CF1D847C25226AF000649BB8 /* DoubleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D847B25226AF000649BB8 /* DoubleButton.swift */; };
+		CF3A9B7B272ADAEE003310E5 /* MeasureLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = CF3A9B7A272ADAEE003310E5 /* MeasureLibrary */; };
 		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
 		CF5264A92699E83C00440AEB /* TextFieldDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */; };
 		CF5264AB2699E87200440AEB /* TextFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264AA2699E87200440AEB /* TextFieldMask.swift */; };
@@ -164,7 +164,6 @@
 		5EA0584424D050CE00631E04 /* MeasureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		5EA0584724D050F900631E04 /* MeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureView.swift; sourceTree = "<group>"; };
 		5EAC22DD24F07022003BA90E /* RecipeDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataHandler.swift; sourceTree = "<group>"; };
-		5EAC22E124F078F3003BA90E /* MeasureLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeasureLibrary; sourceTree = "<group>"; };
 		5EAC22E524F1A94E003BA90E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5EAC22E824F1AD37003BA90E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5EAC22EB24F1B557003BA90E /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 		CF12784425FD501900E49E20 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		CF12784925FD505B00E49E20 /* RecipeTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTextViewCell.swift; sourceTree = "<group>"; };
 		CF1D847B25226AF000649BB8 /* DoubleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleButton.swift; sourceTree = "<group>"; };
+		CF3A9B79272ADAB1003310E5 /* MeasureLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MeasureLibrary; sourceTree = "<group>"; };
 		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDecorator.swift; sourceTree = "<group>"; };
 		CF5264AA2699E87200440AEB /* TextFieldMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMask.swift; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4474489924C84B0300EA5B2C /* RealmSwift in Frameworks */,
-				5EAC22E424F0790D003BA90E /* MeasureLibrary in Frameworks */,
+				CF3A9B7B272ADAEE003310E5 /* MeasureLibrary in Frameworks */,
 				4474487924C60B8100EA5B2C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +253,7 @@
 		4474485724C60B1300EA5B2C = {
 			isa = PBXGroup;
 			children = (
-				5EAC22E124F078F3003BA90E /* MeasureLibrary */,
+				CF3A9B78272ADAB1003310E5 /* Packages */,
 				4474486224C60B1300EA5B2C /* RecipeBookUIKit */,
 				44F34383250510D2009495B3 /* Share */,
 				CF9B0761252600C00008A7C9 /* ARecipeTests */,
@@ -452,6 +452,14 @@
 			path = ActionKit;
 			sourceTree = "<group>";
 		};
+		CF3A9B78272ADAB1003310E5 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A9B79272ADAB1003310E5 /* MeasureLibrary */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		CF58EC7C25EED2F20065E2D4 /* CustomTransition */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,7 +544,7 @@
 			packageProductDependencies = (
 				4474487824C60B8100EA5B2C /* SnapKit */,
 				4474489824C84B0300EA5B2C /* RealmSwift */,
-				5EAC22E324F0790D003BA90E /* MeasureLibrary */,
+				CF3A9B7A272ADAEE003310E5 /* MeasureLibrary */,
 			);
 			productName = RecipeBookUIKit;
 			productReference = 4474486024C60B1300EA5B2C /* ARecipe.app */;
@@ -911,6 +919,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = UBXSN34678;
@@ -923,6 +932,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit;
 				PRODUCT_NAME = ARecipe;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -934,6 +944,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = UBXSN34678;
@@ -946,6 +957,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesterix.RecipeBookUIKit;
 				PRODUCT_NAME = ARecipe;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1110,7 +1122,7 @@
 			package = 4474489724C84B0300EA5B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
-		5EAC22E324F0790D003BA90E /* MeasureLibrary */ = {
+		CF3A9B7A272ADAEE003310E5 /* MeasureLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MeasureLibrary;
 		};

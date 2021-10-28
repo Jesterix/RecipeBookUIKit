@@ -84,7 +84,7 @@ class TableViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
 //        tableView.clipsToBounds = false
         tableView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(-10)
             make.leading.trailing.equalTo(containerView)
             make.bottom.equalTo(containerView)
         }
@@ -103,6 +103,25 @@ class TableViewController: UIViewController {
         setRoundedBackground()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupFadingView()
+    }
+    
+    func setupFadingView() {
+        let gradient = CAGradientLayer()
+        gradient.frame = containerView.bounds
+        gradient.colors = [
+            UIColor.clear,
+            UIColor.white
+        ].map { $0.cgColor }
+        
+        let whiteLocation = NSNumber(value: Float(20 / containerView.frame.height))
+        gradient.locations = [0.0, whiteLocation]
+        containerView.layer.mask = gradient
+    }
+    
     func setRoundedBackground() {
         containerView.backgroundColor = UIColor.clear
 //        containerView.layer.shadowColor = UIColor.black.cgColor
@@ -115,11 +134,16 @@ class TableViewController: UIViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
         }
-        tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top,
-                                              left: tableView.contentInset.left,
-                                              bottom: tableView.contentInset.bottom + 8,
-                                              right: tableView.contentInset.right)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: -16)
+        tableView.contentInset = UIEdgeInsets(
+            top: tableView.contentInset.top + 10,
+            left: tableView.contentInset.left,
+            bottom: tableView.contentInset.bottom + 8,
+            right: tableView.contentInset.right)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: 8,
+            right: -16)
     }
     
     func layoutInHeader(
