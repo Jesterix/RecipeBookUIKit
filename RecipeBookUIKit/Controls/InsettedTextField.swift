@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InsettedTextField: UITextField {
+class InsettedTextField: GradientTextField {
     // MARK: - TextField Insets
     public var textInsets = UIEdgeInsets.zero {
         didSet {

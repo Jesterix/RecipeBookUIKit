@@ -98,7 +98,7 @@ class TableViewKeyboardHandler {
         
         let inset: CGFloat = tableView.frame.maxY - keyboardFrame.origin.y
         var contentInset: UIEdgeInsets = tableView.contentInset
-        var scrollIndicatorInsets: UIEdgeInsets = tableView.scrollIndicatorInsets
+        var scrollIndicatorInsets: UIEdgeInsets = tableView.verticalScrollIndicatorInsets
 
         contentInset.bottom = inset
         scrollIndicatorInsets.bottom = inset
@@ -116,7 +116,7 @@ class TableViewKeyboardHandler {
         innerKeyboardVisible = false
 
         var contentInset: UIEdgeInsets = tableView.contentInset
-        var scrollIndicatorInsets: UIEdgeInsets = tableView.scrollIndicatorInsets
+        var scrollIndicatorInsets: UIEdgeInsets = tableView.verticalScrollIndicatorInsets
 
         contentInset.bottom = 0
         scrollIndicatorInsets.bottom = 0

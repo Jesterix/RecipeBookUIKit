@@ -12,7 +12,7 @@ import RealmSwift
 class RealmRecipe: Object {
     @objc dynamic var id: String = ""
     @objc dynamic var title: String = ""
-    let portions = RealmOptional<Double>()
+    let portions = RealmProperty<Double?>()
     let ingredients = List<RealmIngredient>()
     @objc dynamic var text: String = ""
     let attachmentsInfo = List<RealmAttachmentInfo>()

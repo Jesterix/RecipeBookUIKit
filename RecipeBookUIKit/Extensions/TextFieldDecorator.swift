@@ -68,6 +68,8 @@ final public class TextFieldDecorator: NSObject, UITextFieldDelegate {
     }
     
     @objc func textDidChangeNotification(_ notif: Notification) {
-        delegate?.didChangeTextField(self.textField)
+        if let object = notif.object as? UITextField, object === textField {
+            delegate?.didChangeTextField(self.textField)
+        }
     }
 }

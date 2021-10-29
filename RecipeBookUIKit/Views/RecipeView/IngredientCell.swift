@@ -32,6 +32,12 @@ final class IngredientCell: CustomTableViewCell {
         applyStyle()
         titleTextField.delegate = self
         measurementTextField.delegate = self
+        
+        measurementTextField.setupGradient(
+            startColor: .brightRed,
+            throughColor: UIColor.honeyYellow.withAlphaComponent(0.5),
+            endColor: UIColor.honeyYellow.withAlphaComponent(0.5),
+            direction: .downLeft)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -98,13 +104,9 @@ final class IngredientCell: CustomTableViewCell {
         super.layoutSubviews()
         
         if measurementTextField.isUserInteractionEnabled {
-            measurementTextField.layer.sublayers?.removeAll()
-            
-            _ = measurementTextField.addGradient(
-                startColor: .brightRed,
-                throughColor: UIColor.honeyYellow.withAlphaComponent(0.5),
-                endColor: UIColor.honeyYellow.withAlphaComponent(0.5),
-                direction: .downLeft)
+            measurementTextField.gradient.frame = measurementTextField.bounds
+        } else {
+            measurementTextField.gradient.frame = CGRect()
         }
     }
     

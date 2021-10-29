@@ -64,10 +64,8 @@ final class RecipeViewController: TableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let index = recipeHeader.addIngredientTextField.layer.sublayers?.firstIndex(where: { $0 == recipeHeader.addIngredientTextField.gradientLayer }) {
-            recipeHeader.addIngredientTextField.layer.sublayers?.remove(at: index)
-        }
-        recipeHeader.addIngredientTextField.gradientLayer = recipeHeader.addIngredientTextField.addGradient(
+        
+        recipeHeader.addIngredientTextField.setupGradient(
             startColor: .brightRed,
             throughColor: UIColor.honeyYellow.withAlphaComponent(0.8),
             throughAnother: UIColor.honeyYellow.withAlphaComponent(0.4),

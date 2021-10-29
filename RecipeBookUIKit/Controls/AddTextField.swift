@@ -12,7 +12,7 @@ protocol ObjectFromStringAdding: AnyObject {
     func addObject(from string: String)
 }
 
-final class AddTextField: UITextField {
+final class AddTextField: GradientTextField {
 
     private var clearButton: UIButton!
     weak var addingDelegate: ObjectFromStringAdding?
@@ -29,8 +29,6 @@ final class AddTextField: UITextField {
             self._delegate = newValue
         }
     }
-    
-    public var gradientLayer: CAGradientLayer?
 
     init() {
         super.init(frame: .zero)
