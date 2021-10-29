@@ -38,6 +38,8 @@ final class MainViewController: TableViewController {
 //        configureEmptyView(image: UIImage(), title: "No recipes yet", description: "")
         getDataFromDatabase()
         doFirstFetch()
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLayoutSubviews() {
