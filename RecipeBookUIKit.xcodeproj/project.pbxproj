@@ -925,7 +925,7 @@
 				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -950,7 +950,7 @@
 				CODE_SIGN_ENTITLEMENTS = RecipeBookUIKit/RecipeBookUIKit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = RecipeBookUIKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
@@ -972,7 +972,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
@@ -995,7 +995,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UBXSN34678;
 				INFOPLIST_FILE = Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
