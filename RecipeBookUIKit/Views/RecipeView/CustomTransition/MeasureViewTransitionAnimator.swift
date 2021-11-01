@@ -70,9 +70,9 @@ private extension MeasureViewTransitionAnimator.Style {
     var transitionDuration: TimeInterval {
         switch self {
         case .present:
-            return 0.7
+            return 0.5
         case .dismiss:
-            return 0.6
+            return 0.5
         }
     }
     
