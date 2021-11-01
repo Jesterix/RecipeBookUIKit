@@ -9,7 +9,7 @@
 import UIKit
 import MeasureLibrary
 
-final class IngredientCell: CustomTableViewCell {
+final class IngredientCell: CustomTableViewCell, Draggable {
     static var reuseID = "IngredientCell"
     
     private var ingredient: Ingredient = Ingredient(title: "")
@@ -173,6 +173,10 @@ final class IngredientCell: CustomTableViewCell {
     
     func getViewToTransiteFrom() -> UIView? {
         measurementTextField
+    }
+    
+    func setDraggableRecognizer(_ recognizer: UILongPressGestureRecognizer) {
+        measurementTextField.addGestureRecognizer(recognizer)
     }
     
     override func prepareForReuse() {

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-//protocol Draggable {}
+protocol Draggable {}
 
 class TableViewController: UIViewController {
     private var keyboardHandler: TableViewKeyboardHandler?
@@ -21,14 +21,20 @@ class TableViewController: UIViewController {
     private var containerViewBottomConstraint: Constraint?
 //    private let contentLockSpinner = T2SpinnerWithNoBackground()
     
-//    var draggableCellsEnabled = false {
-//        didSet {
+    var draggableCellsEnabled = false {
+        didSet {
 //            if draggableCellsEnabled {
 //                let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
 //                self.tableView.addGestureRecognizer(longpress)
 //            }
-//        }
-//    }
+        }
+    }
+    open var dragViewModels: [Any]? = nil {
+        didSet {
+            didChangeDragViewModels?(dragViewModels)
+        }
+    }
+    open var didChangeDragViewModels: (([Any]?) -> Void)?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -243,4 +249,116 @@ class TableViewController: UIViewController {
 //    func configureOfflineMode() {
 //        fatalError("Derived class must override 'configureOffline'")
 //    }
+}
+
+//MARK:- Extension for draggable cells
+extension TableViewController {
+    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        guard dragViewModels != nil else { return }
+        let longpress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longpress.state
+        let locationInView = longpress.location(in: self.tableView)
+        let indexPath = self.tableView.indexPathForRow(at: locationInView)
+        switch state {
+        case .began:
+            guard let indexPath = indexPath else {
+                return
+            }
+            // let User grab only draggable cells && exclude first row as header
+            guard self.tableView.cellForRow(at: indexPath) is Draggable && indexPath.row != 0 else { return }
+            
+            // print("indexpath \(indexPath)")
+            Path.initialIndexPath = indexPath
+            guard indexPath.section == Path.initialIndexPath?.section else { return }
+            
+            if let cell = self.tableView.cellForRow(at: indexPath) as? CustomTableViewCell, cell is Draggable {
+                CellSnapshot.cellSnapShot = snapshotOfCell(inputView: cell)
+                var center = cell.center
+                CellSnapshot.cellSnapShot?.center = cell.center
+                CellSnapshot.cellSnapShot?.alpha = 0.0
+                self.tableView.addSubview(CellSnapshot.cellSnapShot!)
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    center.y = locationInView.y
+                    center.x = cell.center.x - 8
+                    CellSnapshot.cellSnapShot?.center = center
+                    CellSnapshot.cellSnapShot?.alpha = 0.98
+                })
+            }
+
+        case .changed:
+            guard let indexPath = indexPath, indexPath.section == Path.initialIndexPath?.section else {
+                return
+            }
+            // let User drag cells only over draggable cells
+            guard self.tableView.cellForRow(at: indexPath) is Draggable,
+                  self.tableView.cellForRow(at: Path.initialIndexPath!) is Draggable
+            else {
+                return
+            }
+            
+            var center = CellSnapshot.cellSnapShot?.center
+            center?.y = locationInView.y
+            CellSnapshot.cellSnapShot?.center = center!
+            
+            if indexPath != Path.initialIndexPath {
+                // print("indexpath \(indexPath)")
+                var modelIndexToSwap1 = indexPath.row
+                var modelIndexToSwap2 = Path.initialIndexPath!.row
+                
+                // presume that first row is always a header
+                if  modelIndexToSwap1 == 0 || modelIndexToSwap2 == 0 { } else {
+                    modelIndexToSwap1 = modelIndexToSwap1 - 1
+                    modelIndexToSwap2 = modelIndexToSwap2 - 1
+                }
+                
+                dragViewModels!.swapAt(modelIndexToSwap1, modelIndexToSwap2)
+                UIView.setAnimationsEnabled(false)
+                self.tableView.moveRow(at: Path.initialIndexPath!, to: indexPath)
+                self.tableView.beginUpdates()
+                self.tableView.reloadRows(at: [Path.initialIndexPath!, indexPath], with: .none)
+                self.tableView.endUpdates()
+                UIView.setAnimationsEnabled(true)
+                Path.initialIndexPath = indexPath
+            }
+
+        default:
+            guard Path.initialIndexPath != nil else { return }
+            if let cell = self.tableView.cellForRow(at: Path.initialIndexPath!) as? CustomTableViewCell {
+                UIView.animate(withDuration: 0.25, animations: {
+                    CellSnapshot.cellSnapShot?.center = cell.center
+                    CellSnapshot.cellSnapShot?.transform = .identity
+                    CellSnapshot.cellSnapShot?.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        Path.initialIndexPath = nil
+                        CellSnapshot.cellSnapShot?.removeFromSuperview()
+                        CellSnapshot.cellSnapShot = nil
+                    }
+                })
+            }
+        }
+    }
+
+    func snapshotOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset = CGSize(width: 0.0, height: 8.0)
+        cellSnapshot.layer.shadowRadius = 10
+        cellSnapshot.layer.shadowOpacity = 0.1
+        return cellSnapshot
+    }
+
+    struct CellSnapshot {
+        static var cellSnapShot: UIView? = nil
+    }
+
+    struct Path {
+        static var initialIndexPath: IndexPath? = nil
+    }
 }

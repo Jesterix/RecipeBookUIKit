@@ -15,18 +15,26 @@ final class RecipeSection: DefaultSectionWithBackground {
     
     private var recipe: Recipe
     
+    private var isDraggableCellsEnabled = false
+    
 //    public var didSelect: ((Int) -> Void)?
     public var didTapMeasurement: ((Int, CGRect) -> Void)?
     public var didChangeRecipe: ((Recipe) -> Void)?
+    public var longPressGestureRecognized: ((UIGestureRecognizer) -> Void)?
     
-    init(recipe: Recipe) {
+    init(recipe: Recipe, draggableCellsEnabled: Bool) {
         self.recipe = recipe
+        self.isDraggableCellsEnabled = draggableCellsEnabled
         super.init()
     }
     
-    public func update(viewModel: Recipe) {
+    public func update(viewModel: Recipe, animated: Bool = true) {
         recipe = viewModel
-        reloadSectionAnimated()
+        if animated {
+            reloadSectionAnimated()
+        } else {
+            reloadSection()
+        }
     }
 
     // MARK: - Cells
@@ -63,6 +71,12 @@ final class RecipeSection: DefaultSectionWithBackground {
                         self.didTapMeasurement?(index - 1, frameToTransiteFrom)
                     }
                 }
+                
+                if isDraggableCellsEnabled {
+                    let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
+                    longpress.cancelsTouchesInView = true
+                    cell.setDraggableRecognizer(longpress)
+                }
                 return cell
             }
         } else {
@@ -78,6 +92,10 @@ final class RecipeSection: DefaultSectionWithBackground {
     override func didSelectRow(atIndex: Int) {
         print("didSelect row", atIndex)
 //        didSelect?(atIndex)
+    }
+    
+    @objc func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        longPressGestureRecognized?(gestureRecognizer)
     }
 }
 

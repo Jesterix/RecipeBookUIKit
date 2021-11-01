@@ -47,11 +47,22 @@ final class RecipeViewController: TableViewController {
         
         self.view.backgroundColor = .white
         setupHeader()
+        draggableCellsEnabled = true
         
         tableViewDecorator = TableViewDecorator(forTableView: tableView, selfSizing: true)
         tableViewDecorator.sections = [ recipeSection(),
                                         textViewSection()]
         tableViewDecorator.rowActionsDelegate = self
+        
+        dragViewModels = recipe.ingredients
+        didChangeDragViewModels = { [weak self] viewModels in
+            guard let self = self else { return }
+            guard let newIngredients = viewModels as? [Ingredient]  else { return }
+            self.recipe.ingredients = newIngredients
+            if let section = self.tableViewDecorator.sections[0] as? RecipeSection {
+                section.update(viewModel: self.recipe, animated: false)
+            }
+        }
 
         hideKeyboardOnTap()
         
@@ -88,7 +99,7 @@ final class RecipeViewController: TableViewController {
     }
     
     func recipeSection() -> BaseTableViewSection {
-        let section = RecipeSection(recipe: recipe)
+        let section = RecipeSection(recipe: recipe, draggableCellsEnabled: draggableCellsEnabled)
         section.didTapMeasurement = { [weak self] index, sourceRect in
             guard let self = self else { return }
             let vc = MeasureViewController()
@@ -109,6 +120,10 @@ final class RecipeViewController: TableViewController {
         section.didChangeRecipe = { [weak self] recipe in
             guard let self = self else { return }
             self.recipe = recipe
+        }
+        section.longPressGestureRecognized = { [weak self] recognizer in
+            guard let self = self else { return }
+            self.longPressGestureRecognized(gestureRecognizer: recognizer)
         }
 
         return section
