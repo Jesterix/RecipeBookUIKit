@@ -4,6 +4,7 @@ final class ToolbarInputView: UIInputView {
     private var doneButton: UIButton!
     private var cameraButton: UIButton!
     private var galleryButton: UIButton!
+    private var downButton: UIButton!
     
     public var doneAction: (() -> Void)? {
         didSet {
@@ -18,6 +19,12 @@ final class ToolbarInputView: UIInputView {
     public var galleryAction: (() -> Void)? {
         didSet {
             setGalleryAction()
+        }
+    }
+    
+    public var isDownButtonActive: Bool = false {
+        didSet {
+            downButton.isHidden = !isDownButtonActive
         }
     }
     
@@ -46,6 +53,11 @@ final class ToolbarInputView: UIInputView {
         galleryButton = layout(UIButton(type: .system)) { make in
             make.centerY.equalTo(cameraButton)
             make.leading.equalTo(cameraButton.trailing).offset(10)
+        }
+        
+        downButton = layout(UIButton(type: .system)) { make in
+            make.centerY.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(15)
         }
     }
     
@@ -77,10 +89,19 @@ final class ToolbarInputView: UIInputView {
             for: .normal)
         galleryButton.tintColor = .darkBrown
         galleryButton.isHidden = true
+        
+        downButton.setImage(
+            UIImage(
+                systemName: "chevron.down",
+                withConfiguration: config),
+            for: .normal)
+        downButton.tintColor = .darkBrown
+        downButton.isHidden = true
     }
     
     func setDoneAction(target: Any?, action: Selector) {
         doneButton.addTarget(target, action: action, for: .touchUpInside)
+        downButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
      private func setDoneAction() {

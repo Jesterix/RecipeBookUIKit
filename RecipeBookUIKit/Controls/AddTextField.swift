@@ -72,7 +72,10 @@ final class AddTextField: GradientTextField {
         }
         clearButton.isHidden = !(text.count > 0)
         
-        addStandartToolbar()
+        addStandartToolbar(isDownButtonActive: true) { [weak self] in
+            guard let self = self else { return }
+            _ = self.textFieldShouldReturn(self)
+        }
     }
 
     @objc private func clearSearchField() {

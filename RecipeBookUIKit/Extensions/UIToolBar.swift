@@ -1,9 +1,11 @@
 import UIKit
 
 extension UITextField {
-    func addStandartToolbar() {
+    func addStandartToolbar(isDownButtonActive: Bool = false, doneAction: (() -> Void)? = nil) {
         let doneToolbar = ToolbarInputView(height: 40)
         doneToolbar.setDoneAction(target: self, action: #selector(doneButtonAction))
+        doneToolbar.doneAction = doneAction
+        doneToolbar.isDownButtonActive = isDownButtonActive
         self.inputAccessoryView = doneToolbar
     }
     
