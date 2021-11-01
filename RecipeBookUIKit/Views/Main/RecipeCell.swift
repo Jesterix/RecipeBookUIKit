@@ -63,8 +63,8 @@ final class RecipeCell: CustomTableViewCell {
 
     func configureCell(with recipe: Recipe) {
         recipeInfoLabel.text = recipe.title
-        if recipe.text.count > 0 {
-            recipeInfoLabel.text?.append(contentsOf: ", \(recipe.text)")
+        if recipe.title.count == 0 && recipe.text.count > 0 {
+            recipeInfoLabel.text?.append(contentsOf: "\(recipe.text)")
         }
     }
 }
