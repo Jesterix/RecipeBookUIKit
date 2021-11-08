@@ -19,6 +19,8 @@ final class MainViewController: TableViewController {
     private let dataManager: DataManager = DataBaseManager()
     private var customProvider: CustomMeasureProvider = DataStorage.shared
     
+    private var filter = FilterViewModel()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent
     }
@@ -42,6 +44,27 @@ final class MainViewController: TableViewController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
+    private func configureFilter() {
+        let config = UIImage.SymbolConfiguration.init(pointSize: 16)
+        let filterName = filter.isEnabled ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle"
+        guard let image = UIImage(systemName: filterName, withConfiguration: config) else { return }
+        let filterButton = UIBarButtonItem(image: image) { [weak self] in
+            guard let self = self else { return }
+            let filterVC = FilterViewController(filter: self.filter)
+            filterVC.onDismiss = { [weak self] filterModel in
+                guard let self = self else { return }
+                print("filterModel",filterModel)
+                self.filter = filterModel
+                self.getDataFromDatabase()
+            }
+            self.navigationController?.pushViewController(
+                filterVC,
+                animated: true)
+        }
+        filterButton.tintColor = .darkBrown
+        navigationItem.rightBarButtonItem = filterButton
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -54,6 +77,8 @@ final class MainViewController: TableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        configureFilter()
+        
         tableViewDecorator.reloadAllSections()
         showSharedTask { _ in }
         observer = NotificationCenter.default.addObserver(
@@ -91,6 +116,7 @@ final class MainViewController: TableViewController {
     }
     
     private func getDataFromDatabase() {
+        dataManager.setFilter(filterModel: filter)
         dataManager.createDefaultData()
         tableViewDecorator.reloadAllSections()
     }

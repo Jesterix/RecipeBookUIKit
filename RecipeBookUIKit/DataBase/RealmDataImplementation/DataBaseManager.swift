@@ -12,6 +12,8 @@ import MeasureLibrary
 
 class DataBaseManager: DataManager {
     private var realm: Realm = try! Realm()
+    
+    private var filter = FilterViewModel()
 
     private lazy var recipes: Results<RealmRecipe> = { self.realm.objects(RealmRecipe.self)
     }()
@@ -42,7 +44,28 @@ class DataBaseManager: DataManager {
     func getRecipes() -> [Recipe] {
         return recipes
             .map { $0.converted() }
-            .sorted { $0.title < $1.title }
+            .filter { _ in
+                switch self.filter.filteredByMeal {
+                case .noFilter, .breakfast, .dinner, .lunch:
+                    return true
+                }
+            }
+            .filter { recipe in
+                if self.filter.isFilteredByIngredients {
+                    return self.filter.ingredients.allSatisfy { ingredientName in
+                        recipe.ingredients.contains { $0.title == ingredientName }
+                    }
+                } else {
+                    return true
+                }
+            }
+            .sorted {
+                if filter.sortedBy == .nameAsc {
+                    return $0.title < $1.title
+                } else {
+                    return $0.title > $1.title
+                }
+            }
     }
     
     func getCustomMeasures() -> [CustomMeasure] {
@@ -104,5 +127,9 @@ class DataBaseManager: DataManager {
         }.map { $0.measurement?.symbol ?? "" }
 
         return filteredIngredients
+    }
+    
+    func setFilter(filterModel: FilterViewModel) {
+        self.filter = filterModel
     }
 }

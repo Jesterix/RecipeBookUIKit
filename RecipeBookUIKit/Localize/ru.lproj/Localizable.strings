@@ -7,6 +7,11 @@
 
 "Main.Add.+Placeholder" = "+ новый рецепт";
 
+"Filter.Settings" = "Настройка фильтра";
+"Filter.Sorting" = "Сортировка";
+"Filter.Sorting.Ascending" = "По возрастанию";
+"Filter.Sorting.Descending" = "По убыванию";
+
 "Recipe.Add.Placeholder" = "Введите новый ингредиент";
 
 "Recipe.Add.+Placeholder" = "+ новый ингредиент";

@@ -18,4 +18,6 @@ protocol DataManager {
     
     func getCustomMeasures() -> [CustomMeasure]
     func update(measure: CustomMeasure)
+    
+    func setFilter(filterModel: FilterViewModel)
 }

@@ -7,6 +7,11 @@
 
 "Main.Add.+Placeholder" = "+ new recipe";
 
+"Filter.Settings" = "Filter settings";
+"Filter.Sorting" = "Sorting";
+"Filter.Sorting.Ascending" = "Ascending";
+"Filter.Sorting.Descending" = "Descending";
+
 "Recipe.Add.Placeholder" = "Enter new ingredient";
 
 "Recipe.Add.+Placeholder" = "+ new ingredient";
