@@ -71,6 +71,13 @@ final class RecipeViewController: TableViewController {
             target: self,
             action: #selector(shareRecipe))
         navigationItem.rightBarButtonItem = share
+        
+        addScrollOffsetHandlers()
+        
+        self.didChangeStretchFactor = { [weak self] stretchFactor, offset in
+            guard let self = self else { return }
+            self.recipeHeader.layoutContent(stretchFactor: stretchFactor, offset: offset)
+        }
     }
     
     override func viewDidLayoutSubviews() {

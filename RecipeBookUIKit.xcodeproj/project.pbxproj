@@ -70,6 +70,7 @@
 		CF3A9B8D273145A0003310E5 /* HeaderedSectionWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B8C273145A0003310E5 /* HeaderedSectionWithBackground.swift */; };
 		CF3A9B8F27314701003310E5 /* HeaderLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B8E27314701003310E5 /* HeaderLabelCell.swift */; };
 		CF3A9B9127392FEC003310E5 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */; };
+		CF3A9B94273A6B9E003310E5 /* StretchyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B93273A6B9E003310E5 /* StretchyHeaderView.swift */; };
 		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
 		CF5264A92699E83C00440AEB /* TextFieldDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */; };
 		CF5264AB2699E87200440AEB /* TextFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264AA2699E87200440AEB /* TextFieldMask.swift */; };
@@ -203,6 +204,7 @@
 		CF3A9B8C273145A0003310E5 /* HeaderedSectionWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderedSectionWithBackground.swift; sourceTree = "<group>"; };
 		CF3A9B8E27314701003310E5 /* HeaderLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabelCell.swift; sourceTree = "<group>"; };
 		CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
+		CF3A9B93273A6B9E003310E5 /* StretchyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderView.swift; sourceTree = "<group>"; };
 		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDecorator.swift; sourceTree = "<group>"; };
 		CF5264AA2699E87200440AEB /* TextFieldMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMask.swift; sourceTree = "<group>"; };
@@ -343,11 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				4474486724C60B1300EA5B2C /* MainViewController.swift */,
-				CF3A9B842731224E003310E5 /* FilterViewController.swift */,
+				CF3A9B9227395843003310E5 /* Filter */,
 				4474488424C6256700EA5B2C /* MainSection.swift */,
-				CF3A9B8627314434003310E5 /* SortSection.swift */,
 				4474488624C62F8600EA5B2C /* RecipeCell.swift */,
-				CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -369,6 +369,7 @@
 				4428C45524E6D9640054C6DD /* ConvertPortionsView.swift */,
 				CF1D847B25226AF000649BB8 /* DoubleButton.swift */,
 				CF9B0776252E41DC0008A7C9 /* ToolbarInputView.swift */,
+				CF3A9B93273A6B9E003310E5 /* StretchyHeaderView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -478,6 +479,16 @@
 				CF3A9B7C272C0461003310E5 /* MeasureLibrary */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		CF3A9B9227395843003310E5 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A9B842731224E003310E5 /* FilterViewController.swift */,
+				CF3A9B8627314434003310E5 /* SortSection.swift */,
+				CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		CF58EC7C25EED2F20065E2D4 /* CustomTransition */ = {
@@ -695,6 +706,7 @@
 				CF05A591260A770000A69580 /* UIGestureRecognizer+ActionKit.swift in Sources */,
 				4474487D24C60C7000EA5B2C /* Extensions.swift in Sources */,
 				CF05A58E260A770000A69580 /* ActionKit.swift in Sources */,
+				CF3A9B94273A6B9E003310E5 /* StretchyHeaderView.swift in Sources */,
 				CF12784025FC0FAD00E49E20 /* PlaceholderCell.swift in Sources */,
 				5EAC22E624F1A94E003BA90E /* DataManager.swift in Sources */,
 				CF05A58F260A770000A69580 /* UIControl+ActionKit.swift in Sources */,

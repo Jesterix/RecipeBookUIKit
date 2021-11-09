@@ -21,6 +21,14 @@ class TableViewController: UIViewController {
     private var containerViewBottomConstraint: Constraint?
 //    private let contentLockSpinner = T2SpinnerWithNoBackground()
     
+    private var scrollOffset: CGFloat = 0
+    public var stretchFactor: CGFloat = 1 {
+        didSet {
+            didChangeStretchFactor?(stretchFactor, scrollOffset)
+        }
+    }
+    public var didChangeStretchFactor: ((CGFloat, CGFloat) -> Void)?
+    
     var draggableCellsEnabled = false {
         didSet {
 //            if draggableCellsEnabled {
@@ -106,7 +114,7 @@ class TableViewController: UIViewController {
 //        contentLockSpinner.snp.makeConstraints { make in
 //            make.center.equalToSuperview()
 //        }
-        setRoundedBackground()
+//        setRoundedBackground()
     }
     
     override func viewDidLayoutSubviews() {
@@ -128,29 +136,29 @@ class TableViewController: UIViewController {
         containerView.layer.mask = gradient
     }
     
-    func setRoundedBackground() {
-        containerView.backgroundColor = UIColor.clear
-//        containerView.layer.shadowColor = UIColor.black.cgColor
-//        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
-//        containerView.layer.shadowOpacity = 0.1
-//        containerView.layer.shadowRadius = 10
-        
-        containerView.snp.remakeConstraints { (make) in
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
-        }
-        tableView.contentInset = UIEdgeInsets(
-            top: tableView.contentInset.top + 10,
-            left: tableView.contentInset.left,
-            bottom: tableView.contentInset.bottom + 8,
-            right: tableView.contentInset.right)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: 8,
-            right: -16)
-    }
+//    func setRoundedBackground() {
+//        containerView.backgroundColor = UIColor.clear
+////        containerView.layer.shadowColor = UIColor.black.cgColor
+////        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
+////        containerView.layer.shadowOpacity = 0.1
+////        containerView.layer.shadowRadius = 10
+//
+//        containerView.snp.remakeConstraints { (make) in
+//            make.leading.trailing.equalToSuperview().inset(16)
+//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            containerViewBottomConstraint = make.bottom.equalToSuperview()/*.inset(tabBarHeight())*/.constraint
+//        }
+//        tableView.contentInset = UIEdgeInsets(
+//            top: tableView.contentInset.top,// + 10,
+//            left: tableView.contentInset.left,
+//            bottom: tableView.contentInset.bottom + 8,
+//            right: tableView.contentInset.right)
+//        tableView.scrollIndicatorInsets = UIEdgeInsets(
+//            top: 0,
+//            left: 0,
+//            bottom: 8,
+//            right: -16)
+//    }
     
     func layoutInHeader(
         view: UIView,
@@ -360,5 +368,48 @@ extension TableViewController {
 
     struct Path {
         static var initialIndexPath: IndexPath? = nil
+    }
+}
+
+extension TableViewController {
+    public func tableViewDidScrollToOffset(offset: Double) {
+//        print("didScroll to ", offset)
+//        guard let navigationBar = navigationBar else { return }
+//
+//        guard navigationBar.contractedHeight != 0 else {
+//            // Exception for static height NavBars; adjustment for changing NavBar background opacity
+//            let tableOffset = CGFloat(offset) + navigationBar.expandedHeight
+//            navigationBar.stretchFactor = fmax(fmin(1 - tableOffset / 12, 1), 0)
+//            return
+//        }
+//
+        let heightAffectedForScroll: CGFloat = 40
+        let tableOffset = CGFloat(offset) + heightAffectedForScroll//topContainerView.frame.height
+//        if let initialOffset = navigationBar.manualStretchFactorFromOffset, -CGFloat(offset) < navigationBar.expandedHeight {
+//
+//            tableOffset -= initialOffset + (navigationBar.expanding ? navigationBar.contractedHeight : navigationBar.expandedHeight)
+//            print("new to \(tableOffset)")
+//        }
+//        navigationBar.stretchFactor = fmax(fmin(1 - tableOffset / (navigationBar.expandedHeight - navigationBar.contractedHeight), 1), 0)
+        scrollOffset = offset
+        stretchFactor = fmax(fmin(1 - tableOffset / (heightAffectedForScroll/*topContainerView.frame.height*/), 1), 0)
+        
+//        print("stretchFactor",stretchFactor)
+    }
+    
+    public func tableViewScrollWillStopAt(offset: Double) {
+        print("ScrollWillStop at \n", offset)
+        scrollOffset = offset
+//        guard let navigationBar = navigationBar, CGFloat(-offset) > navigationBar.contractedHeight, navigationBar.contractedHeight > 0  else { return }
+//        if CGFloat(-offset) > navigationBar.contractedHeight + (navigationBar.expandedHeight - navigationBar.contractedHeight) / 2 {
+//            tableView.setContentOffset(CGPoint(x: 0, y: -navigationBar.expandedHeight), animated: true)
+//        } else {
+//            tableView.setContentOffset(CGPoint(x: 0, y: -navigationBar.contractedHeight), animated: true)
+//        }
+    }
+    
+    public func addScrollOffsetHandlers() {
+        tableViewDecorator.didScrollToOffset.addHandler(handler: tableViewDidScrollToOffset)
+        tableViewDecorator.scrollWillStopAt.addHandler(handler: tableViewScrollWillStopAt)
     }
 }

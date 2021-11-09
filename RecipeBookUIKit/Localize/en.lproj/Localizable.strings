@@ -12,6 +12,7 @@
 "Filter.Sorting.Ascending" = "Ascending";
 "Filter.Sorting.Descending" = "Descending";
 
+"Recipe.Add.Title" = "Recipe title";
 "Recipe.Add.Placeholder" = "Enter new ingredient";
 
 "Recipe.Add.+Placeholder" = "+ new ingredient";
