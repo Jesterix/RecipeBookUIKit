@@ -17,6 +17,8 @@ final class RecipeHeaderView: StretchyHeaderView {
     var tagCollectionView: UITextField!
     private let initialTagViewHeight: CGFloat = 44
     private var tagViewHeightConstraint: Constraint?
+    private var isExpanded = true
+    private var isAnimating = false
     
     init() {
         super.init(frame: .zero)
@@ -49,7 +51,7 @@ final class RecipeHeaderView: StretchyHeaderView {
         tagCollectionView = layout(UITextField()) { make in
             make.top.equalTo(convertPortionsView.bottom)
             make.leading.trailing.equalToSuperview().inset(10)
-            tagViewHeightConstraint = make.bottom.equalTo(convertPortionsView.bottom).offset(initialTagViewHeight).constraint
+            tagViewHeightConstraint = make.height.equalTo(initialTagViewHeight).constraint
         }
         tagCollectionView.backgroundColor = .red.withAlphaComponent(0.5)
         tagCollectionView.text = "TESTTT!"
@@ -65,7 +67,6 @@ final class RecipeHeaderView: StretchyHeaderView {
 
     // MARK: - applyStyle
     private func applyStyle() {
-//        colorScheme = .wideHeader
         backgroundColor = .clear
         
         titleField.font = .systemFont(ofSize: 21)
@@ -75,49 +76,74 @@ final class RecipeHeaderView: StretchyHeaderView {
         titleField.placeholder = "Recipe.Add.Title".localized()
 
         addIngredientTextField.setPlaceholder(text: "Recipe.Add.Placeholder".localized())
-//        addIngredientTextField.setupGradientBackground()
     }
     
     override func layoutContent(stretchFactor: CGFloat, offset: CGFloat = 0) {
-//        print("layoutContent with stretchFactor", stretchFactor)
-//        guard contractedHeight > 0 else {
-//            if let segment = dataTypeSegmentControl, segment.titles.count > 2, !isBarStatic {
-//                //change segment background to fit segment clear back
-////                segment.updateBackgroundItemColor(UIColor(displayP3Red: 0.961 + 0.039 * stretchFactor, green: 0.961 + 0.039 * stretchFactor, blue: 0.98 + 0.02 * stretchFactor, alpha: 1.0))
-//            } else if let searchField = searchField, searchButton == nil, !isBarStatic || isBlurredOnScroll {
-//                searchField.backgroundColor = UIColor(displayP3Red: 0.961 + 0.039 * stretchFactor, green: 0.961 + 0.039 * stretchFactor, blue: 0.98 + 0.02 * stretchFactor, alpha: 1.0)
-//            }
-//            return
-//        }
-//
-//        if !isBarStatic {
-        if stretchFactor == 0 && offset > initialTagViewHeight {
-            tagCollectionView.alpha = 0
-        } else if stretchFactor == 0 && offset >= 0 {
-            tagCollectionView.alpha = 1 - (offset / initialTagViewHeight)
-            tagViewHeightConstraint?.update(offset: (initialTagViewHeight) * (1 - (offset / initialTagViewHeight)))
-        } else {
-            tagCollectionView.alpha = 1
-            tagViewHeightConstraint?.update(offset: initialTagViewHeight)
+//        //FOR ANIMATION
+        if stretchFactor > 0.9 {
+            animateShowingTagCollectionView()
+        } else if offset > initialTagViewHeight * 2.5 {
+            animateHidingTagCollectionView()
         }
         
-//            if stretchFactor > 0.5 {
-//                testField.alpha = 1 - (1 - stretchFactor) * 2
-//            } else {
-//                testField.alpha = 0
-//            }
-////
-//            if stretchFactor < 0.5 {
-//                titleField.alpha = 1 - stretchFactor * 2
-//            } else {
-//                titleField.alpha = 0
-//            }
+//        //FOR MOVING
+//        if stretchFactor == 0 && offset > initialTagViewHeight {
+//            tagCollectionView.alpha = 0
+//        } else if stretchFactor == 0 && offset >= 0 {
+//            tagCollectionView.alpha = 1 - (offset / initialTagViewHeight)
+//            tagViewHeightConstraint?.update(offset: (initialTagViewHeight) * (1 - (offset / initialTagViewHeight)))
+//        } else {
+//            tagCollectionView.alpha = 1
+//            tagViewHeightConstraint?.update(offset: initialTagViewHeight)
 //        }
-//
-//        if dataTypeSegmentControl != nil {
-//            lowerSectionHeightConstraint?.update(offset: (-initialSegmentedControlHeight) * stretchFactor)
-//        } else if searchField != nil {
-//            lowerSectionHeightConstraint?.update(offset: (-initialSearchFieldHeight) * stretchFactor)
+        
+        //FOR MOVING with DELAY
+//        let modifiedOffset = offset - (2 * initialTagViewHeight)
+//        if stretchFactor == 0 && modifiedOffset >= 0 {
+//            tagCollectionView.alpha = 1 - (modifiedOffset / initialTagViewHeight)
+//            tagViewHeightConstraint?.update(offset: (initialTagViewHeight) * (1 - (modifiedOffset / initialTagViewHeight)))
+//        } else {
+//            tagCollectionView.alpha = 1
+//            tagViewHeightConstraint?.update(offset: initialTagViewHeight)
 //        }
+    }
+    
+    private func animateShowingTagCollectionView() {
+        if !isExpanded && !isAnimating {
+            isAnimating.toggle()
+            self.tagViewHeightConstraint?.update(offset: self.initialTagViewHeight)
+            UIView.animate(
+                withDuration: 0.3,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.tagCollectionView.alpha = 1
+                    self.superview?.superview?.layoutIfNeeded()
+                },
+                completion: { _ in
+                    self.isExpanded.toggle()
+                    self.isAnimating.toggle()
+                })
+        }
+        
+    }
+    
+    private func animateHidingTagCollectionView() {
+        if isExpanded && !isAnimating {
+            isAnimating.toggle()
+            self.tagViewHeightConstraint?.update(offset: 0)
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.tagCollectionView.alpha = 0
+                    self.superview?.superview?.layoutIfNeeded()
+                },
+                completion: { _ in
+                    self.isExpanded.toggle()
+                    self.isAnimating.toggle()
+                })
+        }
     }
 }
