@@ -71,6 +71,8 @@
 		CF3A9B8F27314701003310E5 /* HeaderLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B8E27314701003310E5 /* HeaderLabelCell.swift */; };
 		CF3A9B9127392FEC003310E5 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */; };
 		CF3A9B94273A6B9E003310E5 /* StretchyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B93273A6B9E003310E5 /* StretchyHeaderView.swift */; };
+		CF3A9B96273D0404003310E5 /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B95273D0404003310E5 /* HorizontalCollectionView.swift */; };
+		CF3A9B98273E61FD003310E5 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A9B97273E61FD003310E5 /* TagCell.swift */; };
 		CF3D31C425FBFCA000D1F055 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D31C325FBFCA000D1F055 /* EmptyView.swift */; };
 		CF5264A92699E83C00440AEB /* TextFieldDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */; };
 		CF5264AB2699E87200440AEB /* TextFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5264AA2699E87200440AEB /* TextFieldMask.swift */; };
@@ -205,6 +207,8 @@
 		CF3A9B8E27314701003310E5 /* HeaderLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabelCell.swift; sourceTree = "<group>"; };
 		CF3A9B9027392FEC003310E5 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
 		CF3A9B93273A6B9E003310E5 /* StretchyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderView.swift; sourceTree = "<group>"; };
+		CF3A9B95273D0404003310E5 /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionView.swift; sourceTree = "<group>"; };
+		CF3A9B97273E61FD003310E5 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		CF3D31C325FBFCA000D1F055 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF5264A82699E83C00440AEB /* TextFieldDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDecorator.swift; sourceTree = "<group>"; };
 		CF5264AA2699E87200440AEB /* TextFieldMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMask.swift; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 			children = (
 				CF58EC9825F01AAD0065E2D4 /* TableViewController */,
 				4474488924C6E29C00EA5B2C /* AddTextField.swift */,
+				CF3A9B95273D0404003310E5 /* HorizontalCollectionView.swift */,
+				CF3A9B97273E61FD003310E5 /* TagCell.swift */,
 				CF3A9B82272C21DE003310E5 /* GradientTextField.swift */,
 				CFA12788251E935900FBFFB5 /* InsettedTextField.swift */,
 				5EAC22FE24F2AA26003BA90E /* InsettedLabel.swift */,
@@ -735,6 +741,7 @@
 				CFA12787251E786D00FBFFB5 /* PlaceholderView.swift in Sources */,
 				447448A224D6E0CC00EA5B2C /* Button.swift in Sources */,
 				CFADB814257D700E003AFC31 /* UIViewController+FileManager.swift in Sources */,
+				CF3A9B96273D0404003310E5 /* HorizontalCollectionView.swift in Sources */,
 				4474488D24C781B800EA5B2C /* RecipeViewController.swift in Sources */,
 				4428C44C24E2ED100054C6DD /* DataStorage.swift in Sources */,
 				CFADB80F257D6E02003AFC31 /* Alerts.swift in Sources */,
@@ -742,6 +749,7 @@
 				4474489B24C84BCB00EA5B2C /* RealmRecipe.swift in Sources */,
 				4428C45624E6D9640054C6DD /* ConvertPortionsView.swift in Sources */,
 				CF3A9B9127392FEC003310E5 /* SegmentedControlCell.swift in Sources */,
+				CF3A9B98273E61FD003310E5 /* TagCell.swift in Sources */,
 				4474488324C622CC00EA5B2C /* Recipe.swift in Sources */,
 				CF58ECBB25F023B60065E2D4 /* CustomTableViewCell.swift in Sources */,
 				4474489D24C84C0D00EA5B2C /* RealmIngredient.swift in Sources */,

@@ -398,7 +398,6 @@ extension TableViewController {
     }
     
     public func tableViewScrollWillStopAt(offset: Double) {
-        print("ScrollWillStop at \n", offset)
         scrollOffset = offset
 //        guard let navigationBar = navigationBar, CGFloat(-offset) > navigationBar.contractedHeight, navigationBar.contractedHeight > 0  else { return }
 //        if CGFloat(-offset) > navigationBar.contractedHeight + (navigationBar.expandedHeight - navigationBar.contractedHeight) / 2 {

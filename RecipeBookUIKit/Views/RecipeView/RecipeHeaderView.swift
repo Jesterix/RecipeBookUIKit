@@ -14,8 +14,9 @@ final class RecipeHeaderView: StretchyHeaderView {
     var convertPortionsView: ConvertPortionsView!
     var addIngredientTextField: AddTextField!
     
-    var tagCollectionView: UITextField!
-    private let initialTagViewHeight: CGFloat = 44
+    var tagCollectionView: HorizontalCollectionView!
+    private let initialTagViewHeight: CGFloat = DefaultConstants.tagViewHeight.rawValue
+    
     private var tagViewHeightConstraint: Constraint?
     private var isExpanded = true
     private var isAnimating = false
@@ -47,14 +48,17 @@ final class RecipeHeaderView: StretchyHeaderView {
             make.trailing.equalTo(convertPortionsView.leading)
         }
         
-        //TestField, change for collectionView
-        tagCollectionView = layout(UITextField()) { make in
+        //TODO: make it configurable
+        tagCollectionView = layout(HorizontalCollectionView()) { make in
             make.top.equalTo(convertPortionsView.bottom)
             make.leading.trailing.equalToSuperview().inset(10)
             tagViewHeightConstraint = make.height.equalTo(initialTagViewHeight).constraint
         }
-        tagCollectionView.backgroundColor = .red.withAlphaComponent(0.5)
-        tagCollectionView.text = "TESTTT!"
+        tagCollectionView.add("dinner")
+        tagCollectionView.add("milk delight breakfast pleasure")
+        tagCollectionView.add("")
+        tagCollectionView.add("so1")
+        tagCollectionView.reloadData()
         //TestField, change for collectionView
         
         addIngredientTextField = layout(AddTextField()) { make in
@@ -117,15 +121,16 @@ final class RecipeHeaderView: StretchyHeaderView {
                 delay: 0,
                 options: .curveEaseInOut,
                 animations: {
-                    self.tagCollectionView.alpha = 1
                     self.superview?.superview?.layoutIfNeeded()
+                    UIView.animate(withDuration: 0.1, delay: 0.2) {
+                        self.tagCollectionView.alpha = 1
+                    }
                 },
                 completion: { _ in
                     self.isExpanded.toggle()
                     self.isAnimating.toggle()
                 })
         }
-        
     }
     
     private func animateHidingTagCollectionView() {
